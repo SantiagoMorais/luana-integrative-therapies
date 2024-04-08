@@ -1,0 +1,45 @@
+{
+    "benefits": [
+        "Auxilia nas dores físicas",
+        "Auxilia no tratamento pré e pós cirúrgico",
+        "Atuam na melhora de doenças emocionais",
+        "Previne doenças cardiovasculares, endócrinas, respiratórias e neurológicas",
+        "Promove saúde, beleza e bem estar"
+    ],
+    "depositions": [
+        {
+            "deposition": "Boa tarde Lu, essas sessões são milagrosas. Estou me sentindo super bem desde a primeira sessão, já pude notar diferença em minhas dores nas costas e acredite, elas não voltaram. As dores no braço ainda existem mas vejo uma melhora a cada sessão.",
+            "patientName": "J.L."
+        },
+        {
+            "deposition": "O atendimento foi bem tranquilo, não senti dor, fiquei bem calma e relaxada. O pós foi ótimo, consegui dormir muito bem e acordei bem tranquila, nem parecia que eu estava tendo problemas pessoais. Com certeza foi a melhor escolha que eu fiz para cuidar de mim, você é simplesmente incrível, que atendimento maaaara. Já quero marcar o retorno.",
+            "patientName": "S.P."
+        },
+        {
+            "deposition": "Eu estou ótima!! Suuuuper relaxada até hoje. A auriculoterapia e as pastilhas nos ombros estão intactas e estou sentindo uma leveza nos ombros fora do normal. Sério, maravilhoso! Já indiquei um tanto de colegas da faculdade aí pra você",
+            "patientName": "M.L.B."
+        }
+    ],
+    "faqs": [
+        {
+            "question": "O que são terapias integrativas?",
+            "answer": "Terapias integrativas são abordagens de cuidados de saúde que combinam técnicas tradicionais e complementares para promover o bem-estar físico, mental e emocional. Elas consideram o indivíduo como um todo, buscando equilibrar o corpo, a mente e o espírito."
+        },
+        {
+            "question": "Quais são os benefícios das terapias integrativas?",
+            "answer": "As terapias integrativas oferecem uma variedade de benefícios, incluindo alívio da dor, redução do estresse, melhoria da qualidade do sono, fortalecimento do sistema imunológico, aumento da energia e promoção da saúde geral. Elas também podem complementar tratamentos convencionais e ajudar na gestão de condições crônicas."
+        },
+        {
+            "question": "Quais são os tipos de terapias integrativas oferecidas em nossa clínica?",
+            "answer": "Em nossa clínica, oferecemos uma ampla gama de terapias integrativas, incluindo acupuntura, auriculoterapia, ventosaterapia, reflexologia, massagem terapêutica, fitoterapia, meditação, entre outras. Nossos profissionais qualificados estão comprometidos em proporcionar tratamentos personalizados para atender às necessidades individuais de cada cliente."
+        },
+        {
+            "question": "Como funcionam as sessões de terapias integrativas?",
+            "answer": "As sessões de terapias integrativas são conduzidas por profissionais especializados que realizam uma avaliação completa do cliente para entender suas necessidades e objetivos de saúde. Com base nessa avaliação, são recomendadas e aplicadas técnicas específicas para promover o equilíbrio e a harmonia do corpo. As sessões podem incluir manipulações físicas, estimulação de pontos específicos no corpo, uso de ervas medicinais, práticas de respiração e relaxamento, entre outras abordagens."
+        },
+        {
+            "question": "Quem pode se beneficiar das terapias integrativas?",
+            "answer": "As terapias integrativas são adequadas para pessoas de todas as idades e condições de saúde. Elas podem ser utilizadas como uma forma de prevenção, para manter o equilíbrio e a vitalidade, bem como parte do tratamento de condições específicas, complementando a medicina convencional. Se você busca melhorar sua qualidade de vida, aliviar sintomas físicos ou emocionais, ou simplesmente deseja promover seu bem-estar geral, as terapias integrativas podem ser uma ótima opção para você."
+        }
+    ]
+}
