@@ -15,7 +15,7 @@ export const FAQs = () => {
             <h2 className="title">Perguntas Frequentes</h2>
             {data.faqs &&
                 <ul className="faqs">
-                    {data.faqs.map((faq, index) => 
+                    {data.faqs.map((faq, index) =>
                         <li className="faq" key={index} onClick={() => handleAccordion(faq.question)}>
                             <p className="question" data-testid="question">{faq.question}</p>
                             <p className={`answer ${questionSelected === faq.question ? "selected" : ''}`} data-testid="answer">{faq.answer}</p>
@@ -42,7 +42,7 @@ const Container = styled.div`
     }
 
     .faqs {
-        max-width: 80rem;
+        max-width: 100rem;
         display: flex;
         flex-direction: column;
         gap: 2rem;
@@ -58,7 +58,7 @@ const Container = styled.div`
             .question {
                 font-size: 2.5rem;
                 padding-bottom: 1rem;
-                border-bottom: .2rem solid ${theme.tertiaryColor};
+                border-bottom: .2rem solid ${theme.secondaryColor};
                 transition: .3s;
             }
 
@@ -67,9 +67,82 @@ const Container = styled.div`
                 overflow: hidden;
                 transition: .3s;
                 margin-top: 1rem;
+                background-color: ${theme.primaryColor};
+                padding: 0 1rem;
+                border-radius: 1rem;
 
                 &.selected {
                     height: 12rem;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 2rem;
+
+        .title {
+            font-size: 3rem;
+        }
+    
+        .faqs {
+            .faq {
+                .question {
+                    text-align: center;
+                }
+
+                .answer {
+                    &.selected {
+                        height: 17rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 620px) {
+        .faqs {
+            .faq {
+                .answer {
+                    &.selected {
+                        height: 25rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 450px) {
+        .faqs {
+            .faq {
+                .answer {
+                    &.selected {
+                        height: 32rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 350px) {
+        .faqs {
+            .faq {
+                .answer {
+                    &.selected {
+                        height: 44rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 275px) {
+        .faqs {
+            .faq {
+                .answer {
+                    &.selected {
+                        height: fit-content;
+                    }
                 }
             }
         }

@@ -5,47 +5,87 @@ import { theme } from "@styles/theme"
 export const Header = () => {
     return (
         <Container>
-            <div className="title">
-                <h1 className="nameTitle">
-                    <span className="firstLetter">L</span>uana Vasconcellos Alvarenga
-                </h1>
-                <h2 className="professionalTitle">Cirurgiã Dentista Especialista em Terapias Integrativas</h2>
+            <div className="content">
+                <div className="title">
+                    <h1 className="nameTitle">
+                        <span className="firstLetter">L</span>uana Vasconcellos Alvarenga
+                    </h1>
+                    <h2 className="professionalTitle">Cirurgiã Dentista Especialista em Terapias Integrativas</h2>
+                </div>
+                <NavBar />
             </div>
-            <NavBar />
         </Container>
     )
 }
 
 const Container = styled.section`
-    width: 100%;
     background-color: ${theme.primaryColor};
-    padding: 0 5rem;
-    position: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
 
-    .title {
-        .nameTitle {
-            font-size: 3rem;
-            font-family: ${theme.fontFamily};
-            font-weight: 500;
-            margin-bottom: 2rem;
+    .content {
+        width: 100%;
+        max-width: 144rem;
+        padding: 0 5rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: baseline;
+        flex-wrap: wrap;
 
-            .firstLetter {
-                font-size: 6rem;
+        .title {
+            position: relative;
+            width: 38rem;
+    
+            .nameTitle {
+                font-size: 3rem;
                 font-family: ${theme.fontFamily};
+                font-weight: 500;
+                margin-bottom: 2rem;
+    
+                .firstLetter {
+                    font-size: 6rem;
+                    font-family: ${theme.fontFamily};
+                }
+            }
+    
+            .professionalTitle {
+                font-size: 1.8rem;
+                font-weight: 500;
+                opacity: .8;
+                position: absolute;
+                bottom: 1.3rem;
+                left: 3rem;
+                text-transform: capitalize;
             }
         }
+    }
 
-        .professionalTitle {
-            font-size: 1.8rem;
-            font-weight: 500;
-            opacity: .8;
-            position: absolute;
-            bottom: 1.3rem;
-            left: 11rem;
-            text-transform: capitalize;
+
+    @media (max-width: 475px) {
+        .content {
+            padding: 0 2rem;
+            
+            .title {        
+                position: relative;
+                text-align: center;
+            
+                .nameTitle {
+                    font-size: 2.5;
+                    font-weight: 500;
+                    margin: 1rem 0;
+                    line-height: .7;
+            
+                    .firstLetter {
+                        font-size: 4rem;
+                    }
+                }
+            
+                .professionalTitle {
+                    font-size: 1.6rem;
+                    position: static;
+                    margin-bottom: 1rem;
+                }
+            }
         }
     }
 `

@@ -29,8 +29,12 @@ export const Depositions = () => {
 
 const Container = styled.div`
     margin-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .title {
+        width: 100%;
         text-align: center;
         font-size: 4rem;
         font-weight: 400;
@@ -43,10 +47,11 @@ const Container = styled.div`
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        max-width: 144rem;
 
         .icon {
             font-size: 5rem;
-            color: ${theme.tertiaryColor};
+            color: ${theme.secondaryColor};
         }
 
         .deposition {
@@ -60,7 +65,27 @@ const Container = styled.div`
 
         .patientName {
             font-weight: 500;
-            color: ${theme.tertiaryColor};
+            color: ${theme.secondaryColor};
+        }
+    }
+
+    @media (max-width: 425px) {
+        margin-bottom: 1rem;
+    
+        .title {
+            font-size: 3rem;
+        }
+    
+        .depositions {
+            padding: 1rem;
+    
+            .icon {
+                font-size: 4rem;
+            }
+    
+            .deposition {
+                font-weight: 400;
+            }
         }
     }
 `
