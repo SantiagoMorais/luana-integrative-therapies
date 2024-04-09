@@ -21,14 +21,21 @@ export const TherapeuticCare = () => {
 
 const Container = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     padding: 8rem 3rem;
     gap: 3rem;
+    flex-wrap: wrap-reverse;
+    align-items: flex-end;
+
+    .info, .image {
+        flex: 1;
+        max-width: 50rem;
+        min-width: 30rem;
+        width: 40%;
+    }
 
     .info {
-        max-width: 50rem;
         font-size: 2.5rem;
-        text-align: justify;
         font-weight: 300;
 
         .title {
@@ -36,12 +43,36 @@ const Container = styled.div`
             font-size: 4rem;
             font-weight: 400;
         }
+
+        .functionality {
+            text-align: justify;
+        }
     }
 
     .image {
-        min-width: 50rem;
-        max-height: 50rem;
+        max-height: 60rem;
+        min-height: 40rem;
         object-fit: cover;
         border-radius: 1.5rem;
+    }
+
+    @media (max-width: 425px) {
+        padding: 2rem;
+        gap: 1rem;
+
+        .info, .image {
+            min-width: 20rem;
+        }
+        
+        .info {
+            font-size: 2rem;
+            font-weight: 400;
+            
+            .title {
+                margin-bottom: 1rem;
+                font-size: 3rem;
+                text-align: center;
+            }
+        }
     }
 `

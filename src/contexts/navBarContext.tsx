@@ -12,7 +12,7 @@ interface INavBarProviderProps {
 }
 
 export const NavBarProvider: React.FC<INavBarProviderProps> = ({children}) => {
-    const [currentLink, setCurrentLink] = useState<string>("Home");
+    const [currentLink, setCurrentLink] = useState<string>("home");
     
     return (
         <NavBarContext.Provider value={{currentLink, setCurrentLink}}>
