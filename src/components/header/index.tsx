@@ -8,7 +8,7 @@ export const Header = () => {
             <div className="content">
                 <div className="title">
                     <h1 className="nameTitle">
-                        <span className="firstLetter">L</span>uana Vasconcellos Alvarenga
+                        Luana Vasconcellos Alvarenga
                     </h1>
                     <h2 className="professionalTitle">Cirurgiã Dentista Especialista em Terapias Integrativas</h2>
                 </div>
@@ -42,7 +42,7 @@ const Container = styled.section`
                 font-weight: 500;
                 margin-bottom: 2rem;
     
-                .firstLetter {
+                &::first-letter {
                     font-size: 6rem;
                     font-family: ${theme.fontFamily};
                 }

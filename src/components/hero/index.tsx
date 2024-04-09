@@ -8,7 +8,7 @@ export const Hero = () => {
     return (
         <Container>
             <h2 className="slogan">
-                <span className="firstLetter">D</span>escubra uma jornada de cura e harmonia através de terapias integrativas.
+                Descubra uma jornada de cura e harmonia através de terapias integrativas.
             </h2>
             <FontAwesomeIcon className="icon" icon={faArrowDown} data-testid="fontAwesomeIcon" />
         </Container>    
@@ -46,8 +46,8 @@ const Container = styled.div`
         color: ${theme.textColor};
         filter: drop-shadow(0 0 10px ${theme.secondaryTextColor});
 
-        .firstLetter {
-            font-size: 200%;
+        &::first-letter {
+            font-size: 150%;
             top: -9rem;
             left: -7rem;
             font-weight: 300;
