@@ -1,5 +1,5 @@
 import { Header } from "."
-import { render } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 
 describe('<Header />', () => {
     it('should render the title of header', () => {
@@ -7,4 +7,11 @@ describe('<Header />', () => {
         const title = getByText(/Cirurgiã Dentista Especialista em Terapias Integrativas/i);
         expect(title).toBeInTheDocument();
     })
+
+    it("should render the name 'Luana Vasconcellos Alvarenga'", () => {
+        render(<Header />);
+        
+        const nameElement = screen.getByText("Luana Vasconcellos Alvarenga");
+        expect(nameElement).toBeInTheDocument();
+    });
 })

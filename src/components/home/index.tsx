@@ -1,11 +1,11 @@
 import styled from "styled-components"
-import { Header } from "../header"
-import { Hero } from "../hero"
 import { Benefits } from "@components/benefits"
 import { TherapeuticCare } from "@components/therapeuticCare"
 import { Depositions } from "@components/depositions"
 import { FAQs } from "@components/faqs"
 import { Footer } from "@components/footer"
+import { Header } from "@components/header"
+import { Hero } from "@components/hero"
 
 export const Home = () => {
     return (
