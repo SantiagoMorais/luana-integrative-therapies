@@ -9,9 +9,9 @@ interface ITheme {
 
 export const theme: ITheme = {
     fontFamily: "'Cookie', cursive",
-    primaryColor: "#ECCA9C",
+    primaryColor: "#D3BEDD",
     secondaryColor: "#AFD198",
-    tertiaryColor: "#DBA979",
+    tertiaryColor: "#B899C6",
     textColor: "#000000",
     secondaryTextColor: "#eeeeee"
 }
