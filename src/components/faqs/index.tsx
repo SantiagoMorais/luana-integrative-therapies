@@ -67,7 +67,6 @@ const Container = styled.div`
                 overflow: hidden;
                 transition: .3s;
                 margin-top: 1rem;
-                background-color: ${theme.primaryColor};
                 padding: 0 1rem;
                 border-radius: 1rem;
 
