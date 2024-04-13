@@ -10,7 +10,7 @@ export const Header = () => {
                     <h1 className="nameTitle">
                         Luana Vasconcellos Alvarenga
                     </h1>
-                    <h2 className="professionalTitle">Cirurgiã Dentista Especialista em Terapias Integrativas</h2>
+                    <h2 className="professionalTitle">Cirurgiã Dentista e Terapeuta Integrativa</h2>
                 </div>
                 <NavBar />
             </div>
@@ -43,7 +43,7 @@ const Container = styled.section`
                 margin-bottom: 2rem;
     
                 &::first-letter {
-                    font-size: 6rem;
+                    font-size: 5rem;
                     font-family: ${theme.fontFamily};
                 }
             }

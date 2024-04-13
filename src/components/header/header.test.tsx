@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react"
 describe('<Header />', () => {
     it('should render the title of header', () => {
         const { getByText } = render(<Header />)
-        const title = getByText(/Cirurgiã Dentista Especialista em Terapias Integrativas/i);
+        const title = getByText(/Cirurgiã Dentista e Terapeuta Integrativa/i);
         expect(title).toBeInTheDocument();
     })
 

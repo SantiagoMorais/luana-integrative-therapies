@@ -8,8 +8,17 @@ interface ITheme {
 
 export const theme: ITheme = {
     fontFamily: "'Cookie', cursive",
-    primaryColor: "#D3BEDD",
-    secondaryColor: "#B899C6",
+    primaryColor: "#D6E5FA",
+    secondaryColor: "#E6B2C6",
     textColor: "#000000",
-    secondaryTextColor: "#eeeeee"
+    secondaryTextColor: "#ffffff"
 }
+
+// rosa com azul
+// export const theme: ITheme = {
+//     fontFamily: "'Cookie', cursive",
+//     primaryColor: "#D6E5FA",
+//     secondaryColor: "#E6B2C6",
+//     textColor: "#000000",
+//     secondaryTextColor: "#ffffff"
+// }
