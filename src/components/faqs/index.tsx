@@ -63,15 +63,15 @@ const Container = styled.div`
             }
 
             .answer {
-                height: 0;
+                max-height: 0;
                 overflow: hidden;
-                transition: .3s;
+                transition: max-height .3s;
                 margin-top: 1rem;
                 padding: 0 1rem;
                 border-radius: 1rem;
 
                 &.selected {
-                    height: 12rem;
+                    max-height: 12rem;
                 }
             }
         }
