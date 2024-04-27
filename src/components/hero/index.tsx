@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components"
-import heroImage from "@assets/pexels-christina-morillo-1181690.jpg"
+import heroImage from "@assets/imgs/pexels-christina-morillo-1181690.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons"
 import { theme } from "@styles/theme"

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import { TherapeuticCare } from "."
-import correctImage from "@assets/imageToTherapeuticCare.jpeg" 
+import correctImage from "@assets/imgs/imageToTherapeuticCare.jpg" 
 
 describe("<TherapeuticCare/>", () => {
     it('should render the component correctly', () => {
