@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import luanaWithToskaniProduct from "@assets/imageToTherapeuticCare.jpeg" 
+import luanaWithToskaniProduct from "@assets/imgs/imageToTherapeuticCare.jpg" 
 
 export const TherapeuticCare = () => {
     return (

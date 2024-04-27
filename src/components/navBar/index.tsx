@@ -3,6 +3,7 @@ import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { theme } from "@styles/theme"
 import { useContext, useState } from "react"
+import { Link } from "react-router-dom";
 import styled from "styled-components"
 
 export const NavBar = () => {
@@ -18,12 +19,12 @@ export const NavBar = () => {
     }
 
     const links = [
-        "home",
-        "sobre mim",
-        "contato",
-        "equilibrium",
-        "segredos da lua"
-    ];
+        { name: "home", link: "/" },
+        { name: "sobre mim", link: "/about" },
+        { name: "contato", link: "/contact" },
+        { name: "equilibrium", link: "/" },
+        { name: "segredos da lua", link: "/" }
+    ]
 
     return (
         <Container>
@@ -38,13 +39,14 @@ export const NavBar = () => {
                 />
             </button>
             <ul className={`navBar ${hamburgerIconClicked ? "clicked" : ''}`}>
-                {currentLink && links.map((link, index) =>
-                    <li
-                        key={index}
-                        className={`link ${currentLink === link ? "selected" : ""}`}
-                        onClick={() => { handlePageChange(link) }}>
-                        {link}
-                    </li>
+                {currentLink !== null && links.map((navButton, index) =>
+                    <Link key={index} to={navButton.link}>
+                        <li
+                            className={`link ${currentLink === navButton.name ? "selected" : ""}`}
+                            onClick={() => { handlePageChange(navButton.name) }}>
+                            {navButton.name}
+                        </li>
+                    </Link>
                 )}
             </ul>
         </Container>
@@ -86,6 +88,7 @@ const Container = styled.nav`
             cursor: pointer;
             transition: .3s;
             text-transform: capitalize;
+            color: ${theme.textColor};
 
             &:hover {
                 color: ${theme.secondaryTextColor};

@@ -65,13 +65,14 @@ const Container = styled.div`
             .answer {
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height .3s;
+                transition: max-height .5s ease;
                 margin-top: 1rem;
                 padding: 0 1rem;
                 border-radius: 1rem;
+                height: auto;
 
                 &.selected {
-                    max-height: 12rem;
+                    max-height: 36rem;
                 }
             }
         }
@@ -88,60 +89,6 @@ const Container = styled.div`
             .faq {
                 .question {
                     text-align: center;
-                }
-
-                .answer {
-                    &.selected {
-                        height: 17rem;
-                    }
-                }
-            }
-        }
-    }
-
-    @media (max-width: 620px) {
-        .faqs {
-            .faq {
-                .answer {
-                    &.selected {
-                        height: 25rem;
-                    }
-                }
-            }
-        }
-    }
-
-    @media (max-width: 450px) {
-        .faqs {
-            .faq {
-                .answer {
-                    &.selected {
-                        height: 32rem;
-                    }
-                }
-            }
-        }
-    }
-
-    @media (max-width: 350px) {
-        .faqs {
-            .faq {
-                .answer {
-                    &.selected {
-                        height: 44rem;
-                    }
-                }
-            }
-        }
-    }
-
-    @media (max-width: 275px) {
-        .faqs {
-            .faq {
-                .answer {
-                    &.selected {
-                        height: fit-content;
-                    }
                 }
             }
         }

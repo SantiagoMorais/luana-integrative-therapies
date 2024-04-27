@@ -1,18 +1,25 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import { NavBar } from "."
 import { NavBarProvider } from "@contexts/navBarContext"
+import { BrowserRouter } from "react-router-dom"
 
 describe('<NavBar />', () => {
-    it('should render the links of navigation bar', () => {
-        render(<NavBar />)
-        const links = screen.getAllByRole("listitem");
+    it('should render the links of navigation bar', async () => {
+        render(
+            <BrowserRouter>
+                <NavBar />
+            </BrowserRouter>
+        )
+        const links = screen.queryAllByRole("listitem");
         expect(links).toHaveLength(5);
     })
 
     it("should the home link have the className 'selected'", () => {
         render(
             <NavBarProvider>
-                <NavBar />
+                <BrowserRouter>
+                    <NavBar />
+                </BrowserRouter>
             </ NavBarProvider>
         )
 
@@ -26,7 +33,9 @@ describe('<NavBar />', () => {
     it("should add the className 'selected' to a button when it's clicked", () => {
         render(
             <NavBarProvider>
-                <NavBar />
+                <BrowserRouter>
+                    <NavBar />
+                </BrowserRouter>
             </ NavBarProvider>
         )
         const links = screen.getAllByRole("listitem");
@@ -44,8 +53,12 @@ describe('<NavBar />', () => {
 
 describe("<NavBar /> responsive layouts", () => {
     it("should the button receive the className 'clicked' when it's clicked", () => {
-        render(<NavBar />)
-        
+        render(
+            <BrowserRouter>
+                <NavBar />
+            </BrowserRouter>
+        )
+
         const button = screen.getByTestId("accordionButton")
         expect(button).toBeInTheDocument();
 
@@ -55,8 +68,12 @@ describe("<NavBar /> responsive layouts", () => {
     })
 
     it("should the fontAwesomeIcon changes its icon attribute when the button is clicked", () => {
-        render(<NavBar />)
-        
+        render(
+            <BrowserRouter>
+                <NavBar />
+            </BrowserRouter>
+        )
+
         const button = screen.getByTestId("accordionButton")
         const icon = screen.getByTestId("hamburgerIcon")
         expect(icon).toHaveAttribute(`data-icon`, "bars");
