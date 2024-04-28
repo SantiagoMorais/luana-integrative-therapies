@@ -30,6 +30,7 @@ const Container = styled.footer`
     font-size: 2rem;
     display: flex;
     justify-content: center;
+    flex-shrink: 0;
 
     .content {
         display: flex;
