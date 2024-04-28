@@ -57,6 +57,7 @@ const Container = styled.section`
             .title {
                 font-size: 4rem;
                 font-weight: 400;
+                text-align: center;
             }
     
             .advise {
