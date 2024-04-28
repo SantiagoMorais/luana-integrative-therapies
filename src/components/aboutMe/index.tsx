@@ -5,7 +5,6 @@ export const AboutMe = () => {
         <Container>
             <div className="content">
                 <h2 className="title">Sobre mim</h2>
-                div.
             </div>
         </Container>
     )
@@ -16,6 +15,7 @@ export const Container = styled.div`
     padding: 2rem;
     display: flex;
     justify-content: center;
+    flex: 1;
 
     .content {
         max-width: 144rem;
@@ -24,9 +24,6 @@ export const Container = styled.div`
         flex-direction: column;
         align-items: center;
         gap: 2rem;
-    }
-
-    .content {
         font-size: 2.5rem;
         font-weight: 300;
 
@@ -34,6 +31,7 @@ export const Container = styled.div`
             margin-bottom: 2rem;
             font-size: 4rem;
             font-weight: 400;
+            text-align: center;
         }
 
         .functionality {

@@ -22,8 +22,8 @@ export const NavBar = () => {
         { name: "home", link: "/" },
         { name: "sobre mim", link: "/about" },
         { name: "contato", link: "/contact" },
-        { name: "equilibrium", link: "/" },
-        { name: "segredos da lua", link: "/" }
+        { name: "equilibrium", link: "/coming-soon" },
+        { name: "segredos da lua", link: "/coming-soon" }
     ]
 
     return (
