@@ -9,7 +9,7 @@ export const CommingSoon = () => {
     return (
         <Container>
             <Header />
-            <section className="content404">
+            <section className="commingSoonContent">
                 <div className="info">
                     <h2 className="title">Em Breve: Novidades Estão Chegando!</h2>
                     <p className="advise">
@@ -24,7 +24,7 @@ export const CommingSoon = () => {
                         Clique <Link to="/">aqui</Link> para retornar ao nosso site!
                     </p>
                 </div>
-                <img src={imageComingSoon} alt="Error 404 image" className="errorImage" />
+                <img src={imageComingSoon} alt="Em breve" className="commingSoonImage" />
             </section>
             <Footer />
         </Container>
@@ -36,7 +36,7 @@ const Container = styled.section`
     display: flex;
     flex-direction: column;
 
-    .content404 {
+    .commingSoonContent {
         width: 100%;
         padding: 2rem;
         display: flex;
@@ -70,7 +70,7 @@ const Container = styled.section`
             }
         }
 
-        .errorImage {
+        .commingSoonImage {
             margin-top: 2rem;
             max-width: 40rem;
             width: 100%;
@@ -81,7 +81,7 @@ const Container = styled.section`
     }
 
     @media (max-width: 425px) {
-        .content404 {
+        .commingSoonContent {
             .info {
                 .title {
                     font-size: 3rem;

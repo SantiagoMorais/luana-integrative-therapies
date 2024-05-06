@@ -18,7 +18,7 @@ export const PageNotFound = () => {
                     <p className="advise">Enquanto isso, use a barra de navegação acima para retornar à página inicial ou clique <Link to={"/"}>aqui</Link> para retornar rapidamente.</p>
                     <p className="advise">Agradecemos sua compreensão!</p>
                 </div>
-                <img src={image404} alt="Error 404 image" className="errorImage" />
+                <img src={image404} alt="Erro 404" className="errorImage" />
             </section>
             <Footer />
         </Container>
