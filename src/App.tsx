@@ -1,11 +1,11 @@
 import { NavBarProvider } from "@contexts/navBarContext"
-import { AppRouter } from "./pages/appRouter"
+import { AppRoutes } from "./pages/appRoutes"
 
 export const App = () => {
   return (
     <>
       <NavBarProvider>
-        <AppRouter />
+        <AppRoutes />
       </NavBarProvider>
     </>
   )

@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<CommingSoon /> > should render the text correctly 1`] = `NodeList []`;
+
+exports[`<PageNotFound /> > should render the text correctly 1`] = `NodeList []`;

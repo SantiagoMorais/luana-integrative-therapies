@@ -13,12 +13,3 @@ export const theme: ITheme = {
     textColor: "#000000",
     secondaryTextColor: "#ffffff"
 }
-
-// rosa com azul
-// export const theme: ITheme = {
-//     fontFamily: "'Cookie', cursive",
-//     primaryColor: "#D6E5FA",
-//     secondaryColor: "#E6B2C6",
-//     textColor: "#000000",
-//     secondaryTextColor: "#ffffff"
-// }

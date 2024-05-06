@@ -34,7 +34,7 @@ const Container = styled.section`
 
         .title {
             position: relative;
-            width: 38rem;
+            width: 34rem;
     
             .nameTitle {
                 font-size: 3rem;
@@ -55,6 +55,7 @@ const Container = styled.section`
                 position: absolute;
                 bottom: 1.3rem;
                 left: 3rem;
+                letter-spacing: .1rem;
                 text-transform: capitalize;
             }
         }

@@ -59,7 +59,7 @@ const Container = styled.nav`
     .accordionButton {
         display: none;
         cursor: pointer;
-        width: 10rem;
+        width: 12rem;
         background: none;
         border: none;
 

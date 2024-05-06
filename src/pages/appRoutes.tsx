@@ -5,7 +5,7 @@ import { ContactPage } from "./contactPage"
 import { Page404 } from "./Page404"
 import { PageCommingSoon } from "./pageComingSoon"
 
-export const AppRouter = () => {
+export const AppRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>

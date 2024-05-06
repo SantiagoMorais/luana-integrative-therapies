@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import luanaWithToskaniProduct from "@assets/imgs/imageToTherapeuticCare.jpg" 
+import luanaWithProducts from "@assets/imgs/imageToTherapeuticCare.jpg" 
 
 export const TherapeuticCare = () => {
     return (
@@ -14,7 +14,7 @@ export const TherapeuticCare = () => {
                     Caso seja uma preferência do paciente sentir os benefícios apenas de uma terapia, é possível agendar o horário específico, e a duração dependerá de qual prática de será realizada. 
                 </p>
             </div>
-            <img className="image" src={luanaWithToskaniProduct} alt="Dra.Luana" />
+            <img className="image" src={luanaWithProducts} alt="Dra.Luana" />
         </Container>
     )
 }
