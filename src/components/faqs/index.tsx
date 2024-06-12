@@ -1,7 +1,9 @@
 import styled from "styled-components"
 import data from "@json/index.json"
-import { theme } from "@styles/theme"
+import { faqBreakPoints, theme } from "@styles/theme"
 import { useState } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 
 export const FAQs = () => {
     const [questionSelected, setQuestionSelected] = useState('')
@@ -17,7 +19,10 @@ export const FAQs = () => {
                 <ul className="faqs">
                     {data.faqs.map((faq, index) =>
                         <li className="faq" key={index} onClick={() => handleAccordion(faq.question)}>
-                            <p className="question" data-testid="question">{faq.question}</p>
+                            <div className="questionBar" data-testid="question">
+                                <p className="question">{faq.question}</p>
+                                <FontAwesomeIcon icon={faChevronDown} className={`icon ${questionSelected === faq.question && "rotate"}`} />
+                            </div>
                             <p className={`answer ${questionSelected === faq.question ? "selected" : ''}`} data-testid="answer">{faq.answer}</p>
                         </li>
                     )}
@@ -55,24 +60,45 @@ const Container = styled.div`
                 opacity: .6;
             }
 
-            .question {
+            .questionBar {
                 font-size: 2.5rem;
                 padding-bottom: 1rem;
                 border-bottom: .2rem solid ${theme.secondaryColor};
                 transition: .3s;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 2rem;
+
+                .question {
+                    width: 100%;
+                    text-align: left;
+                }
+                
+                .icon {
+                    transition: .5s ease;
+
+                    &.rotate {
+                        transform: rotate(180deg);
+                    }
+                }
             }
 
             .answer {
-                max-height: 0;
+                height: 0;
                 overflow: hidden;
-                transition: max-height .5s ease;
+                transition: .5s ease;
                 margin-top: 1rem;
                 padding: 0 1rem;
                 border-radius: 1rem;
-                height: auto;
+                opacity: 0;
+                transform: translateY(-2rem);
 
                 &.selected {
-                    max-height: 36rem;
+                    height: 10rem;
+                    opacity: 1;
+                    transform: translateY(0rem);
+                    
                 }
             }
         }
@@ -87,10 +113,14 @@ const Container = styled.div`
     
         .faqs {
             .faq {
-                .question {
+                .questionBar {
                     text-align: center;
+                    font-size: 2rem;
+                    font-weight: 500;
                 }
             }
         }
     }
+
+    ${faqBreakPoints}
 `
