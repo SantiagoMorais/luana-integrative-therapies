@@ -10,10 +10,11 @@ describe("<AboutMe />", () => {
 
     it("should render the image correctly", () => {
         render(<AboutMe />);
-        const personalImage = screen.getByAltText("Foto luana no consultório");
-        const clinicImage = screen.getByAltText("Imagem do consultório");
-        expect(personalImage).toBeInTheDocument();
-        expect(clinicImage).toBeInTheDocument();
+        const personalImage = screen.getAllByAltText("Foto luana no consultório");
+        personalImage.map(img =>
+            expect(img).toBeInTheDocument()
+        )
+        expect(personalImage).toHaveLength(3)
     });
 
     it("should render the text correctly", () => {

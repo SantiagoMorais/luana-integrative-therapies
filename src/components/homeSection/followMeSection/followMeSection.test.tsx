@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import { FollowMeSection } from "."
 import { instagramLink, whatsappLink } from "@styles/variables";
-import followMeImage from "@assets/imgs/professionalImage.jpg"
+import followMeImage from "@assets/imgs/luanaImageWithoutBG-3.png"
 
 describe("<FollowMeSection />", () => {
     it("should render the component correctly", () => {
@@ -25,13 +25,13 @@ describe("<FollowMeSection />", () => {
 
     it("should render the schedule appointment button correctly", () => {
         render(<FollowMeSection />);
-        const scheduleAppointmentButton = screen.getByRole("link", {name: "Agende sua consulta"});
+        const scheduleAppointmentButton = screen.getByRole("link", {name: "Agendar consulta"});
 
         expect(scheduleAppointmentButton).toBeInTheDocument();
         expect(scheduleAppointmentButton).toHaveAttribute("href", whatsappLink)
         expect(scheduleAppointmentButton).toHaveAttribute("target", "_blank")
 
-        const scheduleAppointmentButtonText = screen.getByText("Agende sua consulta");
+        const scheduleAppointmentButtonText = screen.getByText("Agendar consulta");
 
         expect(scheduleAppointmentButtonText).toBeInTheDocument();
     });
@@ -52,6 +52,6 @@ describe("<FollowMeSection />", () => {
         expect(infoSections.length).toBe(2);
 
         const images = screen.getAllByRole('img');
-        expect(images.length).toBe(1);
+        expect(images.length).toBe(3);
     });
 })
