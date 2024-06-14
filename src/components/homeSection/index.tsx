@@ -6,6 +6,8 @@ import { FAQs } from "@components/faqs"
 import { Footer } from "@components/footer"
 import { Header } from "@components/header"
 import { Hero } from "@components/hero"
+import { FollowMeSection } from "@components/followMeSection"
+import { WhatsAppButton } from "@components/whatsAppButton"
 
 export const HomeSection = () => {
     return (
@@ -17,8 +19,10 @@ export const HomeSection = () => {
             <Benefits />
             <TherapeuticCare />
             <Depositions />
+            <FollowMeSection />
             <FAQs />
             <Footer />
+            <WhatsAppButton />
         </Container>
     )
 }
@@ -32,5 +36,6 @@ const Container = styled.section`
         flex-direction: column;
         flex: 1;
         height: 100dvh;
+        max-height: 90rem;
     }
 `

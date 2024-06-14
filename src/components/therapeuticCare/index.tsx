@@ -11,7 +11,7 @@ export const TherapeuticCare = () => {
                     <br />
                     A duração do tratamento e espaço entre sessões dependerá das queixas e da resposta biológica. Já obtemos resultados positivos e de melhora desde a primeira sessão.
                     <br />
-                    Caso seja uma preferência do paciente sentir os benefícios apenas de uma terapia, é possível agendar o horário específico, e a duração dependerá de qual prática de será realizada. 
+                    Caso seja uma preferência do paciente sentir os benefícios apenas de uma terapia, é possível agendar o horário específico, e a duração dependerá de qual prática será realizada. 
                 </p>
             </div>
             <img className="image" src={luanaWithProducts} alt="Dra.Luana" />
@@ -54,6 +54,7 @@ const Container = styled.div`
         min-height: 40rem;
         object-fit: cover;
         border-radius: 1.5rem;
+        box-shadow: .5rem .5rem 1rem rgba(0,0,0,.3);
     }
 
     @media (max-width: 425px) {

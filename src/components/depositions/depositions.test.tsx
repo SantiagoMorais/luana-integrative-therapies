@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import { Depositions } from "."
+import data from "@json/index.json"
 
 describe("<Depositions />", () => {
     it("should render the component correctly", () => {
@@ -10,7 +11,10 @@ describe("<Depositions />", () => {
 
     it("should render the number of depositions correctly", () => {
         render(<Depositions />)
-        const depositions = screen.getAllByRole("listitem")
-        expect(depositions).toHaveLength(3);
+
+        const depositions = document.querySelectorAll(".slide")
+        const numberOfDepositions = data.depositions.length
+        
+        expect(depositions).toHaveLength(numberOfDepositions);
     })
 })

@@ -5,6 +5,7 @@ import { theme } from "@styles/theme"
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom";
 import styled from "styled-components"
+import data from "@json/index.json"
 
 export const NavBar = () => {
     const { currentLink, setCurrentLink } = useContext(NavBarContext);
@@ -17,14 +18,6 @@ export const NavBar = () => {
     const handleOpenAccordion = () => {
         setHamburgerIconClicked(!hamburgerIconClicked)
     }
-
-    const links = [
-        { name: "home", link: "/" },
-        { name: "sobre mim", link: "/about" },
-        { name: "contato", link: "/contact" },
-        { name: "equilibrium", link: "/coming-soon" },
-        { name: "segredos da lua", link: "/coming-soon" }
-    ]
 
     return (
         <Container>
@@ -39,7 +32,7 @@ export const NavBar = () => {
                 />
             </button>
             <ul className={`navBar ${hamburgerIconClicked ? "clicked" : ''}`}>
-                {currentLink !== null && links.map((navButton, index) =>
+                {currentLink !== null && data.navigationLinks.map((navButton, index) =>
                     <Link key={index} to={navButton.link}>
                         <li
                             className={`link ${currentLink === navButton.name ? "selected" : ""}`}
@@ -123,13 +116,18 @@ const Container = styled.nav`
             z-index: 2;
             background-color: ${theme.primaryColor};
             top: 4rem;
-            padding: 0 1rem;
             width: max-content;
             border-radius: 0 0 1rem 1rem;
-            transition: .3s;
-
+            transition: height .3s, border-color .3s, transform .3s;
+            border: solid transparent;
+            border-width: 0 .3rem .3rem .3rem;
+            padding: 0 1rem;
+            transform: translateY(-1rem);
+            
             &.clicked {
+                transform: translateY(0rem);
                 height: 22rem;
+                border-color: ${theme.secondaryTextColor};
             }
         }
     }
