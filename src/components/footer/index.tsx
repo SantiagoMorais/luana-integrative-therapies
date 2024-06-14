@@ -2,23 +2,37 @@ import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 import { faAt } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { theme } from "@styles/theme"
+import { instagramLink, whatsappLink } from "@styles/variables"
 import styled from "styled-components"
+import data from "@json/index.json"
+import { Link } from "react-router-dom"
 
 export const Footer = () => {
     return (
         <Container>
             <div className="content">
-                <h1 className="nameTitle">
-                    <span className="firstLetter">L</span>uana Vasconcellos Alvarenga
-                </h1>
+                <div className="nameTitle">
+                    <p><span className="firstLetter">L</span>uana</p> <p>Vasconcellos</p> <p>Alvarenga</p>
+                </div>
                 <div className="socialMedia">
+                    <p className="about">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor quisquam omnis illo. Pariatur explicabo molestias magnam incidunt saepe nesciunt eos fugiat est dolorum, adipisci nam perferendis repellat mollitia doloribus impedit?
+                    </p>
                     <h3 className="title">Me encontre nas minhas mídias sociais</h3>
                     <ul className="social">
-                        <li><a href="https://api.whatsapp.com/send?phone=+5531991571662&text=Hello%2C%20how%20are%20you%3F" target="_blank" data-testid="whatsapp"><FontAwesomeIcon icon={faWhatsapp} /></a></li>
+                        <li><a href={whatsappLink} target="_blank" data-testid="whatsapp"><FontAwesomeIcon icon={faWhatsapp} /></a></li>
                         <li><a href="" target="_blank" data-testid="email"><FontAwesomeIcon icon={faAt} /></a></li>
-                        <li><a href="https://www.instagram.com/dra.luanaalvarenga/" target="_blank" data-testid="instagram"><FontAwesomeIcon icon={faInstagram} /></a></li>
+                        <li><a href={instagramLink} target="_blank" data-testid="instagram"><FontAwesomeIcon icon={faInstagram} /></a></li>
                     </ul>
                 </div>
+                <ul className="navigation">
+                    {data.navigationLinks.map(item =>
+                        <Link key={item.name} to={item.link} className="section">
+                            {item.name}
+                        </Link>
+
+                    )}
+                </ul>
             </div>
         </Container>
     )
@@ -34,23 +48,36 @@ const Container = styled.footer`
 
     .content {
         display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: wrap;
         text-align: center;
         gap: 2rem;
         width: 100%;
         max-width: 144rem;
+        align-items: center;
 
         .nameTitle {
-            font-size: 3rem;
+            font-size: 5rem;
             font-family: ${theme.fontFamily};
             font-weight: 500;
             line-height: .8;
-        
-            .firstLetter {
-                font-size: 6rem;
+            flex: 1;
+            text-align: left;
+            width: min-content;
+            
+            p {
                 font-family: ${theme.fontFamily};
+
+                &:nth-child(2) {
+                    padding-left: 4rem;
+                }
+
+                &:nth-child(3) {
+                    padding-left: 8rem;
+                }
+
+                .firstLetter {
+                    font-size: 8rem;
+                    font-family: ${theme.fontFamily};
+                }
             }
         }
     
@@ -59,6 +86,12 @@ const Container = styled.footer`
             flex-direction: column;
             align-items: center;
             gap: 1rem;
+            flex: 1;
+
+            .about {
+                font-size: 1.6rem;
+                text-align: justify;
+            }
     
             .title {
                 font-weight: 400;
@@ -79,6 +112,108 @@ const Container = styled.footer`
                             opacity: .6;
                         };
                     }
+                }
+            }
+        }
+
+        .navigation {
+            flex: .5;
+            display: flex;
+            flex-direction: column;
+            align-self: baseline;
+            align-items: end;
+            gap: .5rem;
+
+            .section {
+                min-width: fit-content;
+                font-size: 1.6rem;
+                font-weight: 700;
+                transition: .3s;
+                position: relative;
+                color: ${theme.textColor};
+                text-transform: capitalize;
+                padding-bottom: .2rem;
+
+                &::first-letter {
+                    text-transform: capitalize;
+                }
+
+                &:hover {
+                    opacity: .6;
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: -5%;
+                    width: 105%;
+                    height: .1rem;
+                    background: ${theme.textColor};
+                    transform: scaleX(0);
+                    transform-origin: left;
+                    transition: transform .5s;
+                }
+            
+                &:hover::after {
+                    transform: scaleX(1);
+                }
+            
+                &:not(:hover)::after {
+                    transform: scaleX(0);
+                    transform-origin: right;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) { 
+
+        .content {
+            flex-direction: column;
+    
+            .nameTitle {
+                font-size: 4rem;
+                display: flex;
+                align-items: baseline;
+                gap: 1rem;
+                flex-wrap: wrap;
+                width: 100%;
+                justify-content: center;
+
+                p {
+                    max-width: fit-content;
+
+                    &:nth-child(2) {
+                        padding-left: 0;
+                    }
+    
+                    &:nth-child(3) {
+                        padding-left: 0;
+                    }
+    
+                    .firstLetter {
+                        font-size: 8rem;
+                        font-family: ${theme.fontFamily};
+                    }
+                }      
+            }
+
+            .socialMedia {
+                .about {
+                    max-width: 100%;
+                }
+            }
+    
+            .navigation {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                flex-direction: row;
+                gap: 2rem;
+    
+                .section {
+                    padding: 0 0 .2rem;
                 }
             }
         }

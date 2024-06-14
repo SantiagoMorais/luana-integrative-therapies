@@ -71,7 +71,7 @@ export const Depositions = () => {
 }
 
 const Container = styled.div`
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,8 +102,7 @@ const Container = styled.div`
 
             .swiper {
                 max-width: 95%;
-                padding: 0 4rem;
-
+                padding: 0 4rem 3rem;
 
                 .swiper-button-next, .swiper-button-prev {
                     color: ${theme.secondaryColor};

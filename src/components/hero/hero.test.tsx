@@ -4,13 +4,13 @@ import { Hero } from "."
 describe("<Hero />", () => {
     it('should render the slogan correctly', () => {
         render(<Hero />);
-        const slogan = screen.getByRole("heading")
-        expect(slogan).toHaveClass("slogan");
+        const slogan = document.querySelector(".slogan");
+        expect(slogan).toBeInTheDocument();
     })
 
     it('should render the content of slogan correctly', () => {
         render(<Hero />);
-        const slogan = screen.getByRole("heading")
+        const slogan = document.querySelector(".subtitle")
         expect(slogan).toHaveTextContent("Descubra uma jornada de cura e harmonia através de terapias integrativas.");
     })
 

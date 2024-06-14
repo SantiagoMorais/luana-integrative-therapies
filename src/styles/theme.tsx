@@ -3,7 +3,8 @@ interface ITheme {
     primaryColor: string;
     secondaryColor: string;
     textColor: string;
-    secondaryTextColor: string
+    secondaryTextColor: string;
+    shadowColor: string;
 }
 
 export const theme: ITheme = {
@@ -11,7 +12,8 @@ export const theme: ITheme = {
     primaryColor: "#D6E5FA",
     secondaryColor: "#E6B2C6",
     textColor: "#000000",
-    secondaryTextColor: "#ffffff"
+    secondaryTextColor: "#ffffff",
+    shadowColor: "#c72a66",
 }
 
 export const faqBreakPoints = () => `

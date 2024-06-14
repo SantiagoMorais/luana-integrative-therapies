@@ -26,7 +26,7 @@ const Container = styled.section`
     .content {
         width: 100%;
         max-width: 144rem;
-        padding: 0 5rem;
+        padding: 0 4rem;
         display: flex;
         justify-content: space-around;
         align-items: baseline;

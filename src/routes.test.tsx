@@ -16,9 +16,9 @@ describe("Routes", () => {
     it("should render the <CommingSoon /> component when the route changes", async () => {
         render(<App />)
         const user = userEvent.setup()
-        const equilibriumButton = screen.getByRole("link", {name: /equilibrium/i})
+        const equilibriumButton = screen.getAllByRole("link", {name: /equilibrium/i})
 
-        await user.click(equilibriumButton);
+        await user.click(equilibriumButton[0]);
 
         const commingSoonPage = screen.getByText(/Em Breve: Novidades Estão Chegando!/i)
         expect(commingSoonPage).toBeInTheDocument();
@@ -27,9 +27,9 @@ describe("Routes", () => {
     it("should render the <AboutMe /> component when the route changes", async () => {
         render(<App />);
         const user = userEvent.setup();
-        const aboutMeButton = screen.getByRole("link", {name: /sobre mim/i});
+        const aboutMeButton = screen.getAllByRole("link", {name: /sobre mim/i});
 
-        await user.click(aboutMeButton);
+        await user.click(aboutMeButton[0]);
         const title = screen.getByRole("heading", {name: /sobre mim/i});
         expect(title).toBeInTheDocument();
     })

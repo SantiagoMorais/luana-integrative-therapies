@@ -18,7 +18,10 @@ export const FAQs = () => {
             {data.faqs &&
                 <ul className="faqs">
                     {data.faqs.map((faq, index) =>
-                        <li className="faq" key={index} onClick={() => handleAccordion(faq.question)}>
+                        <li
+                            className="faq"
+                            key={index}
+                            onClick={() => handleAccordion(faq.question)}>
                             <div className="questionBar" data-testid="question">
                                 <p className="question">{faq.question}</p>
                                 <FontAwesomeIcon icon={faChevronDown} className={`icon ${questionSelected === faq.question && "rotate"}`} />
@@ -98,7 +101,6 @@ const Container = styled.div`
                     height: 10rem;
                     opacity: 1;
                     transform: translateY(0rem);
-                    
                 }
             }
         }

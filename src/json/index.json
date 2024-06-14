@@ -32,11 +32,11 @@
             "patientName": "A.L."
         },
         {
-            "deposition": "Lu do céu, não tinha como eu ter te dado um feedback assim, tanto que eu não pensei que fosse imediato o efeito, dos olhos etc, mas ajudou tanto na minha tranquilidade. foi assim, comprei o difusor, fui pra casa, tava brincando com os meus pais e deixei pra lá pra eles, eles dormiram com o óleo essencial de palma rosa, foi bizarro o efeito. E depois eu coloquei pra mim também e foi maravilhoso, porque eu tô muito mais relaxada, tipo, a criança esgoelou aqui na minha cabeça e eu fiquei calma, entendeu? Gente, é loucura, eu pensei que não fosse imediato, é muito bom.",
+            "deposition": "Lu do céu, não tinha como eu ter te dado um feedback assim, eu não pensei que fosse imediato o efeito, mas ajudou tanto na minha tranquilidade. Comprei o difusor, fui pra casa, tava brincando com os meus pais e deixei lá pra eles. Eles dormiram com o óleo essencial de palma rosa, foi bizarro o efeito. E depois eu coloquei pra mim também e foi maravilhoso, porque eu tô muito mais relaxada. A criança esgoelou aqui na minha cabeça e eu fiquei calma, entendeu? Gente, é loucura, eu pensei que não fosse imediato, é muito bom.",
             "patientName": "K.A."
         },
         {
-            "deposition": "Luana, boa tarde, está jóia? Dormi bem demais e vou falar com você, eu não falei com você da minha dor na lombar, né? E você descobriu pela orelha e você acredita que eu consegui fazer os exercícios na academia? Minha lombar não doeu nada, foi ótimo. O pescoço ainda está com uma dorzinha, mas aqui, a extensão que eu consigo olhar, melhorou demais, demais, demais mesmo. Agora estou conseguindo olhar para o lado esquerdo tão bem, eu não conseguia. Se Deus quiser, nós vamos estar juntas de novo. Muito obrigado, Deus te abençoe e que você continue sendo essa pessoa bacana aí, viu? Curando as dores dos outros, valeu!",
+            "deposition": "Luana, dormi bem demais e eu não falei com você da minha dor na lombar, né? E você descobriu pela orelha e você acredita que eu consegui fazer os exercícios na academia? Minha lombar não doeu nada, foi ótimo. O pescoço ainda está com uma dorzinha, mas a extensão que eu consigo olhar, melhorou demais. Agora estou conseguindo olhar para o lado esquerdo tão bem, eu não conseguia. Muito obrigado, Deus te abençoe e que você continue sendo essa pessoa bacana aí, viu? Curando as dores dos outros, valeu!",
             "patientName": "R."
         }
     ],
@@ -61,5 +61,12 @@
             "question": "Quem pode se beneficiar das terapias integrativas?",
             "answer": "As terapias integrativas são adequadas para pessoas de todas as idades e condições de saúde. Elas podem ser utilizadas como uma forma de prevenção, para manter o equilíbrio e a vitalidade, bem como parte do tratamento de condições específicas, complementando a medicina convencional. Se você busca melhorar sua qualidade de vida, aliviar sintomas físicos ou emocionais, ou simplesmente deseja promover seu bem-estar geral, as terapias integrativas podem ser uma ótima opção para você."
         }
-    ]
+    ],
+    "navigationLinks": [
+        { "name": "home", "link": "/" },
+        { "name": "sobre mim", "link": "/about" },
+        { "name": "contato", "link": "/contact" },
+        { "name": "equilibrium", "link": "/coming-soon" },
+        { "name": "segredos da lua", "link": "/coming-soon" }
+      ]
 }
