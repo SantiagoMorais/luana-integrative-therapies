@@ -1,3 +1,13 @@
-export const instagramLink: string = "https://www.instagram.com/dra.luanaalvarenga/"
-export const emailLink: string = ""
-export const whatsappLink: string = "https://api.whatsapp.com/send?phone=+5531991571662&text=Hello%2C%20how%20are%20you%3F"
+export const instagramLink: string = "https://www.instagram.com/dra.luanaalvarenga/";
+export const emailLink: string = "";
+
+function formatMessageForWhatsapp (message: string) : string {
+    return encodeURIComponent(message)
+}
+
+const defaultMessage: string = "Olá, dra.Luana, eu encontrei o seu contato pelo seu site. Eu gostaria de agendar uma consulta.";
+const phoneNumber: number = 5531991571662;
+export const whatsappLink: string = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${formatMessageForWhatsapp(defaultMessage)}`;
+
+export const address: string = "R. Cel. Jaíro Pereira, 20 - sala 8 - Palmares, Belo Horizonte - MG, 31155-292"
+export const googleMapsLink: string = `https://www.google.com/maps/search/?api=1&query=${formatMessageForWhatsapp(address)}`

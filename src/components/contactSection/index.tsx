@@ -1,4 +1,4 @@
-import { Contact } from "@components/contact"
+import { Contact } from "./contact"
 import { Footer } from "@components/footer"
 import { Header } from "@components/header"
 import styled from "styled-components"

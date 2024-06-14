@@ -3,22 +3,22 @@
 exports[`<AboutMe /> > should render the text correctly 1`] = `
 NodeList [
   <p
-    class="text"
+    class="paragraph"
   >
     Muito prazer, meu nome é Luana, sou cirurgiã-dentista e terapeuta integrativa. Formei-me em 2018 pela UFMG em odontologia e comecei a atuar imediatamente. A partir daí começou minha busca incessante por algo que nem eu mesma sabia ao certo o que era. Sempre fui apaixonada por reabilitar sorrisos, mas sentia falta de algo em meus atendimentos. Apesar de sempre optar por um atendimento humanizado, com tecnologias modernas, havia algo que ainda não estava conseguindo atingir em meu paciente: a vontade de sorrir.
   </p>,
   <p
-    class="text"
+    class="paragraph"
   >
     Em 2022, descobri o universo das terapias integrativas como paciente e fui em busca de entender melhor sobre a medicina tradicional chinesa. Desde então, não passo um dia sequer sem estudar um pouco mais sobre as terapias integrativas.
   </p>,
   <p
-    class="text"
+    class="paragraph"
   >
     Busquei me especializar nessa área, pois, assim como senti os benefícios e efeitos das práticas integrativas, queria proporcionar isso também para meus pacientes. Realizei pós-graduações em várias áreas dentro das práticas integrativas, com foco na área terapêutica e estética, e venho me aperfeiçoando a cada dia. Através de muito estudo teórico e prático, desenvolvi um método de atendimento no qual realizo diversas práticas integrativas na mesma sessão em prol do mesmo objetivo, e comecei a reparar na eficácia e durabilidade dos resultados.
   </p>,
   <p
-    class="text"
+    class="paragraph"
   >
     O segredo da nossa saúde, beleza e bem-estar está no equilíbrio físico, emocional e energético. Então, além de atuar na estética do sorriso, ajudo meu paciente a resgatar a vontade de sorrir! Hoje me sinto mais completa como profissional e muito mais realizada na minha vida pessoal!
   </p>,
