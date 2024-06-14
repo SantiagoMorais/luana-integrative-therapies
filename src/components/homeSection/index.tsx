@@ -1,12 +1,14 @@
 import styled from "styled-components"
-import { Benefits } from "@components/benefits"
-import { TherapeuticCare } from "@components/therapeuticCare"
-import { Depositions } from "@components/depositions"
-import { FAQs } from "@components/faqs"
+
+import { Benefits } from "./benefits"
+import { TherapeuticCare } from "./therapeuticCare"
+import { Depositions } from "./depositions"
+import { FAQs } from "./faqs"
+import { Hero } from "./hero"
+import { FollowMeSection } from "./followMeSection"
+
 import { Footer } from "@components/footer"
 import { Header } from "@components/header"
-import { Hero } from "@components/hero"
-import { FollowMeSection } from "@components/followMeSection"
 import { WhatsAppButton } from "@components/whatsAppButton"
 
 export const HomeSection = () => {

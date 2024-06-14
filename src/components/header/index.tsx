@@ -1,17 +1,18 @@
 import styled from "styled-components"
-import { NavBar } from "../navBar"
+import { NavBar } from "./navBar"
 import { theme } from "@styles/theme"
+import { Link } from "react-router-dom"
 
 export const Header = () => {
     return (
         <Container>
             <div className="content">
-                <div className="title">
+                <Link to="/" className="title">
                     <h1 className="nameTitle">
                         Luana Vasconcellos Alvarenga
                     </h1>
                     <h2 className="professionalTitle">Cirurgiã Dentista e Terapeuta Integrativa</h2>
-                </div>
+                </Link>
                 <NavBar />
             </div>
         </Container>
@@ -19,8 +20,7 @@ export const Header = () => {
 }
 
 const Container = styled.section`
-    background-color: ${theme.primaryColor};
-    display: flex;
+    background: linear-gradient(90deg, ${theme.primaryColor} 0%, ${theme.tertiaryColor} 100%);    display: flex;
     justify-content: center;
 
     .content {
@@ -35,20 +35,23 @@ const Container = styled.section`
         .title {
             position: relative;
             width: 34rem;
+            transition: .3s;
     
             .nameTitle {
                 font-size: 3rem;
                 font-family: ${theme.fontFamily};
                 font-weight: 500;
                 margin-bottom: 2rem;
-    
+                color: ${theme.textColor};
+                
                 &::first-letter {
                     font-size: 5rem;
                     font-family: ${theme.fontFamily};
                 }
             }
-    
+            
             .professionalTitle {
+                color: ${theme.textColor};
                 font-size: 1.8rem;
                 font-weight: 500;
                 opacity: .8;
@@ -58,11 +61,18 @@ const Container = styled.section`
                 letter-spacing: .1rem;
                 text-transform: capitalize;
             }
+
+            &:hover {
+                opacity: .6;
+            }
         }
     }
 
 
     @media (max-width: 475px) {
+        background: linear-gradient(180deg, ${theme.tertiaryColor} 0%, ${theme.primaryColor} 90%);
+        display: flex;
+
         .content {
             padding: 0 2rem;
             

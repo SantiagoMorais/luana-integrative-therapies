@@ -1,7 +1,5 @@
 import { render, screen } from "@testing-library/react"
 import { AboutMe } from "."
-import correctImage from "@assets/imgs/professionalImage.jpg"
-
 
 describe("<AboutMe />", () => {
     it("should render the component correctly", () => {
@@ -12,13 +10,15 @@ describe("<AboutMe />", () => {
 
     it("should render the image correctly", () => {
         render(<AboutMe />);
-        const image = screen.getByRole("img");
-        expect(image).toHaveAttribute("src", correctImage);
+        const personalImage = screen.getByAltText("Foto luana no consultório");
+        const clinicImage = screen.getByAltText("Imagem do consultório");
+        expect(personalImage).toBeInTheDocument();
+        expect(clinicImage).toBeInTheDocument();
     });
 
     it("should render the text correctly", () => {
         render(<AboutMe />);
-        const text = document.querySelectorAll(".text");
+        const text = document.querySelectorAll(".paragraph");
         expect(text).toMatchSnapshot();
     })
 })

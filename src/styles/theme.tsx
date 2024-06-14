@@ -2,6 +2,7 @@ interface ITheme {
     fontFamily: string;
     primaryColor: string;
     secondaryColor: string;
+    tertiaryColor: string;
     textColor: string;
     secondaryTextColor: string;
     shadowColor: string;
@@ -11,6 +12,7 @@ export const theme: ITheme = {
     fontFamily: "'Cookie', cursive",
     primaryColor: "#D6E5FA",
     secondaryColor: "#E6B2C6",
+    tertiaryColor: "#8cb2e7",
     textColor: "#000000",
     secondaryTextColor: "#ffffff",
     shadowColor: "#c72a66",
