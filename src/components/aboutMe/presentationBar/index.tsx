@@ -131,7 +131,6 @@ const Container = styled.div`
         overflow: hidden;
         display: flex;
         align-content: center;
-        overflow: hidden;
         
         .backgroundImage {
             position: absolute;
@@ -190,7 +189,108 @@ const Container = styled.div`
         }
     }
 
-    @media (max-width: 768) {
+    @media (max-width: 768px) {        
+        width: 100dvw;
+        background: url(${backgroundImage});
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        padding: 4rem;
+        gap: 1rem;
+        height: auto;
+
+        .subtitle {
+            position: static;
+            font-size: 4rem;
+            text-align: center;
+            opacity: 1;
+            order: 2;
+        }
         
+        .info {
+            position: static;
+            width: 100%;
+            transform: translateY(0%);
+            
+            .message {
+                font-size: 2.6rem;
+                margin-top: 1rem;
+            }
+    
+            .button {
+                padding: 1rem 2rem;
+                font-size: 2rem;
+                height: fit-content;
+                
+                .link {
+                    gap: .5rem;
+                }
+            }
+    
+            &.whatsapp {
+                order: 3;
+            }
+    
+            &.instagram {
+                order: 4;
+            }
+        }
+    
+        .imageContainer {
+            order: 1;
+            position: static;
+            height: max-content;
+            overflow-x: hidden;
+            width: 100%;
+
+            .backgroundImage, .backgroundPhoto.left, .aboutImage {
+                display: none;
+            }
+
+            .backgroundPhoto.right {
+                opacity: 1;
+                position: static;
+                max-width: 100%;
+                object-fit: cover;
+                height: auto;
+                transform: scaleX(1);
+                scale: 1;
+                object-position: top;
+                mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+                -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+            }
+            
+            .lineEffect {
+            }
+    
+            .lineEffect.top {
+                bottom: auto;
+                top: 1rem;
+                height: .2rem;
+            }
+                
+            .lineEffect.bottom {
+                bottom: 1rem;
+                top: auto;
+                height: .2rem;
+            }
+        }
+    }
+
+    @media (max-width: 425px) {
+        .subtitle {
+            font-size: 3rem;
+        }
+
+        .info {
+            .message {
+                font-size: 2.4rem;
+            }
+
+            .button {
+                padding: .5rem 2rem;
+                font-size: 1.8rem;
+            }
+        }
     }
 `

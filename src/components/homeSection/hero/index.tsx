@@ -8,7 +8,6 @@ export const Hero = () => {
     return (
         <Container>
             <div className="slogan">
-                <div className="background"></div>
                 <h2 className="title">Harmonizando Energia e Saúde</h2>
                 <h3 className="subtitle">
                     Descubra uma jornada de cura e harmonia através de terapias integrativas.
