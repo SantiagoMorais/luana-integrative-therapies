@@ -58,16 +58,14 @@ export const Container = styled.div`
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 425px) {
         .content {
-            .imageContainer {
-                .aboutImage {
-                    filter: drop-shadow(.5rem .5rem .5rem white);
-                    object-fit: contain;
-                    object-position: center center;
-                    width: 100%;
+            .aboutText {
+                .paragraph {
+                    font-size: 2rem;
                 }
             }
         }
     }
+
 `

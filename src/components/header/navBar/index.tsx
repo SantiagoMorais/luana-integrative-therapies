@@ -2,7 +2,7 @@ import { NavBarContext } from "@contexts/navBarContext";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { theme } from "@styles/theme"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import styled from "styled-components"
 import data from "@json/index.json"
@@ -19,6 +19,10 @@ export const NavBar = () => {
         setHamburgerIconClicked(!hamburgerIconClicked)
     }
 
+    useEffect(() => {
+        
+    }, [currentLink])
+
     return (
         <Container>
             <button
@@ -33,10 +37,8 @@ export const NavBar = () => {
             </button>
             <ul className={`navBar ${hamburgerIconClicked ? "clicked" : ''}`}>
                 {currentLink !== null && data.navigationLinks.map((navButton, index) =>
-                    <Link key={index} to={navButton.link}>
-                        <li
-                            className={`link ${currentLink === navButton.name ? "selected" : ""}`}
-                            onClick={() => { handlePageChange(navButton.name) }}>
+                    <Link key={index} to={navButton.link} onClick={() => { handlePageChange(navButton.name) }} >
+                        <li className={`link ${currentLink === navButton.name ? "selected" : ""}`}>
                             {navButton.name}
                         </li>
                     </Link>
