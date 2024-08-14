@@ -10,7 +10,9 @@ import { useContext } from "react"
 import { NavBarContext } from "@contexts/navBarContext"
 
 export const Footer = () => {
-    const { setCurrentLink } = useContext(NavBarContext);
+    const { currentLink, setCurrentLink } = useContext(NavBarContext);
+    console.log(currentLink);
+    
 
     const handlePageChange = (link: string) => {
         setCurrentLink(link)
@@ -34,7 +36,7 @@ export const Footer = () => {
                 </div>
                 <ul className="navigation">
                     {data.navigationLinks.map(item =>
-                        <Link key={item.name} to={item.link} className="section" onClick={() => handlePageChange(item.name)} >
+                        <Link key={item.name} to={`/${item.link}`} className={`section ${currentLink === item.name && "selected"}`} onClick={() => handlePageChange(item.name)} >
                             {item.name}
                         </Link>
 
@@ -169,6 +171,10 @@ const Container = styled.footer`
                 &:not(:hover)::after {
                     transform: scaleX(0);
                     transform-origin: right;
+                }
+
+                &.selected::after {
+                    transform: scaleX(1);
                 }
             }
         }

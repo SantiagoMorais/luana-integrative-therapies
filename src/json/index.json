@@ -63,11 +63,11 @@
         }
     ],
     "navigationLinks": [
-        { "name": "home", "link": "/" },
-        { "name": "sobre mim", "link": "/about" },
-        { "name": "contato & endereço", "link": "/contact" },
-        { "name": "equilibrium", "link": "/coming-soon" },
-        { "name": "segredos da lua", "link": "/coming-soon" }
+        { "name": "home", "link": "" },
+        { "name": "sobre mim", "link": "sobre-mim" },
+        { "name": "contato & endereço", "link": "contato" },
+        { "name": "equilibrium", "link": "equilibrium" },
+        { "name": "segredos da lua", "link": "segredos-da-lua" }
       ],
     "aboutMe": [
         "Muito prazer, meu nome é Luana, sou cirurgiã-dentista e terapeuta integrativa. Formei-me em 2018 pela UFMG em odontologia e comecei a atuar imediatamente. A partir daí começou minha busca incessante por algo que nem eu mesma sabia ao certo o que era. Sempre fui apaixonada por reabilitar sorrisos, mas sentia falta de algo em meus atendimentos. Apesar de sempre optar por um atendimento humanizado, com tecnologias modernas, havia algo que ainda não estava conseguindo atingir em meu paciente: a vontade de sorrir.",

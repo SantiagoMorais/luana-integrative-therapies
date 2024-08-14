@@ -97,11 +97,13 @@ const Container = styled.section`
                 transition: .3s;
                 cursor: pointer;
                 align-items: center;
+                justify-content: center;
                 
                 .message {
                     color: ${theme.secondaryTextColor};
                     font-size: 2.4rem;
                     text-align: center;
+                    letter-spacing: .1rem;
                 }
 
                 &:hover {

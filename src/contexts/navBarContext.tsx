@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 interface INavBarContextType {
     currentLink: string,
@@ -12,7 +12,15 @@ interface INavBarProviderProps {
 }
 
 export const NavBarProvider: React.FC<INavBarProviderProps> = ({children}) => {
-    const [currentLink, setCurrentLink] = useState<string>("home");
+    const localPage = localStorage.getItem('currentPageName');
+    const storagePage = localPage ? JSON.parse(localPage) : "home";
+    
+    const [currentLink, setCurrentLink] = useState<string>(storagePage);
+
+    useEffect(() => {
+        window.localStorage.setItem('currentPageName', JSON.stringify(currentLink))
+    }, [currentLink])
+    
     
     return (
         <NavBarContext.Provider value={{currentLink, setCurrentLink}}>
