@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import { FollowMeSection } from "."
-import { instagramLink, whatsappLink } from "@styles/variables";
+import { instagramLink, whatsappLink } from "@utils/variables";
 import followMeImage from "@assets/imgs/luanaImageWithoutBG-3.png"
 
 describe("<FollowMeSection />", () => {
@@ -12,7 +12,7 @@ describe("<FollowMeSection />", () => {
 
     it("should render the instagram button correctly", () => {
         render(<FollowMeSection />);
-        const instagramButton = screen.getByRole("link", {name: "Instagram"});
+        const instagramButton = screen.getByRole("link", { name: "Instagram" });
 
         expect(instagramButton).toBeInTheDocument();
         expect(instagramButton).toHaveAttribute("href", instagramLink)
@@ -25,7 +25,7 @@ describe("<FollowMeSection />", () => {
 
     it("should render the schedule appointment button correctly", () => {
         render(<FollowMeSection />);
-        const scheduleAppointmentButton = screen.getByRole("link", {name: "Agendar consulta"});
+        const scheduleAppointmentButton = screen.getByRole("link", { name: "Agendar consulta" });
 
         expect(scheduleAppointmentButton).toBeInTheDocument();
         expect(scheduleAppointmentButton).toHaveAttribute("href", whatsappLink)

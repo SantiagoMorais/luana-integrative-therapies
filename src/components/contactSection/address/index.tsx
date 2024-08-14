@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styled from "styled-components"
 import location from "@assets/imgs/location.jpg"
 import mapImage from "@assets/imgs/mapAddress.jpg"
-import { address, googleMapsLink } from "@styles/variables"
+import { address, googleMapsLink } from "@utils/variables"
 import { theme } from "@styles/theme"
 
 export const Address = () => {
@@ -16,7 +16,7 @@ export const Address = () => {
             </div>
             <div className="location">
                 <div className="imageContainer">
-                <img src={location} alt="Consultório" className="clinicImage" />
+                    <img src={location} alt="Consultório" className="clinicImage" />
                 </div>
                 <div className="map">
                     <a className="seeLocation" href={googleMapsLink} target="_blank" >

@@ -1,7 +1,7 @@
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { theme } from "@styles/theme"
-import { whatsappLink } from "@styles/variables"
+import { whatsappLink } from "@utils/variables"
 import styled from "styled-components"
 
 export const WhatsAppButton = () => {

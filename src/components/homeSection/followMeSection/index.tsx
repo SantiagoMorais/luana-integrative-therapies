@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInstagram } from "@fortawesome/free-brands-svg-icons"
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons"
 import { theme } from "@styles/theme"
-import { instagramLink, whatsappLink } from "@styles/variables"
+import { instagramLink, whatsappLink } from "@utils/variables"
 
 export const FollowMeSection = () => {
     return (

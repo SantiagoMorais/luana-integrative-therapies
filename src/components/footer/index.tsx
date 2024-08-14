@@ -2,7 +2,7 @@ import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 import { faAt } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { theme } from "@styles/theme"
-import { instagramLink, whatsappLink } from "@styles/variables"
+import { instagramLink, whatsappLink } from "@utils/variables"
 import styled from "styled-components"
 import data from "@json/index.json"
 import { Link } from "react-router-dom"
@@ -12,7 +12,7 @@ import { NavBarContext } from "@contexts/navBarContext"
 export const Footer = () => {
     const { currentLink, setCurrentLink } = useContext(NavBarContext);
     console.log(currentLink);
-    
+
 
     const handlePageChange = (link: string) => {
         setCurrentLink(link)
