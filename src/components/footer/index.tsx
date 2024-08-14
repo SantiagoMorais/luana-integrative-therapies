@@ -54,6 +54,7 @@ const Container = styled.footer`
     display: flex;
     justify-content: center;
     flex-shrink: 0;
+    margin-top: auto;
 
     .content {
         display: flex;

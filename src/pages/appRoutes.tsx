@@ -4,6 +4,7 @@ import { AboutPage } from "./aboutPage"
 import { ContactPage } from "./contactPage"
 import { Page404 } from "./Page404"
 import { PageCommingSoon } from "./pageComingSoon"
+import { EquilibriumPage } from "./equilibriumPage"
 
 export const AppRoutes = () => {
     return (
@@ -12,7 +13,7 @@ export const AppRoutes = () => {
                 <Route path="/" element={<HomePage />}/>
                 <Route path="/sobre-mim" element={<AboutPage />}/>
                 <Route path="/contato" element={<ContactPage />}/>
-                <Route path="/equilibrium" element={<PageCommingSoon/>}/>
+                <Route path="/equilibrium" element={<EquilibriumPage />}/>
                 <Route path="/segredos-da-lua" element={<PageCommingSoon/>}/>
                 <Route path="*" element={<Page404 />}/>
             </Routes>
