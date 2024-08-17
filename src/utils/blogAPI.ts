@@ -23,9 +23,6 @@ export const GET_POSTS_QUERY = gql`
             }
           	topico {
             	nome
-              descricao {
-                html
-              }
           	}
             imagem {
                 url
@@ -46,37 +43,65 @@ export const GET_POSTS_QUERY = gql`
     }
 `
 
-export interface IPost {
-    id: string;
-    titulo: string;
-    subtitulo?: string;
-    data: string;
-    categoria: {
-        nome: string;
-    };
-    topico: {
-        nome: string,
-        descricao: {
-            html: string
-        };
-    };
-    imagem: {
-        url: string;
-    };
-    video?: string;
-    texto: {
-        html: string
-    },
-    autor: {
-        nome: string;
-        descricao: string;
-        avatar: {
-            url: string;
-        };
-        cro?: number;
-    };
-}
+export const GET_TOPICS_QUERY = gql`
+    {
+        topicos {
+            nome
+            descricao {
+                html
+            }
+            imagem {
+                url
+            }
+            categoria {
+                id
+                nome
+            }
+        }
+    }
+`
 
-export interface IPostsData {
-    posts: IPost[];
-}
+export const GET_ALL_DATA_QUERY = gql`
+    {
+        posts {
+            id
+            titulo
+            subtitulo
+            data
+          	categoria {
+              nome
+            }
+          	topico {
+            	nome
+          	}
+            imagem {
+                url
+            }
+            video
+            texto {
+                html
+            }
+            autor {
+                nome
+                descricao
+                avatar {
+                    url
+                }
+                cro
+            }
+        }
+        topicos {
+            nome
+            descricao {
+                html
+            }
+            imagem {
+                url
+            }
+            categoria {
+                id
+                nome
+            }
+        }
+    }
+`
