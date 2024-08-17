@@ -27,6 +27,7 @@ export interface IPost {
 }
 
 export interface ITopic {
+    id: string,
     nome: string,
     descricao: {
         html: string

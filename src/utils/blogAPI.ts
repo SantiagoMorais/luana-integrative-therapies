@@ -91,6 +91,7 @@ export const GET_ALL_DATA_QUERY = gql`
             }
         }
         topicos {
+            id
             nome
             descricao {
                 html
