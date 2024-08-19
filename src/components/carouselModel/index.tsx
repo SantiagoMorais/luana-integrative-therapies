@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-import { Swiper, SwiperSlide } from "swiper/react"
 
-import { Pagination } from "swiper/modules"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Pagination, Navigation, Autoplay } from "swiper/modules"
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -39,18 +39,18 @@ export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, i
     return (
         <Container $imagesHeight={imagesHeightInRem}>
             <Swiper
+                modules={[Pagination, Navigation, Autoplay]}
                 loop={true}
                 className="swiper"
                 spaceBetween={spaceBetween ? spaceBetween : 50}
                 slidesPerView={slidesPerView}
                 navigation
-                modules={[Pagination]}
                 pagination={{
-                    dynamicBullets: true, clickable: true
+                    dynamicBullets: true,
+                    clickable: true,
                 }}
                 autoplay={{
-                    delay: 5000,
-                    disableOnInteraction: false
+                    disableOnInteraction: false,
                 }}
             >
                 {info.map(item =>
@@ -66,7 +66,7 @@ export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, i
     )
 }
 
-const Container = styled.div<{$imagesHeight: number | undefined}>`
+const Container = styled.div<{ $imagesHeight: number | undefined }>`
     display: flex;
     align-items: center;
     gap: 1rem;

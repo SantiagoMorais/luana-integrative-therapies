@@ -1,6 +1,6 @@
 import { IAllData } from "@utils/blogInterfaces"
 import styled from "styled-components"
-import { CarouselSlides } from "../carouselModel";
+import { CarouselSlides } from "@components/carouselModel";
 
 export const Therapies: React.FC<IAllData> = ({ data }) => {
     const posts = data.posts;
@@ -24,28 +24,38 @@ export const Therapies: React.FC<IAllData> = ({ data }) => {
         return topicInfo
     }
 
-    console.log(getTopicsInfo());
-    
-
     return (
         <Container>
-            <h2 className="title">Equilibrium</h2>
-            <h3 className="subtitle">Equilíbrio e Bem-estar com as Terapias Integrativas</h3>
-            <p>{posts.map(post => 
-                <p>{post.titulo}</p>
-            )}</p>
-            <p>{topics.map(topic =>
-                <p>{topic.nome}</p>
-            )}</p>
-            <CarouselSlides info={getTopicsInfo()} slidesNumber={2} imagesHeightInRem={30} spaceBetween={50}/>
+            <div className="content">
+                <h2 className="title">Equilibrium</h2>
+                <h3 className="subtitle">Equilíbrio e Bem-estar com as Terapias Integrativas</h3>
+                <p>{posts.map(post =>
+                    <p>{post.titulo}</p>
+                )}</p>
+                <p>{topics.map(topic =>
+                    <p>{topic.nome}</p>
+                )}</p>
+                <CarouselSlides
+                    info={getTopicsInfo()}
+                    slidesNumber={2}
+                    imagesHeightInRem={30} />
+            </div>
         </Container>
     )
 }
 
 const Container = styled.section`
-    padding: 2rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+
+    .content {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        max-width: 144rem;
+        align-items: center;
+        width: 100%;
+        gap: 2rem;
+    }
 `
