@@ -1,6 +1,6 @@
 import { Footer } from "@components/footer"
 import { Header } from "@components/header"
-import { theme } from "@styles/theme"
+import { fontSize, fontWeight, theme } from "@styles/theme"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import imageComingSoon from "@assets/imgs/pageComingSoon.jpg"
@@ -43,8 +43,8 @@ const Container = styled.section`
         align-items: center;
         flex: 1;
         flex-direction: column;
-        font-size: 2.5rem;
-        font-weight: 300;
+        font-size: ${fontSize.basicSize};
+        font-weight: ${fontWeight.thin};
         margin-top: 2rem;
 
         .info {
@@ -55,8 +55,8 @@ const Container = styled.section`
             gap: 2rem;
     
             .title {
-                font-size: 4rem;
-                font-weight: 400;
+                font-size: ${fontSize.extraLargeSize};
+                font-weight: ${fontWeight.medium};
                 text-align: center;
             }
     
@@ -64,7 +64,7 @@ const Container = styled.section`
                 width: 100%;
 
                 a {
-                    font-weight: 500;
+                    font-weight: ${fontWeight.medium};
                     color: ${theme.secondaryColor};
                 }
             }
@@ -84,11 +84,11 @@ const Container = styled.section`
         .commingSoonContent {
             .info {
                 .title {
-                    font-size: 3rem;
+                    font-size: ${fontSize.mediumSize};
                 }
     
                 .advise {
-                    font-size: 2rem;
+                    font-size: ${fontSize.smallSize};
                 }
             }
         }

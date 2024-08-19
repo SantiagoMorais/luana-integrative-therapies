@@ -4,7 +4,7 @@ import styled from "styled-components"
 import location from "@assets/imgs/location.jpg"
 import mapImage from "@assets/imgs/mapAddress.jpg"
 import { address, googleMapsLink } from "@utils/variables"
-import { theme } from "@styles/theme"
+import { fontSize, fontWeight, theme } from "@styles/theme"
 
 export const Address = () => {
     return (
@@ -39,8 +39,8 @@ const Container = styled.section`
     padding: 2rem;
 
     .title {
-        font-size: 4rem;
-        font-weight: 400;
+        font-size: ${fontSize.extraLargeSize};
+        font-weight: ${fontWeight.medium};
         color: ${theme.textColor};
     }
 
@@ -48,11 +48,11 @@ const Container = styled.section`
         display: flex;
         align-items: center;
         gap: 1rem;
-        font-size: 2rem;
+        font-size: ${fontSize.smallSize};
         margin-bottom: 1.5rem;
         
         .icon {
-            font-size: 2.4rem;
+            font-size: ${fontSize.basicSize};
             color: ${theme.tertiaryColor};
         }
     }
@@ -101,7 +101,7 @@ const Container = styled.section`
                 
                 .message {
                     color: ${theme.secondaryTextColor};
-                    font-size: 2.4rem;
+                    font-size: ${fontSize.basicSize};
                     text-align: center;
                     letter-spacing: .1rem;
                 }

@@ -1,13 +1,14 @@
-import { AboutMe } from "@components/aboutMe"
+
 import { Footer } from "@components/footer"
 import { Header } from "@components/header"
 import styled from "styled-components"
+import { AboutMe } from "./aboutMe"
 
 export const AboutSection = () => {
     return (
         <Container>
             <Header />
-            <AboutMe />
+            <AboutMe/>
             <Footer />
         </Container>
     )

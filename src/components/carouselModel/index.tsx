@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { theme } from "@styles/theme";
+import { fontSize, theme } from "@styles/theme";
 
 export interface ICarouselInfo {
     id: string,
@@ -121,7 +121,7 @@ const Container = styled.div<{ $imagesHeight: number | undefined }>`
             }
                 
             .itemDescription {
-                font-size: 3rem;
+                font-size: ${fontSize.mediumSize};
                 text-align: center;
             }
         }
@@ -138,7 +138,7 @@ const Container = styled.div<{ $imagesHeight: number | undefined }>`
             }
     
             .slide {
-                font-size: 2.4rem;
+                font-size: ${fontSize.basicSize};
     
                 .slideImage {
                     max-height: 25rem;
@@ -146,7 +146,7 @@ const Container = styled.div<{ $imagesHeight: number | undefined }>`
                 }
 
                 .itemDescription {
-                    font-size: 2.4rem;
+                    font-size: ${fontSize.basicSize};
                 }
             }
         }
@@ -161,7 +161,7 @@ const Container = styled.div<{ $imagesHeight: number | undefined }>`
                 }
 
                 .itemDescription {
-                    font-size: 2rem;
+                    font-size: ${fontSize.smallSize};
                 }
             }
         }

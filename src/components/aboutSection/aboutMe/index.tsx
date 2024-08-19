@@ -1,4 +1,4 @@
-import { theme } from "@styles/theme"
+import { fontSize, fontWeight, theme } from "@styles/theme"
 import styled from "styled-components"
 import { PresentationBar } from "./presentationBar"
 import data from "@json/index.json"
@@ -31,8 +31,8 @@ export const Container = styled.div`
     gap: 2rem;
 
     .title {
-        font-size: 4rem;
-        font-weight: 400;
+        font-size: ${fontSize.extraLargeSize};
+        font-weight: ${fontWeight.medium};
         text-align: center;
     }
         
@@ -42,8 +42,8 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        font-size: 2.5rem;
-        font-weight: 300;
+        font-size: ${fontSize.basicSize};
+        font-weight: ${fontWeight.thin};
 
         .aboutText {
             display: flex;
@@ -52,7 +52,7 @@ export const Container = styled.div`
             .paragraph {
                 text-align: justify;
                 color: ${theme.textColor};
-                font-size: 2.5rem;
+                font-size: ${fontSize.basicSize};
                 text-indent: 3rem;
             }
         }
@@ -62,7 +62,7 @@ export const Container = styled.div`
         .content {
             .aboutText {
                 .paragraph {
-                    font-size: 2rem;
+                    font-size: ${fontSize.smallSize};
                 }
             }
         }

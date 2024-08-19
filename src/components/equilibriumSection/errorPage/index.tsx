@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { faFaceFrown } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { theme } from "@styles/theme"
+import { fontSize, theme } from "@styles/theme"
 
 export const ErrorPage = () => {
     return (
@@ -23,13 +23,13 @@ const Container = styled.div`
 
     .warningTitle {
         color: ${theme.tertiaryColor};
-        font-size: 4.6rem;
+        font-size: ${fontSize.extraLargeSize};
         text-align: center;
     }
     
     .warningText {
         color: ${theme.textColor};
-        font-size: 3rem;
+        font-size: ${fontSize.mediumSize};
         text-align: center;
         margin-bottom: 1rem;
     }
@@ -44,11 +44,11 @@ const Container = styled.div`
 
     @media (max-width: 420px) {
         .warningTitle {
-            font-size: 3rem;
+            font-size: ${fontSize.mediumSize};
         }
 
         .warningText {
-            font-size: 2.4rem;
+            font-size: ${fontSize.basicSize};
         }
 
         .icon {

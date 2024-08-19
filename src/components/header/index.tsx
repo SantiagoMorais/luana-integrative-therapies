@@ -53,7 +53,7 @@ const Container = styled.section`
                 color: ${theme.textColor};
                 
                 &::first-letter {
-                    font-size: 5rem;
+                    font-size: 166%;
                     font-family: ${theme.fontFamily};
                 }
             }
