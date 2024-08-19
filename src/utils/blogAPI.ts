@@ -44,8 +44,9 @@ export const GET_POSTS_QUERY = gql`
 `
 
 export const GET_TOPICS_QUERY = gql`
-    {
-        topicos {
+    query {
+        topicos (first: 50) {
+            id
             nome
             descricao {
                 html
@@ -72,6 +73,7 @@ export const GET_ALL_DATA_QUERY = gql`
               nome
             }
           	topico {
+                id
             	nome
           	}
             imagem {

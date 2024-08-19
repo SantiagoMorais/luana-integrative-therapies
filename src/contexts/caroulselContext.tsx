@@ -1,15 +1,15 @@
 import React, { createContext, useEffect, useState } from "react";
 
 interface ICarouselContextType {
-    currentTopic: string,
-    setCurrentTopic: React.Dispatch<React.SetStateAction<string>>,
-    loading: boolean
+    currentTopicId: string,
+    setCurrentTopicId: React.Dispatch<React.SetStateAction<string>>,
+    loadingContent: boolean
 }
 
 export const CarouselContext = createContext<ICarouselContextType>({
-    currentTopic: "",
-    setCurrentTopic: () => { },
-    loading: true
+    currentTopicId: "",
+    setCurrentTopicId: () => { },
+    loadingContent: true
 });
 
 interface ICaroulselProviderProps {
@@ -17,23 +17,23 @@ interface ICaroulselProviderProps {
 }
 
 export const CaroulselProvider: React.FC<ICaroulselProviderProps> = ({ children }) => {
-    const [currentTopic, setCurrentTopic] = useState<string>(() => {
+    const [currentTopicId, setCurrentTopicId] = useState<string>(() => {
         const localTopic = localStorage.getItem('currentTopicName');
         return localTopic ? JSON.parse(localTopic) : "";
     });
 
-    const [loading, setLoading] = useState<boolean>(currentTopic === "");
+    const [loadingContent, setloadingContent] = useState<boolean>(currentTopicId === "");
 
     useEffect(() => {
-        window.localStorage.setItem('currentTopicName', JSON.stringify(currentTopic))
-    }, [currentTopic])
+        window.localStorage.setItem('currentTopicName', JSON.stringify(currentTopicId))
+    }, [currentTopicId])
 
     useEffect(() => {
-        setLoading(currentTopic === "")
-    }, [currentTopic])
+        setloadingContent(currentTopicId === "")
+    }, [currentTopicId])
 
     return (
-        <CarouselContext.Provider value={{ currentTopic, setCurrentTopic, loading }}>
+        <CarouselContext.Provider value={{ currentTopicId, setCurrentTopicId, loadingContent }}>
             {children}
         </CarouselContext.Provider>
     )

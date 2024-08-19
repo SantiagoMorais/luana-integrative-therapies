@@ -30,7 +30,7 @@ export interface ICarouselProps {
 
 export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, imagesHeightInRem, spaceBetween, titleColor, clickableContent }) => {
     const [slidesPerView, setSlidesPerView] = useState<number>(2);
-    const { setCurrentTopic } = useContext(CarouselContext);    
+    const { setCurrentTopicId } = useContext(CarouselContext);    
 
     useEffect(() => {
         const handleResize = () => {
@@ -71,7 +71,7 @@ export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, i
                                 src={item.content}
                                 alt="slideImage"
                                 className="slideImage"
-                                onClick={() => clickableContent ? setCurrentTopic(item.id) : ""}
+                                onClick={() => clickableContent ? setCurrentTopicId(item.id) : ""}
                             />
                         }
 

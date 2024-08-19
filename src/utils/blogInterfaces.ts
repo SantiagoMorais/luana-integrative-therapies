@@ -7,6 +7,7 @@ export interface IPost {
         nome: string;
     };
     topico: {
+        id: string,
         nome: string,
     };
     imagem: {

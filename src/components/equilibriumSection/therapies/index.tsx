@@ -2,10 +2,14 @@ import { IAllData } from "@utils/blogInterfaces"
 import styled from "styled-components"
 import { CarouselSlides } from "@components/carouselModel";
 import { fontSize, fontWeight } from "@styles/theme";
+import { TherapyContent } from "./therapyContent";
 
 export const Therapies: React.FC<IAllData> = ({ data }) => {
     // const posts = data.posts;
     const topics = data.topicos;
+
+    console.log(topics);
+    
 
     const getTopicsInfo = () => {
         interface ITopicInfo {
@@ -33,9 +37,10 @@ export const Therapies: React.FC<IAllData> = ({ data }) => {
                 <CarouselSlides
                     info={getTopicsInfo()}
                     slidesNumber={3}
-                    imagesHeightInRem={30}
+                    imagesHeightInRem={40}
                     clickableContent
                     />
+                <TherapyContent />
             </div>
         </Container>
     )
@@ -54,6 +59,7 @@ const Container = styled.section`
         align-items: center;
         width: 100%;
         gap: 2rem;
+        overflow: hidden;
 
         .title {
             font-size: ${fontSize.extraLargeSize};
