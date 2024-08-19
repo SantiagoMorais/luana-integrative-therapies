@@ -10,7 +10,7 @@ export const EquilibriumSection = () => {
     const { data, loading, error } = useQuery(GET_ALL_DATA_QUERY);
 
     return (
-        <Container>
+        <Container data-testid="equilibriumSection">
             <Header />
             {loading ?
                 <>

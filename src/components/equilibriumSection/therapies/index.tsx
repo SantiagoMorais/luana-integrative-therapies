@@ -31,12 +31,12 @@ export const Therapies: React.FC<IAllData> = ({ data }) => {
         <Container>
             <h2 className="title">Equilibrium</h2>
             <h3 className="subtitle">Equilíbrio e Bem-estar com as Terapias Integrativas</h3>
-            {/* <p>{posts.map(post => 
+            <p>{posts.map(post => 
                 <p>{post.titulo}</p>
             )}</p>
             <p>{topics.map(topic =>
                 <p>{topic.nome}</p>
-            )}</p> */}
+            )}</p>
             <CarouselSlides info={getTopicsInfo()} slidesNumber={2} imagesHeightInRem={30} spaceBetween={50}/>
         </Container>
     )

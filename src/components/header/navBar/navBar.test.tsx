@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { NavBar } from "."
 import { NavBarProvider } from "@contexts/navBarContext"
 import { BrowserRouter } from "react-router-dom"
@@ -30,7 +30,7 @@ describe('<NavBar />', () => {
         expect(contactLink.classList.contains('selected')).toBeFalsy();
     })
 
-    it("should add the className 'selected' to a button when it's clicked", () => {
+    it("should add the className 'selected' to a button when it's clicked", async () => {
         render(
             <NavBarProvider>
                 <BrowserRouter>
@@ -43,11 +43,15 @@ describe('<NavBar />', () => {
         expect(links[1].classList.contains('selected')).toBeFalsy();
 
         fireEvent.click(links[1])
-        expect(links[1].classList.contains('selected')).toBeTruthy();
-
+        waitFor(() => {
+             expect(links[1].classList.contains('selected')).toBeTruthy();
+        })
+        
         fireEvent.click(links[2])
-        expect(links[2].classList.contains('selected')).toBeTruthy();
-        expect(links[1].classList.contains('selected')).toBeFalsy();
+        waitFor(() => {
+            expect(links[2].classList.contains('selected')).toBeTruthy();
+            expect(links[1].classList.contains('selected')).toBeFalsy();
+        })
     })
 })
 

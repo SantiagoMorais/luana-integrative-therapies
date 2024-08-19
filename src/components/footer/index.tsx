@@ -5,38 +5,62 @@ import { theme } from "@styles/theme"
 import { instagramLink, whatsappLink } from "@utils/variables"
 import styled from "styled-components"
 import data from "@json/index.json"
-import { Link } from "react-router-dom"
-import { useContext } from "react"
+import { Link, useLocation } from "react-router-dom"
+import { useContext, useEffect } from "react"
 import { NavBarContext } from "@contexts/navBarContext"
 
 export const Footer = () => {
     const { currentLink, setCurrentLink } = useContext(NavBarContext);
-    console.log(currentLink);
+    const location = useLocation();
+    const locationName = location.pathname.slice(1);
 
+    useEffect(() => {
+        const handlePageChange = () => {
+            setCurrentLink(locationName)
+        }
 
-    const handlePageChange = (link: string) => {
-        setCurrentLink(link)
-    }
+        handlePageChange();
+    }, [locationName, setCurrentLink])
 
     return (
         <Container>
             <div className="content">
                 <div className="nameTitle">
-                    <p><span className="firstLetter">L</span>uana</p> <p>Vasconcellos</p> <p>Alvarenga</p>
+                    <p><span className="firstLetter">L</span>uana</p>
+                    <p>Vasconcellos</p>
+                    <p>Alvarenga</p>
                 </div>
                 <div className="socialMedia">
                     <p className="about">
-                        A Dra. Luana Vasconcellos, Cirurgiã Dentista e Terapeuta Integrativa, dedica-se ao bem-estar integral de seus pacientes com um enfoque preventivo e holístico. Seu atendimento cuidadoso e personalizado visa promover a saúde em todas as suas dimensões, prevenindo doenças e aliviando dores. No consultório da Dra. Luana, cada detalhe é pensado para proporcionar um ambiente acolhedor e de confiança, garantindo tratamentos realizados com carinho e excelência, focados em melhorar a qualidade de vida e o equilíbrio do corpo.                    </p>
-                    <h3 className="title">Me encontre nas minhas mídias sociais</h3>
+                        A Dra. Luana Vasconcellos, Cirurgiã Dentista e Terapeuta Integrativa, dedica-se ao bem-estar integral de seus pacientes com um enfoque preventivo e holístico. Seu atendimento cuidadoso e personalizado visa promover a saúde em todas as suas dimensões, prevenindo doenças e aliviando dores. No consultório da Dra. Luana, cada detalhe é pensado para proporcionar um ambiente acolhedor e de confiança, garantindo tratamentos realizados com carinho e excelência, focados em melhorar a qualidade de vida e o equilíbrio do corpo.
+                    </p>
+                    <h3 className="title">
+                        Me encontre nas minhas mídias sociais
+                    </h3>
                     <ul className="social">
-                        <li><a href={whatsappLink} target="_blank" data-testid="whatsapp"><FontAwesomeIcon icon={faWhatsapp} /></a></li>
-                        <li><a href="" target="_blank" data-testid="email"><FontAwesomeIcon icon={faAt} /></a></li>
-                        <li><a href={instagramLink} target="_blank" data-testid="instagram"><FontAwesomeIcon icon={faInstagram} /></a></li>
+                        <li>
+                            <a href={whatsappLink} target="_blank" data-testid="whatsapp">
+                                <FontAwesomeIcon icon={faWhatsapp} />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank" data-testid="email">
+                                <FontAwesomeIcon icon={faAt} />
+                            </a>
+                        </li>
+                        <li>
+                            <a href={instagramLink} target="_blank" data-testid="instagram">
+                                <FontAwesomeIcon icon={faInstagram} />
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <ul className="navigation">
                     {data.navigationLinks.map(item =>
-                        <Link key={item.name} to={`/${item.link}`} className={`section ${currentLink === item.name && "selected"}`} onClick={() => handlePageChange(item.name)} >
+                        <Link
+                            key={item.name}
+                            to={`/${item.link}`}
+                            className={`section ${currentLink === item.link && "selected"}`}>
                             {item.name}
                         </Link>
 

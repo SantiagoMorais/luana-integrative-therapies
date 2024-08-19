@@ -2,7 +2,7 @@ import { NavBarContext } from "@contexts/navBarContext";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { theme } from "@styles/theme"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components"
 import data from "@json/index.json"
@@ -12,19 +12,18 @@ export const NavBar = () => {
     const [hamburgerIconClicked, setHamburgerIconClicked] = useState(false);
     const location = useLocation();
     const locationName = location.pathname.slice(1);
-    console.log(locationName);
-
-    const handlePageChange = (link: string) => {
-        setCurrentLink(link)
-        console.log(link);
-        console.log(currentLink);
-        
-        
-    }
 
     const handleOpenAccordion = () => {
         setHamburgerIconClicked(!hamburgerIconClicked)
     }
+
+    useEffect(() => {
+        const handlePageChange = () => {
+            setCurrentLink(locationName)
+        }
+
+        handlePageChange();
+    }, [locationName, setCurrentLink])
 
     return (
         <Container>
@@ -40,8 +39,8 @@ export const NavBar = () => {
             </button>
             <ul className={`navBar ${hamburgerIconClicked ? "clicked" : ''}`}>
                 {currentLink !== null && data.navigationLinks.map((navButton, index) =>
-                    <Link key={index} to={`/${navButton.link}`} onClick={() => { handlePageChange(navButton.name) }} >
-                        <li className={`link ${currentLink === navButton.name ? "selected" : ""}`}>
+                    <Link key={index} to={`/${navButton.link}`}>
+                        <li className={`link ${currentLink === navButton.link ? "selected" : ""}`}>
                             {navButton.name}
                         </li>
                     </Link>
