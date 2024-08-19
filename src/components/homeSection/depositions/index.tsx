@@ -29,7 +29,7 @@ export const Depositions = () => {
             <h2 className="title">Depoimentos de pacientes</h2>
             <div className="content">
                 <div className="depositions">
-                    <CarouselSlides slidesNumber={1} info={getTopicsInfo()} titleColor={theme.secondaryColor} />
+                    <CarouselSlides slidesNumber={2} info={getTopicsInfo()} titleColor={theme.secondaryColor} />
                 </div>
             </div>
         </Container>

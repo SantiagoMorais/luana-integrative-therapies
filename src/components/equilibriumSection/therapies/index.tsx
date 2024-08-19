@@ -1,6 +1,7 @@
 import { IAllData } from "@utils/blogInterfaces"
 import styled from "styled-components"
 import { CarouselSlides } from "@components/carouselModel";
+import { fontSize, fontWeight } from "@styles/theme";
 
 export const Therapies: React.FC<IAllData> = ({ data }) => {
     // const posts = data.posts;
@@ -31,8 +32,9 @@ export const Therapies: React.FC<IAllData> = ({ data }) => {
                 <h3 className="subtitle">Equilíbrio e Bem-estar com as Terapias Integrativas</h3>
                 <CarouselSlides
                     info={getTopicsInfo()}
-                    slidesNumber={2}
-                    imagesHeightInRem={30} />
+                    slidesNumber={3}
+                    imagesHeightInRem={30}
+                    />
             </div>
         </Container>
     )
@@ -51,5 +53,15 @@ const Container = styled.section`
         align-items: center;
         width: 100%;
         gap: 2rem;
+
+        .title {
+            font-size: ${fontSize.extraLargeSize};
+            font-weight: ${fontWeight.medium};
+        }
+        
+        .subtitle {
+            font-size: ${fontSize.mediumSize};
+            font-weight: ${fontWeight.medium};    
+        }
     }
 `

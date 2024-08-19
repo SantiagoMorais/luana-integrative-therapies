@@ -32,7 +32,7 @@ export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, i
     useEffect(() => {
         const handleResize = () => {
             const smallDevicesScreen = window.innerWidth < 768
-            smallDevicesScreen ? setSlidesPerView(slidesNumber) : setSlidesPerView(slidesNumber + 1)
+            smallDevicesScreen ? setSlidesPerView(slidesNumber - 1) : setSlidesPerView(slidesNumber)
         };
         handleResize()
 
@@ -65,7 +65,11 @@ export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, i
                                 <FontAwesomeIcon icon={faQuoteLeft} className="slideIcon" />
                                 <p className="slideText">"{item.content}"</p>
                             </>
-                            : <img src={item.content} alt="slideImage" className="slideImage" />
+                            : <img 
+                            src={item.content} 
+                            alt="slideImage" 
+                            className="slideImage"
+                            />
                         }
 
                         <h3 className="itemDescription">
@@ -87,24 +91,25 @@ const Container = styled.div<{ $imagesHeight: number | undefined, $titleColor: s
     .swiper {
         width: 100%;
         border-radius: 1rem;
-        padding: 0 4rem;
+        padding: 0rem 2rem;
 
         .swiper-button-next, .swiper-button-prev {
             color: ${theme.secondaryColor};
             transition: .3s;
             opacity: .8;
+            filter: drop-shadow(0 0 .2rem ${theme.textColor});
 
             &:hover {
-                scale: 1.2;
                 opacity: 1;
             }
         }
 
         .swiper-button-next {
             right: 0;
+            position: absolute;
             transform: translateY(-50%);
         }
-
+        
         .swiper-button-prev {
             left: 0;
             transform: translateY(-50%);
@@ -131,6 +136,7 @@ const Container = styled.div<{ $imagesHeight: number | undefined, $titleColor: s
             .slideImage {
                 width: 100%;
                 min-width: 10rem;
+                width: 110%;
                 object-fit: cover;
                 border-radius: 1rem;
                 border: .2rem solid ${theme.tertiaryColor};
@@ -172,8 +178,8 @@ const Container = styled.div<{ $imagesHeight: number | undefined, $titleColor: s
                 font-size: ${fontSize.basicSize};
     
                 .slideImage {
-                    max-height: 25rem;
-                    height: ${props => props.$imagesHeight ? `${props.$imagesHeight * .8}rem` : 'auto'};
+                    max-height: 40rem;
+                    height: ${props => props.$imagesHeight ? `${props.$imagesHeight}rem` : 'auto'};
                 }
 
                 .itemDescription {
