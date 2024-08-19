@@ -7,22 +7,26 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { fontSize, theme } from "@styles/theme";
+import { fontSize, fontWeight, theme } from "@styles/theme";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 
 export interface ICarouselInfo {
     id: string,
-    image: string,
+    content: string,
     description?: string,
+    contentIsAText?: boolean,
 }
 
 export interface ICarouselProps {
     info: ICarouselInfo[],
     slidesNumber: number,
     imagesHeightInRem?: number,
-    spaceBetween?: number
+    spaceBetween?: number,
+    titleColor?: string,
 }
 
-export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, imagesHeightInRem, spaceBetween }) => {
+export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, imagesHeightInRem, spaceBetween, titleColor }) => {
     const [slidesPerView, setSlidesPerView] = useState<number>(2)
 
     useEffect(() => {
@@ -37,7 +41,7 @@ export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, i
     }, [slidesNumber])
 
     return (
-        <Container $imagesHeight={imagesHeightInRem}>
+        <Container $imagesHeight={imagesHeightInRem} $titleColor={titleColor}>
             <Swiper
                 modules={[Pagination, Navigation, Autoplay]}
                 loop={true}
@@ -55,7 +59,15 @@ export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, i
             >
                 {info.map(item =>
                     <SwiperSlide key={item.id} className="slide">
-                        <img src={item.image} alt="slideImage" className="slideImage" />
+                        {item.contentIsAText
+                            ?
+                            <>
+                                <FontAwesomeIcon icon={faQuoteLeft} className="slideIcon" />
+                                <p className="slideText">"{item.content}"</p>
+                            </>
+                            : <img src={item.content} alt="slideImage" className="slideImage" />
+                        }
+
                         <h3 className="itemDescription">
                             {item.description}
                         </h3>
@@ -66,7 +78,7 @@ export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, i
     )
 }
 
-const Container = styled.div<{ $imagesHeight: number | undefined }>`
+const Container = styled.div<{ $imagesHeight: number | undefined, $titleColor: string | undefined }>`
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -78,7 +90,7 @@ const Container = styled.div<{ $imagesHeight: number | undefined }>`
         padding: 0 4rem;
 
         .swiper-button-next, .swiper-button-prev {
-            color: ${theme.shadowColor};
+            color: ${theme.secondaryColor};
             transition: .3s;
             opacity: .8;
 
@@ -110,6 +122,11 @@ const Container = styled.div<{ $imagesHeight: number | undefined }>`
             align-items: center;
             margin-bottom: 4rem;
             user-select: none;
+            cursor: default;
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            max-width: 100%;
 
             .slideImage {
                 width: 100%;
@@ -119,10 +136,24 @@ const Container = styled.div<{ $imagesHeight: number | undefined }>`
                 border: .2rem solid ${theme.tertiaryColor};
                 height: ${props => props.$imagesHeight ? `${props.$imagesHeight}rem` : 'auto'};
             }
+
+            .slideText {
+                font-size: ${fontSize.smallSize};
+                text-align: center;
+                padding: 1rem;
+                font-weight: ${fontWeight.thin};
+                max-width: 100%;
+            }
+
+            .slideIcon {
+                font-size: 5rem;
+                color: ${theme.secondaryColor};
+            }
                 
             .itemDescription {
                 font-size: ${fontSize.mediumSize};
                 text-align: center;
+                color: ${props => props.$titleColor ? props.$titleColor : theme.textColor}
             }
         }
     }
@@ -158,6 +189,10 @@ const Container = styled.div<{ $imagesHeight: number | undefined }>`
                 .slideImage {
                     max-height: 25rem;
                     height: ${props => props.$imagesHeight ? `${props.$imagesHeight * .6}rem` : 'auto'};
+                }
+
+                .slideIcon {
+                    font-size: ${fontSize.extraLargeSize};
                 }
 
                 .itemDescription {
