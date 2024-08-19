@@ -1,11 +1,39 @@
+interface IFontSize {
+    smallSize: string,
+    basicSize: string,
+    mediumSize: string,
+    largeSize: string,
+    extraLargeSize: string,
+}
+
+interface IFontWeight {
+    thin: string,
+    medium: string,
+    bold: string
+}
+
+export const fontSize: IFontSize = {
+    smallSize: "2rem",
+    basicSize: "2.4rem",
+    mediumSize: "3rem",
+    largeSize: "3.5rem",
+    extraLargeSize: "4rem",
+}
+
+export const fontWeight: IFontWeight = {
+    thin: "300",
+    medium: "400",
+    bold: "600"
+}
+
 interface ITheme {
-    fontFamily: string;
-    primaryColor: string;
-    secondaryColor: string;
-    tertiaryColor: string;
-    textColor: string;
-    secondaryTextColor: string;
-    shadowColor: string;
+    fontFamily: string,
+    primaryColor: string,
+    secondaryColor: string,
+    tertiaryColor: string,
+    textColor: string,
+    secondaryTextColor: string,
+    shadowColor: string,
 }
 
 export const theme: ITheme = {

@@ -2,7 +2,7 @@ import styled from "styled-components"
 import data from "@json/index.json"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons"
-import { theme } from "@styles/theme"
+import { fontSize, fontWeight, theme } from "@styles/theme"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { useEffect, useState } from "react"
 
@@ -79,8 +79,8 @@ const Container = styled.div`
     .title {
         width: 100%;
         text-align: center;
-        font-size: 4rem;
-        font-weight: 400;
+        font-size: ${fontSize.extraLargeSize};
+        font-weight: ${fontWeight.medium};
         background-color: ${theme.primaryColor};
         padding: 2rem 0;
     }
@@ -94,6 +94,7 @@ const Container = styled.div`
         .depositions {
             width: 100%;
             padding: 1rem 0;
+            font-size: ${fontSize.extraLargeSize};
             
             .icon {
                 font-size: 5rem;
@@ -134,18 +135,17 @@ const Container = styled.div`
                     padding: 0 1rem;
                     
                     .deposition {
-                        font-size: 2rem;
+                        font-size: ${fontSize.smallSize};
                         text-align: center;
                         padding: 1rem;
-                        font-weight: 300;
+                        font-weight: ${fontWeight.thin};
                         max-width: 100%;
-                        font-size: 2rem;
                     }
             
                     .patientName {
-                        font-weight: 500;
+                        font-weight: ${fontWeight.bold};
                         color: ${theme.secondaryColor};
-                        font-size: 2.4rem;
+                        font-size: ${fontSize.basicSize};
                         letter-spacing: .2rem;
                         text-transform: uppercase;
                     }
@@ -160,20 +160,20 @@ const Container = styled.div`
         margin-bottom: 1rem;
     
         .title {
-            font-size: 3rem;
+            font-size: ${fontSize.mediumSize};
         }
 
         .content {
             .depositions {
                 .icon {
-                    font-size: 4rem;
+                    font-size: ${fontSize.extraLargeSize};
                 }
                 
                 .swiper {
                     padding: 0 2rem 3rem;
                     .swiper-button-next, .swiper-button-prev {
                         &::after {
-                            font-size: 3rem;
+                            font-size: ${fontSize.mediumSize};
                         }
                     }
 
@@ -189,8 +189,7 @@ const Container = styled.div`
                         padding: 0;
 
                         .deposition {
-                            font-weight: 400;
-                            font-size: 1.8rem;
+                            font-weight: ${fontWeight.medium};
                         }
                     }
                 }       

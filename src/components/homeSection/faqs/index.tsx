@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import data from "@json/index.json"
-import { faqBreakPoints, theme } from "@styles/theme"
+import { faqBreakPoints, fontSize, fontWeight, theme } from "@styles/theme"
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
@@ -45,8 +45,8 @@ const Container = styled.div`
     padding: 0 3rem;
 
     .title {
-        font-size: 4rem;
-        font-weight: 400;
+        font-size: ${fontSize.extraLargeSize};
+        font-weight: ${fontWeight.medium};
     }
 
     .faqs {
@@ -54,7 +54,7 @@ const Container = styled.div`
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        font-size: 2rem;
+        font-size: ${fontSize.smallSize};
 
         .faq {
             cursor: pointer;
@@ -64,7 +64,7 @@ const Container = styled.div`
             }
 
             .questionBar {
-                font-size: 2.5rem;
+                font-size: ${fontSize.basicSize};
                 padding-bottom: 1rem;
                 border-bottom: .2rem solid ${theme.secondaryColor};
                 transition: .3s;
@@ -72,6 +72,8 @@ const Container = styled.div`
                 align-items: center;
                 justify-content: space-between;
                 gap: 2rem;
+                font-weight: ${fontWeight.medium};
+
 
                 .question {
                     width: 100%;
@@ -110,15 +112,14 @@ const Container = styled.div`
         padding: 0 2rem;
 
         .title {
-            font-size: 3rem;
+            font-size: ${fontSize.mediumSize};
         }
     
         .faqs {
             .faq {
                 .questionBar {
                     text-align: center;
-                    font-size: 2rem;
-                    font-weight: 500;
+                    font-size: ${fontSize.smallSize};
                 }
             }
         }

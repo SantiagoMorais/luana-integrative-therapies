@@ -5,7 +5,7 @@ import starsImage from "@assets/imgs/nightSkyPNG.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInstagram } from "@fortawesome/free-brands-svg-icons"
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons"
-import { theme } from "@styles/theme"
+import { fontSize, theme } from "@styles/theme"
 import { instagramLink, whatsappLink } from "@utils/variables"
 
 export const FollowMeSection = () => {
@@ -149,14 +149,14 @@ const Container = styled.section`
             z-index: 1;
 
             .title {
-                font-size: 3rem;
+                font-size: ${fontSize.mediumSize};
                 color: ${theme.textColor};
                 font-weight: 600;
                 text-align: center;
             }
 
             .message {
-                font-size: 2.1rem;
+                font-size: ${fontSize.smallSize};
                 text-align: center;
             }
 
@@ -167,7 +167,7 @@ const Container = styled.section`
                 align-self: center;
                 border-radius: 1rem;
                 background-color: ${theme.secondaryColor};
-                font-size: 2.1rem;
+                font-size: ${fontSize.smallSize};
                 font-weight: 500;
                 cursor: pointer;
                 transition: .3s;
@@ -233,7 +233,6 @@ const Container = styled.section`
                         mask-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
                         -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
                     }
-
                 }
             }
     

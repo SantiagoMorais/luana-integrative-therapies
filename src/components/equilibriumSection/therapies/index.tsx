@@ -29,12 +29,6 @@ export const Therapies: React.FC<IAllData> = ({ data }) => {
             <div className="content">
                 <h2 className="title">Equilibrium</h2>
                 <h3 className="subtitle">Equilíbrio e Bem-estar com as Terapias Integrativas</h3>
-                <p>{posts.map(post =>
-                    <p>{post.titulo}</p>
-                )}</p>
-                <p>{topics.map(topic =>
-                    <p>{topic.nome}</p>
-                )}</p>
                 <CarouselSlides
                     info={getTopicsInfo()}
                     slidesNumber={2}

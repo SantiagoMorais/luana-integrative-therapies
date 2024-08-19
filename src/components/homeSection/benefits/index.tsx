@@ -1,4 +1,4 @@
-import { theme } from "@styles/theme"
+import { fontSize, fontWeight, theme } from "@styles/theme"
 import styled from "styled-components"
 import data from "@json/index.json"
 
@@ -32,7 +32,7 @@ const Container = styled.div`
 
     .title {
         width: 100%;
-        font-size: 4rem;
+        font-size: ${fontSize.extraLargeSize};
         text-align: center;
         padding: 1rem;
     }
@@ -47,18 +47,18 @@ const Container = styled.div`
         max-width: 144rem;
 
         .benefit {
-            font-size: 3rem;
+            font-size: ${fontSize.mediumSize};
             text-align: center;
             flex-grow: 1;
             flex-basis: 20rem;
             padding: 1rem;
-            font-weight: 300;
+            font-weight: ${fontWeight.thin};
             max-width: 40rem;
 
             p {
                 &:first-child {
                     font-size: 150%;
-                    font-weight: 300;
+                    font-weight: ${fontWeight.thin};
                     padding-bottom: 1rem;
                     border-bottom: .2rem solid ${theme.secondaryColor};
                     margin-bottom: 1rem;
@@ -71,28 +71,28 @@ const Container = styled.div`
         padding: 2rem 1rem 0;
     
         .title {
-            font-size: 3.5rem;
+            font-size: ${fontSize.largeSize};
         }
     
         .benefits {
             gap: 1rem;
     
             .benefit {
-                font-size: 2.4rem;
+                font-size: ${fontSize.basicSize};
             }
         }
     }
 
     @media (max-width: 425px) {
         .title {
-            font-size: 3rem;
+            font-size: ${fontSize.mediumSize};
         }
     
         .benefits {
             gap: 0rem;
     
             .benefit {
-                font-size: 2rem;
+                font-size: ${fontSize.smallSize};
             }
         }
     }

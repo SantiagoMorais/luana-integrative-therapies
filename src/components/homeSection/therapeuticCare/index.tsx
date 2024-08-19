@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import luanaWithProducts from "@assets/imgs/imageToTherapeuticCare.jpg" 
+import { fontSize, fontWeight } from "@styles/theme"
 
 export const TherapeuticCare = () => {
     return (
@@ -35,13 +36,13 @@ const Container = styled.div`
     }
 
     .info {
-        font-size: 2.5rem;
-        font-weight: 300;
+        font-size: ${fontSize.basicSize};
+        font-weight: ${fontWeight.thin};
 
         .title {
             margin-bottom: 2rem;
-            font-size: 4rem;
-            font-weight: 400;
+            font-size: ${fontSize.extraLargeSize};
+            font-weight: ${fontWeight.medium};
         }
 
         .functionality {
@@ -70,12 +71,12 @@ const Container = styled.div`
         }
         
         .info {
-            font-size: 2rem;
+            font-size: ${fontSize.smallSize};
             font-weight: 400;
             
             .title {
                 margin-bottom: 1rem;
-                font-size: 3rem;
+                font-size: ${fontSize.mediumSize};
                 text-align: center;
             }
         }

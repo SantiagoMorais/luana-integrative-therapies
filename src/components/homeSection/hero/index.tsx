@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components"
 import heroImage from "@assets/imgs/heroImageLargeScreenDevices.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons"
-import { theme } from "@styles/theme"
+import { fontWeight, theme } from "@styles/theme"
 
 export const Hero = () => {
     return (
@@ -54,7 +54,7 @@ const Container = styled.div`
 
         .title {
             font-size: 9rem;
-            font-weight: 600;
+            font-weight: ${fontWeight.bold};
             line-height: 90%;
             color: ${theme.textColor};
             text-transform: uppercase;
@@ -63,7 +63,7 @@ const Container = styled.div`
 
         .subtitle {
             font-size: 5rem;
-            font-weight: 400;
+            font-weight: ${fontWeight.medium};
             color: ${theme.textColor};
             filter: drop-shadow(0 0 .2rem ${theme.secondaryColor});
             font-family: ${theme.fontFamily};
