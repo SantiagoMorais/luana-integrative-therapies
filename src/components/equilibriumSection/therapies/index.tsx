@@ -34,6 +34,7 @@ export const Therapies: React.FC<IAllData> = ({ data }) => {
                     info={getTopicsInfo()}
                     slidesNumber={3}
                     imagesHeightInRem={30}
+                    clickableContent
                     />
             </div>
         </Container>
