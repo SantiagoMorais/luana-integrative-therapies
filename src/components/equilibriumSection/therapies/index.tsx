@@ -1,8 +1,8 @@
 import { IAllData } from "@utils/blogInterfaces"
 import styled from "styled-components"
-import { CarouselSlides } from "@components/carouselModel";
 import { fontSize, fontWeight } from "@styles/theme";
 import { TherapyContent } from "./therapyContent";
+import { EquilibriumCaroulsel } from "../equilibriumCaroulsel";
 
 interface ITherapiesProps {
     data: IAllData
@@ -13,7 +13,7 @@ export const Therapies: React.FC<ITherapiesProps> = ({ data }) => {
     const topics = data.topicos;
 
     console.log(topics);
-    
+
 
     const getTopicsInfo = () => {
         interface ITopicInfo {
@@ -38,12 +38,11 @@ export const Therapies: React.FC<ITherapiesProps> = ({ data }) => {
             <div className="content">
                 <h2 className="title">Equilibrium</h2>
                 <h3 className="subtitle">Equilíbrio e Bem-estar com as Terapias Integrativas</h3>
-                <CarouselSlides
+                <EquilibriumCaroulsel
                     info={getTopicsInfo()}
                     slidesNumber={3}
                     imagesHeightInRem={40}
-                    clickableContent
-                    />
+                />
                 <TherapyContent />
             </div>
         </Container>
