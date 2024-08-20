@@ -4,7 +4,11 @@ import { CarouselSlides } from "@components/carouselModel";
 import { fontSize, fontWeight } from "@styles/theme";
 import { TherapyContent } from "./therapyContent";
 
-export const Therapies: React.FC<IAllData> = ({ data }) => {
+interface ITherapiesProps {
+    data: IAllData
+}
+
+export const Therapies: React.FC<ITherapiesProps> = ({ data }) => {
     // const posts = data.posts;
     const topics = data.topicos;
 

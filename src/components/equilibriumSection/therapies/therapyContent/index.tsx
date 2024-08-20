@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client"
 import { CarouselContext } from "@contexts/caroulselContext"
 import { GET_TOPICS_QUERY } from "@utils/blogAPI"
-import { ITopic } from "@utils/blogInterfaces"
+import { IAllData, ITopic } from "@utils/blogInterfaces"
 import { useContext } from "react"
 import styled from "styled-components"
 import parser from "html-react-parser"
@@ -9,29 +9,32 @@ import { fontSize, fontWeight, theme } from "@styles/theme"
 import { ErrorPage } from "@components/equilibriumSection/errorPage"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
+import { TherapiesListEmpty } from "./TherapiesListEmpty"
 
 export const TherapyContent = () => {
-    const { currentTopicId, loadingContent } = useContext(CarouselContext)
-    const { data, loading, error } = useQuery(GET_TOPICS_QUERY)
-    const topic: ITopic = data?.topicos.find((item: ITopic) => item.id === currentTopicId);
+    const { currentTopicId } = useContext(CarouselContext)
+    const { data, loading, error } = useQuery<IAllData>(GET_TOPICS_QUERY)
+    const topic: ITopic | undefined = data?.topicos.find((item: ITopic) => item.id === currentTopicId);
 
     return (
         <Container>
             {
-                loadingContent || loading
+                loading
                     ?
                     <p className="loading">
                         <FontAwesomeIcon className="icon" icon={faSpinner} spin /> Carregando...
                     </p>
                     : error
                         ? <ErrorPage />
-                        : <>
-                            <h2 className="title">{topic.nome}</h2>
-                            <div className="descriptionContent">
-                                <img className="topicImage" src={topic.imagem.url} alt={`Imagem do tratamento ${topic.nome}`} />
-                                {parser(topic.descricao.html)}
-                            </div>
-                        </>
+                        : data && data.topicos.length > 0
+                            ? <>
+                                <h2 className="title">{topic?.nome}</h2>
+                                <div className="descriptionContent">
+                                    <img className="topicImage" src={topic?.imagem.url} alt={`Imagem do tratamento ${topic?.nome}`} />
+                                    {topic && parser(topic.descricao.html)}
+                                </div>
+                            </>
+                            : <TherapiesListEmpty />
             }
         </Container>
     )

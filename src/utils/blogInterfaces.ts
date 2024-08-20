@@ -51,8 +51,6 @@ export interface ITopicsData {
 }
 
 export interface IAllData {
-    data: {
-        posts: IPost[],
-        topicos: ITopic[]
-    }
+    posts: IPost[],
+    topicos: ITopic[]
 }
