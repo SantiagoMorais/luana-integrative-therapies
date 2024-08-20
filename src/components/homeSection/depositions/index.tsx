@@ -1,23 +1,21 @@
 import styled from "styled-components"
 import data from "@json/index.json"
 import { fontSize, fontWeight, theme } from "@styles/theme"
-import { CarouselSlides } from "@components/carouselModel"
+import { DepositionsCarousel } from "./depositionsCaroulsel"
 
 export const Depositions = () => {
     const getTopicsInfo = () => {
         interface IDepositions {
             id: string,
-            content: string,
-            description: string,
-            contentIsAText: boolean
+            deposition: string,
+            name: string,
         }
 
         const topicInfo: IDepositions[] = data.depositions.map(deposition => {
             return {
                 id: deposition.patientName,
-                content: deposition.deposition,
-                description: deposition.patientName,
-                contentIsAText: true,
+                deposition: deposition.deposition,
+                name: deposition.patientName,
             }
         })
 
@@ -29,7 +27,10 @@ export const Depositions = () => {
             <h2 className="title">Depoimentos de pacientes</h2>
             <div className="content">
                 <div className="depositions">
-                    <CarouselSlides slidesNumber={2} info={getTopicsInfo()} titleColor={theme.secondaryColor} />
+                    <DepositionsCarousel 
+                        info={getTopicsInfo()}
+                        slidesNumber={2}
+                    />
                 </div>
             </div>
         </Container>

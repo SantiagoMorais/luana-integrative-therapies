@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -10,27 +10,21 @@ import 'swiper/css/scrollbar';
 import { fontSize, fontWeight, theme } from "@styles/theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
-import { CarouselContext } from "@contexts/caroulselContext";
 
 export interface ICarouselInfo {
     id: string,
-    content: string,
-    description?: string,
-    contentIsAText?: boolean,
+    deposition: string,
+    name: string,
 }
 
 export interface ICarouselProps {
     info: ICarouselInfo[],
     slidesNumber: number,
-    imagesHeightInRem?: number,
     spaceBetween?: number,
-    titleColor?: string,
-    clickableContent?: boolean
 }
 
-export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, imagesHeightInRem, spaceBetween, titleColor, clickableContent }) => {
+export const DepositionsCarousel: React.FC<ICarouselProps> = ({ info, slidesNumber, spaceBetween }) => {
     const [slidesPerView, setSlidesPerView] = useState<number>(2);
-    const { setCurrentTopicId } = useContext(CarouselContext);    
 
     useEffect(() => {
         const handleResize = () => {
@@ -44,7 +38,7 @@ export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, i
     }, [slidesNumber])
 
     return (
-        <Container $imagesHeight={imagesHeightInRem} $titleColor={titleColor} $clickabelContent={clickableContent}>
+        <Container>
             <Swiper
                 modules={[Pagination, Navigation, Autoplay]}
                 loop={true}
@@ -62,21 +56,10 @@ export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, i
             >
                 {info.map(item =>
                     <SwiperSlide key={item.id} className="slide">
-                        {item.contentIsAText
-                            ? <>
-                                <FontAwesomeIcon icon={faQuoteLeft} className="slideIcon" />
-                                <p className="slideText">"{item.content}"</p>
-                            </>
-                            : <img
-                                src={item.content}
-                                alt="slideImage"
-                                className="slideImage"
-                                onClick={() => clickableContent ? setCurrentTopicId(item.id) : ""}
-                            />
-                        }
-
+                        <FontAwesomeIcon icon={faQuoteLeft} className="slideIcon" />
+                        <p className="slideText">"{item.deposition}"</p>
                         <h3 className="itemDescription">
-                            {item.description}
+                            {item.name}
                         </h3>
                     </SwiperSlide>
                 )}
@@ -85,7 +68,7 @@ export const CarouselSlides: React.FC<ICarouselProps> = ({ info, slidesNumber, i
     )
 }
 
-const Container = styled.div<{ $imagesHeight: number | undefined, $titleColor: string | undefined, $clickabelContent: boolean | undefined }>`
+const Container = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -94,27 +77,27 @@ const Container = styled.div<{ $imagesHeight: number | undefined, $titleColor: s
     .swiper {
         width: 100%;
         border-radius: 1rem;
-        padding: 0rem 2rem;
+        padding: 0rem 3rem;
 
         .swiper-button-next, .swiper-button-prev {
             color: ${theme.secondaryColor};
             transition: .3s;
             opacity: .8;
-            filter: drop-shadow(0 0 .2rem ${theme.textColor});
 
             &:hover {
                 opacity: 1;
+                scale: 1.2;
             }
         }
 
         .swiper-button-next {
-            right: 0;
+            right: .5rem;
             position: absolute;
             transform: translateY(-50%);
         }
         
         .swiper-button-prev {
-            left: 0;
+            left: .5rem;
             transform: translateY(-50%);
         }
 
@@ -143,16 +126,7 @@ const Container = styled.div<{ $imagesHeight: number | undefined, $titleColor: s
                 object-fit: cover;
                 border-radius: 1rem;
                 border: .2rem solid ${theme.tertiaryColor};
-                height: ${props => props.$imagesHeight ? `${props.$imagesHeight}rem` : 'auto'};
-                ${props => props.$clickabelContent ? `
-                    cursor: pointer;
-                    transition: .3s;
-
-                    &:hover {
-                        opacity: .7;
-                    }
-                `
-        : ""}
+                height: auto;
             }
 
             .slideText {
@@ -171,7 +145,7 @@ const Container = styled.div<{ $imagesHeight: number | undefined, $titleColor: s
             .itemDescription {
                 font-size: ${fontSize.mediumSize};
                 text-align: center;
-                color: ${props => props.$titleColor ? props.$titleColor : theme.textColor}
+                color: ${theme.secondaryColor}
             }
         }
     }
@@ -191,7 +165,7 @@ const Container = styled.div<{ $imagesHeight: number | undefined, $titleColor: s
     
                 .slideImage {
                     max-height: 40rem;
-                    height: ${props => props.$imagesHeight ? `${props.$imagesHeight}rem` : 'auto'};
+                    height: auto;
                 }
 
                 .itemDescription {
@@ -206,7 +180,7 @@ const Container = styled.div<{ $imagesHeight: number | undefined, $titleColor: s
             .slide {
                 .slideImage {
                     max-height: 25rem;
-                    height: ${props => props.$imagesHeight ? `${props.$imagesHeight * .6}rem` : 'auto'};
+                    height: auto;
                 }
 
                 .slideIcon {
