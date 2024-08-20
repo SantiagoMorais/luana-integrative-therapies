@@ -44,19 +44,27 @@ export const GET_POSTS_QUERY = gql`
 `
 
 export const GET_TOPICS_QUERY = gql`
-    query {
-        topicos (first: 50) {
-            id
-            nome
-            descricao {
-                html
+    query GetAllTopics($after: String) {
+        topicosConnection(after: $after, first: 5) {
+            pageInfo {
+                hasNextPage
+                endCursor
             }
-            imagem {
-                url
-            }
-            categoria {
-                id
-                nome
+            edges {
+                node {
+                    id
+                    nome
+                    descricao {
+                        html
+                    }
+                    imagem {
+                        url
+                    }
+                    categoria {
+                        id
+                        nome
+                    }
+                }
             }
         }
     }

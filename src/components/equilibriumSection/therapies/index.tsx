@@ -1,19 +1,17 @@
-import { IAllData } from "@utils/blogInterfaces"
+import { IPostsData, ITopicsData } from "@utils/blogInterfaces"
 import styled from "styled-components"
 import { fontSize, fontWeight } from "@styles/theme";
 import { TherapyContent } from "./therapyContent";
 import { EquilibriumCaroulsel } from "../equilibriumCaroulsel";
 
 interface ITherapiesProps {
-    data: IAllData
+    topics: ITopicsData,
+    posts?: IPostsData
 }
 
-export const Therapies: React.FC<ITherapiesProps> = ({ data }) => {
-    // const posts = data.posts;
-    const topics = data.topicos;
+export const Therapies: React.FC<ITherapiesProps> = ({ topics = { topicosConnection: { edges: [] } } }) => {
 
-    console.log(topics);
-
+    console.log('Received topics data:', topics);
 
     const getTopicsInfo = () => {
         interface ITopicInfo {
@@ -22,16 +20,23 @@ export const Therapies: React.FC<ITherapiesProps> = ({ data }) => {
             description: string
         }
 
-        const topicInfo: ITopicInfo[] = topics.map(topic => {
+        if (!topics || !topics.topicosConnection) {
+            return [];
+        }
+
+        const topicInfo: ITopicInfo[] = topics.topicosConnection.edges.map(topic => {
             return {
-                id: topic.id,
-                content: topic.imagem.url,
-                description: topic.nome
+                id: topic.node.id,
+                content: topic.node.imagem.url,
+                description: topic.node.nome
             }
         })
 
         return topicInfo
     }
+
+    console.log(getTopicsInfo());
+    
 
     return (
         <Container>
@@ -43,7 +48,7 @@ export const Therapies: React.FC<ITherapiesProps> = ({ data }) => {
                     slidesNumber={3}
                     imagesHeightInRem={40}
                 />
-                <TherapyContent />
+                <TherapyContent data={topics.topicosConnection.edges}/>
             </div>
         </Container>
     )

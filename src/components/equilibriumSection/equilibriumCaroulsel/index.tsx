@@ -26,6 +26,9 @@ export const EquilibriumCaroulsel: React.FC<ICarouselProps> = ({ info, slidesNum
     const [slidesPerView, setSlidesPerView] = useState<number>(2);
     const { setCurrentTopicId } = useContext(CarouselContext);
 
+    console.log(info);
+    
+
     useEffect(() => {
         const handleResize = () => {
             const smallDevicesScreen = window.innerWidth < 768

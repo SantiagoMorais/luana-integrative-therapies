@@ -1,3 +1,4 @@
+// Posts interface
 export interface IPost {
     id: string;
     titulo: string;
@@ -27,7 +28,14 @@ export interface IPost {
     };
 }
 
-export interface ITopic {
+export interface IPostsData {
+    posts: IPost[];
+}
+
+
+// Topics Interface
+
+export interface ITopicNode {
     id: string,
     nome: string,
     descricao: {
@@ -42,15 +50,20 @@ export interface ITopic {
     }
 }
 
-export interface IPostsData {
-    posts: IPost[];
+export interface ITopicEdge {
+    node: ITopicNode
+}
+
+export interface IPageInfo {
+    hasNextPage: boolean,
+    endCursor: string | null
+}
+
+export interface ITopicsConnection {
+    pageInfo: IPageInfo,
+    edges: ITopicEdge[]
 }
 
 export interface ITopicsData {
-    topicos: ITopic[];
-}
-
-export interface IAllData {
-    posts: IPost[],
-    topicos: ITopic[]
+    topicosConnection: ITopicsConnection
 }
