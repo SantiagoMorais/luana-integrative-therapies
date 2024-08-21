@@ -12,8 +12,6 @@ interface IButtons {
 export const SectionsButtons = () => {
     const { handleSelectedButton, topicSelected } = useContext(EquilibriumTopicsContext);
 
-    console.log(topicSelected);
-
     const buttons: IButtons[] = [
         { title: "Nossas terapias", buttonType: "therapies", id: 0 },
         { title: "Nossas publicações", buttonType: "posts", id: 1 }

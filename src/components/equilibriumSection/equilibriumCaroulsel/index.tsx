@@ -50,7 +50,7 @@ export const EquilibriumCaroulsel: React.FC<ICarouselProps> = ({ info, slidesNum
                 slidesPerView={slidesPerView}
                 navigation
                 pagination={{
-                    type: 'fraction',
+                    type: 'bullets',
                     clickable: true,
                 }}
                 autoplay={{
