@@ -2,6 +2,7 @@ import { faCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { fontSize, fontWeight, theme } from "@styles/theme"
 import styled from "styled-components"
+import { SectionsButtons } from "./sectionsButtons"
 
 export const EquilibriumBanner = () => {
     return (
@@ -12,7 +13,8 @@ export const EquilibriumBanner = () => {
                     Equilíbrio e Bem-estar com as Terapias Integrativas
                     <FontAwesomeIcon icon={faCircle} className="icon" />
                 </h3>
-                <p className="description">Descubra como nossas terapias promovem o equilíbrio e bem-estar. Conheça nossas técnicas, explore publicações valiosas e veja como essas abordagens naturais podem transformar sua saúde e proporcionar uma vida harmoniosa.</p>
+                <p className="description">Descubra como nossas terapias promovem o equilíbrio e bem-estar. Conheça nossas técnicas, explore publicações valiosas e veja como essas abordagens naturais podem transformar sua saúde e proporcionar uma vida.</p>
+                <SectionsButtons />
         </Container>
     )
 }
