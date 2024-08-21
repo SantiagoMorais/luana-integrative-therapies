@@ -1,14 +1,14 @@
 import { NavBarProvider } from "@contexts/navBarContext"
 import { AppRoutes } from "./pages/appRoutes"
-import { CaroulselProvider } from "@contexts/caroulselContext"
+import { EquilibriumTopicsProvider } from "@contexts/equilibriumTopicContext"
 
 export const App = () => {
   return (
     <>
       <NavBarProvider>
-        <CaroulselProvider>
+        <EquilibriumTopicsProvider>
           <AppRoutes />
-        </CaroulselProvider>
+        </EquilibriumTopicsProvider>
       </NavBarProvider>
     </>
   )

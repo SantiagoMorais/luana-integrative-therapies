@@ -1,5 +1,6 @@
+import { EquilibriumTopicsContext } from "@contexts/equilibriumTopicContext"
 import { fontSize, fontWeight, theme } from "@styles/theme"
-import { useState } from "react"
+import { useContext } from "react"
 import styled from "styled-components"
 
 interface IButtons {
@@ -9,16 +10,11 @@ interface IButtons {
 }
 
 export const SectionsButtons = () => {
-    const [ buttonSelected, setButtonSelected ] = useState<string>("therapies");
+    const { handleSelectedButton, topicSelected } = useContext(EquilibriumTopicsContext);
 
-    const handleSelectedButton = (buttonSelected: string) => {
-        buttonSelected === "posts"
-            ? setButtonSelected("posts")
-            : setButtonSelected("therapies")
-    }
-
-    console.log(buttonSelected);
+    console.log(topicSelected);
     
+
     const buttons: IButtons[] = [
         { title: "Nossas terapias", buttonType: "therapies", id: 0 },
         { title: "Nossas publicações", buttonType: "posts", id: 1 }
