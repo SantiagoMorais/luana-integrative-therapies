@@ -44,8 +44,8 @@ export const GET_POSTS_QUERY = gql`
 `
 
 export const GET_TOPICS_QUERY = gql`
-    query GetAllTopics($after: String) {
-        topicosConnection(after: $after, first: 10) {
+    query GetAllTopics($after: String, $first: Int!) {
+        topicosConnection(after: $after, first: $first) {
             pageInfo {
                 hasNextPage
                 endCursor

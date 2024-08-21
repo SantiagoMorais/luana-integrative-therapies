@@ -1,22 +1,24 @@
 import styled from "styled-components"
+import { fontSize, fontWeight, theme } from "@styles/theme";
+import { ITopicEdge } from "@utils/blogInterfaces";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
+
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Scrollbar } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
-import { ITopicEdge } from "@utils/blogInterfaces";
-import { fontSize, fontWeight, theme } from "@styles/theme";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
 
 interface ITherapiesListProps {
     slidesPerView: number,
     info: ITopicEdge[],
-    imagesHeightInRem: number
+    imagesHeightInRem: number,
+    loadMore: () => void;
+    hasMore: boolean
 }
 
-export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, info, imagesHeightInRem }) => {
+export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, info, imagesHeightInRem, loadMore, hasMore }) => {
     return (
         <Container $imagesHeightInRem={imagesHeightInRem}>
             <Swiper
@@ -46,12 +48,14 @@ export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, in
                         </span>
                     </SwiperSlide>
                 )}
+                {hasMore &&
                 <SwiperSlide className="loadMore">
-                    <button className="button">
+                    <button className="button" onClick={loadMore}>
                         <FontAwesomeIcon icon={faAdd} className="icon" />
                         Carregar mais
                     </button>
                 </SwiperSlide>
+                }
             </Swiper>
         </Container>
     )

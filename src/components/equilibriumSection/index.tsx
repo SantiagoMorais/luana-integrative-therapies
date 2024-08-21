@@ -11,30 +11,35 @@ import { ITopicsData } from "@utils/blogInterfaces";
 
 export const EquilibriumSection = () => {
     const { topicSelected } = useContext(EquilibriumTopicsContext);
-    const { data } = useQuery<ITopicsData>(GET_TOPICS_QUERY)
+    const { data, loading, fetchMore, error } = useQuery<ITopicsData>(GET_TOPICS_QUERY)
 
-    // const loadMoreTopics = () => {
-    //     if (loading || !data?.topicosConnection.pageInfo.hasNextPage) return;
+    console.log(error);
 
-    //     fetchMore({
-    //         variables: {
-    //             after: data.topicosConnection.pageInfo.endCursor
-    //         },
-    //         updateQuery: (prevResult, { fetchMoreResult }) => {
-    //             if (!fetchMoreResult) return prevResult;
+    const loadMoreTopics = () => {
+        if (loading || !data?.topicosConnection.pageInfo.hasNextPage) return;
 
-    //             return {
-    //                 topicosConnection: {
-    //                     ...fetchMoreResult.topicosConnection,
-    //                     edges: [
-    //                         ...prevResult.topicosConnection.edges,
-    //                         ...fetchMoreResult.topicosConnection.edges
-    //                     ]
-    //                 }
-    //             };
-    //         }
-    //     });
-    // };
+        fetchMore({
+            variables: {
+                after: data.topicosConnection.pageInfo.endCursor,
+                first: Math.min(5, data?.topicosConnection.edges.length % 5)
+            },
+            updateQuery: (prevResult, { fetchMoreResult }) => {
+                if (!fetchMoreResult) return prevResult;
+
+                return {
+                    topicosConnection: {
+                        ...fetchMoreResult.topicosConnection,
+                        edges: [
+                            ...prevResult.topicosConnection.edges,
+                            ...fetchMoreResult.topicosConnection.edges
+                        ]
+                    }
+                };
+            }
+        });
+    };
+
+    const hasMore = data?.topicosConnection.pageInfo.hasNextPage ?? false;
 
     return (
         <Container data-testid="equilibriumSection">
@@ -42,7 +47,13 @@ export const EquilibriumSection = () => {
             <EquilibriumBanner />
             {topicSelected === "posts"
                 ? ""
-                : data && <TherapiesTopics topics={data} />
+                : data && (
+                    <TherapiesTopics
+                        topics={data}
+                        loadMore={loadMoreTopics}
+                        hasMore={hasMore}
+                    />
+                )
             }
             <Footer />
         </Container>

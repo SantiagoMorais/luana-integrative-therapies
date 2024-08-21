@@ -5,32 +5,12 @@ import { TherapiesList } from "./therapiesList";
 
 interface ITherapiesProps {
     topics: ITopicsData,
-    posts?: IPostsData
+    posts?: IPostsData,
+    loadMore: () => void,
+    hasMore: boolean
 }
 
-export const TherapiesTopics: React.FC<ITherapiesProps> = ({ topics = { topicosConnection: { edges: [] } } }) => {
-    // const getTopicsInfo = () => {
-    //     interface ITopicInfo {
-    //         id: string,
-    //         content: string,
-    //         description: string
-    //     }
-
-    //     if (!topics || !topics.topicosConnection) {
-    //         return [];
-    //     }
-
-    //     const topicInfo: ITopicInfo[] = topics.topicosConnection.edges.map(topic => {
-    //         return {
-    //             id: topic.node.id,
-    //             content: topic.node.imagem.url,
-    //             description: topic.node.nome
-    //         }
-    //     })
-
-    //     return topicInfo
-    // }
-
+export const TherapiesTopics: React.FC<ITherapiesProps> = ({ topics, loadMore, hasMore }) => {
     const hadleSlidesPerView = () : number => {
         const topicosLength: number = topics.topicosConnection.edges.length
         return topicosLength < 5 ? topicosLength : 4
@@ -47,6 +27,8 @@ export const TherapiesTopics: React.FC<ITherapiesProps> = ({ topics = { topicosC
                         info={topics.topicosConnection.edges}
                         slidesPerView={hadleSlidesPerView()}
                         imagesHeightInRem={30}
+                        loadMore={loadMore}
+                        hasMore={hasMore}
                     />
                 }
             </div>
