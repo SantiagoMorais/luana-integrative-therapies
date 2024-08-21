@@ -13,7 +13,6 @@ export const SectionsButtons = () => {
     const { handleSelectedButton, topicSelected } = useContext(EquilibriumTopicsContext);
 
     console.log(topicSelected);
-    
 
     const buttons: IButtons[] = [
         { title: "Nossas terapias", buttonType: "therapies", id: 0 },
@@ -24,13 +23,14 @@ export const SectionsButtons = () => {
         <Container>
             {buttons.map(button =>
                 <button
-                    className="selectSection"
+                    className={`selectSection ${topicSelected !== button.buttonType && "notSelected"}`}
                     key={button.id}
                     onClick={() => handleSelectedButton(button.buttonType)}
                 >
                     {button.title}
                 </button>
             )}
+            <span className={`selectedStyle ${topicSelected === "posts" ? "postsSelected" : "therapiesSelected"}`}></span>
         </Container>
     )
 }
@@ -38,12 +38,11 @@ export const SectionsButtons = () => {
 const Container = styled.div`
     display: flex;
     gap: 2rem;
-    padding: .5rem 0;
     position: relative;
 
     .selectSection {
         font-size: ${fontSize.basicSize};
-        padding: .5rem 0;
+        padding: 1rem 0;
         background: none;
         border-radius: 1rem;
         border: none;
@@ -52,13 +51,88 @@ const Container = styled.div`
         text-align: center;
         font-weight: ${fontWeight.medium};
         z-index: 2;
-        cursor: pointer;
         transition: .3s;
 
-        &:hover {
-            scale: 1.05;
-            opacity: .8;
-            box-shadow: 0 0 1rem ${theme.shadowColor};
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: .2rem;
+            background: linear-gradient(to right, transparent, ${theme.tertiaryColor}, transparent);
+            z-index: -1;
+            opacity: 0;
+            transition: .3s;
+        }
+        
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: .2rem;
+            background: linear-gradient(to right, transparent, ${theme.tertiaryColor}, transparent);            
+            z-index: -1;
+            opacity: 0;
+            transition: .3s;
+        }
+        
+        &.notSelected {
+            cursor: pointer;
+
+            &:hover {
+                scale: 1.05;
+                opacity: .8;
+
+                &::after {
+                    opacity: 1;
+                }
+
+                &::before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .selectedStyle {
+        position: absolute;
+        height: 100%;
+        width: 22rem;
+        left: 0;
+        bottom: 0;
+        display: inline-block;
+        background: linear-gradient(to right, transparent 0%, ${theme.secondaryColor} 20%, ${theme.secondaryColor} 80%, transparent 100%);
+        z-index: 1;
+        transition: .5s;
+        transform: translateX(-2rem);
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: .2rem;
+            background: linear-gradient(to right, transparent, ${theme.shadowColor}, transparent);
+            z-index: -1;
+        }
+        
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: .2rem;
+            background: linear-gradient(to right, transparent, ${theme.shadowColor}, transparent);            
+            z-index: -1;
+        }
+
+        &.postsSelected {
+            transform: translateX(18rem);
         }
     }
 
@@ -70,5 +144,20 @@ const Container = styled.div`
         width: 200%;
         height: 100%;
         background: linear-gradient(to right, transparent 0%, ${theme.primaryColor} 30%, ${theme.primaryColor} 70%, transparent 100%);
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 0;
+
+        .selectedStyle {
+            height: calc(50%);
+            bottom: auto;
+            top: 0;
+
+            &.postsSelected {
+                transform: translate(-2rem, calc(100%));
+            }
+        }
     }
 `
