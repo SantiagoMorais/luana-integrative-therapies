@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import { fontSize, fontWeight, theme } from "@styles/theme";
-import { ITopicEdge } from "@utils/blogInterfaces";
+import { IEquilibriumTopicEdge } from "@utils/blogInterfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Scrollbar } from 'swiper/modules';
@@ -12,13 +12,14 @@ import 'swiper/css/pagination';
 
 interface ITherapiesListProps {
     slidesPerView: number,
-    info: ITopicEdge[],
+    info: IEquilibriumTopicEdge[],
     imagesHeightInRem: number,
     loadMore: () => void;
     hasMore: boolean
 }
 
 export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, info, imagesHeightInRem, loadMore, hasMore }) => {
+
     return (
         <Container $imagesHeightInRem={imagesHeightInRem}>
             <Swiper
@@ -36,10 +37,19 @@ export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, in
             >
                 {info?.map((topic, index) =>
                     <SwiperSlide key={topic.node.id} className="slide">
-                        <img
+                        {topic.node.imagem.url
+                            ? 
+                            <img
                             className="slideImage"
-                            src={topic.node.imagem.url}
+                            src={topic.node.imagem.url ? topic.node.imagem.url : ""}
                             alt={`Terapia ${topic.node.nome}`} />
+                            :
+                            <div className="imageNotFound">
+                                    <FontAwesomeIcon icon={faMagnifyingGlass} className="icon"/>
+                                    <h3 className="imageNotFountTitle">Imagem não encontrada</h3>
+                            </div>
+                        }
+
                         <h3 className="therapyName">
                             {topic.node.nome}
                         </h3>

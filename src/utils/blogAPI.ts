@@ -21,7 +21,7 @@ export const GET_POSTS_QUERY = gql`
           	categoria {
               nome
             }
-          	topico {
+          	equilibriumTopico {
             	nome
           	}
             imagem {
@@ -44,8 +44,8 @@ export const GET_POSTS_QUERY = gql`
 `
 
 export const GET_TOPICS_QUERY = gql`
-    query GetAllTopics($after: String, $first: Int!) {
-        topicosConnection(after: $after, first: $first) {
+    query GetAllEquilibriumTopics($after: String, $first: Int!) {
+        equilibriumTopicosConnection(after: $after, first: $first) {
             pageInfo {
                 hasNextPage
                 endCursor
@@ -59,10 +59,6 @@ export const GET_TOPICS_QUERY = gql`
                     }
                     imagem {
                         url
-                    }
-                    categoria {
-                        id
-                        nome
                     }
                 }
             }
@@ -80,7 +76,7 @@ export const GET_ALL_DATA_QUERY = gql`
           	categoria {
               nome
             }
-          	topico {
+          	equilibriumTopico {
                 id
             	nome
           	}
@@ -100,7 +96,7 @@ export const GET_ALL_DATA_QUERY = gql`
                 cro
             }
         }
-        topicos {
+        equilibriumTopicos {
             id
             nome
             descricao {
@@ -109,10 +105,7 @@ export const GET_ALL_DATA_QUERY = gql`
             imagem {
                 url
             }
-            categoria {
-                id
-                nome
-            }
         }
     }
+
 `

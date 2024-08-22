@@ -7,7 +7,7 @@ export interface IPost {
     categoria: {
         nome: string;
     };
-    topico: {
+    equilibriumTopico: {
         id: string,
         nome: string,
     };
@@ -35,7 +35,7 @@ export interface IPostsData {
 
 // Topics Interface
 
-export interface ITopicNode {
+export interface IEquilibriumTopicNode {
     id: string,
     nome: string,
     descricao: {
@@ -43,15 +43,11 @@ export interface ITopicNode {
     },
     imagem: {
         url: string
-    },
-    categoria: {
-        id: string,
-        nome: string
     }
 }
 
-export interface ITopicEdge {
-    node: ITopicNode
+export interface IEquilibriumTopicEdge {
+    node: IEquilibriumTopicNode
 }
 
 export interface IPageInfo {
@@ -59,11 +55,11 @@ export interface IPageInfo {
     endCursor: string | null
 }
 
-export interface ITopicsConnection {
+export interface IEquilibriumTopicsConnection {
     pageInfo: IPageInfo,
-    edges: ITopicEdge[]
+    edges: IEquilibriumTopicEdge[]
 }
 
-export interface ITopicsData {
-    topicosConnection: ITopicsConnection
+export interface IEquilibriumTopicsData {
+    equilibriumTopicosConnection: IEquilibriumTopicsConnection
 }

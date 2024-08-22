@@ -4,15 +4,15 @@ import styled from "styled-components"
 import parser from "html-react-parser"
 import { fontSize, fontWeight, theme } from "@styles/theme"
 import { TherapiesListEmpty } from "./TherapiesListEmpty"
-import { ITopicEdge } from "@utils/blogInterfaces"
+import { IEquilibriumTopicEdge } from "@utils/blogInterfaces"
 
 interface ITheraphyContentProps {
-    data: ITopicEdge[]
+    data: IEquilibriumTopicEdge[]
 }
 
 export const TherapyContent: React.FC<ITheraphyContentProps> = ({ data }) => {
     const { currentTopicId } = useContext(CarouselContext)
-    const topic: ITopicEdge | undefined = data?.find((item: ITopicEdge) => item.node.id === currentTopicId);
+    const topic: IEquilibriumTopicEdge | undefined = data?.find((item: IEquilibriumTopicEdge) => item.node.id === currentTopicId);
 
     return (
         <Container>

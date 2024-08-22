@@ -63,12 +63,27 @@
         }
     ],
     "navigationLinks": [
-        { "name": "home", "link": "" },
-        { "name": "sobre mim", "link": "sobre-mim" },
-        { "name": "contato & endereço", "link": "contato" },
-        { "name": "equilibrium", "link": "equilibrium" },
-        { "name": "segredos da lua", "link": "segredos-da-lua" }
-      ],
+        {
+            "name": "home",
+            "link": ""
+        },
+        {
+            "name": "sobre mim",
+            "link": "sobre-mim"
+        },
+        {
+            "name": "contato & endereço",
+            "link": "contato"
+        },
+        {
+            "name": "equilibrium",
+            "link": "equilibrium"
+        },
+        {
+            "name": "segredos da lua",
+            "link": "segredos-da-lua"
+        }
+    ],
     "aboutMe": [
         "Muito prazer, meu nome é Luana, sou cirurgiã-dentista e terapeuta integrativa. Formei-me em 2018 pela UFMG em odontologia e comecei a atuar imediatamente. A partir daí começou minha busca incessante por algo que nem eu mesma sabia ao certo o que era. Sempre fui apaixonada por reabilitar sorrisos, mas sentia falta de algo em meus atendimentos. Apesar de sempre optar por um atendimento humanizado, com tecnologias modernas, havia algo que ainda não estava conseguindo atingir em meu paciente: a vontade de sorrir.",
         "Em 2022, descobri o universo das terapias integrativas como paciente e fui em busca de entender melhor sobre a medicina tradicional chinesa. Desde então, não passo um dia sequer sem estudar um pouco mais sobre as terapias integrativas.",
@@ -76,3 +91,4 @@
         "O segredo da nossa saúde, beleza e bem-estar está no equilíbrio físico, emocional e energético. Então, além de atuar na estética do sorriso, ajudo meu paciente a resgatar a vontade de sorrir! Hoje me sinto mais completa como profissional e muito mais realizada na minha vida pessoal!"
     ]
 }
+

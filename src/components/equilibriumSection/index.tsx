@@ -7,31 +7,33 @@ import { EquilibriumTopicsContext } from "@contexts/equilibriumTopicContext";
 import { TherapiesTopics } from "./therapiesTopics";
 import { useQuery } from "@apollo/client";
 import { GET_TOPICS_QUERY } from "@utils/blogAPI";
-import { ITopicsData } from "@utils/blogInterfaces";
+import { IEquilibriumTopicsData } from "@utils/blogInterfaces";
 
 export const EquilibriumSection = () => {
     const { topicSelected } = useContext(EquilibriumTopicsContext);
-    const { data, loading, fetchMore, error } = useQuery<ITopicsData>(GET_TOPICS_QUERY)
-
-    console.log(error);
-
+    const { data, loading, fetchMore } = useQuery<IEquilibriumTopicsData>(GET_TOPICS_QUERY, {
+        variables: {
+            first: 5
+        }
+    })
+    
     const loadMoreTopics = () => {
-        if (loading || !data?.topicosConnection.pageInfo.hasNextPage) return;
+        if (loading || !data?.equilibriumTopicosConnection.pageInfo.hasNextPage) return;
 
         fetchMore({
             variables: {
-                after: data.topicosConnection.pageInfo.endCursor,
-                first: Math.min(5, data?.topicosConnection.edges.length % 5)
+                after: data.equilibriumTopicosConnection.pageInfo.endCursor,
+                first: 5
             },
             updateQuery: (prevResult, { fetchMoreResult }) => {
                 if (!fetchMoreResult) return prevResult;
 
                 return {
-                    topicosConnection: {
-                        ...fetchMoreResult.topicosConnection,
+                    equilibriumTopicosConnection: {
+                        ...fetchMoreResult.equilibriumTopicosConnection,
                         edges: [
-                            ...prevResult.topicosConnection.edges,
-                            ...fetchMoreResult.topicosConnection.edges
+                            ...prevResult.equilibriumTopicosConnection.edges,
+                            ...fetchMoreResult.equilibriumTopicosConnection.edges
                         ]
                     }
                 };
@@ -39,7 +41,7 @@ export const EquilibriumSection = () => {
         });
     };
 
-    const hasMore = data?.topicosConnection.pageInfo.hasNextPage ?? false;
+    const hasMore = data?.equilibriumTopicosConnection.pageInfo.hasNextPage ?? false;
 
     return (
         <Container data-testid="equilibriumSection">
