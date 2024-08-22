@@ -2,14 +2,14 @@ import styled from "styled-components"
 import { fontSize, fontWeight, theme } from "@styles/theme";
 import { IEquilibriumTopicEdge } from "@utils/blogInterfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faHourglassHalf, faMagnifyingGlass, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CarouselContext } from "@contexts/caroulselContext";
 
 interface ITherapiesListProps {
@@ -17,16 +17,41 @@ interface ITherapiesListProps {
     info: IEquilibriumTopicEdge[],
     imagesHeightInRem: number,
     loadMore: () => void;
-    hasMore: boolean
+    hasMore: boolean,
+    loading: boolean
 }
 
-export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, info, imagesHeightInRem, loadMore, hasMore }) => {
-    const {setCurrentTopicId} = useContext(CarouselContext)
-    
+export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, info, imagesHeightInRem, loadMore, hasMore, loading }) => {
+    const { setCurrentTopicId } = useContext(CarouselContext)
+    const [slides, setSlides] = useState<number>(slidesPerView)
+
+    useEffect(() => {
+        const handleSlidesPerView = () => {
+            const largeDevicesScreenSize = window.innerWidth > 768;
+            const smallDevicesScreenSize = window.innerWidth > 425;
+
+            switch (true) {
+                case largeDevicesScreenSize:
+                    setSlides(slidesPerView);
+                    break;
+                case smallDevicesScreenSize:
+                    setSlides(slidesPerView - 1);
+                    break;
+                default:
+                    setSlides(Math.max(slidesPerView - 2, 1));
+            }
+        }
+
+        handleSlidesPerView();
+
+        window.addEventListener("resize", handleSlidesPerView)
+        return () => window.removeEventListener("resize", handleSlidesPerView)
+    }, [slidesPerView])
+
     return (
         <Container $imagesHeightInRem={imagesHeightInRem}>
             <Swiper
-                slidesPerView={slidesPerView}
+                slidesPerView={slides}
                 spaceBetween={10}
                 freeMode={true}
                 pagination={{
@@ -41,16 +66,16 @@ export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, in
                 {info?.map((topic, index) =>
                     <SwiperSlide key={topic.node.id} className="slide" onClick={() => setCurrentTopicId(topic.node.id)}>
                         {topic.node.imagem.url
-                            ? 
+                            ?
                             <img
-                            className="slideImage"
-                            src={topic.node.imagem.url ? topic.node.imagem.url : ""}
-                            alt={`Terapia ${topic.node.nome}`} 
+                                className="slideImage"
+                                src={topic.node.imagem.url ? topic.node.imagem.url : ""}
+                                alt={`Terapia ${topic.node.nome}`}
                             />
                             :
                             <div className="imageNotFound">
-                                    <FontAwesomeIcon icon={faMagnifyingGlass} className="icon"/>
-                                    <h3 className="imageNotFountTitle">Imagem não encontrada</h3>
+                                <FontAwesomeIcon icon={faMagnifyingGlass} className="icon" />
+                                <h3 className="imageNotFountTitle">Imagem não encontrada</h3>
                             </div>
                         }
 
@@ -63,12 +88,18 @@ export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, in
                     </SwiperSlide>
                 )}
                 {hasMore &&
-                <SwiperSlide className="loadMore">
-                    <button className="button" onClick={loadMore}>
-                        <FontAwesomeIcon icon={faAdd} className="icon" />
-                        Carregar mais
-                    </button>
-                </SwiperSlide>
+
+                    <SwiperSlide className="loadMore">
+                        {loading
+                            ? <div className="loading">
+                                <FontAwesomeIcon icon={faHourglassHalf} spin className="icon" />
+                            </div>
+                            : <button className="button" onClick={loadMore}>
+                                <FontAwesomeIcon icon={faAdd} className="icon" />
+                                Carregar mais
+                            </button>
+                        }
+                    </SwiperSlide>
                 }
             </Swiper>
         </Container>
@@ -172,6 +203,22 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             display: flex;
             justify-content: center;
             align-items: center;
+
+            .loading {
+                color: ${theme.shadowColor};
+                border: solid .2rem ${theme.shadowColor};
+                box-shadow: 0 0 1rem ${theme.shadowColor};
+                border-radius: 50%;
+                width: 6rem;
+                height: 6rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                .icon {
+                    font-size: ${fontSize.extraLargeSize};
+                }
+            }
 
             .button {
                 border-radius: 1rem;

@@ -8,7 +8,8 @@ import { GET_EQUILIBRIUM_TOPICS_QUERY } from "@utils/blogAPI";
 import { ErrorPage } from "../errorPage";
 import { CommingSoon } from "@components/commingSoon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 export const TherapiesTopics = () => {
     const { data, loading, fetchMore, error } = useQuery<IEquilibriumTopicsData>(GET_EQUILIBRIUM_TOPICS_QUERY, {
@@ -16,9 +17,12 @@ export const TherapiesTopics = () => {
             first: 5
         }
     })
+    const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
     const loadMoreTopics = () => {
         if (loading || !data?.equilibriumTopicosConnection.pageInfo.hasNextPage) return;
+
+        setLoadingMore(true)
 
         fetchMore({
             variables: {
@@ -26,6 +30,7 @@ export const TherapiesTopics = () => {
                 first: 5
             },
             updateQuery: (prevResult, { fetchMoreResult }) => {
+                setLoadingMore(false)
                 if (!fetchMoreResult) return prevResult;
 
                 return {
@@ -57,9 +62,14 @@ export const TherapiesTopics = () => {
             <div className="content">
 
                 {loading
-                    ? <p className="loading">
-                        <FontAwesomeIcon icon={faSpinner} spin /> Carregando...
-                    </p>
+                    ? <>
+                        <div className="loading">
+                            <FontAwesomeIcon icon={faHourglassHalf} spin className="icon" />
+                        </div>
+                        <p className="loadingMessage">
+                            Carregando...
+                        </p>
+                    </>
                     : error
                         ? <ErrorPage />
                         : data && data?.equilibriumTopicosConnection.edges.length > 0
@@ -74,6 +84,7 @@ export const TherapiesTopics = () => {
                                     imagesHeightInRem={30}
                                     loadMore={loadMoreTopics}
                                     hasMore={hasMore}
+                                    loading={loadingMore}
                                 />
                                 <TherapyContent data={data.equilibriumTopicosConnection.edges} />
                             </>
@@ -100,11 +111,25 @@ const Container = styled.section`
         overflow: hidden;
 
         .loading {
-            font-size: ${fontSize.mediumSize};
+            color: ${theme.shadowColor};
+            border: solid .2rem ${theme.shadowColor};
+            box-shadow: 0 0 1rem ${theme.shadowColor};
+            border-radius: 50%;
+            width: 6rem;
+            height: 6rem;
             display: flex;
-            gap: 1rem;
+            justify-content: center;
             align-items: center;
-            color: ${theme.textColor};
+
+            .icon {
+                font-size: ${fontSize.extraLargeSize};
+            }
+
+        }
+        .loadingMessage {
+            font-size: ${fontSize.mediumSize};
+            color: ${theme.shadowColor};
+            font-weight: ${fontWeight.medium};
         }
 
         .therapiesTitle {
