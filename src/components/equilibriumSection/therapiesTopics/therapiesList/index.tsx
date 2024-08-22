@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { fontSize, fontWeight, theme } from "@styles/theme";
 import { IEquilibriumTopicEdge } from "@utils/blogInterfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd, faHourglassHalf, faMagnifyingGlass, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faHourglassHalf, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Scrollbar } from 'swiper/modules';
@@ -94,9 +94,9 @@ export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, in
                             ? <div className="loading">
                                 <FontAwesomeIcon icon={faHourglassHalf} spin className="icon" />
                             </div>
-                            : <button className="button" onClick={loadMore}>
+                            : <button className="button" onClick={loadMore} title="Carregar mais">
                                 <FontAwesomeIcon icon={faAdd} className="icon" />
-                                Carregar mais
+                                <span>Carregar mais</span>
                             </button>
                         }
                     </SwiperSlide>
@@ -145,7 +145,7 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             }
 
             .slideImage {
-                height: ${props => props.$imagesHeightInRem ? `${props.$imagesHeightInRem}rem` : "auto"};
+                height: ${props => `${props.$imagesHeightInRem}rem`};
                 width: 100%;
                 object-fit: contain;
                 cursor: pointer;
@@ -242,6 +242,42 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
                     scale: 1.05;
                     box-shadow: 0 0 1rem ${theme.shadowColor};
                 }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .swiper {
+            .slide {
+                .slideImage {
+                    height: calc(${props => `${props.$imagesHeightInRem}rem`} * .75 );
+                }
+            }
+
+            .loadMore {
+                height: calc(${props => `${props.$imagesHeightInRem}rem`} * .75 );
+
+                span {
+                    display: none;
+                }
+
+                .button {
+                    padding: 1rem;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 425px) {
+        .swiper {
+            .slide {
+                .slideImage {
+                    height: calc(${props => `${props.$imagesHeightInRem}rem`} * .5 );
+                }
+            }
+
+            .loadMore {
+                height: calc(${props => `${props.$imagesHeightInRem}rem`} * .5 );
             }
         }
     }

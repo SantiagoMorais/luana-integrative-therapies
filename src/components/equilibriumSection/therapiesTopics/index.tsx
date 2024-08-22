@@ -81,7 +81,7 @@ export const TherapiesTopics = () => {
                                 <TherapiesList
                                     info={data.equilibriumTopicosConnection.edges}
                                     slidesPerView={hadleSlidesPerView()}
-                                    imagesHeightInRem={30}
+                                    imagesHeightInRem={40}
                                     loadMore={loadMoreTopics}
                                     hasMore={hasMore}
                                     loading={loadingMore}
