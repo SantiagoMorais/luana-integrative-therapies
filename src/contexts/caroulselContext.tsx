@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { GET_TOPICS_QUERY } from "@utils/blogAPI";
+import { GET_EQUILIBRIUM_TOPICS_QUERY } from "@utils/blogAPI";
 import { IEquilibriumTopicsData } from "@utils/blogInterfaces";
 
 interface ICarouselContextType {
@@ -19,9 +19,15 @@ interface ICaroulselProviderProps {
 
 export const CaroulselProvider: React.FC<ICaroulselProviderProps> = ({ children }) => {
     const [currentTopicId, setCurrentTopicId] = useState<string>("");
-    const {data, loading, error} = useQuery<IEquilibriumTopicsData>(GET_TOPICS_QUERY);
+    const { data, loading, error } = useQuery<IEquilibriumTopicsData>(GET_EQUILIBRIUM_TOPICS_QUERY, {
+        variables: {
+            first: 1
+        }
+    });
 
     useEffect(() => {
+        console.log(data);
+
         if (!loading && !error && data?.equilibriumTopicosConnection.edges) {
             if (!currentTopicId) {
                 const firstTopicId = data.equilibriumTopicosConnection.edges[0]?.node.id;

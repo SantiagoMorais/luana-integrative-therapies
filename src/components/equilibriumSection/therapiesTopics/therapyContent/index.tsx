@@ -54,6 +54,7 @@ const Container = styled.div`
         text-align: center;
         margin: 2rem;
         position: relative;
+        font-size: ${fontSize.largeSize};
 
         &::after {
             content: '';
@@ -94,8 +95,7 @@ const Container = styled.div`
         }
         
         h2, h3, h4 {
-            font-size: ${fontSize.mediumSize};
-            font-weight: ${fontWeight.medium};
+
             position: relative;
             margin: 2rem 0;
             color: ${theme.textColor};
@@ -110,6 +110,24 @@ const Container = styled.div`
                 width: 120%;
                 height: .2rem;
                 background: linear-gradient(to right, ${theme.tertiaryColor} 60%, transparent 100%); 
+            }
+        }
+
+        h2, h3 {
+            font-size: ${fontSize.mediumSize};
+            font-weight: ${fontWeight.medium};
+            
+            strong {
+                font-weight: ${fontWeight.bold};
+            }
+        }
+
+        h4 {
+            font-size: ${fontSize.mediumSize};
+            font-weight: ${fontWeight.thin};
+            
+            strong {
+                font-weight: ${fontWeight.medium};
             }
         }
 

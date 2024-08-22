@@ -21,9 +21,7 @@ interface ITherapiesListProps {
 }
 
 export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, info, imagesHeightInRem, loadMore, hasMore }) => {
-    const {setCurrentTopicId, currentTopicId} = useContext(CarouselContext)
-    
-    console.log(currentTopicId);
+    const {setCurrentTopicId} = useContext(CarouselContext)
     
     return (
         <Container $imagesHeightInRem={imagesHeightInRem}>

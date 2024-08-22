@@ -11,39 +11,47 @@ export const client = new ApolloClient({
     })
 });
 
-export const GET_POSTS_QUERY = gql`
-    {
-        posts {
-            id
-            titulo
-            subtitulo
-            data
-          	categoria {
-              nome
+export const GET_EQUILIBRIUM_POSTS_QUERY = gql`
+    query GetAllPosts($after: String, $first: Int!) {
+        equilibriumPostsConnection(after: $after, first: $first) {
+            pageInfo {
+                hasNextPage
+                endCursor
             }
-          	equilibriumTopico {
-            	nome
-          	}
-            imagem {
-                url
-            }
-            video
-            texto {
-                html
-            }
-            autor {
-                nome
-                descricao
-                avatar {
-                    url
+            edges {
+                node {
+                    id
+                    titulo
+                    subtitulo
+                    data
+                    categoria {
+                    nome
+                    }
+                    equilibriumTopico {
+                        nome
+                    }
+                    imagem {
+                        url
+                    }
+                    video
+                    texto {
+                        html
+                    }
+                    autor {
+                        nome
+                        descricao
+                        avatar {
+                            url
+                        }
+                        cro
+                    }
                 }
-                cro
             }
         }
     }
 `
 
-export const GET_TOPICS_QUERY = gql`
+export const GET_EQUILIBRIUM_TOPICS_QUERY = gql`
     query GetAllEquilibriumTopics($after: String, $first: Int!) {
         equilibriumTopicosConnection(after: $after, first: $first) {
             pageInfo {
@@ -64,48 +72,4 @@ export const GET_TOPICS_QUERY = gql`
             }
         }
     }
-`
-
-export const GET_ALL_DATA_QUERY = gql`
-    {
-        posts {
-            id
-            titulo
-            subtitulo
-            data
-          	categoria {
-              nome
-            }
-          	equilibriumTopico {
-                id
-            	nome
-          	}
-            imagem {
-                url
-            }
-            video
-            texto {
-                html
-            }
-            autor {
-                nome
-                descricao
-                avatar {
-                    url
-                }
-                cro
-            }
-        }
-        equilibriumTopicos {
-            id
-            nome
-            descricao {
-                html
-            }
-            imagem {
-                url
-            }
-        }
-    }
-
 `

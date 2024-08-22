@@ -6,17 +6,17 @@ import { useContext } from "react";
 import { EquilibriumTopicsContext } from "@contexts/equilibriumTopicContext";
 import { TherapiesTopics } from "./therapiesTopics";
 import { useQuery } from "@apollo/client";
-import { GET_TOPICS_QUERY } from "@utils/blogAPI";
+import { GET_EQUILIBRIUM_TOPICS_QUERY } from "@utils/blogAPI";
 import { IEquilibriumTopicsData } from "@utils/blogInterfaces";
 
 export const EquilibriumSection = () => {
     const { topicSelected } = useContext(EquilibriumTopicsContext);
-    const { data, loading, fetchMore } = useQuery<IEquilibriumTopicsData>(GET_TOPICS_QUERY, {
+    const { data, loading, fetchMore } = useQuery<IEquilibriumTopicsData>(GET_EQUILIBRIUM_TOPICS_QUERY, {
         variables: {
             first: 5
         }
     })
-    
+
     const loadMoreTopics = () => {
         if (loading || !data?.equilibriumTopicosConnection.pageInfo.hasNextPage) return;
 
