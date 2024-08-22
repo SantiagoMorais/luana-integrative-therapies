@@ -2,6 +2,7 @@ import { IEquilibriumTopicsData, IPostsData } from "@utils/blogInterfaces"
 import styled from "styled-components"
 import { fontSize, fontWeight } from "@styles/theme";
 import { TherapiesList } from "./therapiesList";
+import { TherapyContent } from "./therapyContent";
 
 interface ITherapiesProps {
     topics: IEquilibriumTopicsData,
@@ -11,7 +12,7 @@ interface ITherapiesProps {
 }
 
 export const TherapiesTopics: React.FC<ITherapiesProps> = ({ topics, loadMore, hasMore }) => {
-    const hadleSlidesPerView = () : number => {
+    const hadleSlidesPerView = (): number => {
         const topicosLength: number = topics.equilibriumTopicosConnection.edges.length
         return topicosLength < 5 ? topicosLength : 4
     }
@@ -23,13 +24,16 @@ export const TherapiesTopics: React.FC<ITherapiesProps> = ({ topics, loadMore, h
                     Veja alguns dos nossos serviços:
                 </h2>
                 {topics &&
-                    <TherapiesList
-                        info={topics.equilibriumTopicosConnection.edges}
-                        slidesPerView={hadleSlidesPerView()}
-                        imagesHeightInRem={30}
-                        loadMore={loadMore}
-                        hasMore={hasMore}
-                    />
+                    <>
+                        <TherapiesList
+                            info={topics.equilibriumTopicosConnection.edges}
+                            slidesPerView={hadleSlidesPerView()}
+                            imagesHeightInRem={30}
+                            loadMore={loadMore}
+                            hasMore={hasMore}
+                        />
+                        <TherapyContent data={topics.equilibriumTopicosConnection.edges}/>
+                    </>
                 }
             </div>
         </Container>

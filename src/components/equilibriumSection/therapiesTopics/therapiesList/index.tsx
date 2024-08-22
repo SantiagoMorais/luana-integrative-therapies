@@ -9,6 +9,8 @@ import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
+import { useContext } from "react";
+import { CarouselContext } from "@contexts/caroulselContext";
 
 interface ITherapiesListProps {
     slidesPerView: number,
@@ -19,7 +21,10 @@ interface ITherapiesListProps {
 }
 
 export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, info, imagesHeightInRem, loadMore, hasMore }) => {
-
+    const {setCurrentTopicId, currentTopicId} = useContext(CarouselContext)
+    
+    console.log(currentTopicId);
+    
     return (
         <Container $imagesHeightInRem={imagesHeightInRem}>
             <Swiper
@@ -36,13 +41,14 @@ export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, in
                 className="swiper"
             >
                 {info?.map((topic, index) =>
-                    <SwiperSlide key={topic.node.id} className="slide">
+                    <SwiperSlide key={topic.node.id} className="slide" onClick={() => setCurrentTopicId(topic.node.id)}>
                         {topic.node.imagem.url
                             ? 
                             <img
                             className="slideImage"
                             src={topic.node.imagem.url ? topic.node.imagem.url : ""}
-                            alt={`Terapia ${topic.node.nome}`} />
+                            alt={`Terapia ${topic.node.nome}`} 
+                            />
                             :
                             <div className="imageNotFound">
                                     <FontAwesomeIcon icon={faMagnifyingGlass} className="icon"/>
@@ -76,7 +82,6 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
     align-items: center;
     gap: 1rem;
     width: 100%;
-    
     padding: 2rem;
     border-radius: 1rem;
 
@@ -93,7 +98,6 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             -webkit-user-select: none; /* Safari */
             -moz-user-select: none; /* Firefox */
             -ms-user-select: none; /* Internet Explorer/Edge */
-            transition: .5s;
             position: relative;
 
             &:hover {
