@@ -7,8 +7,8 @@ export const ErrorPage = () => {
     return (
         <Container>
             <FontAwesomeIcon className="icon" icon={faFaceFrown} />
-            <h3 className="warningTitle">ERRO 404 - Publicações não encontradas</h3>
-            <p className="warningText">Por algum motivo não foi possível encontrar os dados das publicações. Por favor, tente mais tarde ou entre em contato conosco.</p>
+            <h3 className="warningTitle">ERRO 404 - Dados não encontradas</h3>
+            <p className="warningText">Por algum motivo não encontrados o que você procura. Por favor, tente mais tarde ou entre em contato conosco.</p>
         </Container>
     )
 }

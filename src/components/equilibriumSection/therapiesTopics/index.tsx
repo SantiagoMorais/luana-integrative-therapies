@@ -1,42 +1,86 @@
-import { IEquilibriumTopicsData, IPostsData } from "@utils/blogInterfaces"
+import { IEquilibriumTopicsData } from "@utils/blogInterfaces"
 import styled from "styled-components"
-import { fontSize, fontWeight } from "@styles/theme";
+import { fontSize, fontWeight, theme } from "@styles/theme";
 import { TherapiesList } from "./therapiesList";
 import { TherapyContent } from "./therapyContent";
+import { useQuery } from "@apollo/client";
+import { GET_EQUILIBRIUM_TOPICS_QUERY } from "@utils/blogAPI";
+import { ErrorPage } from "../errorPage";
+import { CommingSoon } from "@components/commingSoon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-interface ITherapiesProps {
-    topics: IEquilibriumTopicsData,
-    posts?: IPostsData,
-    loadMore: () => void,
-    hasMore: boolean
-}
+export const TherapiesTopics = () => {
+    const { data, loading, fetchMore, error } = useQuery<IEquilibriumTopicsData>(GET_EQUILIBRIUM_TOPICS_QUERY, {
+        variables: {
+            first: 5
+        }
+    })
 
-export const TherapiesTopics: React.FC<ITherapiesProps> = ({ topics, loadMore, hasMore }) => {
+    const loadMoreTopics = () => {
+        if (loading || !data?.equilibriumTopicosConnection.pageInfo.hasNextPage) return;
+
+        fetchMore({
+            variables: {
+                after: data.equilibriumTopicosConnection.pageInfo.endCursor,
+                first: 5
+            },
+            updateQuery: (prevResult, { fetchMoreResult }) => {
+                if (!fetchMoreResult) return prevResult;
+
+                return {
+                    equilibriumTopicosConnection: {
+                        ...fetchMoreResult.equilibriumTopicosConnection,
+                        edges: [
+                            ...prevResult.equilibriumTopicosConnection.edges,
+                            ...fetchMoreResult.equilibriumTopicosConnection.edges
+                        ]
+                    }
+                };
+            }
+        });
+    };
+
+    const hasMore = data?.equilibriumTopicosConnection.pageInfo.hasNextPage ?? false;
+
     const hadleSlidesPerView = (): number => {
-        const topicosLength: number = topics.equilibriumTopicosConnection.edges.length
+        if (!data || !data.equilibriumTopicosConnection) {
+            return 1;
+        }
+
+        const topicosLength: number = data.equilibriumTopicosConnection.edges.length
         return topicosLength < 5 ? topicosLength : 4
     }
 
     return (
         <Container>
             <div className="content">
-                <h2 className="therapiesTitle">
-                    Veja alguns dos nossos serviços:
-                </h2>
-                {topics &&
-                    <>
-                        <TherapiesList
-                            info={topics.equilibriumTopicosConnection.edges}
-                            slidesPerView={hadleSlidesPerView()}
-                            imagesHeightInRem={30}
-                            loadMore={loadMore}
-                            hasMore={hasMore}
-                        />
-                        <TherapyContent data={topics.equilibriumTopicosConnection.edges}/>
-                    </>
+
+                {loading
+                    ? <p className="loading">
+                        <FontAwesomeIcon icon={faSpinner} spin /> Carregando...
+                    </p>
+                    : error
+                        ? <ErrorPage />
+                        : data && data?.equilibriumTopicosConnection.edges.length > 0
+                            ?
+                            <>
+                                <h2 className="therapiesTitle">
+                                    Veja alguns dos nossos serviços:
+                                </h2>
+                                <TherapiesList
+                                    info={data.equilibriumTopicosConnection.edges}
+                                    slidesPerView={hadleSlidesPerView()}
+                                    imagesHeightInRem={30}
+                                    loadMore={loadMoreTopics}
+                                    hasMore={hasMore}
+                                />
+                                <TherapyContent data={data.equilibriumTopicosConnection.edges} />
+                            </>
+                            : <CommingSoon />
                 }
-            </div>
-        </Container>
+            </div >
+        </Container >
     )
 }
 
@@ -54,6 +98,14 @@ const Container = styled.section`
         width: 100%;
         gap: 1rem;
         overflow: hidden;
+
+        .loading {
+            font-size: ${fontSize.mediumSize};
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            color: ${theme.textColor};
+        }
 
         .therapiesTitle {
             font-size: ${fontSize.largeSize};
