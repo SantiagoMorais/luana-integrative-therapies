@@ -24,16 +24,10 @@ export const GET_EQUILIBRIUM_POSTS_QUERY = gql`
                     titulo
                     subtitulo
                     data
-                    categoria {
-                    nome
-                    }
-                    equilibriumTopico {
-                        nome
-                    }
                     imagem {
                         url
                     }
-                    video
+                    video 
                     texto {
                         html
                     }

@@ -26,8 +26,6 @@ export const CaroulselProvider: React.FC<ICaroulselProviderProps> = ({ children 
     });
 
     useEffect(() => {
-        console.log(data);
-
         if (!loading && !error && data?.equilibriumTopicosConnection.edges) {
             if (!currentTopicId) {
                 const firstTopicId = data.equilibriumTopicosConnection.edges[0]?.node.id;

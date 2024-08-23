@@ -19,6 +19,9 @@ export const TherapiesTopics = () => {
     })
     const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
+    console.log(data);
+    
+
     const loadMoreTopics = () => {
         if (loading || !data?.equilibriumTopicosConnection.pageInfo.hasNextPage) return;
 
@@ -60,7 +63,6 @@ export const TherapiesTopics = () => {
     return (
         <Container>
             <div className="content">
-
                 {loading
                     ? <>
                         <div className="loading">
@@ -126,6 +128,7 @@ const Container = styled.section`
             }
 
         }
+        
         .loadingMessage {
             font-size: ${fontSize.mediumSize};
             color: ${theme.shadowColor};

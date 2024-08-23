@@ -1,5 +1,5 @@
 // Posts interface
-export interface IPost {
+export interface IEquilibriumPostNode {
     id: string;
     titulo: string;
     subtitulo?: string;
@@ -7,17 +7,13 @@ export interface IPost {
     categoria: {
         nome: string;
     };
-    equilibriumTopico: {
-        id: string,
-        nome: string,
-    };
     imagem: {
         url: string;
     };
     video?: string;
     texto: {
-        html: string
-    },
+        html: string;
+    };
     autor: {
         nome: string;
         descricao: string;
@@ -28,10 +24,23 @@ export interface IPost {
     };
 }
 
-export interface IPostsData {
-    posts: IPost[];
+export interface IEquilibriumPostEdge {
+    node: IEquilibriumPostNode;
 }
 
+export interface IPageInfo {
+    hasNextPage: boolean,
+    endCursor: string | null
+}
+
+export interface IEquilibriumPostsConnection {
+    pageInfo: IPageInfo;
+    edges: IEquilibriumPostEdge[];
+}
+
+export interface IEquilibriumPostsData {
+    equilibriumPostsConnection: IEquilibriumPostsConnection;
+}
 
 // Topics Interface
 
@@ -48,11 +57,6 @@ export interface IEquilibriumTopicNode {
 
 export interface IEquilibriumTopicEdge {
     node: IEquilibriumTopicNode
-}
-
-export interface IPageInfo {
-    hasNextPage: boolean,
-    endCursor: string | null
 }
 
 export interface IEquilibriumTopicsConnection {
