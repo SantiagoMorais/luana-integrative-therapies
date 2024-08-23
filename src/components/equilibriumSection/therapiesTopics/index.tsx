@@ -101,6 +101,7 @@ const Container = styled.section`
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-bottom: 5rem;
 
     .content {
         padding: 2rem;

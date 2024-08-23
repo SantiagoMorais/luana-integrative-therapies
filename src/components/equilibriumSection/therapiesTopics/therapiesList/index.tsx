@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faHourglassHalf, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Scrollbar } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import { useContext, useEffect, useState } from "react";
 import { CarouselContext } from "@contexts/caroulselContext";
 
@@ -56,11 +57,11 @@ export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, in
                 freeMode={true}
                 pagination={{
                     clickable: false,
+                    dynamicBullets: true
                 }}
-                modules={[Scrollbar]}
-                scrollbar={{
-                    hide: true
-                }}
+                navigation={true}
+                modules={[Navigation, Pagination]}
+                scrollbar={false}
                 className="swiper"
             >
                 {info?.map((topic, index) =>
@@ -121,9 +122,9 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
             user-select: none;
-            cursor: default;
+            cursor: pointer;
             -webkit-user-select: none; /* Safari */
             -moz-user-select: none; /* Firefox */
             -ms-user-select: none; /* Internet Explorer/Edge */
@@ -148,11 +149,11 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
                 height: ${props => `${props.$imagesHeightInRem}rem`};
                 width: 100%;
                 object-fit: contain;
-                cursor: pointer;
+
                 min-width: 10rem;
                 object-fit: cover;
                 border-radius: 1rem;
-                border: .2rem solid ${theme.tertiaryColor};
+                border: .3rem solid ${theme.secondaryColor};
                 transition: .5s;
             }
 
@@ -195,6 +196,27 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
                 align-items: center;
                 border-radius: 50%;
                 opacity: .8;
+            }
+        }
+
+        .swiper-pagination-bullet {
+            background: ${theme.secondaryColor};
+            opacity: 1;
+
+            &.swiper-pagination-bullet-active-main {
+                background: ${theme.shadowColor};
+            }
+        }
+
+        .swiper-button-prev, .swiper-button-next {
+            transition: .3s;
+            color: ${theme.tertiaryColor};
+            filter: drop-shadow(0 0 .5rem ${theme.tertiaryColor});
+            bottom: 1rem;
+            top: auto ;
+            
+            &:hover {
+                scale: 1.2;
             }
         }
 
