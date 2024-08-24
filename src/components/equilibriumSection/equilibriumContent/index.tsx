@@ -37,18 +37,7 @@ const Container = styled.div`
     max-width: 144rem;
     display: flex;
     flex-direction: column;
-
-    .loading {
-        font-size: ${fontSize.largeSize};
-        font-weight: ${fontWeight.medium};
-        color: ${theme.tertiaryColor};
-        margin: auto;
-        min-height: 100%;
-        
-        .icon {
-            margin-right: .5rem;
-        }
-    }
+    height: 100%;
 
     .title {
         text-align: center;
