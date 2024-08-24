@@ -2,14 +2,14 @@ import { IEquilibriumTopicsData } from "@utils/blogInterfaces"
 import styled from "styled-components"
 import { fontSize, fontWeight, theme } from "@styles/theme";
 import { TherapiesList } from "./therapiesList";
-import { TherapyContent } from "./therapyContent";
+import { EquilibriumContent } from "../equilibriumContent";
 import { useQuery } from "@apollo/client";
 import { GET_EQUILIBRIUM_TOPICS_QUERY } from "@utils/blogAPI";
 import { ErrorPage } from "../errorPage";
-import { CommingSoon } from "@components/commingSoon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { EquilibriumListEmpty } from "../equilibriumContent/equilibriumListEmpty";
 
 export const TherapiesTopics = () => {
     const { data, loading, fetchMore, error } = useQuery<IEquilibriumTopicsData>(GET_EQUILIBRIUM_TOPICS_QUERY, {
@@ -18,9 +18,6 @@ export const TherapiesTopics = () => {
         }
     })
     const [loadingMore, setLoadingMore] = useState<boolean>(false);
-
-    console.log(data);
-    
 
     const loadMoreTopics = () => {
         if (loading || !data?.equilibriumTopicosConnection.pageInfo.hasNextPage) return;
@@ -88,9 +85,9 @@ export const TherapiesTopics = () => {
                                     hasMore={hasMore}
                                     loading={loadingMore}
                                 />
-                                <TherapyContent data={data.equilibriumTopicosConnection.edges} />
+                                <EquilibriumContent data={data.equilibriumTopicosConnection.edges} />
                             </>
-                            : <CommingSoon />
+                            : <EquilibriumListEmpty />
                 }
             </div >
         </Container >

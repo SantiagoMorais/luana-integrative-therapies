@@ -9,7 +9,7 @@ export const App = () => {
       <NavBarProvider>
         <EquilibriumTopicsProvider>
           <CaroulselProvider>
-            <AppRoutes />
+              <AppRoutes />
           </CaroulselProvider>
         </EquilibriumTopicsProvider>
       </NavBarProvider>

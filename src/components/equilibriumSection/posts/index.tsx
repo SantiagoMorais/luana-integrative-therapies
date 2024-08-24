@@ -18,9 +18,6 @@ export const Posts = () => {
     })
     const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
-    console.log(data, error, loading);
-
-
     const loadMoreTopics = () => {
         if (loading || !data?.equilibriumPostsConnection.pageInfo.hasNextPage) return;
 
@@ -71,7 +68,6 @@ export const Posts = () => {
                                     Publicações sobre nossas terapias:
                                 </h2>
                                     <PostsList infoEdge={data.equilibriumPostsConnection.edges} hasMoreData={hasMore} loadMore={loadMoreTopics}/>
-                                
                             </>
                             : <CommingSoon />
                 }

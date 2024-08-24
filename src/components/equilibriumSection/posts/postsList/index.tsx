@@ -25,6 +25,7 @@ const Container = styled.ul`
     grid-template-columns: repeat(3, minmax(25rem, 1fr));
     padding: 2rem;
     gap: 2rem;
+    margin-bottom: 3rem;
 
     @media(max-width: 900px) {
         grid-template-columns: repeat(2, minmax(25rem, 1fr));

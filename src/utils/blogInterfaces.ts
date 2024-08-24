@@ -42,6 +42,10 @@ export interface IEquilibriumPostsData {
     equilibriumPostsConnection: IEquilibriumPostsConnection;
 }
 
+export interface IEquilibriumPostById {
+    equilibriumPost: IEquilibriumPostNode
+}
+
 // Topics Interface
 
 export interface IEquilibriumTopicNode {

@@ -56,7 +56,6 @@ export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, in
                 spaceBetween={10}
                 freeMode={true}
                 pagination={{
-                    clickable: false,
                     dynamicBullets: true
                 }}
                 navigation={true}
@@ -114,10 +113,10 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
     width: 100%;
     padding: 2rem;
     border-radius: 1rem;
-
+    
     .swiper {
         max-width: 100%;
-
+        
         .slide {
             display: flex;
             flex-direction: column;
@@ -130,31 +129,14 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             -ms-user-select: none; /* Internet Explorer/Edge */
             position: relative;
 
-            &:hover {
-                .slideImage {
-                    opacity: .8;
-                }
-
-                .therapyName {
-                    color: ${theme.tertiaryColor};
-
-                    &::after {
-                        transform: scaleX(1);
-                        opacity: 1;
-                    }
-                }
-            }
-
             .slideImage {
                 height: ${props => `${props.$imagesHeightInRem}rem`};
                 width: 100%;
-                object-fit: contain;
-
                 min-width: 10rem;
                 object-fit: cover;
                 border-radius: 1rem;
                 border: .3rem solid ${theme.secondaryColor};
-                transition: .5s;
+                transition: opacity .5s;
             }
 
             .therapyName {
@@ -163,7 +145,7 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
                 padding: 1rem;
                 font-weight: ${fontWeight.medium};
                 max-width: 100%;
-                transition: .5s;
+                transition: color .5s;
                 position: relative;
 
                 &::after {
@@ -174,7 +156,7 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
                     width: 125%;
                     height: .2rem;
                     background: linear-gradient(to right, transparent 0%, ${theme.tertiaryColor} 20%, ${theme.tertiaryColor} 80%, transparent 100%);
-                    transition: .5s;
+                    transition: opacity .5s, transform .5s;
                     transform: scaleX(0);
                     opacity: 0;
                 }
@@ -197,6 +179,21 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
                 border-radius: 50%;
                 opacity: .8;
             }
+
+            &:hover {
+                .slideImage {
+                    opacity: .8;
+                }
+
+                .therapyName {
+                    color: ${theme.tertiaryColor};
+
+                    &::after {
+                        transform: scaleX(1);
+                        opacity: 1;
+                    }
+                }
+            }
         }
 
         .swiper-pagination-bullet {
@@ -209,7 +206,7 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
         }
 
         .swiper-button-prev, .swiper-button-next {
-            transition: .3s;
+            transition: scale .3s;
             color: ${theme.tertiaryColor};
             filter: drop-shadow(0 0 .5rem ${theme.tertiaryColor});
             bottom: 1rem;

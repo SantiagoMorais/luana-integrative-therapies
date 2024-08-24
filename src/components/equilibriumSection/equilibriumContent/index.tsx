@@ -3,14 +3,14 @@ import { useContext } from "react"
 import styled from "styled-components"
 import parser from "html-react-parser"
 import { fontSize, fontWeight, theme } from "@styles/theme"
-import { TherapiesListEmpty } from "./TherapiesListEmpty"
 import { IEquilibriumTopicEdge } from "@utils/blogInterfaces"
+import { EquilibriumListEmpty } from "./equilibriumListEmpty"
 
 interface ITheraphyContentProps {
     data: IEquilibriumTopicEdge[]
 }
 
-export const TherapyContent: React.FC<ITheraphyContentProps> = ({ data }) => {
+export const EquilibriumContent: React.FC<ITheraphyContentProps> = ({ data }) => {
     const { currentTopicId } = useContext(CarouselContext)
     const topic: IEquilibriumTopicEdge | undefined = data?.find((item: IEquilibriumTopicEdge) => item.node.id === currentTopicId);
 
@@ -25,7 +25,7 @@ export const TherapyContent: React.FC<ITheraphyContentProps> = ({ data }) => {
                             {topic && parser(topic.node.descricao.html)}
                         </div>
                     </>
-                    : <TherapiesListEmpty />
+                    : <EquilibriumListEmpty />
             }
         </Container>
     )

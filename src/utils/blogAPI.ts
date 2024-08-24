@@ -45,6 +45,32 @@ export const GET_EQUILIBRIUM_POSTS_QUERY = gql`
     }
 `
 
+export const GET_POST_BY_ID_QUERY = gql`
+    query GetPostById($id: ID!) {
+        equilibriumPost (where: {id: $id}) {
+            id
+            titulo
+            subtitulo
+            data
+            imagem {
+                url
+            }
+            video 
+            texto {
+                html
+            }
+            autor {
+                nome
+                descricao
+                avatar {
+                    url
+                }
+                cro
+            }
+        }
+    }
+`
+
 export const GET_EQUILIBRIUM_TOPICS_QUERY = gql`
     query GetAllEquilibriumTopics($after: String, $first: Int!) {
         equilibriumTopicosConnection(after: $after, first: $first) {
