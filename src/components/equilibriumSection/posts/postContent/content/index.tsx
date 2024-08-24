@@ -1,10 +1,11 @@
 import { IEquilibriumPostById } from "@utils/blogInterfaces"
 import styled from "styled-components"
-import parser from "html-react-parser"
+import parse from "html-react-parser"
 import { fontSize, fontWeight, theme } from "@styles/theme"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons"
+import { AuthorInfo } from "../authorInfo"
 
 interface IContent {
     data: IEquilibriumPostById
@@ -16,6 +17,7 @@ export const Content: React.FC<IContent> = ({ data }) => {
     return (
         <Container>
             <div className="postContent">
+                <AuthorInfo autor={data.equilibriumPost.autor} />
                 <h2 className="title">
                     {data?.equilibriumPost.titulo}
                 </h2>
@@ -27,8 +29,14 @@ export const Content: React.FC<IContent> = ({ data }) => {
                                 <p>erro</p>
                             </>
                     }
-                    {data && parser(data.equilibriumPost.texto.html)}
+                    {data && parse(data.equilibriumPost.texto.html)}
                 </div>
+
+                {data?.equilibriumPost.video &&
+                    <div className="video">
+                        {parse(data?.equilibriumPost.video)}
+                    </div>
+                }
                 <div className="date">
                     <p className="dateData">Publicado/atualizado em: {dateConvertedToPtStandard}</p>
                     <Link to={"/equilibrium"} className="returnButton">
@@ -55,6 +63,7 @@ const Container = styled.div`
         height: 100%;
         gap: 3rem;
         align-items: center;
+        padding: 2rem;
     
         .title {
             text-align: center;
@@ -173,6 +182,20 @@ const Container = styled.div`
             }
         }
 
+        .video {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+    
+            iframe {
+                border-radius: 1rem;
+                width: 60dvw;
+                max-width: 80rem;
+                height: calc(60dvw*9/16);
+                max-height: calc(80rem*9/16);
+            }
+        }
+
         .date {
             padding: 1rem 2rem;
             display: flex;
@@ -226,4 +249,36 @@ const Container = styled.div`
         }
     }
 
+    @media (max-width: 768px) {
+        .postContent {
+            .descriptionContent {
+
+                .topicImage {
+                    float: none;
+                    height: auto;
+                    min-height: auto;
+                    max-height: 50rem;
+                    width: 100%;
+                    max-width: 100%;
+                    margin: 0rem 0rem 1rem;
+                }
+                
+                .video {
+                    position: relative;
+                    padding-bottom: 56.25%;
+                    height: 0;
+                    overflow: hidden;
+                    
+                    iframe {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        max-width: none;
+                    }
+                }
+            }
+        }
+    }
 `
