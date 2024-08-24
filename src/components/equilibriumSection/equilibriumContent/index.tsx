@@ -155,4 +155,18 @@ const Container = styled.div`
             }
         }
     }
+
+    @media (max-width: 768px) {
+        .descriptionContent {
+            .topicImage {
+                float: none;
+                height: auto;
+                min-height: auto;
+                max-height: 50rem;
+                width: 100%;
+                max-width: 100%;
+                margin: 0rem 0rem 1rem;
+            }
+        }
+    }
 `

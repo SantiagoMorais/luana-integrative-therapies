@@ -55,7 +55,6 @@ const Container = styled.div`
     justify-content: center;
 
     .postContent {
-        margin-bottom: 4rem;
         width: 100%;
         max-width: 144rem;
         display: flex;
@@ -63,7 +62,7 @@ const Container = styled.div`
         height: 100%;
         gap: 3rem;
         align-items: center;
-        padding: 2rem;
+        padding: 4rem 2rem;
     
         .title {
             text-align: center;
@@ -197,7 +196,7 @@ const Container = styled.div`
         }
 
         .date {
-            padding: 1rem 2rem;
+            padding: 0rem 2rem;
             display: flex;
             justify-content: center;
             flex-direction: column;
