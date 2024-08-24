@@ -14,23 +14,21 @@ interface IAuthorInfoProps {
 }
 
 export const AuthorInfo: React.FC<IAuthorInfoProps> = ({ autor }) => {
-
-
     return (
         <Container>
-            {autor.avatar?.url 
-            ? <img src={autor.avatar.url} alt="Foto do(a) autor(a) do artigo" className="profilePhoto" />
+            {autor?.avatar?.url 
+            ? <img src={autor?.avatar?.url} alt="Foto do(a) autor(a) do artigo" className="profilePhoto" />
             : <img src={noAvatarPhoto} alt="Foto do(a) autor(a) do artigo" className="profilePhoto" />
             }
             <div className="about">
-                <h3 className="name">Por: {autor.nome}</h3>
+                <h3 className="name">Por: {autor?.nome}</h3>
                 <p className="text">
-                    {autor.descricao}
+                    {autor?.descricao}
                 </p>
                 <div className="medicalRegistry">
-                    {autor.cro &&
+                    {autor?.cro &&
                         <p className="registry">
-                            CRM: {autor.cro}
+                            CRM: {autor?.cro}
                         </p>
                     }
                 </div>

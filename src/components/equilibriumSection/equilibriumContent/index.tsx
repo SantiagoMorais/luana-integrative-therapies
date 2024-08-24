@@ -5,6 +5,8 @@ import parser from "html-react-parser"
 import { fontSize, fontWeight, theme } from "@styles/theme"
 import { IEquilibriumTopicEdge } from "@utils/blogInterfaces"
 import { EquilibriumListEmpty } from "./equilibriumListEmpty"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 
 interface ITheraphyContentProps {
     data: IEquilibriumTopicEdge[]
@@ -21,7 +23,15 @@ export const EquilibriumContent: React.FC<ITheraphyContentProps> = ({ data }) =>
                     ? <>
                         <h2 className="title">{topic?.node.nome}</h2>
                         <div className="descriptionContent">
-                            <img className="topicImage" src={topic?.node.imagem.url} alt={`Imagem do tratamento ${topic?.node.nome}`} />
+                            {
+                                topic?.node.imagem?.url
+                                    ? <img className="topicImage" src={topic?.node.imagem.url} alt={`Imagem do tratamento ${topic?.node.nome}`} />
+                                    : <div className="imageNotFound">
+                                        <FontAwesomeIcon icon={faMagnifyingGlass} className="icon" />
+                                        <h3 className="imageNotFoundTitle">Imagem não encontrada</h3>
+                                    </div>
+                            }
+
                             {topic && parser(topic.node.descricao.html)}
                         </div>
                     </>
@@ -68,6 +78,32 @@ const Container = styled.div`
             width: 50%;
             max-width: 50rem;
             margin: 0rem 0rem 1rem 2rem;
+        }
+
+        .imageNotFound {
+            float: right;
+            height: 50dvh;
+            min-height: 30rem;
+            max-height: 50rem;
+            border-radius: .5rem;
+            border: .2rem solid ${theme.primaryColor};
+            width: 50%;
+            max-width: 50rem;
+            margin: 0rem 0rem 1rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: ${theme.textColor};
+
+            .icon {
+                font-size: ${fontSize.basicSize};
+            }
+
+            .imageNotFoundTitle {
+                font-size: ${fontSize.basicSize};
+                font-weight: ${fontWeight.medium};
+            }
         }
 
         p {

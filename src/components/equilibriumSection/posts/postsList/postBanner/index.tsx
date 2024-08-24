@@ -13,7 +13,7 @@ export const PostBanner: React.FC<IPostBannerProps> = ({ infoNode }) => {
     return (
         <Container>
             <Link to={`/equilibrium/${infoNode.id}`} className="banner" >
-                {infoNode.imagem.url ? (
+                {infoNode.imagem?.url ? (
                     <img src={infoNode.imagem.url} alt={`Imagem do post "${infoNode.titulo}"`} className="postImage" />
                 ) : (
                     <p className="imageNotFound">

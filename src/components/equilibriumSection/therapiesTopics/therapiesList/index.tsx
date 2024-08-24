@@ -65,17 +65,15 @@ export const TherapiesList: React.FC<ITherapiesListProps> = ({ slidesPerView, in
             >
                 {info?.map((topic, index) =>
                     <SwiperSlide key={topic.node.id} className="slide" onClick={() => setCurrentTopicId(topic.node.id)}>
-                        {topic.node.imagem.url
-                            ?
-                            <img
+                        {topic.node.imagem?.url
+                            ? <img
                                 className="slideImage"
                                 src={topic.node.imagem.url ? topic.node.imagem.url : ""}
                                 alt={`Terapia ${topic.node.nome}`}
                             />
-                            :
-                            <div className="imageNotFound">
+                            : <div className="imageNotFound">
                                 <FontAwesomeIcon icon={faMagnifyingGlass} className="icon" />
-                                <h3 className="imageNotFountTitle">Imagem não encontrada</h3>
+                                <h3 className="imageNotFoundTitle">Imagem não encontrada</h3>
                             </div>
                         }
 
@@ -137,6 +135,31 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
                 border-radius: 1rem;
                 border: .3rem solid ${theme.secondaryColor};
                 transition: opacity .5s;
+            }
+
+            .imageNotFound {
+                height: ${props => `${props.$imagesHeightInRem}rem`};
+                width: 100%;
+                min-width: 10rem;
+
+                display: flex;
+                flex-direction: column;
+                border-radius: 1rem;
+                border: .3rem solid ${theme.secondaryColor};
+                transition: opacity .5s;
+                justify-content: center;
+                align-items: center;
+                color: ${theme.textColor};
+
+                .icon {
+                    font-size: ${fontSize.basicSize};
+                }
+
+                .imageNotFoundTitle {
+                    font-size: ${fontSize.basicSize};
+                    font-weight: ${fontWeight.medium};
+                    text-align: center;
+                }
             }
 
             .therapyName {
@@ -268,7 +291,7 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
     @media (max-width: 768px) {
         .swiper {
             .slide {
-                .slideImage {
+                .slideImage, .imageNotFound {
                     height: calc(${props => `${props.$imagesHeightInRem}rem`} * .75 );
                 }
             }
@@ -290,7 +313,7 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
     @media (max-width: 425px) {
         .swiper {
             .slide {
-                .slideImage {
+                .slideImage, .imageNotFound {
                     height: calc(${props => `${props.$imagesHeightInRem}rem`} * .5 );
                 }
             }

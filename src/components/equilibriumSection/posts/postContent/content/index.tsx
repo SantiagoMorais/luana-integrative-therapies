@@ -4,7 +4,7 @@ import parse from "html-react-parser"
 import { fontSize, fontWeight, theme } from "@styles/theme"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRotateLeft } from "@fortawesome/free-solid-svg-icons"
+import { faMagnifyingGlass, faRotateLeft } from "@fortawesome/free-solid-svg-icons"
 import { AuthorInfo } from "../authorInfo"
 
 interface IContent {
@@ -12,29 +12,30 @@ interface IContent {
 }
 
 export const Content: React.FC<IContent> = ({ data }) => {
-    const dateConvertedToPtStandard = data.equilibriumPost.data.toString().split("-").reverse().join("/")
+    const dateConvertedToPtStandard = data.equilibriumPost?.data.toString().split("-").reverse().join("/")
 
     return (
         <Container>
             <div className="postContent">
-                <AuthorInfo autor={data.equilibriumPost.autor} />
+                <AuthorInfo autor={data.equilibriumPost?.autor} />
                 <h2 className="title">
-                    {data?.equilibriumPost.titulo}
+                    {data?.equilibriumPost?.titulo}
                 </h2>
                 <div className="descriptionContent">
                     {
-                        data?.equilibriumPost.imagem?.url
-                            ? <img className="topicImage" src={data?.equilibriumPost.imagem.url} alt={`Imagem do tratamento ${data?.equilibriumPost.titulo}`} />
-                            : <>
-                                <p>erro</p>
-                            </>
+                        data?.equilibriumPost?.imagem?.url
+                            ? <img className="topicImage" src={data?.equilibriumPost?.imagem?.url} alt={`Imagem do tratamento ${data?.equilibriumPost?.titulo}`} />
+                            : <div className="imageNotFound">
+                                <FontAwesomeIcon icon={faMagnifyingGlass} className="icon" />
+                                <h3 className="imageNotFoundTitle">Imagem não encontrada</h3>
+                            </div>
                     }
-                    {data && parse(data.equilibriumPost.texto.html)}
+                    {data.equilibriumPost && parse(data.equilibriumPost?.texto.html)}
                 </div>
 
-                {data?.equilibriumPost.video &&
+                {data?.equilibriumPost?.video &&
                     <div className="video">
-                        {parse(data?.equilibriumPost.video)}
+                        {parse(data?.equilibriumPost?.video)}
                     </div>
                 }
                 <div className="date">
@@ -93,6 +94,32 @@ const Container = styled.div`
                 width: 50%;
                 max-width: 50rem;
                 margin: 0rem 0rem 1rem 2rem;
+            }
+
+            .imageNotFound {
+                float: right;
+                height: 50dvh;
+                min-height: 30rem;
+                max-height: 50rem;
+                border-radius: .5rem;
+                border: .2rem solid ${theme.primaryColor};
+                width: 50%;
+                max-width: 50rem;
+                margin: 0rem 0rem 1rem 2rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: ${theme.textColor};
+    
+                .icon {
+                    font-size: ${fontSize.basicSize};
+                }
+    
+                .imageNotFoundTitle {
+                    font-size: ${fontSize.basicSize};
+                    font-weight: ${fontWeight.medium};
+                }
             }
     
             p {
