@@ -2,20 +2,12 @@ import styled from "styled-components"
 import { NavBar } from "./navBar"
 import { theme } from "@styles/theme"
 import { Link } from "react-router-dom"
-import { useContext } from "react"
-import { NavBarContext } from "@contexts/navBarContext"
 
 export const Header = () => {
-    const { setCurrentLink } = useContext(NavBarContext);
-
-    const handlePageChange = (link: string) => {
-        setCurrentLink(link)
-    }
-    
     return (
         <Container>
             <div className="content">
-                <Link to="/" className="title" onClick={() => handlePageChange("home")}>
+                <Link to="/" className="title">
                     <h1 className="nameTitle">
                         Luana Vasconcellos Alvarenga
                     </h1>

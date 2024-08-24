@@ -6,21 +6,12 @@ import { instagramLink, whatsappLink } from "@utils/variables"
 import styled from "styled-components"
 import data from "@json/index.json"
 import { Link, useLocation } from "react-router-dom"
-import { useContext, useEffect } from "react"
-import { NavBarContext } from "@contexts/navBarContext"
 
 export const Footer = () => {
-    const { currentLink, setCurrentLink } = useContext(NavBarContext);
     const location = useLocation();
-    const locationName = location.pathname.slice(1);
 
-    useEffect(() => {
-        const handlePageChange = () => {
-            setCurrentLink(locationName)
-        }
-
-        handlePageChange();
-    }, [locationName, setCurrentLink])
+    const locationPath = location.pathname.slice(1);
+    const locationName = locationPath.split('/')[0];
 
     return (
         <Container>
@@ -60,7 +51,7 @@ export const Footer = () => {
                         <Link
                             key={item.name}
                             to={`/${item.link}`}
-                            className={`section ${currentLink === item.link && "selected"}`}>
+                            className={`section ${locationName === item.link && "selected"}`}>
                             {item.name}
                         </Link>
 
