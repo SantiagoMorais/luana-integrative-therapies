@@ -156,7 +156,7 @@ export const GET_MOONS_SECRETS_POST_BY_ID_QUERY = gql`
 
 export const GET_MOONS_SECRETS_TOPICS_QUERY = gql`
    query GetAllMoonsSecretsTopics($after: String, $first: Int!) {
-      segredosDaLuaConnection(after: $after, first: $first) {
+      segredosDaLuaTopicosConnection(after: $after, first: $first) {
          pageInfo {
             hasNextPage
             endCursor

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { fontSize, fontWeight, theme } from "@styles/theme";
-import { IEquilibriumTopicEdge } from "@utils/blogInterfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
    faAdd,
@@ -15,18 +14,19 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useContext, useEffect, useState } from "react";
-import { CarouselContext } from "@contexts/caroulselContext";
+import { IMoonsSecretsTopicEdge } from "@utils/moonsSecretsBlogInterfaces";
+import { MoonsSecretsCarouselContext } from "@contexts/MoonsSecretscarouselContext";
 
-interface ITherapiesListProps {
+interface ITopicsListProps {
    slidesPerView: number;
-   info: IEquilibriumTopicEdge[];
+   info: IMoonsSecretsTopicEdge[];
    imagesHeightInRem: number;
    loadMore: () => void;
    hasMore: boolean;
    loading: boolean;
 }
 
-export const EquilibriumTopicsList: React.FC<ITherapiesListProps> = ({
+export const MoonsSecretsTopicsList: React.FC<ITopicsListProps> = ({
    slidesPerView,
    info,
    loadMore,
@@ -34,7 +34,7 @@ export const EquilibriumTopicsList: React.FC<ITherapiesListProps> = ({
    loading,
    imagesHeightInRem,
 }) => {
-   const { setCurrentTopicId } = useContext(CarouselContext);
+   const { setCurrentTopicId } = useContext(MoonsSecretsCarouselContext);
    const [slides, setSlides] = useState<number>(slidesPerView);
 
    useEffect(() => {

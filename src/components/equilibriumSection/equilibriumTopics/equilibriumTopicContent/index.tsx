@@ -1,4 +1,3 @@
-import { CarouselContext } from "@contexts/caroulselContext";
 import { useContext } from "react";
 import styled from "styled-components";
 import parser from "html-react-parser";
@@ -7,6 +6,7 @@ import { IEquilibriumTopicEdge } from "@utils/equilibriumBlogInterfaces";
 import { EquilibriumTopicListEmpty } from "./equilibriumTopicListEmpty";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { EquilibriumCarouselContext } from "@contexts/equilibriumCarouselContext";
 
 interface ITheraphyContentProps {
    data: IEquilibriumTopicEdge[];
@@ -15,7 +15,7 @@ interface ITheraphyContentProps {
 export const EquilibriumTopicContent: React.FC<ITheraphyContentProps> = ({
    data,
 }) => {
-   const { currentTopicId } = useContext(CarouselContext);
+   const { currentTopicId } = useContext(EquilibriumCarouselContext);
    const topic: IEquilibriumTopicEdge | undefined = data?.find(
       (item: IEquilibriumTopicEdge) => item.node.id === currentTopicId
    );

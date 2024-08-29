@@ -3,21 +3,21 @@ import { useQuery } from "@apollo/client";
 import { GET_EQUILIBRIUM_TOPICS_QUERY } from "@utils/blogAPI";
 import { IEquilibriumTopicsData } from "@utils/equilibriumBlogInterfaces";
 
-interface ICarouselContextType {
+interface IEquilibriumCarouselContextType {
    currentTopicId: string;
    setCurrentTopicId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const CarouselContext = createContext<ICarouselContextType>({
+export const EquilibriumCarouselContext = createContext<IEquilibriumCarouselContextType>({
    currentTopicId: "",
    setCurrentTopicId: () => {},
 });
 
-interface ICaroulselProviderProps {
+interface IEquilibriumCarouselProviderProps {
    children: React.ReactNode;
 }
 
-export const CaroulselProvider: React.FC<ICaroulselProviderProps> = ({
+export const EquilibriumCarouselProvider: React.FC<IEquilibriumCarouselProviderProps> = ({
    children,
 }) => {
    const [currentTopicId, setCurrentTopicId] = useState<string>("");
@@ -45,16 +45,9 @@ export const CaroulselProvider: React.FC<ICaroulselProviderProps> = ({
       }
    }, [data, loading, error, currentTopicId]);
 
-   useEffect(() => {
-      window.localStorage.setItem(
-         "currentTopicName",
-         JSON.stringify(currentTopicId)
-      );
-   }, [currentTopicId]);
-
    return (
-      <CarouselContext.Provider value={{ currentTopicId, setCurrentTopicId }}>
+      <EquilibriumCarouselContext.Provider value={{ currentTopicId, setCurrentTopicId }}>
          {children}
-      </CarouselContext.Provider>
+      </EquilibriumCarouselContext.Provider>
    );
 };

@@ -1,12 +1,12 @@
-import { IEquilibriumPostEdge } from "@utils/blogInterfaces";
 import styled from "styled-components";
 import { PostBanner } from "./postBanner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
 import { fontSize, fontWeight, theme } from "@styles/theme";
+import { IMoonsSecretsPostEdge } from "@utils/moonsSecretsBlogInterfaces";
 
 interface IPostsListProps {
-  infoEdge: IEquilibriumPostEdge[];
+  infoEdge: IMoonsSecretsPostEdge[];
   hasMoreData: boolean;
   loadMore: () => void;
   loadingPosts: boolean;

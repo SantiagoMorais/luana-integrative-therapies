@@ -4,8 +4,9 @@ import { AboutPage } from "./aboutPage";
 import { ContactPage } from "./contactPage";
 import { Page404 } from "./Page404";
 import { EquilibriumPage } from "./equilibriumPage";
-import { PostContentPage } from "./postContent";
+import { EquilibriumPostContentPage } from "./equilibriumPostContentPage";
 import { MoonsSecretPage } from "./moonsSecretPage";
+import { MoonsSecretsPostContentPage } from "./MoonsSecretsPostContentPage";
 
 export const AppRoutes = () => {
    return (
@@ -16,7 +17,8 @@ export const AppRoutes = () => {
             <Route path="/contato" element={<ContactPage />} />
             <Route path="/equilibrium" element={<EquilibriumPage />} />
             <Route path="/segredos-da-lua" element={<MoonsSecretPage />} />
-            <Route path="/equilibrium/:id" element={<PostContentPage />} />
+            <Route path="/equilibrium/:id" element={<EquilibriumPostContentPage />} />
+            <Route path="/segredos-da-lua/:id" element={<MoonsSecretsPostContentPage />} />
             <Route path="*" element={<Page404 />} />
          </Routes>
       </BrowserRouter>

@@ -1,36 +1,34 @@
-import { IEquilibriumTopicsData } from "@utils/blogInterfaces";
+import { IMoonsSecretsTopicsData } from "@utils/moonsSecretsBlogInterfaces";
 import styled from "styled-components";
 import { fontSize, fontWeight, theme } from "@styles/theme";
-import { EquilibriumTopicsList } from "./equilibriumTopicsList";
-import { EquilibriumTopicContent } from "./equilibriumTopicContent";
+import { MoonsSecretsTopicsList } from "./moonsSecretsTopicsList";
+import { MoonsSecretsTopicContent } from "./moonsSecretsTopicContent";
 import { useQuery } from "@apollo/client";
-import { GET_EQUILIBRIUM_TOPICS_QUERY } from "@utils/blogAPI";
+import { GET_MOONS_SECRETS_TOPICS_QUERY } from "@utils/blogAPI";
 import { ErrorPage } from "../errorPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { EquilibriumTopicListEmpty } from "./equilibriumTopicContent/equilibriumTopicListEmpty";
+import { MoonsSecretsTopicListEmpty } from "./moonsSecretsTopicContent/moonsSecretsTopicListEmpty";
 
-export const EquilibriumTopics = () => {
-   const { data, loading, fetchMore, error } = useQuery<IEquilibriumTopicsData>(
-      GET_EQUILIBRIUM_TOPICS_QUERY,
-      {
+export const MoonsSecretsTopics = () => {
+   const { data, loading, fetchMore, error } =
+      useQuery<IMoonsSecretsTopicsData>(GET_MOONS_SECRETS_TOPICS_QUERY, {
          variables: {
             first: 5,
          },
-      }
-   );
+      });
    const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
    const loadMoreTopics = () => {
-      if (loading || !data?.equilibriumTopicosConnection.pageInfo.hasNextPage)
+      if (loading || !data?.segredosDaLuaTopicosConnection.pageInfo.hasNextPage)
          return;
 
       setLoadingMore(true);
 
       fetchMore({
          variables: {
-            after: data.equilibriumTopicosConnection.pageInfo.endCursor,
+            after: data.segredosDaLuaTopicosConnection.pageInfo.endCursor,
             first: 5,
          },
          updateQuery: (prevResult, { fetchMoreResult }) => {
@@ -38,11 +36,11 @@ export const EquilibriumTopics = () => {
             if (!fetchMoreResult) return prevResult;
 
             return {
-               equilibriumTopicosConnection: {
-                  ...fetchMoreResult.equilibriumTopicosConnection,
+               segredosDaLuaTopicosConnection: {
+                  ...fetchMoreResult.segredosDaLuaTopicosConnection,
                   edges: [
-                     ...prevResult.equilibriumTopicosConnection.edges,
-                     ...fetchMoreResult.equilibriumTopicosConnection.edges,
+                     ...prevResult.segredosDaLuaTopicosConnection.edges,
+                     ...fetchMoreResult.segredosDaLuaTopicosConnection.edges,
                   ],
                },
             };
@@ -51,15 +49,15 @@ export const EquilibriumTopics = () => {
    };
 
    const hasMore =
-      data?.equilibriumTopicosConnection.pageInfo.hasNextPage ?? false;
+      data?.segredosDaLuaTopicosConnection?.pageInfo?.hasNextPage ?? false;
 
    const hadleSlidesPerView = (): number => {
-      if (!data || !data.equilibriumTopicosConnection) {
+      if (!data || !data.segredosDaLuaTopicosConnection) {
          return 1;
       }
 
       const topicosLength: number =
-         data.equilibriumTopicosConnection.edges.length;
+         data.segredosDaLuaTopicosConnection.edges.length;
       return topicosLength < 5 ? topicosLength : 4;
    };
 
@@ -79,25 +77,25 @@ export const EquilibriumTopics = () => {
                </>
             ) : error ? (
                <ErrorPage />
-            ) : data && data?.equilibriumTopicosConnection.edges.length > 0 ? (
+            ) : data && data?.segredosDaLuaTopicosConnection.edges.length > 0 ? (
                <>
                   <h2 className="therapiesTitle">
                      Veja alguns dos nossos serviços:
                   </h2>
-                  <EquilibriumTopicsList
-                     info={data.equilibriumTopicosConnection.edges}
+                  <MoonsSecretsTopicsList
+                     info={data.segredosDaLuaTopicosConnection.edges}
                      slidesPerView={hadleSlidesPerView()}
                      imagesHeightInRem={40}
                      loadMore={loadMoreTopics}
                      hasMore={hasMore}
                      loading={loadingMore}
                   />
-                  <EquilibriumTopicContent
-                     data={data.equilibriumTopicosConnection.edges}
+                  <MoonsSecretsTopicContent
+                     data={data.segredosDaLuaTopicosConnection.edges}
                   />
                </>
             ) : (
-               <EquilibriumTopicListEmpty />
+               <MoonsSecretsTopicListEmpty />
             )}
          </div>
       </Container>

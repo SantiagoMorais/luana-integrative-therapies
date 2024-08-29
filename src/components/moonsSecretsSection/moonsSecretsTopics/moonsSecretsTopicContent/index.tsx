@@ -1,23 +1,23 @@
-import { CarouselContext } from "@contexts/caroulselContext";
 import { useContext } from "react";
 import styled from "styled-components";
 import parser from "html-react-parser";
 import { fontSize, fontWeight, theme } from "@styles/theme";
-import { IEquilibriumTopicEdge } from "@utils/blogInterfaces";
-import { EquilibriumTopicListEmpty } from "./equilibriumTopicListEmpty";
+import { MoonsSecretsTopicListEmpty } from "./moonsSecretsTopicListEmpty";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { IMoonsSecretsTopicEdge } from "@utils/moonsSecretsBlogInterfaces";
+import { MoonsSecretsCarouselContext } from "@contexts/MoonsSecretscarouselContext";
 
 interface ITheraphyContentProps {
-   data: IEquilibriumTopicEdge[];
+   data: IMoonsSecretsTopicEdge[];
 }
 
-export const EquilibriumTopicContent: React.FC<ITheraphyContentProps> = ({
+export const MoonsSecretsTopicContent: React.FC<ITheraphyContentProps> = ({
    data,
 }) => {
-   const { currentTopicId } = useContext(CarouselContext);
-   const topic: IEquilibriumTopicEdge | undefined = data?.find(
-      (item: IEquilibriumTopicEdge) => item.node.id === currentTopicId
+   const { currentTopicId } = useContext(MoonsSecretsCarouselContext);
+   const topic: IMoonsSecretsTopicEdge | undefined = data?.find(
+      (item: IMoonsSecretsTopicEdge) => item.node.id === currentTopicId
    );
 
    return (
@@ -48,7 +48,7 @@ export const EquilibriumTopicContent: React.FC<ITheraphyContentProps> = ({
                </div>
             </>
          ) : (
-            <EquilibriumTopicListEmpty />
+            <MoonsSecretsTopicListEmpty />
          )}
       </Container>
    );

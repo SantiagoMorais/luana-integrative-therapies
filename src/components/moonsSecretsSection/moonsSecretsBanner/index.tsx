@@ -4,20 +4,20 @@ import { fontSize, fontWeight, theme } from "@styles/theme";
 import styled from "styled-components";
 import { SectionsButtons } from "./sectionsButtons";
 
-export const EquilibriumBanner = () => {
+export const MoonsSecretsBanner = () => {
    return (
       <Container>
-         <h2 className="title">Equilibrium</h2>
+         <h2 className="title">Segredos da Lua</h2>
          <h3 className="subtitle">
             <FontAwesomeIcon icon={faCircle} className="icon" />
-            Equilíbrio e Bem-estar com as Terapias Integrativas
+            Bem-estar Natural com Óleos Essenciais e Aromaterapia
             <FontAwesomeIcon icon={faCircle} className="icon" />
          </h3>
          <p className="description">
-            Descubra como nossas terapias promovem o equilíbrio e bem-estar.
-            Conheça nossas técnicas, explore publicações valiosas e veja como
-            essas abordagens naturais podem transformar sua saúde e proporcionar
-            uma vida.
+            Explore o poder dos óleos essenciais, da aromaterapia e muito mais para alcançar
+            o bem-estar de forma natural. Mergulhe em nossas técnicas, conheça
+            produtos artesanais e veja como integrar a natureza na sua rotina
+            pode transformar sua saúde e trazer os Segredos da Lua para sua vida.
          </p>
          <SectionsButtons />
       </Container>

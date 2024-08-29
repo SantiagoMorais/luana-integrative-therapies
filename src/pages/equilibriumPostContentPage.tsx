@@ -1,5 +1,5 @@
 import { PostContent } from "@components/equilibriumSection/posts/postContent";
 
-export const PostContentPage = () => {
+export const EquilibriumPostContentPage = () => {
    return <PostContent />;
 };

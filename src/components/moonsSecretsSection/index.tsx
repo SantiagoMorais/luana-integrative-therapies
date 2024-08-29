@@ -1,20 +1,20 @@
 import { Footer } from "@components/footer";
 import { Header } from "@components/header";
 import styled from "styled-components";
-import { EquilibriumBanner } from "./equilibriumBanner";
 import { useContext } from "react";
-import { EquilibriumTopicsContext } from "@contexts/equilibriumTopicContext";
-import { EquilibriumTopics } from "./equilibriumTopics";
+import { MoonsSecretsTopics } from "./moonsSecretsTopics";
 import { Posts } from "./posts";
+import { TopicsContext } from "@contexts/TopicsContext";
+import { MoonsSecretsBanner } from "./moonsSecretsBanner";
 
 export const MoonsSecretSection = () => {
-   const { topicSelected } = useContext(EquilibriumTopicsContext);
+   const { moonsSecretsTopicSelected } = useContext(TopicsContext);
 
    return (
-      <Container data-testid="equilibriumSection">
+      <Container data-testid="moonsSecretsSection">
          <Header />
-         <EquilibriumBanner />
-         {topicSelected === "posts" ? <Posts /> : <EquilibriumTopics />}
+         <MoonsSecretsBanner />
+         {moonsSecretsTopicSelected === "posts" ? <Posts /> : <MoonsSecretsTopics />}
          <Footer />
       </Container>
    );

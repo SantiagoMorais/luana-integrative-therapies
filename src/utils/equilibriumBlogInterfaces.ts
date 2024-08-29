@@ -14,7 +14,7 @@ export interface IEquilibriumPostNode {
    texto: {
       html: string;
    };
-   autor: {
+   autor?: {
       nome: string;
       descricao: string;
       avatar: {

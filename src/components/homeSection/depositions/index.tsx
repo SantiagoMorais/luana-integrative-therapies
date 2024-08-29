@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import data from "@json/index.json";
 import { fontSize, fontWeight, theme } from "@styles/theme";
-import { DepositionsCarousel } from "./depositionsCaroulsel";
+import { DepositionsCarousel } from "./depositionsCarousel";
 
 export const Depositions = () => {
    const getTopicsInfo = () => {

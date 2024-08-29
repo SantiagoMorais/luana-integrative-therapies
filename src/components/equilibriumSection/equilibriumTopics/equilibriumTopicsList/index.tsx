@@ -15,7 +15,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useContext, useEffect, useState } from "react";
-import { CarouselContext } from "@contexts/caroulselContext";
+import { EquilibriumCarouselContext } from "@contexts/equilibriumCarouselContext";
 
 interface ITherapiesListProps {
    slidesPerView: number;
@@ -34,7 +34,7 @@ export const EquilibriumTopicsList: React.FC<ITherapiesListProps> = ({
    loading,
    imagesHeightInRem,
 }) => {
-   const { setCurrentTopicId } = useContext(CarouselContext);
+   const { setCurrentTopicId } = useContext(EquilibriumCarouselContext);
    const [slides, setSlides] = useState<number>(slidesPerView);
 
    useEffect(() => {
@@ -327,9 +327,7 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
          .slide {
             .slideImage,
             .imageNotFound {
-               height: calc(
-                  ${(props) => `${props.$imagesHeightInRem}rem`} * 0.75
-               );
+               height: calc(${(props) => `${props.$imagesHeightInRem}rem`} * 0.75);
             }
          }
 
@@ -352,9 +350,7 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
          .slide {
             .slideImage,
             .imageNotFound {
-               height: calc(
-                  ${(props) => `${props.$imagesHeightInRem}rem`} * 0.5
-               );
+               height: calc(${(props) => `${props.$imagesHeightInRem}rem`} * 0.5);
             }
          }
 

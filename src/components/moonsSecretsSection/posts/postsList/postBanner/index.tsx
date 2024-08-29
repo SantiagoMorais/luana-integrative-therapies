@@ -1,18 +1,18 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fontSize, fontWeight, theme } from "@styles/theme"; // Certifique-se de usar o arquivo de estilo correto
-import { IEquilibriumPostNode } from "@utils/blogInterfaces";
+import { IMoonsSecretsPostNode } from "@utils/moonsSecretsBlogInterfaces";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface IPostBannerProps {
-    infoNode: IEquilibriumPostNode;
+    infoNode: IMoonsSecretsPostNode;
 }
 
 export const PostBanner: React.FC<IPostBannerProps> = ({ infoNode }) => {
     return (
         <Container>
-            <Link to={`/equilibrium/${infoNode.id}`} className="banner" >
+            <Link to={`/segredos-da-lua/${infoNode.id}`} className="banner" >
                 {infoNode.imagem?.url ? (
                     <img src={infoNode.imagem.url} alt={`Imagem do post "${infoNode.titulo}"`} className="postImage" />
                 ) : (
@@ -35,7 +35,7 @@ export const PostBanner: React.FC<IPostBannerProps> = ({ infoNode }) => {
                     </p>
                 </div>
                 <p className="authorsName">
-                    {infoNode.autor.nome}
+                    {infoNode.autor ? infoNode.autor.nome : "Autor não informado"}
                 </p>
             </Link>
         </Container>

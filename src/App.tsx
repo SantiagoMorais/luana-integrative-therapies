@@ -1,15 +1,18 @@
+import { EquilibriumCarouselProvider } from "@contexts/equilibriumCarouselContext";
 import { AppRoutes } from "./pages/appRoutes";
-import { EquilibriumTopicsProvider } from "@contexts/equilibriumTopicContext";
-import { CaroulselProvider } from "@contexts/caroulselContext";
+import { MoonsSecretsCarouselProvider } from "@contexts/MoonsSecretscarouselContext";
+import { TopicsProvider } from "@contexts/TopicsContext";
 
 export const App = () => {
    return (
       <>
-         <EquilibriumTopicsProvider>
-            <CaroulselProvider>
-               <AppRoutes />
-            </CaroulselProvider>
-         </EquilibriumTopicsProvider>
+         <TopicsProvider>
+            <EquilibriumCarouselProvider>
+               <MoonsSecretsCarouselProvider>
+                  <AppRoutes />
+               </MoonsSecretsCarouselProvider>
+            </EquilibriumCarouselProvider>
+         </TopicsProvider>
       </>
    );
 };

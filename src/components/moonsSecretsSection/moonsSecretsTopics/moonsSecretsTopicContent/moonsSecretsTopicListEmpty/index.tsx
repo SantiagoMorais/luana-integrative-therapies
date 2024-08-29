@@ -2,13 +2,14 @@ import styled from "styled-components";
 import commingSoonImage from "@assets/imgs/pageComingSoon.jpg";
 import { fontSize, fontWeight, theme } from "@styles/theme";
 
-export const EquilibriumTopicListEmpty = () => {
+export const MoonsSecretsTopicListEmpty = () => {
    return (
       <Container>
          <h2 className="title">Novos conteúdos em breve!</h2>
          <h3 className="subtitle">
-            Aqui você encontrará mais informações sobre nossas terapias e
-            artigos valiosos para alcançar o equilíbrio entre saúde e energia.
+            Descubra o poder das plantas e dos óleos essenciais em breve! Vamos
+            compartilhar conhecimentos e dicas valiosas para seu bem-estar
+            natural.
          </h3>
          <img
             src={commingSoonImage}
@@ -16,11 +17,12 @@ export const EquilibriumTopicListEmpty = () => {
             className="commingSoonImage"
          />
          <p className="message">
-            Estamos preparando conteúdos especiais para guiar você nas terapias
-            que oferecemos em nossa clínica. Em breve, compartilharemos
-            informações essenciais para ajudar você a entender como alcançar o
-            equilíbrio perfeito entre saúde e energia. Tudo pensado para o seu
-            bem-estar. Fique de olho!
+            Os Segredos da Lua estão prestes a serem revelados! Prepare-se para
+            uma jornada onde a sabedoria das plantas e os mistérios dos óleos
+            essenciais vão transformar sua rotina. Em breve, traremos conteúdos
+            exclusivos que vão iluminar seu caminho para o bem-estar natural.
+            Fique ligado e descubra como os Segredos da Lua podem harmonizar sua
+            vida!
          </p>
       </Container>
    );

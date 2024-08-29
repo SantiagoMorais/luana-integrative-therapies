@@ -19,9 +19,7 @@ export const PostContent = () => {
          variables: { id },
       }
    );
-
-   console.log(data);
-
+   
    return (
       <Container>
          <Header />

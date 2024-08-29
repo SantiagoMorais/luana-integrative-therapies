@@ -1,21 +1,21 @@
-import { EquilibriumTopicsContext } from "@contexts/equilibriumTopicContext";
+import { TopicsContext } from "@contexts/TopicsContext";
 import { fontSize, fontWeight, theme } from "@styles/theme";
 import { useContext } from "react";
 import styled from "styled-components";
 
 interface IButtons {
    title: string;
-   buttonType: string;
+   buttonType: "posts" | "topics";
    id: number;
 }
 
 export const SectionsButtons = () => {
-   const { handleSelectedButton, topicSelected } = useContext(
-      EquilibriumTopicsContext
+   const { handleSelectedButton, moonsSecretsTopicSelected } = useContext(
+      TopicsContext
    );
 
    const buttons: IButtons[] = [
-      { title: "Nossas terapias", buttonType: "therapies", id: 0 },
+      { title: "Nossas terapias", buttonType: "topics", id: 0 },
       { title: "Nossas publicações", buttonType: "posts", id: 1 },
    ];
 
@@ -24,17 +24,17 @@ export const SectionsButtons = () => {
          {buttons.map((button) => (
             <button
                className={`selectSection ${
-                  topicSelected !== button.buttonType && "notSelected"
+                  moonsSecretsTopicSelected !== button.buttonType && "notSelected"
                }`}
                key={button.id}
-               onClick={() => handleSelectedButton(button.buttonType)}
+               onClick={() => handleSelectedButton(button.buttonType, "moonsSecrets")}
             >
                {button.title}
             </button>
          ))}
          <span
             className={`selectedStyle ${
-               topicSelected === "posts" ? "postsSelected" : "therapiesSelected"
+               moonsSecretsTopicSelected === "posts" ? "postsSelected" : "therapiesSelected"
             }`}
          ></span>
       </Container>

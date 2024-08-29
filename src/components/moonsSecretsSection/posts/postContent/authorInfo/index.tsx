@@ -3,7 +3,7 @@ import styled from "styled-components"
 import noAvatarPhoto from "@assets/imgs/noAvatarPhoto.jpg"
 
 interface IAuthorInfoProps {
-    autor: {
+    autor?: {
         nome: string,
         cro?: number,
         descricao: string
@@ -21,9 +21,9 @@ export const AuthorInfo: React.FC<IAuthorInfoProps> = ({ autor }) => {
             : <img src={noAvatarPhoto} alt="Foto do(a) autor(a) do artigo" className="profilePhoto" />
             }
             <div className="about">
-                <h3 className="name">Por: {autor?.nome}</h3>
+                <h3 className="name">Por: {autor?.nome ? autor.nome : "Nome não informado"}</h3>
                 <p className="text">
-                    {autor?.descricao}
+                    {autor?.descricao ? autor.descricao : "Descrição do autor não informada"}
                 </p>
                 <div className="medicalRegistry">
                     {autor?.cro &&
