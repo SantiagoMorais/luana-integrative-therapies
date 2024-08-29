@@ -1,13 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const NoPosts = () => {
-    return (
-        <Container>
-            NoPosts
-        </Container>
-    )
-}
+   return <Container>NoPosts</Container>;
+};
 
-const Container = styled.section`
-    
-`
+const Container = styled.section``;

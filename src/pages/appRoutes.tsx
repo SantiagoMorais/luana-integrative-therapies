@@ -17,8 +17,14 @@ export const AppRoutes = () => {
             <Route path="/contato" element={<ContactPage />} />
             <Route path="/equilibrium" element={<EquilibriumPage />} />
             <Route path="/segredos-da-lua" element={<MoonsSecretPage />} />
-            <Route path="/equilibrium/:id" element={<EquilibriumPostContentPage />} />
-            <Route path="/segredos-da-lua/:id" element={<MoonsSecretsPostContentPage />} />
+            <Route
+               path="/equilibrium/:id"
+               element={<EquilibriumPostContentPage />}
+            />
+            <Route
+               path="/segredos-da-lua/:id"
+               element={<MoonsSecretsPostContentPage />}
+            />
             <Route path="*" element={<Page404 />} />
          </Routes>
       </BrowserRouter>

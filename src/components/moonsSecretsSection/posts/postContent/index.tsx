@@ -12,7 +12,7 @@ import { IMoonsSecretsPostById } from "@utils/moonsSecretsBlogInterfaces";
 import { ErrorPage } from "@components/moonsSecretsSection/errorPage";
 
 export const PostContent = () => {
-   const { id } = useParams();   
+   const { id } = useParams();
    const { data, loading, error } = useQuery<IMoonsSecretsPostById>(
       GET_MOONS_SECRETS_POST_BY_ID_QUERY,
       {

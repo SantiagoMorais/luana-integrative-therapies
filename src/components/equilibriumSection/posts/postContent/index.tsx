@@ -19,7 +19,7 @@ export const PostContent = () => {
          variables: { id },
       }
    );
-   
+
    return (
       <Container>
          <Header />

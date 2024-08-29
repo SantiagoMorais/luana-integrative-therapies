@@ -10,9 +10,8 @@ interface IButtons {
 }
 
 export const SectionsButtons = () => {
-   const { handleSelectedButton, moonsSecretsTopicSelected } = useContext(
-      TopicsContext
-   );
+   const { handleSelectedButton, moonsSecretsTopicSelected } =
+      useContext(TopicsContext);
 
    const buttons: IButtons[] = [
       { title: "Nossas terapias", buttonType: "topics", id: 0 },
@@ -24,17 +23,22 @@ export const SectionsButtons = () => {
          {buttons.map((button) => (
             <button
                className={`selectSection ${
-                  moonsSecretsTopicSelected !== button.buttonType && "notSelected"
+                  moonsSecretsTopicSelected !== button.buttonType &&
+                  "notSelected"
                }`}
                key={button.id}
-               onClick={() => handleSelectedButton(button.buttonType, "moonsSecrets")}
+               onClick={() =>
+                  handleSelectedButton(button.buttonType, "moonsSecrets")
+               }
             >
                {button.title}
             </button>
          ))}
          <span
             className={`selectedStyle ${
-               moonsSecretsTopicSelected === "posts" ? "postsSelected" : "therapiesSelected"
+               moonsSecretsTopicSelected === "posts"
+                  ? "postsSelected"
+                  : "therapiesSelected"
             }`}
          ></span>
       </Container>

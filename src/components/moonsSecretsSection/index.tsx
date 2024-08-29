@@ -14,7 +14,11 @@ export const MoonsSecretSection = () => {
       <Container data-testid="moonsSecretsSection">
          <Header />
          <MoonsSecretsBanner />
-         {moonsSecretsTopicSelected === "posts" ? <Posts /> : <MoonsSecretsTopics />}
+         {moonsSecretsTopicSelected === "posts" ? (
+            <Posts />
+         ) : (
+            <MoonsSecretsTopics />
+         )}
          <Footer />
       </Container>
    );

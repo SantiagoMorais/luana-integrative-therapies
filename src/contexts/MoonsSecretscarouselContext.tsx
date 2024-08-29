@@ -8,10 +8,11 @@ interface IMoonsSecretsCarouselContextType {
    setCurrentTopicId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const MoonsSecretsCarouselContext = createContext<IMoonsSecretsCarouselContextType>({
-   currentTopicId: "",
-   setCurrentTopicId: () => {},
-});
+export const MoonsSecretsCarouselContext =
+   createContext<IMoonsSecretsCarouselContextType>({
+      currentTopicId: "",
+      setCurrentTopicId: () => {},
+   });
 
 interface ICarouselProviderProps {
    children: React.ReactNode;
@@ -46,7 +47,9 @@ export const MoonsSecretsCarouselProvider: React.FC<ICarouselProviderProps> = ({
    }, [data, loading, error, currentTopicId]);
 
    return (
-      <MoonsSecretsCarouselContext.Provider value={{ currentTopicId, setCurrentTopicId }}>
+      <MoonsSecretsCarouselContext.Provider
+         value={{ currentTopicId, setCurrentTopicId }}
+      >
          {children}
       </MoonsSecretsCarouselContext.Provider>
    );

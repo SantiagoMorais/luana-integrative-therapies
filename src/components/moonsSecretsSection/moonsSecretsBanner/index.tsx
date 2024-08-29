@@ -14,10 +14,11 @@ export const MoonsSecretsBanner = () => {
             <FontAwesomeIcon icon={faCircle} className="icon" />
          </h3>
          <p className="description">
-            Explore o poder dos óleos essenciais, da aromaterapia e muito mais para alcançar
-            o bem-estar de forma natural. Mergulhe em nossas técnicas, conheça
-            produtos artesanais e veja como integrar a natureza na sua rotina
-            pode transformar sua saúde e trazer os Segredos da Lua para sua vida.
+            Explore o poder dos óleos essenciais, da aromaterapia e muito mais
+            para alcançar o bem-estar de forma natural. Mergulhe em nossas
+            técnicas, conheça produtos artesanais e veja como integrar a
+            natureza na sua rotina pode transformar sua saúde e trazer os
+            Segredos da Lua para sua vida.
          </p>
          <SectionsButtons />
       </Container>

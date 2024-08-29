@@ -32,7 +32,11 @@ export const PostBanner: React.FC<IPostBannerProps> = ({ infoNode }) => {
                )}
                <p className="link">Ler publicação</p>
             </div>
-            <p className="authorsName">{infoNode.autor.nome}</p>
+            <p className="authorsName">
+               {infoNode.autor?.nome
+                  ? infoNode.autor.nome
+                  : "Autor não informado"}
+            </p>
          </Link>
       </Container>
    );

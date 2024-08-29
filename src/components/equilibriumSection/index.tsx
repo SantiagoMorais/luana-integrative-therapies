@@ -14,7 +14,11 @@ export const EquilibriumSection = () => {
       <Container data-testid="equilibriumSection">
          <Header />
          <EquilibriumBanner />
-         {equilibriumTopicSelected === "posts" ? <Posts /> : <EquilibriumTopics />}
+         {equilibriumTopicSelected === "posts" ? (
+            <Posts />
+         ) : (
+            <EquilibriumTopics />
+         )}
          <Footer />
       </Container>
    );

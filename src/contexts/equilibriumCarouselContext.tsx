@@ -8,18 +8,19 @@ interface IEquilibriumCarouselContextType {
    setCurrentTopicId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const EquilibriumCarouselContext = createContext<IEquilibriumCarouselContextType>({
-   currentTopicId: "",
-   setCurrentTopicId: () => {},
-});
+export const EquilibriumCarouselContext =
+   createContext<IEquilibriumCarouselContextType>({
+      currentTopicId: "",
+      setCurrentTopicId: () => {},
+   });
 
 interface IEquilibriumCarouselProviderProps {
    children: React.ReactNode;
 }
 
-export const EquilibriumCarouselProvider: React.FC<IEquilibriumCarouselProviderProps> = ({
-   children,
-}) => {
+export const EquilibriumCarouselProvider: React.FC<
+   IEquilibriumCarouselProviderProps
+> = ({ children }) => {
    const [currentTopicId, setCurrentTopicId] = useState<string>("");
    const { data, loading, error } = useQuery<IEquilibriumTopicsData>(
       GET_EQUILIBRIUM_TOPICS_QUERY,
@@ -46,7 +47,9 @@ export const EquilibriumCarouselProvider: React.FC<IEquilibriumCarouselProviderP
    }, [data, loading, error, currentTopicId]);
 
    return (
-      <EquilibriumCarouselContext.Provider value={{ currentTopicId, setCurrentTopicId }}>
+      <EquilibriumCarouselContext.Provider
+         value={{ currentTopicId, setCurrentTopicId }}
+      >
          {children}
       </EquilibriumCarouselContext.Provider>
    );

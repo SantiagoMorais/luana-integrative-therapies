@@ -77,7 +77,8 @@ export const MoonsSecretsTopics = () => {
                </>
             ) : error ? (
                <ErrorPage />
-            ) : data && data?.segredosDaLuaTopicosConnection.edges.length > 0 ? (
+            ) : data &&
+              data?.segredosDaLuaTopicosConnection.edges.length > 0 ? (
                <>
                   <h2 className="therapiesTitle">
                      Veja alguns dos nossos serviços:
