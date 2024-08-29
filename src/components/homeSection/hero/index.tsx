@@ -41,16 +41,18 @@ const animation = keyframes`
 const Container = styled.div`
    flex-grow: 1;
    background: ${theme.secondaryTextColor} url(${heroImage}) no-repeat 15dvw 10%;
+   width: 100%;
+   height: 100%;
    background-size: cover;
    position: relative;
    border: solid ${theme.secondaryTextColor};
-   border-width: 0.3rem 0;
+   border-width: 0.2dvw 0;
 
    .slogan {
       position: absolute;
-      width: 35%;
-      left: 8%;
-      top: 12%;
+      width: 35dvw;
+      left: 8dvw;
+      top: 11dvh;
       color: ${theme.textColor};
       z-index: 1;
       display: flex;
@@ -58,7 +60,7 @@ const Container = styled.div`
       gap: 1rem;
 
       .title {
-         font-size: 9rem;
+         font-size: 4.25dvw;
          font-weight: ${fontWeight.bold};
          line-height: 90%;
          color: ${theme.textColor};
@@ -67,7 +69,7 @@ const Container = styled.div`
       }
 
       .subtitle {
-         font-size: 5rem;
+         font-size: 2.35dvw;
          font-weight: ${fontWeight.medium};
          color: ${theme.textColor};
          filter: drop-shadow(0 0 0.2rem ${theme.secondaryColor});
@@ -76,9 +78,9 @@ const Container = styled.div`
    }
 
    .icon {
-      font-size: 5rem;
+      font-size: 2.4dvw;
       position: absolute;
-      bottom: 3rem;
+      bottom: 3dvh;
       right: 0;
       left: 0;
       margin: auto;
@@ -110,6 +112,29 @@ const Container = styled.div`
       left: 0;
       width: 15dvw;
       background: ${theme.secondaryTextColor};
+   }
+
+   @media (max-width: 1920px) {
+      border-width: 0.3rem 0;
+
+      .slogan {
+         width: 35%;
+         left: 8%;
+         top: 12%;
+
+         .title {
+            font-size: 9rem;
+         }
+
+         .subtitle {
+            font-size: 5rem;
+         }
+      }
+
+      .icon {
+         font-size: 5rem;
+         bottom: 3rem;
+      }
    }
 
    @media (max-width: 1200px) {

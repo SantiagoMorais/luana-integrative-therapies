@@ -38,6 +38,12 @@ const Container = styled.section`
       flex-direction: column;
       flex: 1;
       height: 100dvh;
-      max-height: 90rem;
+      max-height: 90dvh;
+   }
+
+   @media (max-width: 1920px) {
+      .frontPage {
+         max-height: 90rem;
+      }
    }
 `;
