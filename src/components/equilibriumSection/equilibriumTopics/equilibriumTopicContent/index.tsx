@@ -3,7 +3,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import parser from "html-react-parser";
 import { fontSize, fontWeight, theme } from "@styles/theme";
-import { IEquilibriumTopicEdge } from "@utils/blogInterfaces";
+import { IEquilibriumTopicEdge } from "@utils/equilibriumBlogInterfaces";
 import { EquilibriumTopicListEmpty } from "./equilibriumTopicListEmpty";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";

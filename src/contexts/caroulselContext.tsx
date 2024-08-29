@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_EQUILIBRIUM_TOPICS_QUERY } from "@utils/blogAPI";
-import { IEquilibriumTopicsData } from "@utils/blogInterfaces";
+import { IEquilibriumTopicsData } from "@utils/equilibriumBlogInterfaces";
 
 interface ICarouselContextType {
    currentTopicId: string;

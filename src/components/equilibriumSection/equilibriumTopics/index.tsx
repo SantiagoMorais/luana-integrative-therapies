@@ -1,4 +1,4 @@
-import { IEquilibriumTopicsData } from "@utils/blogInterfaces";
+import { IEquilibriumTopicsData } from "@utils/equilibriumBlogInterfaces";
 import styled from "styled-components";
 import { fontSize, fontWeight, theme } from "@styles/theme";
 import { EquilibriumTopicsList } from "./equilibriumTopicsList";

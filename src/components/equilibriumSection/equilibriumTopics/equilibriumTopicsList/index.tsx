@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { fontSize, fontWeight, theme } from "@styles/theme";
-import { IEquilibriumTopicEdge } from "@utils/blogInterfaces";
+import { IEquilibriumTopicEdge } from "@utils/equilibriumBlogInterfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
    faAdd,
@@ -327,7 +327,9 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
          .slide {
             .slideImage,
             .imageNotFound {
-               height: calc(${(props) => `${props.$imagesHeightInRem}rem`} * 0.75);
+               height: calc(
+                  ${(props) => `${props.$imagesHeightInRem}rem`} * 0.75
+               );
             }
          }
 
@@ -350,7 +352,9 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
          .slide {
             .slideImage,
             .imageNotFound {
-               height: calc(${(props) => `${props.$imagesHeightInRem}rem`} * 0.5);
+               height: calc(
+                  ${(props) => `${props.$imagesHeightInRem}rem`} * 0.5
+               );
             }
          }
 
