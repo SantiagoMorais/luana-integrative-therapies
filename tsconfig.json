@@ -1,38 +1,38 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "types": ["vitest/globals", "@testing-library/jest-dom"],
+   "compilerOptions": {
+      "target": "ES2020",
+      "useDefineForClassFields": true,
+      "lib": ["ES2020", "DOM", "DOM.Iterable"],
+      "module": "ESNext",
+      "skipLibCheck": true,
+      "types": ["vitest/globals", "@testing-library/jest-dom"],
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
+      /* Bundler mode */
+      "moduleResolution": "bundler",
+      "allowImportingTsExtensions": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "react-jsx",
 
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+      /* Linting */
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noFallthroughCasesInSwitch": true,
 
-    /* Import Aliases */
-    "rootDir": "./",
-    "baseUrl": "./src",
-    "paths": {
-      "@assets/*" : ["assets/*"],
-      "@components/*": ["components/*"],
-      "@styles/*": ["styles/*"],
-      "@contexts/*": ["contexts/*"],
-      "@json/*": ["json/*"],
-      "@utils/*": ["utils/*"]
-    }
-  },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+      /* Import Aliases */
+      "rootDir": "./",
+      "baseUrl": "./src",
+      "paths": {
+         "@assets/*": ["assets/*"],
+         "@components/*": ["components/*"],
+         "@styles/*": ["styles/*"],
+         "@contexts/*": ["contexts/*"],
+         "@json/*": ["json/*"],
+         "@utils/*": ["utils/*"]
+      }
+   },
+   "include": ["src"],
+   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,5 +1,5 @@
-import { AboutSection } from "@components/aboutSection"
+import { AboutSection } from "@components/aboutSection";
 
 export const AboutPage = () => {
-    return <AboutSection />
-}
+   return <AboutSection />;
+};

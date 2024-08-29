@@ -1,5 +1,5 @@
-import { PageNotFound } from "@components/pageNotFound"
+import { PageNotFound } from "@components/pageNotFound";
 
 export const Page404 = () => {
-    return <PageNotFound />
-}
+   return <PageNotFound />;
+};

@@ -1,296 +1,321 @@
-import backgroundImage from "@assets/imgs/aboutMeBackground.jpg"
-import luanaImageWithoutBG from "@assets/imgs/luanaImageWithoutBg.png"
-import luanaImageWithoutBG2 from "@assets/imgs/luanaImageWithoutBG-2.png"
-import luanaImageWithoutBG3 from "@assets/imgs/luanaImageWithoutBG-3.png"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { instagramLink, whatsappLink } from "@utils/variables"
-import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
-import styled from "styled-components"
-import { theme } from "@styles/theme"
+import backgroundImage from "@assets/imgs/aboutMeBackground.jpg";
+import luanaImageWithoutBG from "@assets/imgs/luanaImageWithoutBg.png";
+import luanaImageWithoutBG2 from "@assets/imgs/luanaImageWithoutBG-2.png";
+import luanaImageWithoutBG3 from "@assets/imgs/luanaImageWithoutBG-3.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { instagramLink, whatsappLink } from "@utils/variables";
+import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import styled from "styled-components";
+import { theme } from "@styles/theme";
 
 export const PresentationBar = () => {
-    return (
-        <Container>
-            <h3 className="subtitle">
-                Gostaria de conhecer um pouco mais sobre o meu trabalho?
+   return (
+      <Container>
+         <h3 className="subtitle">
+            Gostaria de conhecer um pouco mais sobre o meu trabalho?
+         </h3>
+         <div className="info instagram">
+            <h3 className="message">
+               Me siga no instagram para receber todas as novidades!
             </h3>
-            <div className="info instagram">
-                <h3 className="message">
-                    Me siga no instagram para receber todas as novidades!
-                </h3>
-                <button className="button">
-                    <a href={instagramLink} className="link" target="_blank" >
-                        <FontAwesomeIcon icon={faInstagram} className="icon" />
-                        <p className="buttonText">Instagram</p>
-                    </a>
-                </button>
-            </div>
-            <div className="imageContainer">
-                <span className="lineEffect top"></span>
-                <img className="backgroundImage" src={backgroundImage} alt="Imagem de fundo azul" />
-                <img src={luanaImageWithoutBG2} alt="Foto luana no consultório" className="backgroundPhoto right" />
-                <img src={luanaImageWithoutBG} alt="Foto luana no consultório" className="aboutImage" />
-                <img src={luanaImageWithoutBG3} alt="Foto luana no consultório" className="backgroundPhoto left" />
-                <span className="lineEffect bottom"></span>
-            </div>
-            <div className="info whatsapp">
-                <h3 className="message">
-                    Agende agora a sua consulta comigo, via Whatsapp.
-                </h3>
-                <button className="button">
-                    <a href={whatsappLink} className="link" target="_blank" >
-                        <FontAwesomeIcon icon={faWhatsapp} className="icon" />
-                        <p className="buttonText">Whatsapp</p>
-                    </a>
-                </button>
-            </div>
-        </Container>
-    )
-}
+            <button className="button">
+               <a href={instagramLink} className="link" target="_blank">
+                  <FontAwesomeIcon icon={faInstagram} className="icon" />
+                  <p className="buttonText">Instagram</p>
+               </a>
+            </button>
+         </div>
+         <div className="imageContainer">
+            <span className="lineEffect top"></span>
+            <img
+               className="backgroundImage"
+               src={backgroundImage}
+               alt="Imagem de fundo azul"
+            />
+            <img
+               src={luanaImageWithoutBG2}
+               alt="Foto luana no consultório"
+               className="backgroundPhoto right"
+            />
+            <img
+               src={luanaImageWithoutBG}
+               alt="Foto luana no consultório"
+               className="aboutImage"
+            />
+            <img
+               src={luanaImageWithoutBG3}
+               alt="Foto luana no consultório"
+               className="backgroundPhoto left"
+            />
+            <span className="lineEffect bottom"></span>
+         </div>
+         <div className="info whatsapp">
+            <h3 className="message">
+               Agende agora a sua consulta comigo, via Whatsapp.
+            </h3>
+            <button className="button">
+               <a href={whatsappLink} className="link" target="_blank">
+                  <FontAwesomeIcon icon={faWhatsapp} className="icon" />
+                  <p className="buttonText">Whatsapp</p>
+               </a>
+            </button>
+         </div>
+      </Container>
+   );
+};
 
 const Container = styled.div`
-    position: relative;
-    
-    .subtitle {
-        width: fit-content;
-        position: absolute;
-        top: 5%;
-        right: 0;
-        left: 0;
-        margin: auto;
-        font-size: 2.6dvw;
-        z-index: 2;
-        font-weight: 500;
-        text-align: center;
-        color: ${theme.textColor};
-        opacity: .8;
-    }
+   position: relative;
 
-    .info {
-        position: absolute;
-        z-index: 3;
-        width: 15%;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
+   .subtitle {
+      width: fit-content;
+      position: absolute;
+      top: 5%;
+      right: 0;
+      left: 0;
+      margin: auto;
+      font-size: 2.6dvw;
+      z-index: 2;
+      font-weight: 500;
+      text-align: center;
+      color: ${theme.textColor};
+      opacity: 0.8;
+   }
 
-        .message {
-            font-size: 2.1dvw;
-            color: ${theme.textColor};
-            font-weight: 600;
-            text-align: center;
-            opacity: .8;
-        }
+   .info {
+      position: absolute;
+      z-index: 3;
+      width: 15%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
 
-        .button {
-            border: none;
-            padding: 3% 6%;
-            width: fit-content;
-            align-self: center;
-            border-radius: 1rem;
-            background-color: ${theme.secondaryColor};
-            font-size: 1.6dvw;
-            letter-spacing: .1dvw;
-            font-weight: 500;
-            cursor: pointer;
-            transition: scale .3s, border-color .3s;
-            border: .3dvw solid transparent;
-            
+      .message {
+         font-size: 2.1dvw;
+         color: ${theme.textColor};
+         font-weight: 600;
+         text-align: center;
+         opacity: 0.8;
+      }
+
+      .button {
+         border: none;
+         padding: 3% 6%;
+         width: fit-content;
+         align-self: center;
+         border-radius: 1rem;
+         background-color: ${theme.secondaryColor};
+         font-size: 1.6dvw;
+         letter-spacing: 0.1dvw;
+         font-weight: 500;
+         cursor: pointer;
+         transition: scale 0.3s, border-color 0.3s;
+         border: 0.3dvw solid transparent;
+
+         .link {
+            color: ${theme.secondaryTextColor};
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4%;
+
+            .buttonText {
+               min-width: fit-content;
+            }
+         }
+
+         &:hover {
+            scale: 1.15;
+            border-color: ${theme.secondaryTextColor};
+         }
+      }
+
+      &.whatsapp {
+         right: 25dvw;
+      }
+
+      &.instagram {
+         left: 25dvw;
+      }
+   }
+
+   .imageContainer {
+      width: 100dvw;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-content: center;
+
+      .backgroundImage {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         object-fit: cover;
+         opacity: 0.6;
+         height: 100%;
+         width: 100%;
+         object-position: center;
+         box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.6);
+      }
+
+      .aboutImage {
+         width: 100%;
+         z-index: 2;
+         filter: drop-shadow(0.5rem 0.5rem 0.5rem white);
+      }
+
+      .backgroundPhoto {
+         position: absolute;
+         z-index: 0;
+         margin: auto;
+         height: 100%;
+         scale: 2.5;
+         top: 50%;
+         opacity: 0.3;
+      }
+
+      .backgroundPhoto.left {
+         left: 10%;
+         transform: scaleX(-1);
+      }
+
+      .backgroundPhoto.right {
+         right: 12%;
+      }
+
+      .lineEffect {
+         width: 100%;
+         position: absolute;
+         left: 0;
+         height: 1%;
+         background-color: white;
+         opacity: 0.6;
+         z-index: 1;
+      }
+
+      .lineEffect.top {
+         top: 7%;
+      }
+
+      .lineEffect.bottom {
+         bottom: 7%;
+      }
+   }
+
+   @media (max-width: 768px) {
+      width: 100dvw;
+      background: url(${backgroundImage});
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      padding: 4rem;
+      gap: 1rem;
+      height: auto;
+
+      .subtitle {
+         position: static;
+         font-size: 4rem;
+         text-align: center;
+         opacity: 1;
+         order: 2;
+      }
+
+      .info {
+         position: static;
+         width: 100%;
+         transform: translateY(0%);
+
+         .message {
+            font-size: 2.6rem;
+            margin-top: 1rem;
+         }
+
+         .button {
+            padding: 1rem 2rem;
+            font-size: 2rem;
+            height: fit-content;
+
             .link {
-                color: ${theme.secondaryTextColor};
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 4%;
-
-                .buttonText {
-                    min-width: fit-content;
-                }
+               gap: 0.5rem;
             }
+         }
 
-            &:hover {
-                scale: 1.15;
-                border-color: ${theme.secondaryTextColor};
-            }
-        }
+         &.whatsapp {
+            order: 3;
+         }
 
-        &.whatsapp {
-            right: 25dvw;
-        }
+         &.instagram {
+            order: 4;
+         }
+      }
 
-        &.instagram {
-            left: 25dvw;
-        }
-    }
+      .imageContainer {
+         order: 1;
+         position: static;
+         height: max-content;
+         overflow-x: hidden;
+         width: 100%;
 
-    .imageContainer {
-        width: 100dvw;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        align-content: center;
-        
-        .backgroundImage {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            object-fit: cover;
-            opacity: .6;
-            height: 100%;
-            width: 100%;
-            object-position: center;
-            box-shadow: .5rem .5rem 1rem rgba(0,0,0,.6);
-        }
-        
-        .aboutImage {
-            width: 100%;
-            z-index: 2;
-            filter: drop-shadow(.5rem .5rem .5rem white);
+         .backgroundImage,
+         .backgroundPhoto.left,
+         .aboutImage {
+            display: none;
+         }
 
-        }
-
-        .backgroundPhoto {
-            position: absolute;
-            z-index: 0;
-            margin: auto;
-            height: 100%;
-            scale: 2.5;
-            top: 50%;
-            opacity: .3;
-        }
-
-        .backgroundPhoto.left {
-            left: 10%;
-            transform: scaleX(-1);
-        }
-
-        .backgroundPhoto.right {
-            right: 12%;
-        }
-        
-        .lineEffect {
-            width: 100%;
-            position: absolute;
-            left: 0;
-            height: 1%;
-            background-color: white;
-            opacity: .6;
-            z-index: 1;
-        }
-
-        .lineEffect.top {
-            top: 7%;
-        }
-            
-        .lineEffect.bottom {
-            bottom: 7%;
-        }
-    }
-
-    @media (max-width: 768px) {        
-        width: 100dvw;
-        background: url(${backgroundImage});
-        background-size: cover;
-        display: flex;
-        flex-direction: column;
-        padding: 4rem;
-        gap: 1rem;
-        height: auto;
-
-        .subtitle {
-            position: static;
-            font-size: 4rem;
-            text-align: center;
+         .backgroundPhoto.right {
             opacity: 1;
-            order: 2;
-        }
-        
-        .info {
             position: static;
-            width: 100%;
-            transform: translateY(0%);
-            
-            .message {
-                font-size: 2.6rem;
-                margin-top: 1rem;
-            }
-    
-            .button {
-                padding: 1rem 2rem;
-                font-size: 2rem;
-                height: fit-content;
-                
-                .link {
-                    gap: .5rem;
-                }
-            }
-    
-            &.whatsapp {
-                order: 3;
-            }
-    
-            &.instagram {
-                order: 4;
-            }
-        }
-    
-        .imageContainer {
-            order: 1;
-            position: static;
-            height: max-content;
-            overflow-x: hidden;
-            width: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            height: auto;
+            transform: scaleX(1);
+            scale: 1;
+            object-position: top;
+            mask-image: linear-gradient(
+               to bottom,
+               rgba(0, 0, 0, 1) 80%,
+               rgba(0, 0, 0, 0) 100%
+            );
+            -webkit-mask-image: linear-gradient(
+               to bottom,
+               rgba(0, 0, 0, 1) 80%,
+               rgba(0, 0, 0, 0) 100%
+            );
+         }
 
-            .backgroundImage, .backgroundPhoto.left, .aboutImage {
-                display: none;
-            }
+         .lineEffect {
+         }
 
-            .backgroundPhoto.right {
-                opacity: 1;
-                position: static;
-                max-width: 100%;
-                object-fit: cover;
-                height: auto;
-                transform: scaleX(1);
-                scale: 1;
-                object-position: top;
-                mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
-                -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
-            }
-            
-            .lineEffect {
-            }
-    
-            .lineEffect.top {
-                bottom: auto;
-                top: 1rem;
-                height: .2rem;
-            }
-                
-            .lineEffect.bottom {
-                bottom: 1rem;
-                top: auto;
-                height: .2rem;
-            }
-        }
-    }
+         .lineEffect.top {
+            bottom: auto;
+            top: 1rem;
+            height: 0.2rem;
+         }
 
-    @media (max-width: 425px) {
-        .subtitle {
-            font-size: 3rem;
-        }
+         .lineEffect.bottom {
+            bottom: 1rem;
+            top: auto;
+            height: 0.2rem;
+         }
+      }
+   }
 
-        .info {
-            .message {
-                font-size: 2.4rem;
-            }
+   @media (max-width: 425px) {
+      .subtitle {
+         font-size: 3rem;
+      }
 
-            .button {
-                padding: .5rem 2rem;
-                font-size: 1.8rem;
-            }
-        }
-    }
-`
+      .info {
+         .message {
+            font-size: 2.4rem;
+         }
+
+         .button {
+            padding: 0.5rem 2rem;
+            font-size: 1.8rem;
+         }
+      }
+   }
+`;

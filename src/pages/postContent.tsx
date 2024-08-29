@@ -1,5 +1,5 @@
-import { PostContent } from "@components/equilibriumSection/posts/postContent"
+import { PostContent } from "@components/equilibriumSection/posts/postContent";
 
 export const PostContentPage = () => {
-    return <PostContent />
-}
+   return <PostContent />;
+};

@@ -1,5 +1,5 @@
-import { EquilibriumSection } from "@components/equilibriumSection"
+import { EquilibriumSection } from "@components/equilibriumSection";
 
 export const EquilibriumPage = () => {
-    return <EquilibriumSection />
-}
+   return <EquilibriumSection />;
+};

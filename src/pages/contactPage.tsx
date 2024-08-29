@@ -1,5 +1,5 @@
-import { ContactSection } from "@components/contactSection"
+import { ContactSection } from "@components/contactSection";
 
 export const ContactPage = () => {
-    return <ContactSection/>
-}
+   return <ContactSection />;
+};
