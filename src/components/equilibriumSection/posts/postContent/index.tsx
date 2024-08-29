@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client"
 import { ErrorPage } from "@components/equilibriumSection/errorPage"
 import { Footer } from "@components/footer"
 import { Header } from "@components/header"
-import { GET_POST_BY_ID_QUERY } from "@utils/blogAPI"
+import { GET_EQUILIBRIUM_POST_BY_ID_QUERY } from "@utils/blogAPI"
 import { IEquilibriumPostById } from "@utils/blogInterfaces"
 import { useParams } from "react-router-dom"
 import styled from "styled-components"
@@ -13,7 +13,7 @@ import { fontSize, fontWeight, theme } from "@styles/theme"
 
 export const PostContent = () => {
     const { id } = useParams();
-    const { data, loading, error } = useQuery<IEquilibriumPostById>(GET_POST_BY_ID_QUERY, {
+    const { data, loading, error } = useQuery<IEquilibriumPostById>(GET_EQUILIBRIUM_POST_BY_ID_QUERY, {
         variables: { id }
     });
 
