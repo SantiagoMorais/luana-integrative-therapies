@@ -5,7 +5,7 @@ exports[`<Footer /> > should the buttons have the correct url to the correspondi
   class="navigation"
 >
   <a
-    class="section false"
+    class="section selected"
     href="/"
   >
     home

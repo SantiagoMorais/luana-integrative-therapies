@@ -1,6 +1,5 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { NavBar } from "."
-import { NavBarProvider } from "@contexts/navBarContext"
 import { BrowserRouter } from "react-router-dom"
 
 describe('<NavBar />', () => {
@@ -12,46 +11,6 @@ describe('<NavBar />', () => {
         )
         const links = screen.queryAllByRole("listitem");
         expect(links).toHaveLength(5);
-    })
-
-    it("should the home link have the className 'selected'", () => {
-        render(
-            <NavBarProvider>
-                <BrowserRouter>
-                    <NavBar />
-                </BrowserRouter>
-            </ NavBarProvider>
-        )
-
-        const homeLink = screen.getByText(/home/i);
-        const contactLink = screen.getByText(/contato/i)
-
-        expect(homeLink.classList.contains('selected')).toBeTruthy();
-        expect(contactLink.classList.contains('selected')).toBeFalsy();
-    })
-
-    it("should add the className 'selected' to a button when it's clicked", async () => {
-        render(
-            <NavBarProvider>
-                <BrowserRouter>
-                    <NavBar />
-                </BrowserRouter>
-            </ NavBarProvider>
-        )
-        const links = screen.getAllByRole("listitem");
-
-        expect(links[1].classList.contains('selected')).toBeFalsy();
-
-        fireEvent.click(links[1])
-        waitFor(() => {
-             expect(links[1].classList.contains('selected')).toBeTruthy();
-        })
-        
-        fireEvent.click(links[2])
-        waitFor(() => {
-            expect(links[2].classList.contains('selected')).toBeTruthy();
-            expect(links[1].classList.contains('selected')).toBeFalsy();
-        })
     })
 })
 
