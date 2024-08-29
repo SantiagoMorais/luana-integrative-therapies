@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 interface IEquilibriumTopics {
    topicSelected: string;
    setTopicSelected: React.Dispatch<React.SetStateAction<string>>;
-   handleSelectedButton: (buttonType: string) => void;
+   handleSelectedButton: (_buttonType: string) => void;
 }
 
 export const EquilibriumTopicsContext = createContext<IEquilibriumTopics>({
