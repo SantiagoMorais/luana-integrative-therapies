@@ -106,10 +106,14 @@ const Container = styled.ul<{ $hasMoreData: boolean }>`
    }
 
    @media (max-width: 900px) {
-      grid-template-columns: repeat(2, minmax(25rem, 1fr));
+      .postsContainer {
+         grid-template-columns: repeat(2, minmax(25rem, 1fr));
+      }
    }
 
    @media (max-width: 600px) {
-      grid-template-columns: 1fr;
+      .postsContainer {
+         grid-template-columns: 1fr;
+      }
    }
 `;
