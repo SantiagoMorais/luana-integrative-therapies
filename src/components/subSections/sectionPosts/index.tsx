@@ -41,6 +41,7 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
          first: 10,
       },
    });
+   
    const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
    const location = useLocation();

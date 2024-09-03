@@ -9,7 +9,7 @@ interface IPostBannerProps {
    infoNode: IEquilibriumPostNode;
 }
 
-export const PostBanner: React.FC<IPostBannerProps> = ({ infoNode }) => {
+export const PostCard: React.FC<IPostBannerProps> = ({ infoNode }) => {
    return (
       <Container>
          <Link to={`/equilibrium/${infoNode.id}`} className="banner">

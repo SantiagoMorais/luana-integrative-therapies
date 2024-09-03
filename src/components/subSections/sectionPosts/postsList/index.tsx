@@ -1,6 +1,6 @@
 import { IEquilibriumPostEdge } from "@utils/equilibriumBlogInterfaces";
 import styled from "styled-components";
-import { PostBanner } from "./postBanner";
+import { PostCard } from "./postCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
 import { fontSize, fontWeight, theme } from "@styles/theme";
@@ -19,11 +19,12 @@ export const PostsList: React.FC<IPostsListProps> = ({
    loadMore,
    loadingPosts,
 }) => {
+   
    return (
       <Container $hasMoreData={hasMoreData}>
          <div className="postsContainer">
             {infoEdge?.map((post) => (
-               <PostBanner infoNode={post.node} key={post.node.id} />
+               <PostCard infoNode={post.node} key={post.node.id} />
             ))}
          </div>
          <button
