@@ -4,9 +4,10 @@ import { SectionSelectedContext } from "@contexts/sectionSelectedContext";
 import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { SectionBanner } from "./sectionBanner";
 
 export const SubSections = () => {
-   const { setSectionSelected } = useContext(
+   const { setSectionSelected, sectionSelected } = useContext(
       SectionSelectedContext
    );
 
@@ -25,11 +26,12 @@ export const SubSections = () => {
         default:
             setSectionSelected("");
       }
-   }, [locationName, setSectionSelected]);
+   }, [locationName, setSectionSelected]);   
 
    return (
       <Container>
          <Header />
+         <SectionBanner sectionSelected={sectionSelected} />
 
          <Footer />
       </Container>

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import data from "@json/index.json"
 
 interface ISectionBannerProps {
-   sectionSelected: "equilibrium" | "segredos-da-lua";
+   sectionSelected: "equilibrium" | "segredos-da-lua" | "";
 }
 
 export const SectionBanner: React.FC<ISectionBannerProps> = ({

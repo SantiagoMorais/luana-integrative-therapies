@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 interface ISectionSelected {
-   sectionSelected: string;
-   setSectionSelected: React.Dispatch<React.SetStateAction<string>>;
+   sectionSelected: "" | "equilibrium" | "segredos-da-lua";
+   setSectionSelected: React.Dispatch<React.SetStateAction<"" | "equilibrium" | "segredos-da-lua">>;
 }
 
 export const SectionSelectedContext = createContext<ISectionSelected>({
@@ -16,7 +16,7 @@ interface ISectionSelectedProviderProps {
 export const SectionSelectedProvider: React.FC<
    ISectionSelectedProviderProps
 > = ({ children }) => {
-   const [sectionSelected, setSectionSelected] = useState<string>("");
+   const [sectionSelected, setSectionSelected] = useState<"" | "equilibrium" | "segredos-da-lua">("");
 
    return (
       <SectionSelectedContext.Provider value={{ sectionSelected, setSectionSelected }}>
