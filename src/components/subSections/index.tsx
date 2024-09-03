@@ -20,7 +20,7 @@ export const SubSections = () => {
             setSectionSelected("equilibrium");
             break;
         case "segredos-da-lua":
-            setSectionSelected("moonsSecrets");
+            setSectionSelected("segredos-da-lua");
             break;
         default:
             setSectionSelected("");

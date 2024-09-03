@@ -92,11 +92,13 @@
    ],
    "sectionsInfo": [
       {
+         "id": "equilibrium",
          "title": "Equilibrium",
          "subtitle": "Equilíbrio e Bem-estar com as Terapias Integrativas",
          "description": "Descubra como nossas terapias promovem o equilíbrio e bem-estar. Conheça nossas técnicas, explore publicações valiosas e veja como essas abordagens naturais podem transformar sua saúde e proporcionar uma vida."
       },
       {
+         "id": "segredos-da-lua",
          "title": "Segredos da Lua",
          "subtitle": "Bem-estar Natural com Óleos Essenciais e Aromaterapia",
          "description": "Explore o poder dos óleos essenciais, da aromaterapia e muito mais para alcançar o bem-estar de forma natural. Mergulhe em nossas técnicas, conheça produtos artesanais e veja como integrar a natureza na sua rotina pode transformar sua saúde e trazer os Segredos da Lua para sua vida."
