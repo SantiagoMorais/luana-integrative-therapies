@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { TopicsList } from "./topicsList";
 import { IEquilibriumTopicsData } from "@utils/equilibriumBlogInterfaces";
 import { ISegredosDaLuaTopicsData } from "@utils/moonsSecretsBlogInterfaces";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { SectionSelectedContext } from "@contexts/sectionSelectedContext";
 
 interface ISectionTopics {
@@ -32,25 +32,79 @@ const isSegredosDaLuaTopicsData = (
 export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    const { sectionSelected } = useContext(SectionSelectedContext);
 
-   const { data } = useQuery<IEquilibriumTopicsData | ISegredosDaLuaTopicsData>(
-      query,
-      {
-         variables: {
-            first: 5,
-         },
-      }
-   );
+   const { data, fetchMore, loading } = useQuery<
+      IEquilibriumTopicsData | ISegredosDaLuaTopicsData
+   >(query, {
+      variables: {
+         first: 5,
+      },
+   });
+
+   const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
    let topics = null;
+   let hasMore: boolean = false;
+   let endCursor: string | null = "";
 
    if (sectionSelected === "equilibrium" && isEquilibriumTopicsData(data)) {
       topics = data.equilibriumTopicosConnection.edges;
+      hasMore = data.equilibriumTopicosConnection.pageInfo.hasNextPage;
+      endCursor = data.equilibriumTopicosConnection.pageInfo.endCursor;
    } else if (
       sectionSelected === "segredos-da-lua" &&
       isSegredosDaLuaTopicsData(data)
    ) {
       topics = data.segredosDaLuaTopicosConnection.edges;
+      hasMore = data.segredosDaLuaTopicosConnection.pageInfo.hasNextPage;
+      endCursor = data.segredosDaLuaTopicosConnection.pageInfo.endCursor;
    }
+
+   const loadMoreTopics = () => {
+      if (loading || !data) return;
+
+      setLoadingMore(true);
+
+      fetchMore({
+         variables: {
+            after: endCursor,
+            first: 5,
+         },
+         updateQuery: (prevResult, { fetchMoreResult }) => {
+            setLoadingMore(false);
+            if (!fetchMoreResult) return prevResult;
+
+            if (
+               isEquilibriumTopicsData(prevResult) &&
+               isEquilibriumTopicsData(fetchMoreResult)
+            ) {
+               return {
+                  equilibriumTopicosConnection: {
+                     ...fetchMoreResult.equilibriumTopicosConnection,
+                     edges: [
+                        ...prevResult.equilibriumTopicosConnection.edges,
+                        ...fetchMoreResult.equilibriumTopicosConnection.edges,
+                     ],
+                  },
+               };
+            } else if (
+               isSegredosDaLuaTopicsData(prevResult) &&
+               isSegredosDaLuaTopicsData(fetchMoreResult)
+            ) {
+               return {
+                  segredosDaLuaTopicosConnection: {
+                     ...fetchMoreResult.segredosDaLuaTopicosConnection,
+                     edges: [
+                        ...prevResult.segredosDaLuaTopicosConnection.edges,
+                        ...fetchMoreResult.segredosDaLuaTopicosConnection.edges,
+                     ],
+                  },
+               };
+            } else {
+               return prevResult;
+            }
+         },
+      });
+   };
 
    return (
       <Container>
@@ -60,6 +114,9 @@ export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
                info={topics}
                slidesPerView={4}
                imagesHeightInRem={30}
+               loadMore={loadMoreTopics}
+               hasMore={hasMore}
+               loading={loadingMore}
             />
          </div>
       </Container>

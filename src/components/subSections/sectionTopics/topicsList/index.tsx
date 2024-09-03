@@ -3,8 +3,8 @@ import { fontSize, fontWeight, theme } from "@styles/theme";
 import { IEquilibriumTopicEdge } from "@utils/equilibriumBlogInterfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-//    faAdd,
-//    faHourglassHalf,
+   faAdd,
+   faHourglassHalf,
    faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -21,17 +21,17 @@ interface ITopicsListProps {
    slidesPerView: number;
    info: IEquilibriumTopicEdge[] | ISegredosDaLuaTopicEdge[] | null;
    imagesHeightInRem: number;
-//    loadMore: () => void;
-//    hasMore: boolean;
-//    loading: boolean;
+   loadMore: () => void;
+   hasMore: boolean;
+   loading: boolean;
 }
 
 export const TopicsList: React.FC<ITopicsListProps> = ({
    slidesPerView,
    info,
-//    loadMore,
-//    hasMore,
-//    loading,
+   loadMore,
+   hasMore,
+   loading,
    imagesHeightInRem,
 }) => {
    const [slides, setSlides] = useState<number>(slidesPerView);
@@ -102,7 +102,7 @@ export const TopicsList: React.FC<ITopicsListProps> = ({
                   </span>
                </SwiperSlide>
             ))}
-            {/* {hasMore && (
+            {hasMore && (
                <SwiperSlide className="loadMore">
                   {loading ? (
                      <div className="loading">
@@ -115,7 +115,7 @@ export const TopicsList: React.FC<ITopicsListProps> = ({
                   ) : (
                      <button
                         className="button"
-                        // onClick={loadMore}
+                        onClick={loadMore}
                         title="Carregar mais"
                      >
                         <FontAwesomeIcon icon={faAdd} className="icon" />
@@ -123,7 +123,7 @@ export const TopicsList: React.FC<ITopicsListProps> = ({
                      </button>
                   )}
                </SwiperSlide>
-            )} */}
+            )}
          </Swiper>
       </Container>
    );
