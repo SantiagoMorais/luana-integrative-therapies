@@ -1,12 +1,9 @@
 import { createContext, useState } from "react";
 
 interface IPostOrTopic {
-   postOrTopicSelected: string;
-   setPostOrTopicSelected: React.Dispatch<React.SetStateAction<string>>;
-   handleSelectedButton: (
-      _buttonType: "posts" | "topics",
-      _categoryType: "equilibrium" | "moonsSecrets"
-   ) => void;
+   postOrTopicSelected: "" | "posts" | "topics";
+   setPostOrTopicSelected: React.Dispatch<React.SetStateAction<"" | "posts" | "topics">>;
+   handleSelectedButton: (_buttonType: "posts" | "topics") => void;
 }
 
 export const PostOrTopicContext = createContext<IPostOrTopic>({
@@ -22,9 +19,9 @@ interface IPostOrTopicProviderProps {
 export const PostOrTopicProvider: React.FC<IPostOrTopicProviderProps> = ({
    children,
 }) => {
-   const [postOrTopicSelected, setPostOrTopicSelected] = useState<string>("");
+   const [postOrTopicSelected, setPostOrTopicSelected] = useState<"" | "posts" | "topics">("");
 
-   const handleSelectedButton = (buttonType: string) => {
+   const handleSelectedButton = (buttonType: "posts" | "topics") => {
       setPostOrTopicSelected(buttonType === "posts" ? "posts" : "topics");
    };
 
