@@ -1,46 +1,25 @@
-import { createContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-
+import { createContext, useState } from "react";
 interface ISectionSelected {
    sectionSelected: string;
+   setSectionSelected: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const SectionSelectedContext = createContext<ISectionSelected>({
    sectionSelected: "",
+   setSectionSelected: () => {},
 });
 
 interface ISectionSelectedProviderProps {
    children: React.ReactNode;
 }
 
-export const SectionSelectedProvider: React.FC<ISectionSelectedProviderProps> = ({
-   children,
-}) => {
-   const location = useLocation();
-   const locationPath = location.pathname.slice(1);
-   const locationName = locationPath.split("/")[0];
-
-   const [sectionSelected, setSectionSelected] = useState<string>(
-      locationName === "equilibrium"
-         ? "equilibrium"
-         : locationName === "segredos-da-lua"
-         ? "moonsSecrets"
-         : ""
-   );
-
-   useEffect(() => {
-      const newSection =
-         locationName === "equilibrium"
-            ? "equilibrium"
-            : locationName === "segredos-da-lua"
-            ? "moonsSecrets"
-            : "";
-
-      setSectionSelected(newSection);
-   }, [locationName]);
+export const SectionSelectedProvider: React.FC<
+   ISectionSelectedProviderProps
+> = ({ children }) => {
+   const [sectionSelected, setSectionSelected] = useState<string>("");
 
    return (
-      <SectionSelectedContext.Provider value={{ sectionSelected }}>
+      <SectionSelectedContext.Provider value={{ sectionSelected, setSectionSelected }}>
          {children}
       </SectionSelectedContext.Provider>
    );
