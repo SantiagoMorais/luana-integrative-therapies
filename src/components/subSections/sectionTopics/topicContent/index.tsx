@@ -8,6 +8,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { ISegredosDaLuaTopicEdge } from "@utils/moonsSecretsBlogInterfaces";
 import { useContext } from "react";
 import { TopicsCarouselContext } from "@contexts/topicsCarouselContext";
+import { TopicsListIsEmpty } from "./topicsListIsEmpty";
 
 interface ITopicContentProps {
    data: IEquilibriumTopicEdge[] | ISegredosDaLuaTopicEdge[] | null;
@@ -49,8 +50,7 @@ export const TopicContent: React.FC<ITopicContentProps> = ({ data }) => {
                </div>
             </>
          ) : (
-            ""
-            // <EquilibriumTopicListEmpty />
+            <TopicsListIsEmpty />
          )}
       </Container>
    );

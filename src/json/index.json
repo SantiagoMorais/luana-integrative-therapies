@@ -103,5 +103,17 @@
          "subtitle": "Bem-estar Natural com Óleos Essenciais e Aromaterapia",
          "description": "Explore o poder dos óleos essenciais, da aromaterapia e muito mais para alcançar o bem-estar de forma natural. Mergulhe em nossas técnicas, conheça produtos artesanais e veja como integrar a natureza na sua rotina pode transformar sua saúde e trazer os Segredos da Lua para sua vida."
       }
+   ],
+   "topicsListIsEmptyMessages": [
+      {
+         "id": "equilibrium",
+         "subtitle": "Aqui você encontrará mais informações sobre nossas terapias e artigos valiosos para alcançar o equilíbrio entre saúde e energia.",
+         "description": "Estamos preparando conteúdos especiais para guiar você nas terapias que oferecemos em nossa clínica. Em breve, compartilharemos informações essenciais para ajudar você a entender como alcançar o equilíbrio perfeito entre saúde e energia. Tudo pensado para o seu bem-estar. Fique de olho!"
+      },
+      {
+         "id": "segredos-da-lua",
+         "subtitle": "Descubra o poder das plantas e dos óleos essenciais em breve! Vamoscompartilhar conhecimentos e dicas valiosas para seu bem-estar",
+         "description": "Os Segredos da Lua estão prestes a serem revelados! Prepare-se parauma jornada onde a sabedoria das plantas e os mistérios dos óleosessenciais vão transformar sua rotina. Em breve, traremos conteúdosexclusivos que vão iluminar seu caminho para o bem-estar natural.Fique ligado e descubra como os Segredos da Lua podem harmonizar suavida!"
+      }
    ]
 }
