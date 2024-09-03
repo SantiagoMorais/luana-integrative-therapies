@@ -8,6 +8,7 @@ import { SectionBanner } from "./sectionBanner";
 import { PostOrTopicContext } from "@contexts/postOrTopicContext";
 import { SectionPosts } from "./sectionPosts";
 import { SectionTopics } from "./sectionTopics";
+import { GET_EQUILIBRIUM_TOPICS_QUERY, GET_SEGREDOS_DA_LUA_TOPICS_QUERY } from "@utils/blogAPI";
 
 export const SubSections = () => {
    const { setSectionSelected, sectionSelected } = useContext(
@@ -40,7 +41,7 @@ export const SubSections = () => {
          {postOrTopicSelected === "posts" ? (
             <SectionPosts />
          ) : (
-            <SectionTopics />
+            <SectionTopics query={sectionSelected === "equilibrium" ? GET_EQUILIBRIUM_TOPICS_QUERY : GET_SEGREDOS_DA_LUA_TOPICS_QUERY}/>
          )}
          <Footer />
       </Container>

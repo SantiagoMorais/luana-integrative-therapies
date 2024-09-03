@@ -94,7 +94,7 @@ export const GET_EQUILIBRIUM_TOPICS_QUERY = gql`
    }
 `;
 
-export const GET_MOONS_SECRETS_POSTS_QUERY = gql`
+export const GET_SEGREDOS_DA_LUA_POSTS_QUERY = gql`
    query GetAllMoonsSecretsPosts($after: String, $first: Int!) {
       segredosDaLuaPostsConnection(after: $after, first: $first) {
          pageInfo {
@@ -128,7 +128,7 @@ export const GET_MOONS_SECRETS_POSTS_QUERY = gql`
    }
 `;
 
-export const GET_MOONS_SECRETS_POST_BY_ID_QUERY = gql`
+export const GET_SEGREDOS_DA_LUA_POST_BY_ID_QUERY = gql`
    query GetMoonsSecretsPostById($id: ID!) {
       segredosDaLuaPost(where: { id: $id }) {
          id
@@ -154,7 +154,7 @@ export const GET_MOONS_SECRETS_POST_BY_ID_QUERY = gql`
    }
 `;
 
-export const GET_MOONS_SECRETS_TOPICS_QUERY = gql`
+export const GET_SEGREDOS_DA_LUA_TOPICS_QUERY = gql`
    query GetAllMoonsSecretsTopics($after: String, $first: Int!) {
       segredosDaLuaTopicosConnection(after: $after, first: $first) {
          pageInfo {

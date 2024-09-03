@@ -1,5 +1,5 @@
 // Posts interface
-export interface IMoonsSecretsPostNode {
+export interface ISegredosDaLuaPostNode {
    id: string;
    titulo: string;
    subtitulo?: string;
@@ -24,8 +24,8 @@ export interface IMoonsSecretsPostNode {
    };
 }
 
-export interface IMoonsSecretsPostEdge {
-   node: IMoonsSecretsPostNode;
+export interface ISegredosDaLuaPostEdge {
+   node: ISegredosDaLuaPostNode;
 }
 
 export interface IPageInfo {
@@ -33,22 +33,22 @@ export interface IPageInfo {
    endCursor: string | null;
 }
 
-export interface IMoonsSecretsPostsConnection {
+export interface ISegredosDaLuaPostsConnection {
    pageInfo: IPageInfo;
-   edges: IMoonsSecretsPostEdge[];
+   edges: ISegredosDaLuaPostEdge[];
 }
 
-export interface IMoonsSecretsPostsData {
-   segredosDaLuaPostsConnection: IMoonsSecretsPostsConnection;
+export interface ISegredosDaLuaPostsData {
+   segredosDaLuaPostsConnection: ISegredosDaLuaPostsConnection;
 }
 
-export interface IMoonsSecretsPostById {
-   segredosDaLuaPost: IMoonsSecretsPostNode;
+export interface ISegredosDaLuaPostById {
+   segredosDaLuaPost: ISegredosDaLuaPostNode;
 }
 
 // Topics Interface
 
-export interface IMoonsSecretsTopicNode {
+export interface ISegredosDaLuaTopicNode {
    id: string;
    nome: string;
    descricao: {
@@ -59,15 +59,15 @@ export interface IMoonsSecretsTopicNode {
    };
 }
 
-export interface IMoonsSecretsTopicEdge {
-   node: IMoonsSecretsTopicNode;
+export interface ISegredosDaLuaTopicEdge {
+   node: ISegredosDaLuaTopicNode;
 }
 
-export interface IMoonsSecretsTopicsConnection {
+export interface ISegredosDaLuaTopicsConnection {
    pageInfo: IPageInfo;
-   edges: IMoonsSecretsTopicEdge[];
+   edges: ISegredosDaLuaTopicEdge[];
 }
 
-export interface IMoonsSecretsTopicsData {
-   segredosDaLuaTopicosConnection: IMoonsSecretsTopicsConnection;
+export interface ISegredosDaLuaTopicsData {
+   segredosDaLuaTopicosConnection: ISegredosDaLuaTopicsConnection;
 }
