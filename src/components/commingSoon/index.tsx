@@ -80,11 +80,10 @@ const Container = styled.section`
 
       .commingSoonImage {
          margin-top: 2rem;
-         max-width: 40rem;
+         max-width: 60rem;
          width: 100%;
-         border-radius: 30%;
+         border-radius: 10%;
          border: 1rem solid ${theme.primaryColor};
-         filter: saturate(150%);
       }
    }
 

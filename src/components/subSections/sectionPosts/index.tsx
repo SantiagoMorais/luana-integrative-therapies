@@ -5,11 +5,12 @@ import { IEquilibriumPostsData } from "@utils/equilibriumBlogInterfaces";
 import { useState } from "react";
 import styled from "styled-components";
 // import { ErrorPage } from "../errorPage";
-import { CommingSoon } from "@components/commingSoon";
 import { fontSize, fontWeight, theme } from "@styles/theme";
 import { ISegredosDaLuaPostsData } from "@utils/moonsSecretsBlogInterfaces";
 import { useLocation } from "react-router-dom";
 import { PostsList } from "./postsList";
+import { ErrorPage } from "../errorPage";
+import { NoPosts } from "../noPosts";
 // import { PostsList } from "./postsList";
 
 interface ISectionPosts {
@@ -41,7 +42,7 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
          first: 10,
       },
    });
-   
+
    const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
    const location = useLocation();
@@ -126,8 +127,7 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
                   <p className="loadingMessage">Carregando...</p>
                </>
             ) : error ? (
-               //    <ErrorPage />
-               ""
+               <ErrorPage />
             ) : data &&
               ((locationName === "equilibrium" &&
                  isEquilibriumPostsData(data) &&
@@ -147,7 +147,7 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
                   />
                </>
             ) : (
-               <CommingSoon />
+               <NoPosts />
             )}
          </div>
       </Container>
