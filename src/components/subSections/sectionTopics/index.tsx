@@ -6,6 +6,7 @@ import { IEquilibriumTopicsData } from "@utils/equilibriumBlogInterfaces";
 import { ISegredosDaLuaTopicsData } from "@utils/moonsSecretsBlogInterfaces";
 import { useContext, useState } from "react";
 import { SectionSelectedContext } from "@contexts/sectionSelectedContext";
+import { TopicContent } from "./topicContent";
 
 interface ISectionTopics {
    query: DocumentNode;
@@ -28,6 +29,28 @@ const isSegredosDaLuaTopicsData = (
       undefined
    );
 };
+
+const handleSlidesPerView = (
+    data: IEquilibriumTopicsData | ISegredosDaLuaTopicsData | undefined,
+    sectionSelected: string
+ ): number => {
+    if (!data) {
+       return 1;
+    }
+ 
+    let topicsLength = 0;
+ 
+    if (sectionSelected === "equilibrium" && isEquilibriumTopicsData(data)) {
+       topicsLength = data.equilibriumTopicosConnection.edges.length;
+    } else if (
+       sectionSelected === "segredos-da-lua" &&
+       isSegredosDaLuaTopicsData(data)
+    ) {
+       topicsLength = data.segredosDaLuaTopicosConnection.edges.length;
+    }
+ 
+    return topicsLength < 5 ? topicsLength : 4;
+ };
 
 export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    const { sectionSelected } = useContext(SectionSelectedContext);
@@ -106,18 +129,21 @@ export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
       });
    };
 
+   const slidesPerView = handleSlidesPerView(data, sectionSelected);
+
    return (
       <Container>
          <div className="content">
             <h2 className="sectionTitle">Veja alguns dos nossos serviços:</h2>
             <TopicsList
                info={topics}
-               slidesPerView={4}
-               imagesHeightInRem={30}
+               slidesPerView={slidesPerView}
+               imagesHeightInRem={40}
                loadMore={loadMoreTopics}
                hasMore={hasMore}
                loading={loadingMore}
             />
+            <TopicContent data={topics}/>
          </div>
       </Container>
    );

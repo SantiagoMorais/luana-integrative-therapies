@@ -14,8 +14,9 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ISegredosDaLuaTopicEdge } from "@utils/moonsSecretsBlogInterfaces";
+import { TopicsCarouselContext } from "@contexts/topicsCarouselContext";
 
 interface ITopicsListProps {
    slidesPerView: number;
@@ -34,6 +35,7 @@ export const TopicsList: React.FC<ITopicsListProps> = ({
    loading,
    imagesHeightInRem,
 }) => {
+   const { setTopicSelected } = useContext(TopicsCarouselContext);
    const [slides, setSlides] = useState<number>(slidesPerView);
 
    useEffect(() => {
@@ -74,10 +76,7 @@ export const TopicsList: React.FC<ITopicsListProps> = ({
             className="swiper"
          >
             {info?.map((topic, index) => (
-               <SwiperSlide
-                  key={topic.node.id}
-                  className="slide"
-               >
+               <SwiperSlide key={topic.node.id} className="slide" onClick={() => setTopicSelected(topic.node.id)}>
                   {topic.node.imagem?.url ? (
                      <img
                         className="slideImage"
@@ -325,7 +324,8 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
          .slide {
             .slideImage,
             .imageNotFound {
-               height: calc(${(props) => `${props.$imagesHeightInRem}rem`} * 0.75);
+               height: calc(${(props) => `${props.$imagesHeightInRem}rem`} * 0.75
+               );
             }
          }
 
@@ -348,7 +348,8 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
          .slide {
             .slideImage,
             .imageNotFound {
-               height: calc(${(props) => `${props.$imagesHeightInRem}rem`} * 0.5);
+               height: calc(${(props) => `${props.$imagesHeightInRem}rem`} * 0.5
+               );
             }
          }
 

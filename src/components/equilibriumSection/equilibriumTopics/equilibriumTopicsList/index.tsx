@@ -15,7 +15,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useContext, useEffect, useState } from "react";
-import { EquilibriumCarouselContext } from "@contexts/equilibriumCarouselContext";
+import { TopicsCarouselContext } from "@contexts/topicsCarouselContext";
 
 interface ITherapiesListProps {
    slidesPerView: number;
@@ -34,7 +34,7 @@ export const EquilibriumTopicsList: React.FC<ITherapiesListProps> = ({
    loading,
    imagesHeightInRem,
 }) => {
-   const { setCurrentTopicId } = useContext(EquilibriumCarouselContext);
+   const { setTopicSelected } = useContext(TopicsCarouselContext);
    const [slides, setSlides] = useState<number>(slidesPerView);
 
    useEffect(() => {
@@ -78,7 +78,7 @@ export const EquilibriumTopicsList: React.FC<ITherapiesListProps> = ({
                <SwiperSlide
                   key={topic.node.id}
                   className="slide"
-                  onClick={() => setCurrentTopicId(topic.node.id)}
+                  onClick={() => setTopicSelected(topic.node.id)}
                >
                   {topic.node.imagem?.url ? (
                      <img
