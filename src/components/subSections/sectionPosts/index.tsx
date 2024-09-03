@@ -9,6 +9,7 @@ import { CommingSoon } from "@components/commingSoon";
 import { fontSize, fontWeight, theme } from "@styles/theme";
 import { ISegredosDaLuaPostsData } from "@utils/moonsSecretsBlogInterfaces";
 import { useLocation } from "react-router-dom";
+import { PostsList } from "./postsList";
 // import { PostsList } from "./postsList";
 
 interface ISectionPosts {
@@ -137,12 +138,12 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
                   <h2 className="postsTitle">
                      Publicações sobre nossas terapias:
                   </h2>
-                  {/* <PostsList
-                     infoEdge={data.equilibriumPostsConnection.edges}
+                  <PostsList
+                     infoEdge={posts}
                      hasMoreData={hasMore}
-                     loadMore={loadMoreTopics}
+                     loadMore={loadMorePosts}
                      loadingPosts={loadingMore}
-                  /> */}
+                  />
                </>
             ) : (
                <CommingSoon />
