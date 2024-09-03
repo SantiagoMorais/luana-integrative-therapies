@@ -3,8 +3,6 @@ import { HomePage } from "./homePage";
 import { AboutPage } from "./aboutPage";
 import { ContactPage } from "./contactPage";
 import { Page404 } from "./Page404";
-import { EquilibriumPostContentPage } from "./equilibriumPostContentPage";
-import { MoonsSecretsPostContentPage } from "./MoonsSecretsPostContentPage";
 import { SubSectionsPage } from "./sectionSelectedPage";
 
 export const AppRoutes = () => {
@@ -16,14 +14,14 @@ export const AppRoutes = () => {
             <Route path="/contato" element={<ContactPage />} />
             <Route path="/equilibrium" element={<SubSectionsPage />} />
             <Route path="/segredos-da-lua" element={<SubSectionsPage />} />
-            <Route
+            {/* <Route
                path="/equilibrium/:id"
                element={<EquilibriumPostContentPage />}
             />
             <Route
                path="/segredos-da-lua/:id"
                element={<MoonsSecretsPostContentPage />}
-            />
+            /> */}
             <Route path="*" element={<Page404 />} />
          </Routes>
       </BrowserRouter>
