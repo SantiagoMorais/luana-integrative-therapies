@@ -9,7 +9,6 @@ import { FollowMeSection } from "./followMeSection";
 
 import { Footer } from "@components/footer";
 import { Header } from "@components/header";
-import { WhatsAppButton } from "@components/whatsAppButton";
 
 export const HomeSection = () => {
    return (
@@ -24,7 +23,6 @@ export const HomeSection = () => {
          <FollowMeSection />
          <FAQs />
          <Footer />
-         <WhatsAppButton />
       </Container>
    );
 };
