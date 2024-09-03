@@ -2,6 +2,7 @@ import { EquilibriumCarouselProvider } from "@contexts/equilibriumCarouselContex
 import { AppRoutes } from "./pages/appRoutes";
 import { MoonsSecretsCarouselProvider } from "@contexts/MoonsSecretscarouselContext";
 import { TopicsProvider } from "@contexts/TopicsContext";
+import { SectionSelectedProvider } from "@contexts/sectionSelectedContext";
 
 export const App = () => {
    return (
@@ -9,7 +10,9 @@ export const App = () => {
          <TopicsProvider>
             <EquilibriumCarouselProvider>
                <MoonsSecretsCarouselProvider>
-                  <AppRoutes />
+                  <SectionSelectedProvider>
+                     <AppRoutes />
+                  </SectionSelectedProvider>
                </MoonsSecretsCarouselProvider>
             </EquilibriumCarouselProvider>
          </TopicsProvider>
