@@ -5,11 +5,16 @@ import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { SectionBanner } from "./sectionBanner";
+import { PostOrTopicContext } from "@contexts/postOrTopicContext";
+import { SectionPosts } from "./sectionPosts";
+import { SectionTopics } from "./sectionTopics";
 
 export const SubSections = () => {
    const { setSectionSelected, sectionSelected } = useContext(
       SectionSelectedContext
    );
+
+   const { postOrTopicSelected } = useContext(PostOrTopicContext);
 
    const location = useLocation();
    const locationPath = location.pathname.slice(1);
@@ -17,22 +22,26 @@ export const SubSections = () => {
 
    useEffect(() => {
       switch (locationName) {
-        case "equilibrium":
+         case "equilibrium":
             setSectionSelected("equilibrium");
             break;
-        case "segredos-da-lua":
+         case "segredos-da-lua":
             setSectionSelected("segredos-da-lua");
             break;
-        default:
+         default:
             setSectionSelected("");
       }
-   }, [locationName, setSectionSelected]);   
+   }, [locationName, setSectionSelected]);
 
    return (
       <Container>
          <Header />
          <SectionBanner sectionSelected={sectionSelected} />
-
+         {postOrTopicSelected === "posts" ? (
+            <SectionPosts />
+         ) : (
+            <SectionTopics />
+         )}
          <Footer />
       </Container>
    );
