@@ -7,6 +7,9 @@ import { ISegredosDaLuaTopicsData } from "@utils/moonsSecretsBlogInterfaces";
 import { useContext, useState } from "react";
 import { SectionSelectedContext } from "@contexts/sectionSelectedContext";
 import { TopicContent } from "./topicContent";
+import { ErrorPage } from "../errorPage";
+import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface ISectionTopics {
    query: DocumentNode;
@@ -31,31 +34,31 @@ const isSegredosDaLuaTopicsData = (
 };
 
 const handleSlidesPerView = (
-    data: IEquilibriumTopicsData | ISegredosDaLuaTopicsData | undefined,
-    sectionSelected: string
- ): number => {
-    if (!data) {
-       return 1;
-    }
- 
-    let topicsLength = 0;
- 
-    if (sectionSelected === "equilibrium" && isEquilibriumTopicsData(data)) {
-       topicsLength = data.equilibriumTopicosConnection.edges.length;
-    } else if (
-       sectionSelected === "segredos-da-lua" &&
-       isSegredosDaLuaTopicsData(data)
-    ) {
-       topicsLength = data.segredosDaLuaTopicosConnection.edges.length;
-    }
- 
-    return topicsLength < 5 ? topicsLength : 4;
- };
+   data: IEquilibriumTopicsData | ISegredosDaLuaTopicsData | undefined,
+   sectionSelected: string
+): number => {
+   if (!data) {
+      return 1;
+   }
+
+   let topicsLength = 0;
+
+   if (sectionSelected === "equilibrium" && isEquilibriumTopicsData(data)) {
+      topicsLength = data.equilibriumTopicosConnection.edges.length;
+   } else if (
+      sectionSelected === "segredos-da-lua" &&
+      isSegredosDaLuaTopicsData(data)
+   ) {
+      topicsLength = data.segredosDaLuaTopicosConnection.edges.length;
+   }
+
+   return topicsLength < 5 ? topicsLength : 4;
+};
 
 export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    const { sectionSelected } = useContext(SectionSelectedContext);
 
-   const { data, fetchMore, loading } = useQuery<
+   const { data, fetchMore, loading, error } = useQuery<
       IEquilibriumTopicsData | ISegredosDaLuaTopicsData
    >(query, {
       variables: {
@@ -135,15 +138,32 @@ export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
       <Container>
          <div className="content">
             <h2 className="sectionTitle">Veja alguns dos nossos serviços:</h2>
-            <TopicsList
-               info={topics}
-               slidesPerView={slidesPerView}
-               imagesHeightInRem={40}
-               loadMore={loadMoreTopics}
-               hasMore={hasMore}
-               loading={loadingMore}
-            />
-            <TopicContent data={topics}/>
+            {loading ? (
+               <>
+                  <div className="loading">
+                     <FontAwesomeIcon
+                        icon={faHourglassHalf}
+                        spin
+                        className="icon"
+                     />
+                  </div>
+                  <p className="loadingMessage">Carregando...</p>
+               </>
+            ) : error ? (
+               <ErrorPage />
+            ) : (
+               <>
+                  <TopicsList
+                     info={topics}
+                     slidesPerView={slidesPerView}
+                     imagesHeightInRem={40}
+                     loadMore={loadMoreTopics}
+                     hasMore={hasMore}
+                     loading={loadingMore}
+                  />
+                  <TopicContent data={topics} />
+               </>
+            )}
          </div>
       </Container>
    );
@@ -170,8 +190,8 @@ const Container = styled.div`
          border: solid 0.2rem ${theme.shadowColor};
          box-shadow: 0 0 1rem ${theme.shadowColor};
          border-radius: 50%;
-         width: 6rem;
-         height: 6rem;
+         width: 8rem;
+         height: 8rem;
          display: flex;
          justify-content: center;
          align-items: center;

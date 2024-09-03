@@ -150,12 +150,14 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
          -moz-user-select: none; /* Firefox */
          -ms-user-select: none; /* Internet Explorer/Edge */
          position: relative;
+         max-width: 35rem;
 
          .slideImage {
             height: ${(props) => `${props.$imagesHeightInRem}rem`};
             width: 100%;
             min-width: 10rem;
             object-fit: cover;
+            object-position: center;
             border-radius: 1rem;
             border: 0.3rem solid ${theme.secondaryColor};
             transition: opacity 0.5s;
@@ -165,7 +167,6 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             height: ${(props) => `${props.$imagesHeightInRem}rem`};
             width: 100%;
             min-width: 10rem;
-
             display: flex;
             flex-direction: column;
             border-radius: 1rem;
@@ -231,6 +232,8 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             align-items: center;
             border-radius: 50%;
             opacity: 0.8;
+            box-shadow: 0 0 1rem ${theme.secondaryColor};
+            background: ${theme.secondaryColor};
          }
 
          &:hover {

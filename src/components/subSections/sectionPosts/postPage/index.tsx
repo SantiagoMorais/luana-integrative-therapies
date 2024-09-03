@@ -33,7 +33,7 @@ export const PostPage = () => {
    const { id } = useParams();
    const location = useLocation();
    const locationName = location.pathname.slice(1).split("/")[0];
-
+   
    const { data, loading, error } = useQuery<
       IEquilibriumPostById | ISegredosDaLuaPostById
    >(

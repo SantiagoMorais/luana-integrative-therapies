@@ -2,7 +2,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fontSize, fontWeight, theme } from "@styles/theme"; // Certifique-se de usar o arquivo de estilo correto
 import { IEquilibriumPostNode } from "@utils/equilibriumBlogInterfaces";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 interface IPostBannerProps {
@@ -10,9 +10,12 @@ interface IPostBannerProps {
 }
 
 export const PostCard: React.FC<IPostBannerProps> = ({ infoNode }) => {
+   const location = useLocation();
+   const locationName = location.pathname.slice(1).split("/")[0];
+
    return (
       <Container>
-         <Link to={`/equilibrium/${infoNode.id}`} className="banner">
+         <Link to={`/${locationName}/${infoNode.id}`} className="banner">
             {infoNode.imagem?.url ? (
                <img
                   src={infoNode.imagem.url}

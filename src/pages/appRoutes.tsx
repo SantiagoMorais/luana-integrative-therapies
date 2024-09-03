@@ -4,6 +4,7 @@ import { AboutPage } from "./aboutPage";
 import { ContactPage } from "./contactPage";
 import { Page404 } from "./Page404";
 import { SubSectionsPage } from "./sectionSelectedPage";
+import { PostContentPage } from "./postContentPage";
 
 export const AppRoutes = () => {
    return (
@@ -14,14 +15,14 @@ export const AppRoutes = () => {
             <Route path="/contato" element={<ContactPage />} />
             <Route path="/equilibrium" element={<SubSectionsPage />} />
             <Route path="/segredos-da-lua" element={<SubSectionsPage />} />
-            {/* <Route
+            <Route
                path="/equilibrium/:id"
-               element={<EquilibriumPostContentPage />}
+               element={<PostContentPage />}
             />
             <Route
                path="/segredos-da-lua/:id"
-               element={<MoonsSecretsPostContentPage />}
-            /> */}
+               element={<PostContentPage />}
+            />
             <Route path="*" element={<Page404 />} />
          </Routes>
       </BrowserRouter>
