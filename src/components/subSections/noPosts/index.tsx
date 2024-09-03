@@ -33,11 +33,28 @@ const Container = styled.section`
       font-weight: ${fontWeight.medium};
       color: ${theme.textColor};
       text-align: center;
+      position: relative;
+
+      &::after {
+         content: "";
+         position: absolute;
+         left: 0;
+         bottom: -0.5rem;
+         height: 0.2rem;
+         width: 100%;
+         background: linear-gradient(
+            to right,
+            transparent 0%,
+            ${theme.tertiaryColor} 30%,
+            ${theme.tertiaryColor} 70%,
+            transparent 100%
+         );
+      }
    }
 
    .description {
       font-size: ${fontSize.mediumSize};
-      font-weight: ${fontWeight.medium};
+      font-weight: ${fontWeight.thin};
       color: ${theme.textColor};
       text-align: center;
       max-width: 120rem;
@@ -47,7 +64,8 @@ const Container = styled.section`
       max-width: 60rem;
       width: 100%;
       border-radius: 10%;
-      border: 1rem solid ${theme.primaryColor};
+      border: .5rem solid ${theme.shadowColor};
+      box-shadow: .5rem .5rem 1rem ${theme.secondaryColor};
    }
 
    @media(max-width: 768px) {

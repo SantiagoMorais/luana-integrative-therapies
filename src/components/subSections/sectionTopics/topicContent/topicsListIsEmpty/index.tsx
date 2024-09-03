@@ -34,7 +34,7 @@ const Container = styled.div`
    flex-direction: column;
    align-items: center;
    gap: 2rem;
-   max-width: 108rem;
+   width: 100%;
 
    .title {
       font-size: ${fontSize.extraLargeSize};
@@ -74,6 +74,7 @@ const Container = styled.div`
       border-radius: 1rem;
       border: solid 0.2rem ${theme.shadowColor};
       box-shadow: 0.5rem 0.5rem 1rem ${theme.secondaryColor};
+      margin-bottom: 2rem;
    }
 
    .message {
@@ -81,5 +82,18 @@ const Container = styled.div`
       font-weight: ${fontWeight.thin};
       color: ${theme.textColor};
       text-align: center;
+   }
+
+   @media (max-width: 768px) {
+      .subtitle {
+         font-size: ${fontSize.basicSize};
+      }
+      .message {
+         font-size: ${fontSize.basicSize};
+      }
+
+      .commingSoonImage {
+         width: 100%;
+      }
    }
 `;
