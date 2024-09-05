@@ -75,7 +75,7 @@ export const PresentationBar = () => {
 
 const Container = styled.div`
    position: relative;
-   min-width: 100dvw;
+   width: 100dvw;
    overflow: hidden;
    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.6);
 
