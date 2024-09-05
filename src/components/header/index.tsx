@@ -77,6 +77,8 @@ const Container = styled.section`
       .content {
          flex-direction: column;
          align-items: center;
+         justify-content: center;
+         align-items: center;
       }
    }
 
@@ -86,14 +88,13 @@ const Container = styled.section`
          ${theme.tertiaryColor} 0%,
          ${theme.primaryColor} 90%
       );
-      display: flex;
 
       .content {
          padding: 0;
 
          .title {
             text-align: center;
-            min-width: 100%;
+            width: 100%;
             padding-bottom: 1.5rem;
 
             .nameTitle {
