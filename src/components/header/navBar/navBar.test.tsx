@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { NavBar } from ".";
 import { BrowserRouter } from "react-router-dom";
+import { navigationLinks } from "@json/index.json";
 
 describe("<NavBar />", () => {
    it("should render the links of navigation bar", async () => {
@@ -9,8 +10,11 @@ describe("<NavBar />", () => {
             <NavBar />
          </BrowserRouter>
       );
+      
+      const linksLength = navigationLinks.length
       const links = screen.queryAllByRole("listitem");
-      expect(links).toHaveLength(4);
+
+      expect(links).toHaveLength(linksLength);
    });
 });
 

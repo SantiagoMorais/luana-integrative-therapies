@@ -36,9 +36,8 @@ export const NavBar = () => {
             />
          </button>
          <ul className={`navBar ${hamburgerIconClicked ? "clicked" : ""}`}>
-            {navigationLinks
-               .filter((nav) => nav.link)
-               .map((navButton, index) => (
+            {navigationLinks.map((navButton, index) =>
+               navButton.link !== null ? (
                   <Link key={index} to={`/${navButton.link}`}>
                      <li
                         className={`link ${
@@ -48,20 +47,12 @@ export const NavBar = () => {
                         {navButton.name}
                      </li>
                   </Link>
-               ))}
-            {navigationLinks
-               .filter((nav) => nav.link === null)
-               .map((link) => (
-                  <li className="link">
-                     <a
-                        className="googleLink"
-                        href={googleMapsLink}
-                        target="_blank"
-                     >
-                        {link.name}
-                     </a>
-                  </li>
-               ))}
+               ) : (
+                  <a className="link" href={googleMapsLink} target="_blank">
+                     <li className="googleLink">{navButton.name}</li>
+                  </a>
+               )
+            )}
          </ul>
       </Container>
    );

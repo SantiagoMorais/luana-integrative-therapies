@@ -63,9 +63,8 @@ export const Footer = () => {
                </ul>
             </div>
             <ul className="navigation">
-               {navigationLinks
-                  .filter((nav) => nav.link)
-                  .map((item) => (
+               {navigationLinks.map((item) =>
+                  item.link !== null ? (
                      <Link
                         key={item.name}
                         to={`/${item.link}`}
@@ -75,18 +74,16 @@ export const Footer = () => {
                      >
                         {item.name}
                      </Link>
-                  ))}
-               {navigationLinks
-                  .filter((nav) => nav.link === null)
-                  .map((link) => (
-                        <a
-                           className="section"
-                           href={googleMapsLink}
-                           target="_blank"
-                        >
-                           {link.name}
-                        </a>
-                  ))}
+                  ) : (
+                     <a
+                        className="section"
+                        href={googleMapsLink}
+                        target="_blank"
+                     >
+                        {item.name}
+                     </a>
+                  )
+               )}
             </ul>
          </div>
       </Container>
