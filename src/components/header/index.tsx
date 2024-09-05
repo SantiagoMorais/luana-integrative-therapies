@@ -89,16 +89,17 @@ const Container = styled.section`
       display: flex;
 
       .content {
-         padding: 0 2rem;
+         padding: 0;
 
          .title {
-            position: relative;
             text-align: center;
+            min-width: 100%;
+            padding-bottom: 1.5rem;
 
             .nameTitle {
-               font-size: 2.5;
+               font-size: 8dvw;
                font-weight: ${fontWeight.semiBold};
-               margin: 1rem 0;
+               margin: 1rem 0 0;
                line-height: 0.7;
 
                .firstLetter {
@@ -107,9 +108,8 @@ const Container = styled.section`
             }
 
             .professionalTitle {
-               font-size: 1.6rem;
+               font-size: 4.2dvw;
                position: static;
-               margin-bottom: 1rem;
             }
          }
       }
