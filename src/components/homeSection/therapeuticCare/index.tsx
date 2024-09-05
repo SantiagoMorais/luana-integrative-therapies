@@ -73,15 +73,24 @@ const Container = styled.div`
    @media (max-width: 425px) {
       padding: 2rem;
       gap: 1rem;
+      flex-wrap: nowrap;
+      align-items: center;
+      flex-direction: column;
+
+      .image {
+         order: 1;
+      }
 
       .info,
       .image {
-         min-width: 20rem;
+         min-width: auto;
+         width: 100%;
       }
 
       .info {
          font-size: ${fontSize.smallSize};
-         font-weight: 400;
+         font-weight: ${fontWeight.medium};
+         order: 2;
 
          .title {
             margin-bottom: 1rem;
