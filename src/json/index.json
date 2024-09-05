@@ -68,12 +68,8 @@
          "link": ""
       },
       {
-         "name": "sobre mim",
+         "name": "sobre mim/endereço",
          "link": "sobre-mim"
-      },
-      {
-         "name": "contato & endereço",
-         "link": "contato"
       },
       {
          "name": "equilibrium",
@@ -82,6 +78,10 @@
       {
          "name": "segredos da lua",
          "link": "segredos-da-lua"
+      },
+      {
+         "name": "como chegar",
+         "link": "contato"
       }
    ],
    "aboutMe": [

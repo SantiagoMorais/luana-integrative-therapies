@@ -73,6 +73,13 @@ const Container = styled.section`
       }
    }
 
+   @media (max-width: 630px) {
+      .content {
+         flex-direction: column;
+         align-items: center;
+      }
+   }
+
    @media (max-width: 475px) {
       background: linear-gradient(
          180deg,

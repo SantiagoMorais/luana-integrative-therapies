@@ -100,7 +100,7 @@ const Container = styled.nav`
       }
    }
 
-   @media (max-width: 543px) {
+   @media (max-width: 630px) {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -119,11 +119,11 @@ const Container = styled.nav`
          overflow: hidden;
          position: absolute;
          z-index: 10;
-         background-color: ${theme.primaryColor};
+         background-color: none;
          top: 4rem;
          width: max-content;
          border-radius: 0 0 1rem 1rem;
-         transition: height 0.3s, border-color 0.3s, transform 0.3s;
+         transition: .3s;
          border: solid transparent;
          border-width: 0 0.3rem 0.3rem 0.3rem;
          padding: 0 1rem;
@@ -133,6 +133,7 @@ const Container = styled.nav`
             transform: translateY(0rem);
             height: 22rem;
             border-color: ${theme.secondaryTextColor};
+            background-color: ${theme.primaryColor};
          }
       }
    }
