@@ -98,13 +98,12 @@ const Container = styled.div`
       }
 
       .swiper-button-next {
-         right: 0.5rem;
-         position: absolute;
+         right: 0rem;
          transform: translateY(-50%);
       }
 
       .swiper-button-prev {
-         left: 0.5rem;
+         left: 0rem;
          transform: translateY(-50%);
       }
 
@@ -125,16 +124,6 @@ const Container = styled.div`
          -moz-user-select: none; /* Firefox */
          -ms-user-select: none; /* Internet Explorer/Edge */
          max-width: 100%;
-
-         .slideImage {
-            width: 100%;
-            min-width: 10rem;
-            width: 110%;
-            object-fit: cover;
-            border-radius: 1rem;
-            border: 0.2rem solid ${theme.tertiaryColor};
-            height: auto;
-         }
 
          .slideText {
             font-size: ${fontSize.smallSize};
@@ -159,22 +148,27 @@ const Container = styled.div`
 
    @media (max-width: 768px) {
       .swiper {
-         .swiper-button-next,
-         .swiper-button-prev {
-            scale: 0.5;
+         border: solid .2rem ${theme.primaryColor};
 
-            &:hover {
-               scale: 0.7;
-            }
+         .swiper-button-next {
+            transform: none;
+            bottom: 1rem;
+            top: auto;
+            right: 1rem;
+         }
+
+         .swiper-button-prev {
+            transform: none;
+            bottom: 1rem;
+            top: auto;
+            left: 1rem;
          }
 
          .slide {
             font-size: ${fontSize.basicSize};
-
-            .slideImage {
-               max-height: 40rem;
-               height: auto;
-            }
+            margin: auto;
+            padding: 1rem 0.25rem 4rem;
+            border-radius: 1rem;
 
             .itemDescription {
                font-size: ${fontSize.basicSize};
@@ -186,11 +180,6 @@ const Container = styled.div`
    @media (max-width: 425px) {
       .swiper {
          .slide {
-            .slideImage {
-               max-height: 25rem;
-               height: auto;
-            }
-
             .slideIcon {
                font-size: ${fontSize.extraLargeSize};
             }
