@@ -1,7 +1,7 @@
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { theme } from "@styles/theme";
+import { fontSize, fontWeight, theme } from "@styles/theme";
 import { instagramLink, whatsappLink } from "@utils/variables";
 import styled from "styled-components";
 import data from "@json/index.json";
@@ -83,7 +83,7 @@ export const Footer = () => {
 const Container = styled.footer`
    padding: 3rem;
    background-color: ${theme.primaryColor};
-   font-size: 2rem;
+   font-size: ${fontSize.smallSize};
    display: flex;
    justify-content: center;
    flex-shrink: 0;
@@ -100,7 +100,7 @@ const Container = styled.footer`
       .nameTitle {
          font-size: 5rem;
          font-family: ${theme.fontFamily};
-         font-weight: 500;
+         font-weight: ${fontWeight.semiBold};
          line-height: 0.8;
          text-align: left;
          width: min-content;
@@ -143,7 +143,7 @@ const Container = styled.footer`
          .social {
             display: flex;
             gap: 1.5rem;
-            font-size: 3rem;
+            font-size: ${fontSize.mediumSize};
             cursor: pointer;
 
             li {
@@ -219,7 +219,7 @@ const Container = styled.footer`
          flex-direction: column;
 
          .nameTitle {
-            font-size: 4rem;
+            font-size: ${fontSize.extraLargeSize};
             display: flex;
             align-items: baseline;
             gap: 1rem;

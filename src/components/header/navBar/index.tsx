@@ -1,6 +1,6 @@
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { theme } from "@styles/theme";
+import { fontSize, theme } from "@styles/theme";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
@@ -70,7 +70,7 @@ const Container = styled.nav`
       }
 
       .hamburgerIcon {
-         font-size: 3rem;
+         font-size: ${fontSize.mediumSize};
          transition: 0.3s;
       }
    }
@@ -80,7 +80,7 @@ const Container = styled.nav`
       gap: 1rem;
 
       .link {
-         font-size: 2rem;
+         font-size: ${fontSize.smallSize};
          padding: 0.5rem;
          border-radius: 1rem;
          cursor: pointer;

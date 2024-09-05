@@ -5,7 +5,7 @@ import starsImage from "@assets/imgs/nightSkyPNG.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { fontSize, theme } from "@styles/theme";
+import { fontSize, fontWeight, theme } from "@styles/theme";
 import { instagramLink, whatsappLink } from "@utils/variables";
 
 export const FollowMeSection = () => {
@@ -194,7 +194,7 @@ const Container = styled.section`
             border-radius: 1rem;
             background-color: ${theme.secondaryColor};
             font-size: ${fontSize.smallSize};
-            font-weight: 500;
+            font-weight: ${fontWeight.semiBold};
             cursor: pointer;
             transition: 0.3s;
             opacity: 0.8;

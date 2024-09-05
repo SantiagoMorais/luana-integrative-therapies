@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NavBar } from "./navBar";
-import { theme } from "@styles/theme";
+import { fontSize, fontWeight, theme } from "@styles/theme";
 import { Link } from "react-router-dom";
 
 export const Header = () => {
@@ -43,9 +43,9 @@ const Container = styled.section`
          transition: 0.3s;
 
          .nameTitle {
-            font-size: 3rem;
+            font-size: ${fontSize.mediumSize};
             font-family: ${theme.fontFamily};
-            font-weight: 500;
+            font-weight: ${fontWeight.semiBold};
             margin-bottom: 2rem;
             color: ${theme.textColor};
 
@@ -58,7 +58,7 @@ const Container = styled.section`
          .professionalTitle {
             color: ${theme.textColor};
             font-size: 1.8rem;
-            font-weight: 500;
+            font-weight: ${fontWeight.semiBold};
             opacity: 0.8;
             position: absolute;
             bottom: 1.3rem;
@@ -97,12 +97,12 @@ const Container = styled.section`
 
             .nameTitle {
                font-size: 2.5;
-               font-weight: 500;
+               font-weight: ${fontWeight.semiBold};
                margin: 1rem 0;
                line-height: 0.7;
 
                .firstLetter {
-                  font-size: 4rem;
+                  font-size: ${fontSize.extraLargeSize};
                }
             }
 

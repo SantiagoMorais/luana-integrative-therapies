@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 import heroImage from "@assets/imgs/heroImageLargeScreenDevices.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, theme } from "@styles/theme";
 
 export const Hero = () => {
    return (
@@ -146,12 +146,12 @@ const Container = styled.div`
          }
 
          .subtitle {
-            font-size: 4rem;
+            font-size: ${fontSize.extraLargeSize};
          }
       }
 
       .icon {
-         font-size: 4rem;
+         font-size: ${fontSize.extraLargeSize};
          bottom: 2.5rem;
       }
    }
@@ -174,12 +174,12 @@ const Container = styled.div`
          }
 
          .subtitle {
-            font-size: 3.5rem;
+            font-size: ${fontSize.largeSize};
          }
       }
 
       .icon {
-         font-size: 3.5rem;
+         font-size: ${fontSize.largeSize};
          bottom: 1.5rem;
       }
 
@@ -211,7 +211,7 @@ const Container = styled.div`
       .slogan {
          bottom: 4rem;
          .title {
-            font-size: 4rem;
+            font-size: ${fontSize.extraLargeSize};
          }
 
          .subtitle {
@@ -220,7 +220,7 @@ const Container = styled.div`
       }
 
       .icon {
-         font-size: 3rem;
+         font-size: ${fontSize.mediumSize};
       }
    }
 

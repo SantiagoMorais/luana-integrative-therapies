@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { instagramLink, whatsappLink } from "@utils/variables";
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import styled from "styled-components";
-import { theme } from "@styles/theme";
+import { fontSize, fontWeight, theme } from "@styles/theme";
 
 export const PresentationBar = () => {
    return (
@@ -108,7 +108,7 @@ const Container = styled.div`
          margin: auto;
          font-size: 2.6dvw;
          z-index: 2;
-         font-weight: 500;
+         font-weight: ${fontWeight.semiBold};
          text-align: center;
          color: ${theme.textColor};
          opacity: 0.8;
@@ -141,7 +141,7 @@ const Container = styled.div`
             background-color: ${theme.secondaryColor};
             font-size: 1.6dvw;
             letter-spacing: 0.1dvw;
-            font-weight: 500;
+            font-weight: ${fontWeight.semiBold};
             cursor: pointer;
             transition: scale 0.3s, border-color 0.3s;
             border: 0.3dvw solid transparent;
@@ -248,7 +248,7 @@ const Container = styled.div`
 
          .subtitle {
             position: static;
-            font-size: 4rem;
+            font-size: ${fontSize.extraLargeSize};
             text-align: center;
             opacity: 1;
             order: 2;
@@ -269,7 +269,7 @@ const Container = styled.div`
 
             .button {
                padding: 1rem 2rem;
-               font-size: 2rem;
+               font-size: ${fontSize.smallSize};
                height: fit-content;
 
                .link {
@@ -342,12 +342,12 @@ const Container = styled.div`
    @media (max-width: 425px) {
       .content {
          .subtitle {
-            font-size: 3rem;
+            font-size: ${fontSize.mediumSize};
          }
 
          .info {
             .message {
-               font-size: 2.4rem;
+               font-size: ${fontSize.basicSize};
             }
 
             .button {

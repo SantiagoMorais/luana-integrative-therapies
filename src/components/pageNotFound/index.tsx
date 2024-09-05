@@ -1,6 +1,6 @@
 import { Footer } from "@components/footer";
 import { Header } from "@components/header";
-import { theme } from "@styles/theme";
+import { fontSize, fontWeight, theme } from "@styles/theme";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import image404 from "@assets/imgs/Error404.jpg";
@@ -57,7 +57,7 @@ const Container = styled.section`
          gap: 2rem;
 
          .title {
-            font-size: 4rem;
+            font-size: ${fontSize.extraLargeSize};
             font-weight: 400;
             text-align: center;
          }
@@ -66,7 +66,7 @@ const Container = styled.section`
             width: 100%;
 
             a {
-               font-weight: 500;
+               font-weight: ${fontWeight.semiBold};
                color: ${theme.secondaryColor};
             }
          }
@@ -86,11 +86,11 @@ const Container = styled.section`
       .content404 {
          .info {
             .title {
-               font-size: 3rem;
+               font-size: ${fontSize.mediumSize};
             }
 
             .advise {
-               font-size: 2rem;
+               font-size: ${fontSize.smallSize};
             }
          }
       }

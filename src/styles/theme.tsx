@@ -9,6 +9,7 @@ interface IFontSize {
 interface IFontWeight {
    thin: string;
    medium: string;
+   semiBold: string;
    bold: string;
 }
 
@@ -23,6 +24,7 @@ export const fontSize: IFontSize = {
 export const fontWeight: IFontWeight = {
    thin: "300",
    medium: "400",
+   semiBold: "500",
    bold: "600",
 };
 
