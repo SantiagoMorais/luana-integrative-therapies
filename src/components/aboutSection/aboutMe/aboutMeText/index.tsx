@@ -28,27 +28,6 @@ const Container = styled.div`
    align-items: center;
    margin-bottom: 4rem;
 
-   .title {
-      position: relative;
-      width: fit-content;
-
-      &::after {
-         position: absolute;
-         content: "";
-         height: 0.2rem;
-         width: 150%;
-         bottom: -0.2rem;
-         left: -25%;
-         background: linear-gradient(
-            to right,
-            transparent 0%,
-            ${theme.tertiaryColor} 20%,
-            ${theme.tertiaryColor} 80%,
-            transparent 100%
-         );
-      }
-   }
-
    .aboutText {
       display: flex;
       flex-direction: column;

@@ -15,6 +15,7 @@ export const whatsappLink: string = `https://api.whatsapp.com/send?phone=${phone
 
 export const address: string =
    "R. Cel. Jaíro Pereira, 20 - sala 8 - Palmares, Belo Horizonte - MG, 31155-292";
+   
 export const googleMapsLink: string = `https://www.google.com/maps/search/?api=1&query=${formatMessageForWeb(
    address
 )}`;

@@ -4,6 +4,7 @@ import { PresentationBar } from "./presentationBar";
 import { AboutMeText } from "./aboutMeText";
 import { useState } from "react";
 import { InfoButtons } from "./infoButtons";
+import { Address } from "./address";
 
 export const AboutMe = () => {
    const [infoSelected, setInfoSelected] = useState<"about-me" | "address">(
@@ -22,7 +23,7 @@ export const AboutMe = () => {
             buttonSelected={infoSelected}
             onClick={handleSelectInfo}
          />
-         {infoSelected === "about-me" ? <AboutMeText /> : ""}
+         {infoSelected === "about-me" ? <AboutMeText /> : <Address />}
       </Container>
    );
 };
