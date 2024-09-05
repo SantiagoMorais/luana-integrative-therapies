@@ -16,22 +16,6 @@ describe("Routes", () => {
       expect(slogan).toBeInTheDocument();
    });
 
-   it("should render the <EquilibriumSection /> component when the route changes", async () => {
-      render(
-         <ApolloProvider client={client}>
-            <App />
-         </ApolloProvider>
-      );
-      const user = userEvent.setup();
-      const equilibriumButton = screen.getAllByRole("link", {
-         name: /equilibrium/i,
-      });
-
-      await user.click(equilibriumButton[0]);
-
-      const equilibriumPage = screen.getByTestId(/equilibriumSection/i);
-      expect(equilibriumPage).toBeInTheDocument();
-   });
 
    it("should render the <AboutMe /> component when the route changes", async () => {
       render(

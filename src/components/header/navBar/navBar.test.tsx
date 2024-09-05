@@ -10,7 +10,7 @@ describe("<NavBar />", () => {
          </BrowserRouter>
       );
       const links = screen.queryAllByRole("listitem");
-      expect(links).toHaveLength(5);
+      expect(links).toHaveLength(4);
    });
 });
 

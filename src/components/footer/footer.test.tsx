@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { Footer } from "./index";
-import data from "@json/index.json";
 import { BrowserRouter } from "react-router-dom";
 
 describe("<Footer />", () => {
@@ -19,8 +18,7 @@ describe("<Footer />", () => {
    it("should render all links correctly", () => {
       render(<Footer />, { wrapper: BrowserRouter });
       const navLinks = document.querySelectorAll(".section");
-      const linksLength = data.navigationLinks.length;
 
-      expect(navLinks).toHaveLength(linksLength);
+      expect(navLinks).toHaveLength(4);
    });
 });

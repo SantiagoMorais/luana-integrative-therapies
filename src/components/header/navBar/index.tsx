@@ -4,7 +4,8 @@ import { fontSize, theme } from "@styles/theme";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import data from "@json/index.json";
+import { navigationLinks } from "@json/index.json";
+import { googleMapsLink } from "@utils/variables";
 
 export const NavBar = () => {
    const [hamburgerIconClicked, setHamburgerIconClicked] = useState(false);
@@ -35,17 +36,32 @@ export const NavBar = () => {
             />
          </button>
          <ul className={`navBar ${hamburgerIconClicked ? "clicked" : ""}`}>
-            {data.navigationLinks.map((navButton, index) => (
-               <Link key={index} to={`/${navButton.link}`}>
-                  <li
-                     className={`link ${
-                        locationName === navButton.link ? "selected" : ""
-                     }`}
-                  >
-                     {navButton.name}
+            {navigationLinks
+               .filter((nav) => nav.link)
+               .map((navButton, index) => (
+                  <Link key={index} to={`/${navButton.link}`}>
+                     <li
+                        className={`link ${
+                           locationName === navButton.link ? "selected" : ""
+                        }`}
+                     >
+                        {navButton.name}
+                     </li>
+                  </Link>
+               ))}
+            {navigationLinks
+               .filter((nav) => nav.link === null)
+               .map((link) => (
+                  <li className="link">
+                     <a
+                        className="googleLink"
+                        href={googleMapsLink}
+                        target="_blank"
+                     >
+                        {link.name}
+                     </a>
                   </li>
-               </Link>
-            ))}
+               ))}
          </ul>
       </Container>
    );
@@ -88,9 +104,18 @@ const Container = styled.nav`
          text-transform: capitalize;
          color: ${theme.textColor};
 
+         .googleLink {
+            color: ${theme.textColor};
+            transition: 0.3s;
+         }
+
          &:hover {
             color: ${theme.secondaryTextColor};
             background-color: ${theme.secondaryColor};
+
+            .googleLink {
+               color: ${theme.secondaryTextColor};
+            }
          }
 
          &.selected {
@@ -123,7 +148,7 @@ const Container = styled.nav`
          top: 4rem;
          width: max-content;
          border-radius: 0 0 1rem 1rem;
-         transition: .3s;
+         transition: 0.3s;
          border: solid transparent;
          border-width: 0 0.3rem 0.3rem 0.3rem;
          padding: 0 1rem;

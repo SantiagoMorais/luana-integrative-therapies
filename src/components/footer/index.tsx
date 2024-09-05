@@ -2,9 +2,9 @@ import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fontSize, fontWeight, theme } from "@styles/theme";
-import { instagramLink, whatsappLink } from "@utils/variables";
+import { googleMapsLink, instagramLink, whatsappLink } from "@utils/variables";
 import styled from "styled-components";
-import data from "@json/index.json";
+import { navigationLinks } from "@json/index.json";
 import { Link, useLocation } from "react-router-dom";
 
 export const Footer = () => {
@@ -63,17 +63,30 @@ export const Footer = () => {
                </ul>
             </div>
             <ul className="navigation">
-               {data.navigationLinks.map((item) => (
-                  <Link
-                     key={item.name}
-                     to={`/${item.link}`}
-                     className={`section ${
-                        locationName === item.link && "selected"
-                     }`}
-                  >
-                     {item.name}
-                  </Link>
-               ))}
+               {navigationLinks
+                  .filter((nav) => nav.link)
+                  .map((item) => (
+                     <Link
+                        key={item.name}
+                        to={`/${item.link}`}
+                        className={`section ${
+                           locationName === item.link && "selected"
+                        }`}
+                     >
+                        {item.name}
+                     </Link>
+                  ))}
+               {navigationLinks
+                  .filter((nav) => nav.link === null)
+                  .map((link) => (
+                        <a
+                           className="section"
+                           href={googleMapsLink}
+                           target="_blank"
+                        >
+                           {link.name}
+                        </a>
+                  ))}
             </ul>
          </div>
       </Container>

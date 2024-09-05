@@ -5,22 +5,10 @@ exports[`<Footer /> > should the buttons have the correct url to the correspondi
   class="navigation"
 >
   <a
-    class="section selected"
-    href="/"
-  >
-    home
-  </a>
-  <a
     class="section false"
     href="/sobre-mim"
   >
-    sobre mim
-  </a>
-  <a
-    class="section false"
-    href="/contato"
-  >
-    contato & endereço
+    sobre mim/endereço
   </a>
   <a
     class="section false"
@@ -33,6 +21,13 @@ exports[`<Footer /> > should the buttons have the correct url to the correspondi
     href="/segredos-da-lua"
   >
     segredos da lua
+  </a>
+  <a
+    class="section"
+    href="https://www.google.com/maps/search/?api=1&query=R.%20Cel.%20Ja%C3%ADro%20Pereira%2C%2020%20-%20sala%208%20-%20Palmares%2C%20Belo%20Horizonte%20-%20MG%2C%2031155-292"
+    target="_blank"
+  >
+    como chegar
   </a>
 </ul>
 `;
