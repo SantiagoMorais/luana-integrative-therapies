@@ -96,7 +96,7 @@ const Container = styled.div`
 
    .content {
       position: relative;
-      z-index: 10;
+      z-index: 5;
       min-width: 100dvw;
 
       .subtitle {
@@ -231,7 +231,7 @@ const Container = styled.div`
          position: absolute;
          top: 0;
          left: 0;
-         opacity: 0.3;
+         opacity: 0.2;
          width: 110%;
          height: 110%;
          object-fit: cover;
