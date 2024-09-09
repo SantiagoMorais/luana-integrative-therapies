@@ -4,6 +4,7 @@ import { fontSize, fontWeight, theme } from "@styles/theme";
 import styled from "styled-components";
 import data from "@json/index.json"
 import { SectionsButtons } from "./sectionsButtons";
+import { SectionsAbout } from "./sectionsAbout";
 
 interface ISectionBannerProps {
    sectionSelected: "equilibrium" | "segredos-da-lua" | "";
@@ -26,6 +27,7 @@ export const SectionBanner: React.FC<ISectionBannerProps> = ({
          <p className="description">
             {content?.description}
          </p>
+         <SectionsAbout />
          <SectionsButtons />
       </Container>
    );
