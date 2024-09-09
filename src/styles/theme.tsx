@@ -33,16 +33,17 @@ interface ITheme {
    secondaryColor: string;
    tertiaryColor: string;
    textColor: string;
+   secondaryTextColor: string;
 }
 
 interface IDefaultTheme extends ITheme {
    fontFamily: string;
-   secondaryTextColor: string;
    shadowColor: string;
 }
 
 interface ISectionsTheme extends ITheme {
    id: string;
+   backgroundColor: string;
 }
 
 export const theme: IDefaultTheme = {
@@ -58,16 +59,20 @@ export const theme: IDefaultTheme = {
 export const sectionsTheme: ISectionsTheme[] = [
    {
       id: "equilibrium",
-      primaryColor: "",
-      secondaryColor: "",
-      tertiaryColor: "",
-      textColor: "",
+      primaryColor: "#2E174D",
+      secondaryColor: "#E3A5C7",
+      tertiaryColor: "#FFD35A",
+      textColor: "#000000",
+      secondaryTextColor: "#ffffff",
+      backgroundColor: "#F7EFE5",
    },
    {
       id: "segredos-da-lua",
-      primaryColor: "",
-      secondaryColor: "",
-      tertiaryColor: "",
-      textColor: "",
+      primaryColor: "#2F2DB2",
+      secondaryColor: "#3572EF",
+      tertiaryColor: "#FFB1B1",
+      textColor: "#000000",
+      secondaryTextColor: "#ffffff",
+      backgroundColor: "#FFEAE3",
    },
 ];
