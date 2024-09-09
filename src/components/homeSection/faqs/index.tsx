@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import data from "@json/index.json";
-import { faqBreakPoints, fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, theme } from "@styles/theme";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { Collapse } from "react-collapse";
 
 export const FAQs = () => {
    const [questionSelected, setQuestionSelected] = useState("");
@@ -34,14 +35,17 @@ export const FAQs = () => {
                            }`}
                         />
                      </div>
-                     <p
+                     {/* <p
                         className={`answer ${
                            questionSelected === faq.question ? "selected" : ""
                         }`}
                         data-testid="answer"
                      >
                         {faq.answer}
-                     </p>
+                     </p> */}
+                     <Collapse isOpened={questionSelected === faq.question}>
+                        {faq.answer}
+                     </Collapse>
                   </li>
                ))}
             </ul>
@@ -58,6 +62,13 @@ const Container = styled.div`
    gap: 3rem;
    margin-bottom: 5rem;
    padding: 0 3rem;
+
+   .ReactCollapse--collapse {
+      transition: height .5s ease;
+      margin: 1rem 1rem 0;
+      font-size: ${fontSize.smallSize};
+      font-weight: ${fontWeight.medium};
+   }
 
    .title {
       font-size: ${fontSize.extraLargeSize};
@@ -102,23 +113,6 @@ const Container = styled.div`
                }
             }
          }
-
-         .answer {
-            height: 0;
-            overflow: hidden;
-            transition: 0.5s ease;
-            margin-top: 1rem;
-            padding: 0 1rem;
-            border-radius: 1rem;
-            opacity: 0;
-            transform: translateY(-2rem);
-
-            &.selected {
-               height: 10rem;
-               opacity: 1;
-               transform: translateY(0rem);
-            }
-         }
       }
    }
 
@@ -138,6 +132,4 @@ const Container = styled.div`
          }
       }
    }
-
-   ${faqBreakPoints}
 `;
