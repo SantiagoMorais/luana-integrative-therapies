@@ -29,16 +29,23 @@ export const fontWeight: IFontWeight = {
 };
 
 interface ITheme {
-   fontFamily: string;
    primaryColor: string;
    secondaryColor: string;
    tertiaryColor: string;
    textColor: string;
+}
+
+interface IDefaultTheme extends ITheme {
+   fontFamily: string;
    secondaryTextColor: string;
    shadowColor: string;
 }
 
-export const theme: ITheme = {
+interface ISectionsTheme extends ITheme {
+   id: string;
+}
+
+export const theme: IDefaultTheme = {
    fontFamily: "'Cookie', cursive",
    primaryColor: "#D6E5FA",
    secondaryColor: "#E6B2C6",
@@ -47,3 +54,20 @@ export const theme: ITheme = {
    secondaryTextColor: "#ffffff",
    shadowColor: "#c72a66",
 };
+
+export const sectionsTheme: ISectionsTheme[] = [
+   {
+      id: "equilibrium",
+      primaryColor: "",
+      secondaryColor: "",
+      tertiaryColor: "",
+      textColor: "",
+   },
+   {
+      id: "segredos-da-lua",
+      primaryColor: "",
+      secondaryColor: "",
+      tertiaryColor: "",
+      textColor: "",
+   },
+];

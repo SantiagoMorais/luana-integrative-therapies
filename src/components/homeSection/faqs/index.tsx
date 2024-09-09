@@ -35,14 +35,6 @@ export const FAQs = () => {
                            }`}
                         />
                      </div>
-                     {/* <p
-                        className={`answer ${
-                           questionSelected === faq.question ? "selected" : ""
-                        }`}
-                        data-testid="answer"
-                     >
-                        {faq.answer}
-                     </p> */}
                      <Collapse isOpened={questionSelected === faq.question}>
                         {faq.answer}
                      </Collapse>
@@ -64,7 +56,7 @@ const Container = styled.div`
    padding: 0 3rem;
 
    .ReactCollapse--collapse {
-      transition: height .5s ease;
+      transition: height 0.5s ease;
       margin: 1rem 1rem 0;
       font-size: ${fontSize.smallSize};
       font-weight: ${fontWeight.medium};

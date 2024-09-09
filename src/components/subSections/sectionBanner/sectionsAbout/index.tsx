@@ -12,6 +12,7 @@ export const SectionsAbout = () => {
 
    const location = useLocation();
    const locationName = location.pathname.slice(1).split("/")[0];
+
    const currentSection = aboutTheCompany.find(
       (info) => info.id === locationName
    );
