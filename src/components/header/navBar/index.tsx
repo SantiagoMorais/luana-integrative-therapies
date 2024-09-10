@@ -1,25 +1,23 @@
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fontSize, theme } from "@styles/theme";
+import { fontSize, IDefaultTheme, ISectionsTheme, theme } from "@styles/theme";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { navigationLinks } from "@json/index.json";
 import { googleMapsLink } from "@utils/variables";
+import { handlePageTheme, locationName } from "@utils/functions";
 
 export const NavBar = () => {
    const [hamburgerIconClicked, setHamburgerIconClicked] = useState(false);
    const location = useLocation();
-
-   const locationPath = location.pathname.slice(1);
-   const locationName = locationPath.split("/")[0];
 
    const handleOpenAccordion = () => {
       setHamburgerIconClicked(!hamburgerIconClicked);
    };
 
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          <button
             className={`accordionButton ${
                hamburgerIconClicked ? "clicked" : ""
@@ -41,7 +39,7 @@ export const NavBar = () => {
                   <Link key={index} to={`/${navButton.link}`}>
                      <li
                         className={`link ${
-                           locationName === navButton.link ? "selected" : ""
+                           locationName(location) === navButton.link ? "selected" : ""
                         }`}
                      >
                         {navButton.name}
@@ -58,7 +56,7 @@ export const NavBar = () => {
    );
 };
 
-const Container = styled.nav`
+const Container = styled.nav<{ $theme: ISectionsTheme | IDefaultTheme }>`
    padding-bottom: 2rem;
 
    .accordionButton {
@@ -102,7 +100,7 @@ const Container = styled.nav`
 
          &:hover {
             color: ${theme.secondaryTextColor};
-            background-color: ${theme.secondaryColor};
+            background-color: ${({$theme}) => $theme.secondaryColor};
 
             .googleLink {
                color: ${theme.secondaryTextColor};
@@ -111,7 +109,7 @@ const Container = styled.nav`
 
          &.selected {
             color: ${theme.secondaryTextColor};
-            background-color: ${theme.secondaryColor};
+            background-color: ${({$theme}) => $theme.secondaryColor};
          }
       }
    }
@@ -149,7 +147,7 @@ const Container = styled.nav`
             transform: translateY(0rem);
             height: 22rem;
             border-color: ${theme.secondaryTextColor};
-            background-color: ${theme.primaryColor};
+            background-color: ${({$theme}) => $theme.primaryColor};
          }
       }
    }

@@ -8,6 +8,7 @@ import { SectionsAbout } from "./sectionsAbout";
 import equilibriumLogo from "@assets/imgs/equilibrium-logo.jpeg";
 import segredosDaLuaLogo from "@assets/imgs/segredos-da-lua-logo.jpeg";
 import { useLocation } from "react-router-dom";
+import { locationName } from "@utils/functions";
 
 interface ISectionBannerProps {
    sectionSelected: "equilibrium" | "segredos-da-lua" | "";
@@ -17,14 +18,13 @@ export const SectionBanner: React.FC<ISectionBannerProps> = ({
    sectionSelected,
 }) => {
    const location = useLocation();
-   const locationName = location.pathname.slice(1).split("/")[0];
 
    const content = data.sectionsInfo.find(
       (section) => section.id === sectionSelected
    );
 
    const currentLogo = () => {
-      switch (locationName) {
+      switch (locationName(location)) {
          case "equilibrium":
             return equilibriumLogo;
          case "segredos-da-lua":

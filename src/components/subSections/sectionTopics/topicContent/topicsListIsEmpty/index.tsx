@@ -3,13 +3,11 @@ import commingSoonImage from "@assets/imgs/pageComingSoon.jpg";
 import { fontSize, fontWeight, theme } from "@styles/theme";
 import { useLocation } from "react-router-dom";
 import {topicsListIsEmptyMessages} from "@json/index.json"
+import { locationName } from "@utils/functions";
 
 export const TopicsListIsEmpty = () => {
    const location = useLocation();
-   const locationPath = location.pathname.slice(1);
-   const locationName = locationPath.split("/")[0];
-
-   const content = topicsListIsEmptyMessages.find(item => item.id === locationName)
+   const content = topicsListIsEmptyMessages.find(item => item.id === locationName(location))
 
    return (
       <Container>

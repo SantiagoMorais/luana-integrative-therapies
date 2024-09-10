@@ -14,19 +14,19 @@ import {
    GET_SEGREDOS_DA_LUA_POSTS_QUERY,
    GET_SEGREDOS_DA_LUA_TOPICS_QUERY,
 } from "@utils/blogAPI";
+import { locationName } from "@utils/functions";
 
 export const SubSections = () => {
+   const location = useLocation();
+
    const { setSectionSelected, sectionSelected } = useContext(
       SectionSelectedContext
    );
 
    const { postOrTopicSelected } = useContext(PostOrTopicContext);
 
-   const location = useLocation();
-   const locationName = location.pathname.slice(1).split("/")[0];
-
    useEffect(() => {
-      switch (locationName) {
+      switch (locationName(location)) {
          case "equilibrium":
             setSectionSelected("equilibrium");
             break;
@@ -36,7 +36,7 @@ export const SubSections = () => {
          default:
             setSectionSelected("");
       }
-   }, [locationName, setSectionSelected]);
+   }, [setSectionSelected, location]);
 
    return (
       <Container>

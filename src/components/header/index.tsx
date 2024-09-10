@@ -1,11 +1,20 @@
 import styled from "styled-components";
 import { NavBar } from "./navBar";
-import { fontSize, fontWeight, theme } from "@styles/theme";
-import { Link } from "react-router-dom";
+import {
+   fontSize,
+   fontWeight,
+   IDefaultTheme,
+   ISectionsTheme,
+   theme,
+} from "@styles/theme";
+import { Link, useLocation } from "react-router-dom";
+import { handlePageTheme, locationName } from "@utils/functions";
 
 export const Header = () => {
+   const location = useLocation();
+
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          <div className="content">
             <Link to="/" className="title">
                <h1 className="nameTitle">Luana Vasconcellos Alvarenga</h1>
@@ -19,11 +28,11 @@ export const Header = () => {
    );
 };
 
-const Container = styled.section`
+const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
    background: linear-gradient(
       90deg,
-      ${theme.primaryColor} 0%,
-      ${theme.tertiaryColor} 100%
+      ${({ $theme }) => $theme.primaryColor} 0%,
+      ${({ $theme }) => $theme.tertiaryColor} 100%
    );
    display: flex;
    justify-content: center;

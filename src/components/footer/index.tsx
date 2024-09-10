@@ -1,20 +1,24 @@
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import {
+   fontSize,
+   fontWeight,
+   IDefaultTheme,
+   ISectionsTheme,
+   theme,
+} from "@styles/theme";
 import { googleMapsLink, instagramLink, whatsappLink } from "@utils/variables";
 import styled from "styled-components";
 import { navigationLinks } from "@json/index.json";
 import { Link, useLocation } from "react-router-dom";
+import { handlePageTheme, locationName } from "@utils/functions";
 
 export const Footer = () => {
    const location = useLocation();
 
-   const locationPath = location.pathname.slice(1);
-   const locationName = locationPath.split("/")[0];
-
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          <div className="content">
             <div className="nameTitle">
                <p>
@@ -69,7 +73,7 @@ export const Footer = () => {
                         key={item.name}
                         to={`/${item.link}`}
                         className={`section ${
-                           locationName === item.link && "selected"
+                           locationName(location) === item.link && "selected"
                         }`}
                      >
                         {item.name}
@@ -90,9 +94,9 @@ export const Footer = () => {
    );
 };
 
-const Container = styled.footer`
+const Container = styled.footer<{ $theme: ISectionsTheme | IDefaultTheme }>`
    padding: 3rem;
-   background-color: ${theme.primaryColor};
+   background-color: ${({ $theme }) => $theme.primaryColor};
    font-size: ${fontSize.smallSize};
    display: flex;
    justify-content: center;
@@ -158,7 +162,7 @@ const Container = styled.footer`
 
             li {
                a {
-                  color: ${theme.textColor};
+                  color: ${({ $theme }) => $theme.textColor};
                   transition: 0.3s;
 
                   &:hover {
@@ -183,7 +187,7 @@ const Container = styled.footer`
             font-weight: 700;
             transition: 0.3s;
             position: relative;
-            color: ${theme.textColor};
+            color: ${({ $theme }) => $theme.textColor};
             text-transform: capitalize;
             padding-bottom: 0.2rem;
 
@@ -202,7 +206,7 @@ const Container = styled.footer`
                left: -5%;
                width: 105%;
                height: 0.1rem;
-               background: ${theme.textColor};
+               background: ${({ $theme }) => $theme.textColor};
                transform: scaleX(0);
                transform-origin: left;
                transition: transform 0.5s;
