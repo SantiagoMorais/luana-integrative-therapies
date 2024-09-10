@@ -1,8 +1,7 @@
-import { fontSize, fontWeight, IDefaultTheme, ISectionsTheme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import styled from "styled-components";
 import noAvatarPhoto from "@assets/imgs/noAvatarPhoto.jpg";
-import { useLocation } from "react-router-dom";
-import { handlePageTheme, locationName } from "@utils/functions";
+import { useThemeContext } from "hooks/useThemeContext";
 
 interface IAuthorInfoProps {
    autor?: {
@@ -16,9 +15,10 @@ interface IAuthorInfoProps {
 }
 
 export const AuthorInfo: React.FC<IAuthorInfoProps> = ({ autor }) => {
-   const location = useLocation();
+   const theme = useThemeContext();
+
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          {autor?.avatar?.url ? (
             <img
                src={autor?.avatar?.url}
@@ -49,7 +49,7 @@ export const AuthorInfo: React.FC<IAuthorInfoProps> = ({ autor }) => {
    );
 };
 
-const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.div<{ $theme: ITheme }>`
    width: 80%;
    display: flex;
    align-items: center;
@@ -62,7 +62,7 @@ const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
       max-height: 15rem;
       object-fit: cover;
       border-radius: 50%;
-      box-shadow: 0 0 1rem ${({$theme}) => $theme.secondaryColor};
+      box-shadow: 0 0 1rem ${({ $theme }) => $theme.secondaryColor};
    }
 
    .about {

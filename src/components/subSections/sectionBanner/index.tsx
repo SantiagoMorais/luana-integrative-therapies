@@ -7,8 +7,12 @@ import { SectionsAbout } from "./sectionsAbout";
 import equilibriumLogo from "@assets/imgs/equilibrium-logo.jpeg";
 import segredosDaLuaLogo from "@assets/imgs/segredos-da-lua-logo.jpeg";
 import { useLocation } from "react-router-dom";
-import { fontSize, fontWeight, IDefaultTheme, ISectionsTheme } from "@styles/theme";
-import { handlePageTheme, locationName } from "@utils/functions";
+import {
+   fontSize,
+   fontWeight,
+   ITheme,
+} from "@styles/theme";
+import { useThemeContext } from "hooks/useThemeContext";
 
 interface ISectionBannerProps {
    sectionSelected: "equilibrium" | "segredos-da-lua" | "";
@@ -18,13 +22,15 @@ export const SectionBanner: React.FC<ISectionBannerProps> = ({
    sectionSelected,
 }) => {
    const location = useLocation();
+   const locationName = location.pathname.slice(1).split("/")[0];
+   const theme = useThemeContext();
 
    const content = data.sectionsInfo.find(
       (section) => section.id === sectionSelected
    );
 
-   const currentLogo = () => {
-      switch (locationName(location)) {
+   const handleCurrentLogo = () => {
+      switch (locationName) {
          case "equilibrium":
             return equilibriumLogo;
          case "segredos-da-lua":
@@ -33,8 +39,8 @@ export const SectionBanner: React.FC<ISectionBannerProps> = ({
    };
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
-         <img src={currentLogo()} alt="" className="logo" />
+      <Container $theme={theme}>
+         <img src={handleCurrentLogo()} alt="" className="logo" />
          <h2 className="title">{content?.title}</h2>
          <h3 className="subtitle">
             <FontAwesomeIcon icon={faCircle} className="icon" />
@@ -48,7 +54,7 @@ export const SectionBanner: React.FC<ISectionBannerProps> = ({
    );
 };
 
-const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.div<{ $theme: ITheme }>`
    width: 100%;
    display: flex;
    flex-direction: column;
@@ -67,6 +73,7 @@ const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
       &:hover {
          opacity: 1;
          scale: 1.1;
+         box-shadow: 0 0 2rem ${({ $theme }) => $theme.shadowColor};
       }
    }
 
@@ -86,8 +93,8 @@ const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
          background: linear-gradient(
             to right,
             transparent 0%,
-            ${({$theme}) => $theme.tertiaryColor} 30%,
-            ${({$theme}) => $theme.tertiaryColor} 70%,
+            ${({ $theme }) => $theme.tertiaryColor} 30%,
+            ${({ $theme }) => $theme.tertiaryColor} 70%,
             transparent
          );
       }
@@ -96,7 +103,7 @@ const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
    .subtitle {
       font-size: ${fontSize.mediumSize};
       font-weight: ${fontWeight.medium};
-      color: ${({$theme}) => $theme.tertiaryColor};
+      color: ${({ $theme }) => $theme.tertiaryColor};
       display: flex;
       gap: 1rem;
       align-items: baseline;
@@ -104,7 +111,7 @@ const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
 
       .icon {
          font-size: ${fontSize.smallSize};
-         color: ${({$theme}) => $theme.primaryColor};
+         color: ${({ $theme }) => $theme.primaryColor};
          opacity: 0.8;
       }
    }

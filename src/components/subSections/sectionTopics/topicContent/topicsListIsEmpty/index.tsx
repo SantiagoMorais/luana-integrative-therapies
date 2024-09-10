@@ -1,23 +1,20 @@
 import styled from "styled-components";
 import commingSoonImage from "@assets/imgs/pageComingSoon.jpg";
-import {
-   fontSize,
-   fontWeight,
-   IDefaultTheme,
-   ISectionsTheme,
-} from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { useLocation } from "react-router-dom";
 import { topicsListIsEmptyMessages } from "@json/index.json";
-import { handlePageTheme, locationName } from "@utils/functions";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const TopicsListIsEmpty = () => {
    const location = useLocation();
+   const locationName = location.pathname.slice(1).split("/")[0];
+   const theme = useThemeContext();
    const content = topicsListIsEmptyMessages.find(
-      (item) => item.id === locationName(location)
+      (item) => item.id === locationName
    );
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          <h2 className="title">Novos conteúdos em breve!</h2>
          <h3 className="subtitle">{content?.subtitle}</h3>
          <img
@@ -30,7 +27,7 @@ export const TopicsListIsEmpty = () => {
    );
 };
 
-const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.div<{ $theme: ITheme }>`
    display: flex;
    flex-direction: column;
    align-items: center;

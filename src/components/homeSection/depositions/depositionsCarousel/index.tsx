@@ -7,9 +7,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export interface ICarouselInfo {
    id: string;
@@ -28,6 +29,7 @@ export const DepositionsCarousel: React.FC<ICarouselProps> = ({
    slidesNumber,
    spaceBetween,
 }) => {
+   const theme = useThemeContext();
    const [slidesPerView, setSlidesPerView] = useState<number>(2);
 
    useEffect(() => {
@@ -46,7 +48,7 @@ export const DepositionsCarousel: React.FC<ICarouselProps> = ({
    }, [slidesNumber]);
 
    return (
-      <Container>
+      <Container $theme={theme}>
          <Swiper
             modules={[Pagination, Navigation, Autoplay]}
             loop={true}
@@ -74,7 +76,7 @@ export const DepositionsCarousel: React.FC<ICarouselProps> = ({
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ITheme }>`
    display: flex;
    align-items: center;
    gap: 1rem;
@@ -87,7 +89,7 @@ const Container = styled.div`
 
       .swiper-button-next,
       .swiper-button-prev {
-         color: ${theme.secondaryColor};
+         color: ${({ $theme }) => $theme.secondaryColor};
          transition: 0.3s;
          opacity: 0.8;
 
@@ -108,7 +110,7 @@ const Container = styled.div`
       }
 
       .swiper-pagination-bullet {
-         background: ${theme.tertiaryColor};
+         background: ${({ $theme }) => $theme.tertiaryColor};
          width: 1.5rem;
          height: 1.5rem;
       }
@@ -135,20 +137,20 @@ const Container = styled.div`
 
          .slideIcon {
             font-size: 5rem;
-            color: ${theme.secondaryColor};
+            color: ${({ $theme }) => $theme.secondaryColor};
          }
 
          .itemDescription {
             font-size: ${fontSize.mediumSize};
             text-align: center;
-            color: ${theme.secondaryColor};
+            color: ${({ $theme }) => $theme.secondaryColor};
          }
       }
    }
 
    @media (max-width: 768px) {
       .swiper {
-         border: solid .2rem ${theme.primaryColor};
+         border: solid 0.2rem ${({ $theme }) => $theme.primaryColor};
 
          .swiper-button-next {
             transform: none;

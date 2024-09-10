@@ -1,11 +1,6 @@
 import styled from "styled-components";
 import parser from "html-react-parser";
-import {
-   fontSize,
-   fontWeight,
-   IDefaultTheme,
-   ISectionsTheme,
-} from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { IEquilibriumTopicEdge } from "@utils/equilibriumBlogInterfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -13,15 +8,14 @@ import { ISegredosDaLuaTopicEdge } from "@utils/moonsSecretsBlogInterfaces";
 import { useContext } from "react";
 import { TopicsCarouselContext } from "@contexts/topicsCarouselContext";
 import { TopicsListIsEmpty } from "./topicsListIsEmpty";
-import { handlePageTheme, locationName } from "@utils/functions";
-import { useLocation } from "react-router-dom";
+import { useThemeContext } from "hooks/useThemeContext";
 
 interface ITopicContentProps {
    data: IEquilibriumTopicEdge[] | ISegredosDaLuaTopicEdge[] | null;
 }
 
 export const TopicContent: React.FC<ITopicContentProps> = ({ data }) => {
-   const location = useLocation();
+   const theme = useThemeContext();
    const { topicSelected } = useContext(TopicsCarouselContext);
    const findTopic: IEquilibriumTopicEdge | undefined = data?.find(
       (item: IEquilibriumTopicEdge) => item.node.id === topicSelected
@@ -30,7 +24,7 @@ export const TopicContent: React.FC<ITopicContentProps> = ({ data }) => {
    const updatedTopic = findTopic ? findTopic : data?.[0];
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          {data && data.length > 0 ? (
             <>
                <h2 className="title">{updatedTopic?.node.nome}</h2>
@@ -63,7 +57,7 @@ export const TopicContent: React.FC<ITopicContentProps> = ({ data }) => {
    );
 };
 
-const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.div<{ $theme: ITheme }>`
    margin-bottom: 2rem;
    width: 100%;
    max-width: 144rem;

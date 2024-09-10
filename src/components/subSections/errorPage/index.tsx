@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { faFaceFrown } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useLocation } from "react-router-dom";
-import { fontSize, IDefaultTheme, ISectionsTheme } from "@styles/theme";
-import { handlePageTheme, locationName } from "@utils/functions";
+import { fontSize, ITheme } from "@styles/theme";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const ErrorPage = () => {
-   const location = useLocation();
+   const theme = useThemeContext();
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          <div className="content">
             <FontAwesomeIcon className="icon" icon={faFaceFrown} />
             <h3 className="warningTitle">ERRO 404 - Dados não encontradas</h3>
@@ -22,7 +21,7 @@ export const ErrorPage = () => {
    );
 };
 
-const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.div<{ $theme: ITheme }>`
    width: 100%;
    padding: 2rem 2rem 4rem;
    height: 100%;
@@ -41,18 +40,18 @@ const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
          width: 30%;
          height: 30%;
          max-width: 30rem;
-         color: ${({$theme}) => $theme.tertiaryColor};
+         color: ${({ $theme }) => $theme.tertiaryColor};
          opacity: 50%;
       }
 
       .warningTitle {
-         color: ${({$theme}) => $theme.tertiaryColor};
+         color: ${({ $theme }) => $theme.tertiaryColor};
          font-size: ${fontSize.extraLargeSize};
          text-align: center;
       }
 
       .warningText {
-         color: ${({$theme}) => $theme.textColor};
+         color: ${({ $theme }) => $theme.textColor};
          font-size: ${fontSize.mediumSize};
          text-align: center;
       }

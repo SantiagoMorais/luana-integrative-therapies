@@ -1,13 +1,16 @@
 import { Footer } from "@components/footer";
 import { Header } from "@components/header";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import image404 from "@assets/imgs/Error404.jpg";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const PageNotFound = () => {
+   const theme = useThemeContext();
+
    return (
-      <Container>
+      <Container $theme={theme}>
          <Header />
          <section className="content404">
             <div className="info">
@@ -33,7 +36,7 @@ export const PageNotFound = () => {
    );
 };
 
-const Container = styled.section`
+const Container = styled.section<{ $theme: ITheme }>`
    min-height: 100vh;
    display: flex;
    flex-direction: column;
@@ -67,7 +70,7 @@ const Container = styled.section`
 
             a {
                font-weight: ${fontWeight.semiBold};
-               color: ${theme.secondaryColor};
+               color: ${({ $theme }) => $theme.secondaryColor};
             }
          }
       }
@@ -77,7 +80,7 @@ const Container = styled.section`
          margin-top: 2rem;
          width: 100%;
          border-radius: 30%;
-         border: 1rem solid ${theme.primaryColor};
+         border: 1rem solid ${({ $theme }) => $theme.primaryColor};
          filter: saturate(150%);
       }
    }

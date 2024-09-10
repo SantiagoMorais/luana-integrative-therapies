@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import data from "@json/index.json";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { DepositionsCarousel } from "./depositionsCarousel";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const Depositions = () => {
+   const theme = useThemeContext();
+
    const getTopicsInfo = () => {
       interface IDepositions {
          id: string;
@@ -23,7 +26,7 @@ export const Depositions = () => {
    };
 
    return (
-      <Container>
+      <Container $theme={theme}>
          <h2 className="title">Depoimentos de pacientes</h2>
          <div className="content">
             <div className="depositions">
@@ -34,7 +37,7 @@ export const Depositions = () => {
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ITheme }>`
    margin-bottom: 2rem;
    display: flex;
    flex-direction: column;
@@ -45,7 +48,7 @@ const Container = styled.div`
       text-align: center;
       font-size: ${fontSize.extraLargeSize};
       font-weight: ${fontWeight.medium};
-      background-color: ${theme.primaryColor};
+      background-color: ${({ $theme }) => $theme.primaryColor};
       padding: 2rem 0;
    }
 

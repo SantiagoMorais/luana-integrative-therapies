@@ -5,19 +5,22 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { navigationLinks } from "@json/index.json";
 import { googleMapsLink } from "@utils/variables";
-import { fontSize, IDefaultTheme, ISectionsTheme, theme } from "@styles/theme";
-import { handlePageTheme, locationName } from "@utils/functions";
+import { fontSize, ITheme } from "@styles/theme";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const NavBar = () => {
-   const [hamburgerIconClicked, setHamburgerIconClicked] = useState(false);
+   const [hamburgerIconClicked, setHamburgerIconClicked] =
+      useState<boolean>(false);
    const location = useLocation();
+   const locationName = location.pathname.slice(1).split("/")[0];
+   const theme = useThemeContext();
 
    const handleOpenAccordion = () => {
       setHamburgerIconClicked(!hamburgerIconClicked);
    };
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          <button
             className={`accordionButton ${
                hamburgerIconClicked ? "clicked" : ""
@@ -39,7 +42,7 @@ export const NavBar = () => {
                   <Link key={index} to={`/${navButton.link}`}>
                      <li
                         className={`link ${
-                           locationName(location) === navButton.link ? "selected" : ""
+                           locationName === navButton.link ? "selected" : ""
                         }`}
                      >
                         {navButton.name}
@@ -56,7 +59,7 @@ export const NavBar = () => {
    );
 };
 
-const Container = styled.nav<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.nav<{ $theme: ITheme }>`
    padding-bottom: 2rem;
 
    .accordionButton {
@@ -91,25 +94,25 @@ const Container = styled.nav<{ $theme: ISectionsTheme | IDefaultTheme }>`
          cursor: pointer;
          transition: 0.3s;
          text-transform: capitalize;
-         color: ${theme.textColor};
+         color: ${({ $theme }) => $theme.textColor};
 
          .googleLink {
-            color: ${theme.textColor};
+            color: ${({ $theme }) => $theme.textColor};
             transition: 0.3s;
          }
 
          &:hover {
-            color: ${theme.secondaryTextColor};
-            background-color: ${({$theme}) => $theme.secondaryColor};
+            color: ${({ $theme }) => $theme.secondaryTextColor};
+            background-color: ${({ $theme }) => $theme.secondaryColor};
 
             .googleLink {
-               color: ${theme.secondaryTextColor};
+               color: ${({ $theme }) => $theme.secondaryTextColor};
             }
          }
 
          &.selected {
-            color: ${theme.secondaryTextColor};
-            background-color: ${({$theme}) => $theme.secondaryColor};
+            color: ${({ $theme }) => $theme.secondaryTextColor};
+            background-color: ${({ $theme }) => $theme.secondaryColor};
          }
       }
    }
@@ -146,8 +149,8 @@ const Container = styled.nav<{ $theme: ISectionsTheme | IDefaultTheme }>`
          &.clicked {
             transform: translateY(0rem);
             height: 22rem;
-            border-color: ${theme.secondaryTextColor};
-            background-color: ${({$theme}) => $theme.primaryColor};
+            border-color: ${({ $theme }) => $theme.secondaryTextColor};
+            background-color: ${({ $theme }) => $theme.primaryColor};
          }
       }
    }

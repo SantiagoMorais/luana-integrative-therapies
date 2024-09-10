@@ -1,10 +1,13 @@
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import styled from "styled-components";
 import data from "@json/index.json";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const Benefits = () => {
+   const theme = useThemeContext();
+
    return (
-      <Container>
+      <Container $theme={theme}>
          <div className="title">Benefício das Terapias Integrativas</div>
          <ul className="benefits">
             {data && (
@@ -22,9 +25,9 @@ export const Benefits = () => {
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ITheme }>`
    width: 100%;
-   background-color: ${theme.primaryColor};
+   background-color: ${({ $theme }) => $theme.primaryColor};
    padding: 3rem 2rem 0;
    display: flex;
    flex-direction: column;
@@ -60,7 +63,8 @@ const Container = styled.div`
                font-size: 150%;
                font-weight: ${fontWeight.thin};
                padding-bottom: 1rem;
-               border-bottom: 0.2rem solid ${theme.secondaryColor};
+               border-bottom: 0.2rem solid
+                  ${({ $theme }) => $theme.secondaryColor};
                margin-bottom: 1rem;
             }
          }

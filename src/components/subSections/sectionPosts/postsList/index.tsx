@@ -3,15 +3,9 @@ import styled from "styled-components";
 import { PostCard } from "./postCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
-import {
-   fontSize,
-   fontWeight,
-   IDefaultTheme,
-   ISectionsTheme,
-} from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { ISegredosDaLuaPostEdge } from "@utils/moonsSecretsBlogInterfaces";
-import { handlePageTheme, locationName } from "@utils/functions";
-import { useLocation } from "react-router-dom";
+import { useThemeContext } from "hooks/useThemeContext";
 
 interface IPostsListProps {
    infoEdge: IEquilibriumPostEdge[] | ISegredosDaLuaPostEdge[] | null;
@@ -26,13 +20,10 @@ export const PostsList: React.FC<IPostsListProps> = ({
    loadMore,
    loadingPosts,
 }) => {
-   const location = useLocation();
+   const theme = useThemeContext();
 
    return (
-      <Container
-         $hasMoreData={hasMoreData}
-         $theme={handlePageTheme(locationName(location))}
-      >
+      <Container $hasMoreData={hasMoreData} $theme={theme}>
          <div className="postsContainer">
             {infoEdge?.map((post) => (
                <PostCard infoNode={post.node} key={post.node.id} />
@@ -57,7 +48,7 @@ export const PostsList: React.FC<IPostsListProps> = ({
 
 const Container = styled.ul<{
    $hasMoreData: boolean;
-   $theme: ISectionsTheme | IDefaultTheme;
+   $theme: ITheme;
 }>`
    width: 100%;
    max-width: 144rem;

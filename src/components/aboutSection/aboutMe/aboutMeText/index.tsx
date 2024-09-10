@@ -1,11 +1,14 @@
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import styled from "styled-components";
 import { aboutMe } from "@json/index.json";
 import professionalImage from "@assets/imgs/professionalImage.jpg";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const AboutMeText = () => {
+   const theme = useThemeContext();
+
    return (
-      <Container>
+      <Container $theme={theme}>
          <h2 className="title">Sobre mim</h2>
          <p className="aboutText">
             <img
@@ -18,13 +21,12 @@ export const AboutMeText = () => {
                   {paragraph}
                </span>
             ))}
-            
          </p>
       </Container>
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ITheme }>`
    max-width: 144rem;
    width: 100%;
    display: flex;
@@ -44,7 +46,7 @@ const Container = styled.div`
          object-fit: cover;
          object-position: center;
          border-radius: 0.5rem;
-         border: 0.2rem solid ${theme.primaryColor};
+         border: 0.2rem solid ${({ $theme }) => $theme.primaryColor};
          width: 30%;
          max-width: 50rem;
          margin: 0rem 2rem 1rem 0rem;
@@ -53,7 +55,7 @@ const Container = styled.div`
       .paragraph {
          display: block;
          text-align: justify;
-         color: ${theme.textColor};
+         color: ${({ $theme }) => $theme.textColor};
          font-size: ${fontSize.basicSize};
          text-indent: 3rem;
       }

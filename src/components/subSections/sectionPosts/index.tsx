@@ -4,15 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IEquilibriumPostsData } from "@utils/equilibriumBlogInterfaces";
 import { useState } from "react";
 import styled from "styled-components";
-// import { ErrorPage } from "../errorPage";
-import { fontSize, fontWeight, IDefaultTheme, ISectionsTheme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { ISegredosDaLuaPostsData } from "@utils/moonsSecretsBlogInterfaces";
 import { useLocation } from "react-router-dom";
 import { PostsList } from "./postsList";
 import { ErrorPage } from "../errorPage";
 import { NoPosts } from "../noPosts";
-import { handlePageTheme, locationName } from "@utils/functions";
-// import { PostsList } from "./postsList";
+import { useThemeContext } from "hooks/useThemeContext";
 
 interface ISectionPosts {
    query: DocumentNode;
@@ -44,19 +42,20 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
       },
    });
    const location = useLocation();
+   const locationName = location.pathname.slice(1).split("/")[0];
+   const theme = useThemeContext();
    const [loadingMore, setLoadingMore] = useState<boolean>(false);
-
 
    let posts = null;
    let hasMore: boolean = false;
    let endCursor: string | null = "";
 
-   if (locationName(location) === "equilibrium" && isEquilibriumPostsData(data)) {
+   if (locationName === "equilibrium" && isEquilibriumPostsData(data)) {
       posts = data.equilibriumPostsConnection.edges;
       hasMore = data.equilibriumPostsConnection.pageInfo.hasNextPage;
       endCursor = data.equilibriumPostsConnection.pageInfo.endCursor;
    } else if (
-      locationName(location) === "segredos-da-lua" &&
+      locationName === "segredos-da-lua" &&
       isSegredosDaLuaPostsData(data)
    ) {
       posts = data.segredosDaLuaPostsConnection.edges;
@@ -112,7 +111,7 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
    };
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          <div className="content">
             {loading ? (
                <>
@@ -128,10 +127,10 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
             ) : error ? (
                <ErrorPage />
             ) : data &&
-              ((locationName(location) === "equilibrium" &&
+              ((locationName === "equilibrium" &&
                  isEquilibriumPostsData(data) &&
                  data.equilibriumPostsConnection.edges.length > 0) ||
-                 (locationName(location) === "segredos-da-lua" &&
+                 (locationName === "segredos-da-lua" &&
                     isSegredosDaLuaPostsData(data) &&
                     data.segredosDaLuaPostsConnection.edges.length > 0)) ? (
                <>
@@ -153,7 +152,7 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
    );
 };
 
-const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.div<{ $theme: ITheme }>`
    display: flex;
    justify-content: center;
    width: 100%;
@@ -169,9 +168,9 @@ const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
       overflow: hidden;
 
       .loading {
-         color: ${({$theme}) => $theme.shadowColor};
-         border: solid 0.2rem ${({$theme}) => $theme.shadowColor};
-         box-shadow: 0 0 1rem ${({$theme}) => $theme.shadowColor};
+         color: ${({ $theme }) => $theme.shadowColor};
+         border: solid 0.2rem ${({ $theme }) => $theme.shadowColor};
+         box-shadow: 0 0 1rem ${({ $theme }) => $theme.shadowColor};
          border-radius: 50%;
          width: 6rem;
          height: 6rem;
@@ -186,7 +185,7 @@ const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
 
       .loadingMessage {
          font-size: ${fontSize.mediumSize};
-         color: ${({$theme}) => $theme.shadowColor};
+         color: ${({ $theme }) => $theme.shadowColor};
          font-weight: ${fontWeight.medium};
       }
 

@@ -1,24 +1,20 @@
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-   fontSize,
-   fontWeight,
-   IDefaultTheme,
-   ISectionsTheme,
-   theme,
-} from "@styles/theme";
+import { fontSize, fontWeight, defaultFontFamily, ITheme } from "@styles/theme";
 import { googleMapsLink, instagramLink, whatsappLink } from "@utils/variables";
 import styled from "styled-components";
 import { navigationLinks } from "@json/index.json";
 import { Link, useLocation } from "react-router-dom";
-import { handlePageTheme, locationName } from "@utils/functions";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const Footer = () => {
    const location = useLocation();
+   const locationName = location.pathname.slice(1).split("/")[0]
+   const theme = useThemeContext();
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          <div className="content">
             <div className="nameTitle">
                <p>
@@ -73,7 +69,7 @@ export const Footer = () => {
                         key={item.name}
                         to={`/${item.link}`}
                         className={`section ${
-                           locationName(location) === item.link && "selected"
+                           locationName === item.link && "selected"
                         }`}
                      >
                         {item.name}
@@ -94,7 +90,7 @@ export const Footer = () => {
    );
 };
 
-const Container = styled.footer<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.footer<{ $theme: ITheme }>`
    padding: 3rem;
    background-color: ${({ $theme }) => $theme.primaryColor};
    font-size: ${fontSize.smallSize};
@@ -113,7 +109,7 @@ const Container = styled.footer<{ $theme: ISectionsTheme | IDefaultTheme }>`
 
       .nameTitle {
          font-size: 5rem;
-         font-family: ${theme.fontFamily};
+         font-family: ${defaultFontFamily};
          font-weight: ${fontWeight.semiBold};
          line-height: 0.8;
          text-align: left;
@@ -121,7 +117,7 @@ const Container = styled.footer<{ $theme: ISectionsTheme | IDefaultTheme }>`
          flex: 1;
 
          p {
-            font-family: ${theme.fontFamily};
+            font-family: ${defaultFontFamily};
 
             &:nth-child(2) {
                padding-left: 4rem;
@@ -133,7 +129,7 @@ const Container = styled.footer<{ $theme: ISectionsTheme | IDefaultTheme }>`
 
             .firstLetter {
                font-size: 8rem;
-               font-family: ${theme.fontFamily};
+               font-family: ${defaultFontFamily};
             }
          }
       }
@@ -254,7 +250,7 @@ const Container = styled.footer<{ $theme: ISectionsTheme | IDefaultTheme }>`
 
                .firstLetter {
                   font-size: 8rem;
-                  font-family: ${theme.fontFamily};
+                  font-family: ${defaultFontFamily};
                }
             }
          }

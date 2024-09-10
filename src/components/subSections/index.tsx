@@ -14,10 +14,13 @@ import {
    GET_SEGREDOS_DA_LUA_POSTS_QUERY,
    GET_SEGREDOS_DA_LUA_TOPICS_QUERY,
 } from "@utils/blogAPI";
-import { locationName } from "@utils/functions";
+import { ITheme } from "@styles/theme";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const SubSections = () => {
    const location = useLocation();
+   const locationName = location.pathname.slice(1).split("/")[0];
+   const theme = useThemeContext();
 
    const { setSectionSelected, sectionSelected } = useContext(
       SectionSelectedContext
@@ -26,7 +29,7 @@ export const SubSections = () => {
    const { postOrTopicSelected } = useContext(PostOrTopicContext);
 
    useEffect(() => {
-      switch (locationName(location)) {
+      switch (locationName) {
          case "equilibrium":
             setSectionSelected("equilibrium");
             break;
@@ -36,10 +39,10 @@ export const SubSections = () => {
          default:
             setSectionSelected("");
       }
-   }, [setSectionSelected, location]);
+   }, [setSectionSelected, locationName]);
 
    return (
-      <Container>
+      <Container $theme={theme}>
          <Header />
          <SectionBanner sectionSelected={sectionSelected} />
          {postOrTopicSelected === "posts" ? (
@@ -64,10 +67,11 @@ export const SubSections = () => {
    );
 };
 
-const Container = styled.section`
+const Container = styled.section<{ $theme: ITheme }>`
    min-height: 100vh;
    display: flex;
    flex-direction: column;
+   background-color: ${({ $theme }) => $theme.backgroundColor};
 
    .sectionsButtons {
       display: flex;

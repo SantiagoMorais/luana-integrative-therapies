@@ -5,12 +5,15 @@ import starsImage from "@assets/imgs/nightSkyPNG.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { instagramLink, whatsappLink } from "@utils/variables";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const FollowMeSection = () => {
+   const theme = useThemeContext();
+
    return (
-      <Container>
+      <Container $theme={theme}>
          <div className="content">
             <div className="moonContainer">
                <div className="moonImageContainer">
@@ -69,15 +72,15 @@ export const FollowMeSection = () => {
    );
 };
 
-const Container = styled.section`
+const Container = styled.section<{ $theme: ITheme }>`
    margin-bottom: 2rem;
    display: flex;
    flex-direction: column;
    align-items: center;
    background: linear-gradient(
       90deg,
-      ${theme.tertiaryColor} 0%,
-      ${theme.primaryColor} 100%
+      ${({ $theme }) => $theme.tertiaryColor} 0%,
+      ${({ $theme }) => $theme.primaryColor} 100%
    );
 
    .content {
@@ -176,7 +179,7 @@ const Container = styled.section`
 
          .title {
             font-size: ${fontSize.mediumSize};
-            color: ${theme.textColor};
+            color: ${({ $theme }) => $theme.textColor};
             font-weight: 600;
             text-align: center;
          }
@@ -192,7 +195,7 @@ const Container = styled.section`
             width: fit-content;
             align-self: center;
             border-radius: 1rem;
-            background-color: ${theme.secondaryColor};
+            background-color: ${({ $theme }) => $theme.secondaryColor};
             font-size: ${fontSize.smallSize};
             font-weight: ${fontWeight.semiBold};
             cursor: pointer;
@@ -201,7 +204,7 @@ const Container = styled.section`
             border: 0.2rem solid transparent;
 
             .link {
-               color: ${theme.secondaryTextColor};
+               color: ${({ $theme }) => $theme.secondaryTextColor};
                display: flex;
                align-items: center;
                justify-content: center;
@@ -215,7 +218,7 @@ const Container = styled.section`
             &:hover {
                scale: 1.15;
                opacity: 1;
-               border-color: ${theme.secondaryTextColor};
+               border-color: ${({ $theme }) => $theme.secondaryTextColor};
             }
          }
 
@@ -228,8 +231,8 @@ const Container = styled.section`
    @media (max-width: 768px) {
       background: linear-gradient(
          0deg,
-         ${theme.primaryColor} 0%,
-         ${theme.tertiaryColor} 100%
+         ${({ $theme }) => $theme.primaryColor} 0%,
+         ${({ $theme }) => $theme.tertiaryColor} 100%
       );
 
       .content {

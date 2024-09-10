@@ -4,11 +4,14 @@ import styled from "styled-components";
 import location from "@assets/imgs/location.jpg";
 import mapImage from "@assets/imgs/mapAddress.png";
 import { address, googleMapsLink } from "@utils/variables";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const Address = () => {
+   const theme = useThemeContext();
+
    return (
-      <Container>
+      <Container $theme={theme}>
          <h2 className="title">Como chegar ao consultório</h2>
          <div className="address">
             <a href={googleMapsLink} target="_blank" className="link">
@@ -34,7 +37,7 @@ export const Address = () => {
    );
 };
 
-const Container = styled.section`
+const Container = styled.section<{ $theme: ITheme }>`
    width: 100%;
    display: flex;
    flex-direction: column;
@@ -53,7 +56,7 @@ const Container = styled.section`
       .text {
          text-align: center;
          font-size: ${fontSize.basicSize};
-         color: ${theme.textColor};
+         color: ${({ $theme }) => $theme.textColor};
       }
 
       .text {
@@ -71,7 +74,7 @@ const Container = styled.section`
 
          &:hover {
             scale: 1.1;
-            color: ${theme.tertiaryColor};
+            color: ${({ $theme }) => $theme.tertiaryColor};
          }
       }
    }
@@ -88,8 +91,8 @@ const Container = styled.section`
          min-width: 25rem;
          border-radius: 1rem;
          overflow: hidden;
-         box-shadow: 0.5rem 0.5rem 1rem ${theme.secondaryColor};
-         border: solid 0.3rem ${theme.secondaryColor};
+         box-shadow: 0.5rem 0.5rem 1rem ${({ $theme }) => $theme.secondaryColor};
+         border: solid 0.3rem ${({ $theme }) => $theme.secondaryColor};
       }
 
       .imageContainer {
@@ -108,7 +111,7 @@ const Container = styled.section`
             position: absolute;
             width: 100%;
             height: 100%;
-            background-color: ${theme.textColor};
+            background-color: ${({ $theme }) => $theme.textColor};
             display: flex;
             align-items: center;
             justify-content: center;
@@ -117,7 +120,7 @@ const Container = styled.section`
             transition: 0.3s;
 
             .message {
-               color: ${theme.secondaryTextColor};
+               color: ${({ $theme }) => $theme.secondaryTextColor};
                font-size: clamp(4rem, 5vw, 10rem);
                text-align: center;
             }
@@ -159,4 +162,4 @@ const Container = styled.section`
       }
    }
 `;
-''
+("");

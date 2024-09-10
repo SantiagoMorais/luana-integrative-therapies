@@ -3,7 +3,6 @@ import { TopicsProvider } from "@contexts/TopicsContext";
 import { SectionSelectedProvider } from "@contexts/sectionSelectedContext";
 import { PostOrTopicProvider } from "@contexts/postOrTopicContext";
 import { TopicsCarouselProvider } from "@contexts/topicsCarouselContext";
-import { WhatsAppButton } from "@components/whatsAppButton";
 
 export const App = () => {
    return (
@@ -12,8 +11,7 @@ export const App = () => {
             <SectionSelectedProvider>
                <PostOrTopicProvider>
                   <TopicsCarouselProvider>
-                     <AppRoutes />
-                     <WhatsAppButton />
+                        <AppRoutes />
                   </TopicsCarouselProvider>
                </PostOrTopicProvider>
             </SectionSelectedProvider>

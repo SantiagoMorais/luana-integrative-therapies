@@ -1,14 +1,13 @@
 import styled from "styled-components";
 import commingSoonImage from "@assets/imgs/pageComingSoon.jpg";
-import { fontSize, fontWeight, IDefaultTheme, ISectionsTheme } from "@styles/theme";
-import { handlePageTheme, locationName } from "@utils/functions";
-import { useLocation } from "react-router-dom";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const NoPosts = () => {
-   const location = useLocation();
-   
+   const theme = useThemeContext();
+
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          <h2 className="title">Nenhuma publicação no momento</h2>
          <p className="description">
             Fique tranquilo, em breve traremos uma série de conteúdos valiosos
@@ -25,7 +24,7 @@ export const NoPosts = () => {
    );
 };
 
-const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.section<{ $theme: ITheme }>`
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -35,7 +34,7 @@ const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
    .title {
       font-size: ${fontSize.extraLargeSize};
       font-weight: ${fontWeight.medium};
-      color: ${({$theme}) => $theme.textColor};
+      color: ${({ $theme }) => $theme.textColor};
       text-align: center;
       position: relative;
 
@@ -49,8 +48,8 @@ const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
          background: linear-gradient(
             to right,
             transparent 0%,
-            ${({$theme}) => $theme.tertiaryColor} 30%,
-            ${({$theme}) => $theme.tertiaryColor} 70%,
+            ${({ $theme }) => $theme.tertiaryColor} 30%,
+            ${({ $theme }) => $theme.tertiaryColor} 70%,
             transparent 100%
          );
       }
@@ -59,7 +58,7 @@ const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
    .description {
       font-size: ${fontSize.mediumSize};
       font-weight: ${fontWeight.thin};
-      color: ${({$theme}) => $theme.textColor};
+      color: ${({ $theme }) => $theme.textColor};
       text-align: center;
       max-width: 120rem;
    }
@@ -68,11 +67,11 @@ const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
       max-width: 60rem;
       width: 100%;
       border-radius: 10%;
-      border: .5rem solid ${({$theme}) => $theme.shadowColor};
-      box-shadow: .5rem .5rem 1rem ${({$theme}) => $theme.secondaryColor};
+      border: 0.5rem solid ${({ $theme }) => $theme.shadowColor};
+      box-shadow: 0.5rem 0.5rem 1rem ${({ $theme }) => $theme.secondaryColor};
    }
 
-   @media(max-width: 768px) {
+   @media (max-width: 768px) {
       .description {
          text-align: justify;
          font-size: ${fontSize.basicSize};

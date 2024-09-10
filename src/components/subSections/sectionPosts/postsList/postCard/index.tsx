@@ -1,13 +1,9 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-   fontSize,
-   fontWeight,
-   IDefaultTheme,
-   ISectionsTheme,
-} from "@styles/theme"; // Certifique-se de usar o arquivo de estilo correto
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { IEquilibriumPostNode } from "@utils/equilibriumBlogInterfaces";
-import { handlePageTheme, locationName } from "@utils/functions";
+import { useThemeContext } from "hooks/useThemeContext";
+
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
@@ -17,13 +13,12 @@ interface IPostBannerProps {
 
 export const PostCard: React.FC<IPostBannerProps> = ({ infoNode }) => {
    const location = useLocation();
+   const locationName = location.pathname.slice(1).split("/")[0];
+   const theme = useThemeContext();
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
-         <Link
-            to={`/${locationName(location)}/${infoNode.id}`}
-            className="banner"
-         >
+      <Container $theme={theme}>
+         <Link to={`/${locationName}/${infoNode.id}`} className="banner">
             {infoNode.imagem?.url ? (
                <img
                   src={infoNode.imagem.url}
@@ -53,7 +48,7 @@ export const PostCard: React.FC<IPostBannerProps> = ({ infoNode }) => {
    );
 };
 
-const Container = styled.li<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.li<{ $theme: ITheme }>`
    display: flex;
 
    .banner {
@@ -110,7 +105,7 @@ const Container = styled.li<{ $theme: ISectionsTheme | IDefaultTheme }>`
             font-size: ${fontSize.basicSize};
             margin-bottom: 1rem;
             color: ${({ $theme }) => $theme.shadowColor};
-            font-weight: ${fontWeight.bold};
+            font-weight: ${fontWeight.medium};
             opacity: 0.8;
 
             &::first-letter {

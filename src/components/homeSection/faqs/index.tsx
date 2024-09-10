@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import data from "@json/index.json";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Collapse } from "react-collapse";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const FAQs = () => {
+   const theme = useThemeContext();
    const [questionSelected, setQuestionSelected] = useState("");
 
    const handleAccordion = (faq: string) => {
@@ -16,7 +18,7 @@ export const FAQs = () => {
    };
 
    return (
-      <Container>
+      <Container $theme={theme}>
          <h2 className="title">Perguntas Frequentes</h2>
          {data.faqs && (
             <ul className="faqs">
@@ -46,7 +48,7 @@ export const FAQs = () => {
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{$theme: ITheme}>`
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -84,7 +86,7 @@ const Container = styled.div`
          .questionBar {
             font-size: ${fontSize.basicSize};
             padding-bottom: 1rem;
-            border-bottom: 0.2rem solid ${theme.secondaryColor};
+            border-bottom: 0.2rem solid ${({ $theme }) => $theme.secondaryColor};
             transition: 0.3s;
             display: flex;
             align-items: center;

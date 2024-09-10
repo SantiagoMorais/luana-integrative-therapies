@@ -1,19 +1,25 @@
 import styled from "styled-components";
 import { aboutTheCompany } from "@json/index.json";
 import { useLocation } from "react-router-dom";
-import { fontSize, fontWeight, IDefaultTheme, ISectionsTheme } from "@styles/theme";
+import {
+   fontSize,
+   fontWeight,
+   ITheme,
+} from "@styles/theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Collapse } from "react-collapse";
-import { handlePageTheme, locationName } from "@utils/functions";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const SectionsAbout = () => {
    const [sectionClicked, setSectionClicked] = useState<boolean>(false);
    const location = useLocation();
+   const locationName = location.pathname.slice(1).split("/")[0]
+   const theme = useThemeContext();
 
    const currentSection = aboutTheCompany.find(
-      (info) => info.id === locationName(location)
+      (info) => info.id === locationName
    );
 
    const handleOpenSection = () => {
@@ -21,7 +27,7 @@ export const SectionsAbout = () => {
    };
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          <div className="infoBar" onClick={handleOpenSection}>
             <p className="infoTitle">{currentSection?.title}</p>
             <FontAwesomeIcon
@@ -34,7 +40,7 @@ export const SectionsAbout = () => {
    );
 };
 
-const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.div<{ $theme: ITheme }>`
    max-width: 100rem;
    display: flex;
    flex-direction: column;
@@ -56,7 +62,7 @@ const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
    .infoBar {
       font-size: ${fontSize.mediumSize};
       padding-bottom: 0.5rem;
-      border-bottom: 0.2rem solid ${({$theme}) => $theme.secondaryColor};
+      border-bottom: 0.2rem solid ${({ $theme }) => $theme.secondaryColor};
       transition: 0.3s;
       display: flex;
       align-items: center;

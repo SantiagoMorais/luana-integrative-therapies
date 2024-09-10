@@ -1,13 +1,16 @@
 import { Footer } from "@components/footer";
 import { Header } from "@components/header";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import imageComingSoon from "@assets/imgs/pageComingSoon.jpg";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const CommingSoon = () => {
+   const theme = useThemeContext();
+
    return (
-      <Container>
+      <Container $theme={theme}>
          <Header />
          <section className="commingSoonContent">
             <div className="info">
@@ -39,7 +42,7 @@ export const CommingSoon = () => {
    );
 };
 
-const Container = styled.section`
+const Container = styled.section<{$theme: ITheme}>`
    min-height: 100vh;
    display: flex;
    flex-direction: column;
@@ -73,7 +76,7 @@ const Container = styled.section`
 
             a {
                font-weight: ${fontWeight.medium};
-               color: ${theme.secondaryColor};
+               color: ${({ $theme }) => $theme.secondaryColor};
             }
          }
       }
@@ -83,7 +86,7 @@ const Container = styled.section`
          max-width: 60rem;
          width: 100%;
          border-radius: 10%;
-         border: 1rem solid ${theme.primaryColor};
+         border: 1rem solid ${({ $theme }) => $theme.primaryColor};
       }
    }
 

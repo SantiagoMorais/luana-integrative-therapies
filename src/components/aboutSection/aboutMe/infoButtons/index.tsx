@@ -1,4 +1,5 @@
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
+import { useThemeContext } from "hooks/useThemeContext";
 import styled from "styled-components";
 
 interface IButtons {
@@ -16,18 +17,22 @@ export const InfoButtons: React.FC<IInfoButtonsProps> = ({
    buttonSelected,
    onClick,
 }) => {
+   const theme = useThemeContext();
+
    const buttons: IButtons[] = [
       { id: 1, title: "Sobre mim", buttonType: "about-me" },
       { id: 2, title: "Nosso Endereço", buttonType: "address" },
    ];
 
    return (
-      <Container>
+      <Container $theme={theme}>
          {buttons.map((button) => (
             <button
                key={button.id}
                className={`selectedSection ${
-                  buttonSelected === button.buttonType ? "selected" : "notSelected"
+                  buttonSelected === button.buttonType
+                     ? "selected"
+                     : "notSelected"
                }`}
                onClick={() => onClick(button.buttonType)}
             >
@@ -43,7 +48,7 @@ export const InfoButtons: React.FC<IInfoButtonsProps> = ({
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ITheme }>`
    display: flex;
    gap: 2rem;
    position: relative;
@@ -54,7 +59,7 @@ const Container = styled.div`
       background: none;
       border-radius: 1rem;
       border: none;
-      color: ${theme.textColor};
+      color: ${({ $theme }) => $theme.textColor};
       width: 18rem;
       text-align: center;
       font-weight: ${fontWeight.medium};
@@ -71,7 +76,7 @@ const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent,
-            ${theme.tertiaryColor},
+            ${({ $theme }) => $theme.tertiaryColor},
             transparent
          );
          z-index: -1;
@@ -89,7 +94,7 @@ const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent,
-            ${theme.tertiaryColor},
+            ${({ $theme }) => $theme.tertiaryColor},
             transparent
          );
          z-index: -1;
@@ -125,8 +130,8 @@ const Container = styled.div`
       background: linear-gradient(
          to right,
          transparent 0%,
-         ${theme.secondaryColor} 20%,
-         ${theme.secondaryColor} 80%,
+         ${({ $theme }) => $theme.secondaryColor} 20%,
+         ${({ $theme }) => $theme.secondaryColor} 80%,
          transparent 100%
       );
       z-index: 1;
@@ -143,7 +148,7 @@ const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent,
-            ${theme.shadowColor},
+            ${({ $theme }) => $theme.shadowColor},
             transparent
          );
          z-index: -1;
@@ -159,7 +164,7 @@ const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent,
-            ${theme.shadowColor},
+            ${({ $theme }) => $theme.shadowColor},
             transparent
          );
          z-index: -1;
@@ -180,8 +185,8 @@ const Container = styled.div`
       background: linear-gradient(
          to right,
          transparent 0%,
-         ${theme.primaryColor} 30%,
-         ${theme.primaryColor} 70%,
+         ${({ $theme }) => $theme.primaryColor} 30%,
+         ${({ $theme }) => $theme.primaryColor} 70%,
          transparent 100%
       );
    }

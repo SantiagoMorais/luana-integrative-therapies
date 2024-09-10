@@ -1,12 +1,14 @@
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import styled from "styled-components";
 import { PresentationBar } from "./presentationBar";
 import { AboutMeText } from "./aboutMeText";
 import { useState } from "react";
 import { InfoButtons } from "./infoButtons";
 import { Address } from "./address";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const AboutMe = () => {
+   const theme = useThemeContext();
    const [infoSelected, setInfoSelected] = useState<"about-me" | "address">(
       "about-me"
    );
@@ -16,7 +18,7 @@ export const AboutMe = () => {
    };
 
    return (
-      <Container>
+      <Container $theme={theme}>
          <h2 className="title">Um pouco mais sobre Luana</h2>
          <PresentationBar />
          <InfoButtons
@@ -28,7 +30,7 @@ export const AboutMe = () => {
    );
 };
 
-export const Container = styled.div`
+export const Container = styled.div<{ $theme: ITheme }>`
    width: 100%;
    padding: 2rem 2rem 4rem;
    display: flex;
@@ -54,8 +56,8 @@ export const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent 0%,
-            ${theme.tertiaryColor} 20%,
-            ${theme.tertiaryColor} 80%,
+            ${({ $theme }) => $theme.tertiaryColor} 20%,
+            ${({ $theme }) => $theme.tertiaryColor} 80%,
             transparent 100%
          );
       }

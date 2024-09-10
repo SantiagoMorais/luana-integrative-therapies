@@ -1,14 +1,9 @@
 import { PostOrTopicContext } from "@contexts/postOrTopicContext";
 import { useContext } from "react";
 import styled from "styled-components";
-import {
-   fontSize,
-   fontWeight,
-   IDefaultTheme,
-   ISectionsTheme,
-} from "@styles/theme";
-import { handlePageTheme, locationName } from "@utils/functions";
-import { useLocation } from "react-router-dom";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
+
+import { useThemeContext } from "hooks/useThemeContext";
 
 interface IButtons {
    title: string;
@@ -17,7 +12,7 @@ interface IButtons {
 }
 
 export const SectionsButtons = () => {
-   const location = useLocation();
+   const theme = useThemeContext();
 
    const { handleSelectedButton, postOrTopicSelected } =
       useContext(PostOrTopicContext);
@@ -28,7 +23,7 @@ export const SectionsButtons = () => {
    ];
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          {buttons.map((button) => (
             <button
                key={button.id}
@@ -51,7 +46,7 @@ export const SectionsButtons = () => {
    );
 };
 
-const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.div<{ $theme: ITheme }>`
    display: flex;
    gap: 2rem;
    position: relative;

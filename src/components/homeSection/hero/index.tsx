@@ -2,11 +2,14 @@ import styled, { keyframes } from "styled-components";
 import heroImage from "@assets/imgs/heroImageLargeScreenDevices.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, defaultFontFamily, ITheme } from "@styles/theme";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const Hero = () => {
+   const theme = useThemeContext();
+
    return (
-      <Container>
+      <Container $theme={theme}>
          <div className="slogan">
             <h2 className="title">Harmonizando Energia e Saúde</h2>
             <h3 className="subtitle">
@@ -38,14 +41,15 @@ const animation = keyframes`
     }
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ITheme }>`
    flex-grow: 1;
-   background: ${theme.secondaryTextColor} url(${heroImage}) no-repeat 15dvw 10%;
+   background: ${({ $theme }) => $theme.secondaryTextColor} url(${heroImage})
+      no-repeat 15dvw 10%;
    width: 100%;
    height: 100%;
    background-size: cover;
    position: relative;
-   border: solid ${theme.secondaryTextColor};
+   border: solid ${({ $theme }) => $theme.secondaryTextColor};
    border-width: 0.2dvw 0;
 
    .slogan {
@@ -53,7 +57,7 @@ const Container = styled.div`
       width: 35dvw;
       left: 8dvw;
       top: 11dvh;
-      color: ${theme.textColor};
+      color: ${({ $theme }) => $theme.textColor};
       z-index: 1;
       display: flex;
       flex-direction: column;
@@ -63,7 +67,7 @@ const Container = styled.div`
          font-size: 4.25dvw;
          font-weight: ${fontWeight.bold};
          line-height: 90%;
-         color: ${theme.textColor};
+         color: ${({ $theme }) => $theme.textColor};
          text-transform: uppercase;
          filter: drop-shadow(0 0 0.2rem #587aaa);
       }
@@ -71,9 +75,11 @@ const Container = styled.div`
       .subtitle {
          font-size: 2.35dvw;
          font-weight: ${fontWeight.medium};
-         color: ${theme.textColor};
-         filter: drop-shadow(0 0 0.2rem ${theme.secondaryColor});
-         font-family: ${theme.fontFamily};
+         color: ${({ $theme }) => $theme.textColor};
+         filter: drop-shadow(
+            0 0 0.2rem ${({ $theme }) => $theme.secondaryColor}
+         );
+         font-family: ${defaultFontFamily};
       }
    }
 
@@ -85,7 +91,9 @@ const Container = styled.div`
       left: 0;
       margin: auto;
       animation: ${animation} 2s infinite;
-      filter: drop-shadow(0 0 0.5rem ${theme.secondaryTextColor});
+      filter: drop-shadow(
+         0 0 0.5rem ${({ $theme }) => $theme.secondaryTextColor}
+      );
       z-index: 2;
    }
 
@@ -104,14 +112,14 @@ const Container = styled.div`
       background: linear-gradient(
          to left,
          rgba(255, 255, 255, 0),
-         ${theme.secondaryTextColor}
+         ${({ $theme }) => $theme.secondaryTextColor}
       );
    }
 
    &::before {
       left: 0;
       width: 15dvw;
-      background: ${theme.secondaryTextColor};
+      background: ${({ $theme }) => $theme.secondaryTextColor};
    }
 
    @media (max-width: 1920px) {
@@ -202,7 +210,7 @@ const Container = styled.div`
          background: linear-gradient(
             to bottom,
             rgba(255, 255, 255, 0),
-            ${theme.secondaryTextColor}
+            ${({ $theme }) => $theme.secondaryTextColor}
          );
       }
    }

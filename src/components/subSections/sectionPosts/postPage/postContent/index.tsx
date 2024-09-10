@@ -5,24 +5,24 @@ import parse from "html-react-parser";
 import {
    fontSize,
    fontWeight,
-   IDefaultTheme,
-   ISectionsTheme,
+   ITheme,
 } from "@styles/theme";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
    faMagnifyingGlass,
    faRotateLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { AuthorInfo } from "../authorInfo";
-import { handlePageTheme, locationName } from "@utils/functions";
+import { useThemeContext } from "hooks/useThemeContext";
 
 interface IContent {
    data: IEquilibriumPostNode | ISegredosDaLuaPostNode;
 }
 
 export const PostContent: React.FC<IContent> = ({ data }) => {
-   const location = useLocation();
+   const theme = useThemeContext();
+
    const dateConvertedToPtStandard = data?.data
       .toString()
       .split("-")
@@ -30,7 +30,7 @@ export const PostContent: React.FC<IContent> = ({ data }) => {
       .join("/");
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          <div className="postContent">
             <AuthorInfo autor={data?.autor} />
             <h2 className="title">{data?.titulo}</h2>
@@ -70,7 +70,7 @@ export const PostContent: React.FC<IContent> = ({ data }) => {
    );
 };
 
-const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.div<{ $theme: ITheme }>`
    width: 100%;
    display: flex;
    justify-content: center;

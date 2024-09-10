@@ -3,18 +3,17 @@ import { NavBar } from "./navBar";
 import {
    fontSize,
    fontWeight,
-   IDefaultTheme,
-   ISectionsTheme,
-   theme,
+   defaultFontFamily,
+   ITheme,
 } from "@styles/theme";
-import { Link, useLocation } from "react-router-dom";
-import { handlePageTheme, locationName } from "@utils/functions";
+import { Link } from "react-router-dom";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const Header = () => {
-   const location = useLocation();
+   const theme = useThemeContext();
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          <div className="content">
             <Link to="/" className="title">
                <h1 className="nameTitle">Luana Vasconcellos Alvarenga</h1>
@@ -28,7 +27,7 @@ export const Header = () => {
    );
 };
 
-const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.section<{ $theme: ITheme }>`
    background: linear-gradient(
       90deg,
       ${({ $theme }) => $theme.primaryColor} 0%,
@@ -53,19 +52,19 @@ const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
 
          .nameTitle {
             font-size: ${fontSize.mediumSize};
-            font-family: ${theme.fontFamily};
+            font-family: ${defaultFontFamily};
             font-weight: ${fontWeight.semiBold};
             margin-bottom: 2rem;
-            color: ${theme.textColor};
+            color: ${({ $theme }) => $theme.textColor};
 
             &::first-letter {
                font-size: 166%;
-               font-family: ${theme.fontFamily};
+               font-family: ${defaultFontFamily};
             }
          }
 
          .professionalTitle {
-            color: ${theme.textColor};
+            color: ${({ $theme }) => $theme.textColor};
             font-size: 1.8rem;
             font-weight: ${fontWeight.semiBold};
             opacity: 0.8;
@@ -94,8 +93,8 @@ const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
    @media (max-width: 475px) {
       background: linear-gradient(
          180deg,
-         ${theme.tertiaryColor} 0%,
-         ${theme.primaryColor} 90%
+         ${({ $theme }) => $theme.tertiaryColor} 0%,
+         ${({ $theme }) => $theme.primaryColor} 90%
       );
 
       .content {

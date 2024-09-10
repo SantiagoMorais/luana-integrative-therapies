@@ -7,11 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { instagramLink, whatsappLink } from "@utils/variables";
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import styled from "styled-components";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
+import { useThemeContext } from "hooks/useThemeContext";
 
 export const PresentationBar = () => {
+   const theme = useThemeContext();
+
    return (
-      <Container>
+      <Container $theme={theme}>
          <img
             className="backgroundImage"
             src={backgroundImage}
@@ -73,7 +76,7 @@ export const PresentationBar = () => {
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ITheme }>`
    position: relative;
    width: 100dvw;
    overflow: hidden;
@@ -110,7 +113,7 @@ const Container = styled.div`
          z-index: 2;
          font-weight: ${fontWeight.semiBold};
          text-align: center;
-         color: ${theme.textColor};
+         color: ${({ $theme }) => $theme.textColor};
          opacity: 0.8;
       }
 
@@ -126,7 +129,7 @@ const Container = styled.div`
 
          .message {
             font-size: 2.1dvw;
-            color: ${theme.textColor};
+            color: ${({ $theme }) => $theme.textColor};
             font-weight: 600;
             text-align: center;
             opacity: 0.8;
@@ -138,7 +141,7 @@ const Container = styled.div`
             width: fit-content;
             align-self: center;
             border-radius: 1rem;
-            background-color: ${theme.secondaryColor};
+            background-color: ${({ $theme }) => $theme.secondaryColor};
             font-size: 1.6dvw;
             letter-spacing: 0.1dvw;
             font-weight: ${fontWeight.semiBold};
@@ -147,7 +150,7 @@ const Container = styled.div`
             border: 0.3dvw solid transparent;
 
             .link {
-               color: ${theme.secondaryTextColor};
+               color: ${({ $theme }) => $theme.secondaryTextColor};
                display: flex;
                align-items: center;
                justify-content: center;
@@ -160,7 +163,7 @@ const Container = styled.div`
 
             &:hover {
                scale: 1.15;
-               border-color: ${theme.secondaryTextColor};
+               border-color: ${({ $theme }) => $theme.secondaryTextColor};
             }
          }
 
@@ -253,14 +256,13 @@ const Container = styled.div`
             opacity: 1;
             order: 2;
             padding: 0 4rem;
-
          }
 
          .info {
             position: static;
             width: 100%;
             transform: translateY(0%);
-            background-color: rgba(255,255,255, .4);
+            background-color: rgba(255, 255, 255, 0.4);
             padding: 1rem 4rem;
 
             .message {
@@ -318,7 +320,9 @@ const Container = styled.div`
                   rgba(0, 0, 0, 1) 80%,
                   rgba(0, 0, 0, 0) 100%
                );
-               filter: drop-shadow(0 0 0.5rem ${theme.tertiaryColor});
+               filter: drop-shadow(
+                  0 0 0.5rem ${({ $theme }) => $theme.tertiaryColor}
+               );
             }
 
             .lineEffect {

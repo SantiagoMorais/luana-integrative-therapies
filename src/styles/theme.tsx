@@ -28,7 +28,11 @@ export const fontWeight: IFontWeight = {
    bold: "600",
 };
 
-interface ITheme {
+export const defaultFontFamily = "'Cookie', cursive";
+
+export interface ITheme {
+   id: string;
+   backgroundColor: string;
    primaryColor: string;
    secondaryColor: string;
    tertiaryColor: string;
@@ -37,44 +41,35 @@ interface ITheme {
    shadowColor: string;
 }
 
-export interface IDefaultTheme extends ITheme {
-   fontFamily: string;
-}
-
-export interface ISectionsTheme extends ITheme {
-   id: string;
-   backgroundColor: string;
-}
-
-export const theme: IDefaultTheme = {
-   fontFamily: "'Cookie', cursive",
-   primaryColor: "#D6E5FA",
-   secondaryColor: "#E6B2C6",
-   tertiaryColor: "#8cb2e7",
-   textColor: "#000000",
-   secondaryTextColor: "#ffffff",
-   shadowColor: "#c72a66",
-};
-
-export const sectionsTheme: ISectionsTheme[] = [
+export const sectionsTheme: ITheme[] = [
+   {
+      id: "default",
+      primaryColor: "#D6E5FA",
+      secondaryColor: "#E6B2C6",
+      tertiaryColor: "#8cb2e7",
+      textColor: "#000000",
+      secondaryTextColor: "#ffffff",
+      shadowColor: "#c72a66",
+      backgroundColor: "#ffffff",
+   },
    {
       id: "equilibrium",
       primaryColor: "#D7C3F1",
-      secondaryColor: "#ffe49b",
+      secondaryColor: "#e9a5e0",
       tertiaryColor: "#6434a3",
       textColor: "#000000",
       secondaryTextColor: "#ffffff",
       backgroundColor: "#F7EFE5",
-      shadowColor: "#FFD35A"
+      shadowColor: "#d86cca",
    },
    {
       id: "segredos-da-lua",
       primaryColor: "#8bb0da",
-      secondaryColor: "#ffc0c0",
+      secondaryColor: "#addbd7",
       tertiaryColor: "#3331C5",
       textColor: "#000000",
       secondaryTextColor: "#ffffff",
-      backgroundColor: "#FFEAE3",
-      shadowColor: "#e98282"
+      backgroundColor: "#f1f1f1",
+      shadowColor: "#48aca3",
    },
 ];

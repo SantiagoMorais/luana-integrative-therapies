@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/client";
-// import { ErrorPage } from "@components/equilibriumSection/errorPage";
 import { Footer } from "@components/footer";
 import { Header } from "@components/header";
 import {
@@ -9,19 +8,13 @@ import {
 import { IEquilibriumPostById } from "@utils/equilibriumBlogInterfaces";
 import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
-// import { Content } from "./content";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
-import {
-   fontSize,
-   fontWeight,
-   IDefaultTheme,
-   ISectionsTheme,
-} from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { ISegredosDaLuaPostById } from "@utils/moonsSecretsBlogInterfaces";
 import { PostContent } from "./postContent";
 import { ErrorPage } from "@components/subSections/errorPage";
-import { handlePageTheme, locationName } from "@utils/functions";
+import { useThemeContext } from "hooks/useThemeContext";
 
 const isEquilibriumPost = (
    data: IEquilibriumPostById | ISegredosDaLuaPostById | undefined
@@ -38,11 +31,13 @@ const isSegredosDaLuaPost = (
 export const PostPage = () => {
    const { id } = useParams();
    const location = useLocation();
+   const locationName = location.pathname.slice(1).split("/")[0];
+   const theme = useThemeContext();
 
    const { data, loading, error } = useQuery<
       IEquilibriumPostById | ISegredosDaLuaPostById
    >(
-      locationName(location) === "equilibrium"
+      locationName === "equilibrium"
          ? GET_EQUILIBRIUM_POST_BY_ID_QUERY
          : GET_SEGREDOS_DA_LUA_POST_BY_ID_QUERY,
       {
@@ -51,7 +46,7 @@ export const PostPage = () => {
    );
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          <Header />
          {loading ? (
             <div className="loadingContainer">
@@ -78,7 +73,7 @@ export const PostPage = () => {
    );
 };
 
-const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.section<{ $theme: ITheme }>`
    display: flex;
    flex-direction: column;
    height: 100dvh;

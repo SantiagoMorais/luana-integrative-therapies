@@ -1,10 +1,5 @@
 import { DocumentNode, useQuery } from "@apollo/client";
-import {
-   fontSize,
-   fontWeight,
-   IDefaultTheme,
-   ISectionsTheme,
-} from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import styled from "styled-components";
 import { TopicsList } from "./topicsList";
 import { IEquilibriumTopicsData } from "@utils/equilibriumBlogInterfaces";
@@ -15,8 +10,7 @@ import { TopicContent } from "./topicContent";
 import { ErrorPage } from "../errorPage";
 import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { handlePageTheme, locationName } from "@utils/functions";
-import { useLocation } from "react-router-dom";
+import { useThemeContext } from "hooks/useThemeContext";
 
 interface ISectionTopics {
    query: DocumentNode;
@@ -64,7 +58,7 @@ const handleSlidesPerView = (
 
 export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    const { sectionSelected } = useContext(SectionSelectedContext);
-   const location = useLocation();
+   const theme = useThemeContext();
 
    const { data, fetchMore, loading, error } = useQuery<
       IEquilibriumTopicsData | ISegredosDaLuaTopicsData
@@ -143,7 +137,7 @@ export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    const slidesPerView = handleSlidesPerView(data, sectionSelected);
 
    return (
-      <Container $theme={handlePageTheme(locationName(location))}>
+      <Container $theme={theme}>
          <div className="content">
             <h2 className="sectionTitle">Veja alguns dos nossos serviços:</h2>
             {loading ? (
@@ -177,7 +171,7 @@ export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    );
 };
 
-const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
+const Container = styled.div<{ $theme: ITheme }>`
    display: flex;
    justify-content: center;
    width: 100%;

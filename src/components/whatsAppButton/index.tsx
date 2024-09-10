@@ -1,12 +1,15 @@
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { theme } from "@styles/theme";
+import { ITheme } from "@styles/theme";
 import { whatsappLink } from "@utils/variables";
+import { useThemeContext } from "hooks/useThemeContext";
 import styled from "styled-components";
 
 export const WhatsAppButton = () => {
+   const theme = useThemeContext();
+
    return (
-      <Container>
+      <Container $theme={theme}>
          <a href={whatsappLink} className="link" target="_blank">
             <FontAwesomeIcon icon={faWhatsapp} className="icon" />
             <p className="text">Fale conosco via WhatsApp</p>
@@ -15,7 +18,7 @@ export const WhatsAppButton = () => {
    );
 };
 
-const Container = styled.button`
+const Container = styled.button<{ $theme: ITheme }>`
    opacity: 0.6;
    background: #25d366;
    border: none;
@@ -33,12 +36,12 @@ const Container = styled.button`
       align-items: center;
 
       .icon {
-         color: ${theme.secondaryTextColor};
+         color: ${({ $theme }) => $theme.secondaryTextColor};
          font-size: 2.2rem;
       }
 
       .text {
-         color: ${theme.secondaryTextColor};
+         color: ${({ $theme }) => $theme.secondaryTextColor};
          font-size: 1.6rem;
          letter-spacing: 0.1rem;
       }
