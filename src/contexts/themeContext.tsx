@@ -1,4 +1,3 @@
-// ThemeContext.tsx
 import React, { createContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ITheme, sectionsTheme } from "@styles/theme";
