@@ -1,13 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import correctImage from "@assets/imgs/pageComingSoon.jpg";
 import { CommingSoon } from ".";
-import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { HomeSection } from "@components/homeSection";
 import userEvent from "@testing-library/user-event";
+import { renderWithProviders } from "@utils/functions";
+import { ThemeProvider } from "@contexts/themeContext";
 
 describe("<CommingSoon />", () => {
    it("should render the component correctly", () => {
-      render(<CommingSoon />, { wrapper: BrowserRouter });
+      renderWithProviders(<CommingSoon />);
       const title = screen.getByRole("heading", {
          name: /Em Breve: Novidades Estão Chegando!/i,
       });
@@ -15,13 +17,13 @@ describe("<CommingSoon />", () => {
    });
 
    it("should render the image correctly", () => {
-      render(<CommingSoon />, { wrapper: BrowserRouter });
+      renderWithProviders(<CommingSoon />);
       const image = screen.getByRole("img");
       expect(image).toHaveAttribute("src", correctImage);
    });
 
    it("should render the text correctly", () => {
-      render(<CommingSoon />, { wrapper: BrowserRouter });
+      renderWithProviders(<CommingSoon />);
       const text = document.querySelectorAll(".text");
       expect(text).toMatchSnapshot();
    });
@@ -29,10 +31,12 @@ describe("<CommingSoon />", () => {
    it("should return to home page when clicked on the 'return' link", async () => {
       render(
          <MemoryRouter initialEntries={["/comming-soon"]}>
-            <Routes>
-               <Route path="/comming-soon" element={<CommingSoon />} />
-               <Route path="/" element={<HomeSection />} />
-            </Routes>
+            <ThemeProvider>
+               <Routes>
+                  <Route path="/comming-soon" element={<CommingSoon />} />
+                  <Route path="/" element={<HomeSection />} />
+               </Routes>
+            </ThemeProvider>
          </MemoryRouter>
       );
       const user = userEvent.setup();

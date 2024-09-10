@@ -15,6 +15,7 @@ import { ISegredosDaLuaPostById } from "@utils/moonsSecretsBlogInterfaces";
 import { PostContent } from "./postContent";
 import { ErrorPage } from "@components/subSections/errorPage";
 import { useThemeContext } from "hooks/useThemeContext";
+import { locationName } from "@utils/functions";
 
 const isEquilibriumPost = (
    data: IEquilibriumPostById | ISegredosDaLuaPostById | undefined
@@ -31,13 +32,12 @@ const isSegredosDaLuaPost = (
 export const PostPage = () => {
    const { id } = useParams();
    const location = useLocation();
-   const locationName = location.pathname.slice(1).split("/")[0];
    const theme = useThemeContext();
 
    const { data, loading, error } = useQuery<
       IEquilibriumPostById | ISegredosDaLuaPostById
    >(
-      locationName === "equilibrium"
+      locationName(location) === "equilibrium"
          ? GET_EQUILIBRIUM_POST_BY_ID_QUERY
          : GET_SEGREDOS_DA_LUA_POST_BY_ID_QUERY,
       {

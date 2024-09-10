@@ -1,25 +1,21 @@
 import styled from "styled-components";
 import { aboutTheCompany } from "@json/index.json";
 import { useLocation } from "react-router-dom";
-import {
-   fontSize,
-   fontWeight,
-   ITheme,
-} from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Collapse } from "react-collapse";
 import { useThemeContext } from "hooks/useThemeContext";
+import { locationName } from "@utils/functions";
 
 export const SectionsAbout = () => {
    const [sectionClicked, setSectionClicked] = useState<boolean>(false);
    const location = useLocation();
-   const locationName = location.pathname.slice(1).split("/")[0]
    const theme = useThemeContext();
 
    const currentSection = aboutTheCompany.find(
-      (info) => info.id === locationName
+      (info) => info.id === locationName(location)
    );
 
    const handleOpenSection = () => {

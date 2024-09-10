@@ -4,13 +4,13 @@ import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { useLocation } from "react-router-dom";
 import { topicsListIsEmptyMessages } from "@json/index.json";
 import { useThemeContext } from "hooks/useThemeContext";
+import { locationName } from "@utils/functions";
 
 export const TopicsListIsEmpty = () => {
    const location = useLocation();
-   const locationName = location.pathname.slice(1).split("/")[0];
    const theme = useThemeContext();
    const content = topicsListIsEmptyMessages.find(
-      (item) => item.id === locationName
+      (item) => item.id === locationName(location)
    );
 
    return (

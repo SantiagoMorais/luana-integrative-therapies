@@ -7,10 +7,10 @@ import styled from "styled-components";
 import { navigationLinks } from "@json/index.json";
 import { Link, useLocation } from "react-router-dom";
 import { useThemeContext } from "hooks/useThemeContext";
+import { locationName } from "@utils/functions";
 
 export const Footer = () => {
    const location = useLocation();
-   const locationName = location.pathname.slice(1).split("/")[0]
    const theme = useThemeContext();
 
    return (
@@ -69,7 +69,7 @@ export const Footer = () => {
                         key={item.name}
                         to={`/${item.link}`}
                         className={`section ${
-                           locationName === item.link && "selected"
+                           locationName(location) === item.link && "selected"
                         }`}
                      >
                         {item.name}

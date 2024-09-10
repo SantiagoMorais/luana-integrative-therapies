@@ -13,6 +13,7 @@ import {
    ITheme,
 } from "@styles/theme";
 import { useThemeContext } from "hooks/useThemeContext";
+import { locationName } from "@utils/functions";
 
 interface ISectionBannerProps {
    sectionSelected: "equilibrium" | "segredos-da-lua" | "";
@@ -22,7 +23,6 @@ export const SectionBanner: React.FC<ISectionBannerProps> = ({
    sectionSelected,
 }) => {
    const location = useLocation();
-   const locationName = location.pathname.slice(1).split("/")[0];
    const theme = useThemeContext();
 
    const content = data.sectionsInfo.find(
@@ -30,7 +30,7 @@ export const SectionBanner: React.FC<ISectionBannerProps> = ({
    );
 
    const handleCurrentLogo = () => {
-      switch (locationName) {
+      switch (locationName(location)) {
          case "equilibrium":
             return equilibriumLogo;
          case "segredos-da-lua":

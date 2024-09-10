@@ -1,17 +1,13 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { NavBar } from ".";
-import { BrowserRouter } from "react-router-dom";
 import { navigationLinks } from "@json/index.json";
+import { renderWithProviders } from "@utils/functions";
 
 describe("<NavBar />", () => {
    it("should render the links of navigation bar", async () => {
-      render(
-         <BrowserRouter>
-            <NavBar />
-         </BrowserRouter>
-      );
-      
-      const linksLength = navigationLinks.length
+      renderWithProviders(<NavBar />);
+
+      const linksLength = navigationLinks.length;
       const links = screen.queryAllByRole("listitem");
 
       expect(links).toHaveLength(linksLength);
@@ -20,11 +16,7 @@ describe("<NavBar />", () => {
 
 describe("<NavBar /> responsive layouts", () => {
    it("should the button receive the className 'clicked' when it's clicked", () => {
-      render(
-         <BrowserRouter>
-            <NavBar />
-         </BrowserRouter>
-      );
+      renderWithProviders(<NavBar />);
 
       const button = screen.getByTestId("accordionButton");
       expect(button).toBeInTheDocument();
@@ -35,11 +27,7 @@ describe("<NavBar /> responsive layouts", () => {
    });
 
    it("should the fontAwesomeIcon changes its icon attribute when the button is clicked", () => {
-      render(
-         <BrowserRouter>
-            <NavBar />
-         </BrowserRouter>
-      );
+      renderWithProviders(<NavBar />);
 
       const button = screen.getByTestId("accordionButton");
       const icon = screen.getByTestId("hamburgerIcon");

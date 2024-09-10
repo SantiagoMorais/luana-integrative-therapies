@@ -7,12 +7,12 @@ import { navigationLinks } from "@json/index.json";
 import { googleMapsLink } from "@utils/variables";
 import { fontSize, ITheme } from "@styles/theme";
 import { useThemeContext } from "hooks/useThemeContext";
+import { locationName } from "@utils/functions";
 
 export const NavBar = () => {
    const [hamburgerIconClicked, setHamburgerIconClicked] =
       useState<boolean>(false);
    const location = useLocation();
-   const locationName = location.pathname.slice(1).split("/")[0];
    const theme = useThemeContext();
 
    const handleOpenAccordion = () => {
@@ -42,7 +42,7 @@ export const NavBar = () => {
                   <Link key={index} to={`/${navButton.link}`}>
                      <li
                         className={`link ${
-                           locationName === navButton.link ? "selected" : ""
+                           locationName(location) === navButton.link ? "selected" : ""
                         }`}
                      >
                         {navButton.name}

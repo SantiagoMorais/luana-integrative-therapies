@@ -16,10 +16,10 @@ import {
 } from "@utils/blogAPI";
 import { ITheme } from "@styles/theme";
 import { useThemeContext } from "hooks/useThemeContext";
+import { locationName } from "@utils/functions";
 
 export const SubSections = () => {
    const location = useLocation();
-   const locationName = location.pathname.slice(1).split("/")[0];
    const theme = useThemeContext();
 
    const { setSectionSelected, sectionSelected } = useContext(
@@ -29,7 +29,7 @@ export const SubSections = () => {
    const { postOrTopicSelected } = useContext(PostOrTopicContext);
 
    useEffect(() => {
-      switch (locationName) {
+      switch (locationName(location)) {
          case "equilibrium":
             setSectionSelected("equilibrium");
             break;
@@ -39,7 +39,7 @@ export const SubSections = () => {
          default:
             setSectionSelected("");
       }
-   }, [setSectionSelected, locationName]);
+   }, [setSectionSelected, location]);
 
    return (
       <Container $theme={theme}>

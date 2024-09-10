@@ -16,7 +16,6 @@ describe("Routes", () => {
       expect(slogan).toBeInTheDocument();
    });
 
-
    it("should render the <AboutMe /> component when the route changes", async () => {
       render(
          <ApolloProvider client={client}>

@@ -1,11 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { FollowMeSection } from ".";
 import { instagramLink, whatsappLink } from "@utils/variables";
 import followMeImage from "@assets/imgs/luanaImageWithoutBG-3.png";
+import { renderWithProviders } from "@utils/functions";
 
 describe("<FollowMeSection />", () => {
    it("should render the component correctly", () => {
-      render(<FollowMeSection />);
+      renderWithProviders(<FollowMeSection />);
       const title = screen.getByText(
          /Gostaria de conhecer um pouco mais sobre o mundo das terapias integrativas?/i
       );
@@ -13,7 +14,7 @@ describe("<FollowMeSection />", () => {
    });
 
    it("should render the instagram button correctly", () => {
-      render(<FollowMeSection />);
+      renderWithProviders(<FollowMeSection />);
       const instagramButton = screen.getByRole("link", { name: "Instagram" });
 
       expect(instagramButton).toBeInTheDocument();
@@ -26,7 +27,7 @@ describe("<FollowMeSection />", () => {
    });
 
    it("should render the schedule appointment button correctly", () => {
-      render(<FollowMeSection />);
+      renderWithProviders(<FollowMeSection />);
       const scheduleAppointmentButton = screen.getByRole("link", {
          name: "Agendar consulta",
       });
@@ -42,14 +43,14 @@ describe("<FollowMeSection />", () => {
    });
 
    it("should render the instagram image correctly", () => {
-      render(<FollowMeSection />);
+      renderWithProviders(<FollowMeSection />);
       const instagramImage = screen.getByAltText("Siga-me no Instagram");
       expect(instagramImage).toBeInTheDocument();
       expect(instagramImage).toHaveAttribute("src", followMeImage);
    });
 
    it("should have the correct HTML structure", () => {
-      render(<FollowMeSection />);
+      renderWithProviders(<FollowMeSection />);
       const content = screen
          .getByText(
             /Gostaria de conhecer um pouco mais sobre o mundo das terapias integrativas?/i

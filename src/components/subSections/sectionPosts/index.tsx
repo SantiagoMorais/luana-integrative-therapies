@@ -11,6 +11,7 @@ import { PostsList } from "./postsList";
 import { ErrorPage } from "../errorPage";
 import { NoPosts } from "../noPosts";
 import { useThemeContext } from "hooks/useThemeContext";
+import { locationName } from "@utils/functions";
 
 interface ISectionPosts {
    query: DocumentNode;
@@ -42,7 +43,6 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
       },
    });
    const location = useLocation();
-   const locationName = location.pathname.slice(1).split("/")[0];
    const theme = useThemeContext();
    const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
@@ -50,12 +50,12 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
    let hasMore: boolean = false;
    let endCursor: string | null = "";
 
-   if (locationName === "equilibrium" && isEquilibriumPostsData(data)) {
+   if (locationName(location) === "equilibrium" && isEquilibriumPostsData(data)) {
       posts = data.equilibriumPostsConnection.edges;
       hasMore = data.equilibriumPostsConnection.pageInfo.hasNextPage;
       endCursor = data.equilibriumPostsConnection.pageInfo.endCursor;
    } else if (
-      locationName === "segredos-da-lua" &&
+      locationName(location) === "segredos-da-lua" &&
       isSegredosDaLuaPostsData(data)
    ) {
       posts = data.segredosDaLuaPostsConnection.edges;
@@ -127,10 +127,10 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
             ) : error ? (
                <ErrorPage />
             ) : data &&
-              ((locationName === "equilibrium" &&
+              ((locationName(location) === "equilibrium" &&
                  isEquilibriumPostsData(data) &&
                  data.equilibriumPostsConnection.edges.length > 0) ||
-                 (locationName === "segredos-da-lua" &&
+                 (locationName(location) === "segredos-da-lua" &&
                     isSegredosDaLuaPostsData(data) &&
                     data.segredosDaLuaPostsConnection.edges.length > 0)) ? (
                <>

@@ -37,7 +37,7 @@ export const FAQs = () => {
                            }`}
                         />
                      </div>
-                     <Collapse isOpened={questionSelected === faq.question}>
+                     <Collapse isOpened={questionSelected === faq.question} data-testid="answer">
                         {faq.answer}
                      </Collapse>
                   </li>
