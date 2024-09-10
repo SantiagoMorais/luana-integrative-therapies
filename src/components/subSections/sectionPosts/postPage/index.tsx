@@ -12,11 +12,16 @@ import styled from "styled-components";
 // import { Content } from "./content";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import {
+   fontSize,
+   fontWeight,
+   IDefaultTheme,
+   ISectionsTheme,
+} from "@styles/theme";
 import { ISegredosDaLuaPostById } from "@utils/moonsSecretsBlogInterfaces";
 import { PostContent } from "./postContent";
 import { ErrorPage } from "@components/subSections/errorPage";
-import { locationName } from "@utils/functions";
+import { handlePageTheme, locationName } from "@utils/functions";
 
 const isEquilibriumPost = (
    data: IEquilibriumPostById | ISegredosDaLuaPostById | undefined
@@ -33,7 +38,7 @@ const isSegredosDaLuaPost = (
 export const PostPage = () => {
    const { id } = useParams();
    const location = useLocation();
-   
+
    const { data, loading, error } = useQuery<
       IEquilibriumPostById | ISegredosDaLuaPostById
    >(
@@ -46,7 +51,7 @@ export const PostPage = () => {
    );
 
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          <Header />
          {loading ? (
             <div className="loadingContainer">
@@ -61,11 +66,9 @@ export const PostPage = () => {
             </div>
          ) : error ? (
             <ErrorPage />
-         ) :
-         isEquilibriumPost(data) ? (
+         ) : isEquilibriumPost(data) ? (
             <PostContent data={data.equilibriumPost} />
-         ) :
-         isSegredosDaLuaPost(data) ? (
+         ) : isSegredosDaLuaPost(data) ? (
             <PostContent data={data.segredosDaLuaPost} />
          ) : (
             <ErrorPage />
@@ -75,7 +78,7 @@ export const PostPage = () => {
    );
 };
 
-const Container = styled.section`
+const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
    display: flex;
    flex-direction: column;
    height: 100dvh;
@@ -89,9 +92,9 @@ const Container = styled.section`
       justify-content: center;
 
       .loading {
-         color: ${theme.shadowColor};
-         border: solid 0.2rem ${theme.shadowColor};
-         box-shadow: 0 0 1rem ${theme.shadowColor};
+         color: ${({ $theme }) => $theme.shadowColor};
+         border: solid 0.2rem ${({ $theme }) => $theme.shadowColor};
+         box-shadow: 0 0 1rem ${({ $theme }) => $theme.shadowColor};
          border-radius: 50%;
          width: 6rem;
          height: 6rem;
@@ -106,7 +109,7 @@ const Container = styled.section`
 
       .loadingMessage {
          font-size: ${fontSize.mediumSize};
-         color: ${theme.shadowColor};
+         color: ${({ $theme }) => $theme.shadowColor};
          font-weight: ${fontWeight.medium};
       }
    }

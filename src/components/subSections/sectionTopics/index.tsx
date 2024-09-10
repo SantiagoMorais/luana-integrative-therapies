@@ -1,5 +1,10 @@
 import { DocumentNode, useQuery } from "@apollo/client";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import {
+   fontSize,
+   fontWeight,
+   IDefaultTheme,
+   ISectionsTheme,
+} from "@styles/theme";
 import styled from "styled-components";
 import { TopicsList } from "./topicsList";
 import { IEquilibriumTopicsData } from "@utils/equilibriumBlogInterfaces";
@@ -10,6 +15,8 @@ import { TopicContent } from "./topicContent";
 import { ErrorPage } from "../errorPage";
 import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { handlePageTheme, locationName } from "@utils/functions";
+import { useLocation } from "react-router-dom";
 
 interface ISectionTopics {
    query: DocumentNode;
@@ -57,6 +64,7 @@ const handleSlidesPerView = (
 
 export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    const { sectionSelected } = useContext(SectionSelectedContext);
+   const location = useLocation();
 
    const { data, fetchMore, loading, error } = useQuery<
       IEquilibriumTopicsData | ISegredosDaLuaTopicsData
@@ -135,7 +143,7 @@ export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    const slidesPerView = handleSlidesPerView(data, sectionSelected);
 
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          <div className="content">
             <h2 className="sectionTitle">Veja alguns dos nossos serviços:</h2>
             {loading ? (
@@ -169,7 +177,7 @@ export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
    display: flex;
    justify-content: center;
    width: 100%;
@@ -186,9 +194,9 @@ const Container = styled.div`
       overflow: hidden;
 
       .loading {
-         color: ${theme.shadowColor};
-         border: solid 0.2rem ${theme.shadowColor};
-         box-shadow: 0 0 1rem ${theme.shadowColor};
+         color: ${({ $theme }) => $theme.shadowColor};
+         border: solid 0.2rem ${({ $theme }) => $theme.shadowColor};
+         box-shadow: 0 0 1rem ${({ $theme }) => $theme.shadowColor};
          border-radius: 50%;
          width: 8rem;
          height: 8rem;
@@ -203,7 +211,7 @@ const Container = styled.div`
 
       .loadingMessage {
          font-size: ${fontSize.mediumSize};
-         color: ${theme.shadowColor};
+         color: ${({ $theme }) => $theme.shadowColor};
          font-weight: ${fontWeight.medium};
       }
 

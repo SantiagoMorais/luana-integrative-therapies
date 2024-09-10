@@ -1,6 +1,5 @@
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fontSize, fontWeight, theme } from "@styles/theme";
 import styled from "styled-components";
 import data from "@json/index.json";
 import { SectionsButtons } from "./sectionsButtons";
@@ -8,7 +7,8 @@ import { SectionsAbout } from "./sectionsAbout";
 import equilibriumLogo from "@assets/imgs/equilibrium-logo.jpeg";
 import segredosDaLuaLogo from "@assets/imgs/segredos-da-lua-logo.jpeg";
 import { useLocation } from "react-router-dom";
-import { locationName } from "@utils/functions";
+import { fontSize, fontWeight, IDefaultTheme, ISectionsTheme } from "@styles/theme";
+import { handlePageTheme, locationName } from "@utils/functions";
 
 interface ISectionBannerProps {
    sectionSelected: "equilibrium" | "segredos-da-lua" | "";
@@ -33,7 +33,7 @@ export const SectionBanner: React.FC<ISectionBannerProps> = ({
    };
 
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          <img src={currentLogo()} alt="" className="logo" />
          <h2 className="title">{content?.title}</h2>
          <h3 className="subtitle">
@@ -48,7 +48,7 @@ export const SectionBanner: React.FC<ISectionBannerProps> = ({
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
    width: 100%;
    display: flex;
    flex-direction: column;
@@ -86,8 +86,8 @@ const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent 0%,
-            ${theme.tertiaryColor} 30%,
-            ${theme.tertiaryColor} 70%,
+            ${({$theme}) => $theme.tertiaryColor} 30%,
+            ${({$theme}) => $theme.tertiaryColor} 70%,
             transparent
          );
       }
@@ -96,7 +96,7 @@ const Container = styled.div`
    .subtitle {
       font-size: ${fontSize.mediumSize};
       font-weight: ${fontWeight.medium};
-      color: ${theme.tertiaryColor};
+      color: ${({$theme}) => $theme.tertiaryColor};
       display: flex;
       gap: 1rem;
       align-items: baseline;
@@ -104,7 +104,7 @@ const Container = styled.div`
 
       .icon {
          font-size: ${fontSize.smallSize};
-         color: ${theme.primaryColor};
+         color: ${({$theme}) => $theme.primaryColor};
          opacity: 0.8;
       }
    }

@@ -5,13 +5,13 @@ import { IEquilibriumPostsData } from "@utils/equilibriumBlogInterfaces";
 import { useState } from "react";
 import styled from "styled-components";
 // import { ErrorPage } from "../errorPage";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, IDefaultTheme, ISectionsTheme } from "@styles/theme";
 import { ISegredosDaLuaPostsData } from "@utils/moonsSecretsBlogInterfaces";
 import { useLocation } from "react-router-dom";
 import { PostsList } from "./postsList";
 import { ErrorPage } from "../errorPage";
 import { NoPosts } from "../noPosts";
-import { locationName } from "@utils/functions";
+import { handlePageTheme, locationName } from "@utils/functions";
 // import { PostsList } from "./postsList";
 
 interface ISectionPosts {
@@ -112,7 +112,7 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
    };
 
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          <div className="content">
             {loading ? (
                <>
@@ -153,7 +153,7 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
    display: flex;
    justify-content: center;
    width: 100%;
@@ -169,9 +169,9 @@ const Container = styled.div`
       overflow: hidden;
 
       .loading {
-         color: ${theme.shadowColor};
-         border: solid 0.2rem ${theme.shadowColor};
-         box-shadow: 0 0 1rem ${theme.shadowColor};
+         color: ${({$theme}) => $theme.shadowColor};
+         border: solid 0.2rem ${({$theme}) => $theme.shadowColor};
+         box-shadow: 0 0 1rem ${({$theme}) => $theme.shadowColor};
          border-radius: 50%;
          width: 6rem;
          height: 6rem;
@@ -186,7 +186,7 @@ const Container = styled.div`
 
       .loadingMessage {
          font-size: ${fontSize.mediumSize};
-         color: ${theme.shadowColor};
+         color: ${({$theme}) => $theme.shadowColor};
          font-weight: ${fontWeight.medium};
       }
 

@@ -1,20 +1,27 @@
 import styled from "styled-components";
 import parser from "html-react-parser";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import {
+   fontSize,
+   fontWeight,
+   IDefaultTheme,
+   ISectionsTheme,
+} from "@styles/theme";
 import { IEquilibriumTopicEdge } from "@utils/equilibriumBlogInterfaces";
-// import { EquilibriumTopicListEmpty } from "./equilibriumTopicListEmpty";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { ISegredosDaLuaTopicEdge } from "@utils/moonsSecretsBlogInterfaces";
 import { useContext } from "react";
 import { TopicsCarouselContext } from "@contexts/topicsCarouselContext";
 import { TopicsListIsEmpty } from "./topicsListIsEmpty";
+import { handlePageTheme, locationName } from "@utils/functions";
+import { useLocation } from "react-router-dom";
 
 interface ITopicContentProps {
    data: IEquilibriumTopicEdge[] | ISegredosDaLuaTopicEdge[] | null;
 }
 
 export const TopicContent: React.FC<ITopicContentProps> = ({ data }) => {
+   const location = useLocation();
    const { topicSelected } = useContext(TopicsCarouselContext);
    const findTopic: IEquilibriumTopicEdge | undefined = data?.find(
       (item: IEquilibriumTopicEdge) => item.node.id === topicSelected
@@ -23,7 +30,7 @@ export const TopicContent: React.FC<ITopicContentProps> = ({ data }) => {
    const updatedTopic = findTopic ? findTopic : data?.[0];
 
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          {data && data.length > 0 ? (
             <>
                <h2 className="title">{updatedTopic?.node.nome}</h2>
@@ -56,7 +63,7 @@ export const TopicContent: React.FC<ITopicContentProps> = ({ data }) => {
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
    margin-bottom: 2rem;
    width: 100%;
    max-width: 144rem;
@@ -80,7 +87,7 @@ const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent 0%,
-            ${theme.tertiaryColor} 50%,
+            ${({ $theme }) => $theme.tertiaryColor} 50%,
             transparent 100%
          );
       }
@@ -94,7 +101,7 @@ const Container = styled.div`
          max-height: 50rem;
          object-fit: cover;
          border-radius: 0.5rem;
-         border: 0.2rem solid ${theme.primaryColor};
+         border: 0.2rem solid ${({ $theme }) => $theme.primaryColor};
          width: 50%;
          max-width: 50rem;
          margin: 0rem 0rem 1rem 2rem;
@@ -106,7 +113,7 @@ const Container = styled.div`
          min-height: 30rem;
          max-height: 50rem;
          border-radius: 0.5rem;
-         border: 0.2rem solid ${theme.primaryColor};
+         border: 0.2rem solid ${({ $theme }) => $theme.primaryColor};
          width: 50%;
          max-width: 50rem;
          margin: 0rem 0rem 1rem 2rem;
@@ -114,7 +121,7 @@ const Container = styled.div`
          flex-direction: column;
          justify-content: center;
          align-items: center;
-         color: ${theme.textColor};
+         color: ${({ $theme }) => $theme.textColor};
 
          .icon {
             font-size: ${fontSize.basicSize};
@@ -132,7 +139,7 @@ const Container = styled.div`
          text-indent: 5rem;
          text-align: justify;
          margin-bottom: 1rem;
-         color: ${theme.textColor};
+         color: ${({ $theme }) => $theme.textColor};
 
          &:last-child {
             margin-bottom: 0;
@@ -144,7 +151,7 @@ const Container = styled.div`
       h4 {
          position: relative;
          margin: 2rem 0;
-         color: ${theme.textColor};
+         color: ${({ $theme }) => $theme.textColor};
          overflow-wrap: normal;
          display: inline-block;
 
@@ -157,7 +164,7 @@ const Container = styled.div`
             height: 0.2rem;
             background: linear-gradient(
                to right,
-               ${theme.tertiaryColor} 60%,
+               ${({ $theme }) => $theme.tertiaryColor} 60%,
                transparent 100%
             );
          }
@@ -197,7 +204,7 @@ const Container = styled.div`
 
             div {
                text-indent: 0rem;
-               color: ${theme.textColor};
+               color: ${({ $theme }) => $theme.textColor};
 
                p {
                   text-indent: 0rem;

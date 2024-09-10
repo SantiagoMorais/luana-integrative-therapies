@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { aboutTheCompany } from "@json/index.json";
 import { useLocation } from "react-router-dom";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, IDefaultTheme, ISectionsTheme } from "@styles/theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Collapse } from "react-collapse";
-import { locationName } from "@utils/functions";
+import { handlePageTheme, locationName } from "@utils/functions";
 
 export const SectionsAbout = () => {
    const [sectionClicked, setSectionClicked] = useState<boolean>(false);
@@ -21,7 +21,7 @@ export const SectionsAbout = () => {
    };
 
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          <div className="infoBar" onClick={handleOpenSection}>
             <p className="infoTitle">{currentSection?.title}</p>
             <FontAwesomeIcon
@@ -34,7 +34,7 @@ export const SectionsAbout = () => {
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
    max-width: 100rem;
    display: flex;
    flex-direction: column;
@@ -56,7 +56,7 @@ const Container = styled.div`
    .infoBar {
       font-size: ${fontSize.mediumSize};
       padding-bottom: 0.5rem;
-      border-bottom: 0.2rem solid ${theme.secondaryColor};
+      border-bottom: 0.2rem solid ${({$theme}) => $theme.secondaryColor};
       transition: 0.3s;
       display: flex;
       align-items: center;

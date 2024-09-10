@@ -1,8 +1,13 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fontSize, fontWeight, theme } from "@styles/theme"; // Certifique-se de usar o arquivo de estilo correto
+import {
+   fontSize,
+   fontWeight,
+   IDefaultTheme,
+   ISectionsTheme,
+} from "@styles/theme"; // Certifique-se de usar o arquivo de estilo correto
 import { IEquilibriumPostNode } from "@utils/equilibriumBlogInterfaces";
-import { locationName } from "@utils/functions";
+import { handlePageTheme, locationName } from "@utils/functions";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
@@ -14,8 +19,11 @@ export const PostCard: React.FC<IPostBannerProps> = ({ infoNode }) => {
    const location = useLocation();
 
    return (
-      <Container>
-         <Link to={`/${locationName(location)}/${infoNode.id}`} className="banner">
+      <Container $theme={handlePageTheme(locationName(location))}>
+         <Link
+            to={`/${locationName(location)}/${infoNode.id}`}
+            className="banner"
+         >
             {infoNode.imagem?.url ? (
                <img
                   src={infoNode.imagem.url}
@@ -45,7 +53,7 @@ export const PostCard: React.FC<IPostBannerProps> = ({ infoNode }) => {
    );
 };
 
-const Container = styled.li`
+const Container = styled.li<{ $theme: ISectionsTheme | IDefaultTheme }>`
    display: flex;
 
    .banner {
@@ -53,8 +61,8 @@ const Container = styled.li`
       width: 100%;
       height: auto;
       border-radius: 1rem;
-      border: solid 0.2rem ${theme.shadowColor};
-      box-shadow: 0.5rem 0.5rem 1rem ${theme.secondaryColor};
+      border: solid 0.2rem ${({ $theme }) => $theme.shadowColor};
+      box-shadow: 0.5rem 0.5rem 1rem ${({ $theme }) => $theme.secondaryColor};
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -66,7 +74,7 @@ const Container = styled.li`
          height: 30rem;
          object-fit: cover;
          object-position: center;
-         border-bottom: solid 0.1rem ${theme.secondaryColor};
+         border-bottom: solid 0.1rem ${({ $theme }) => $theme.secondaryColor};
          z-index: 1;
       }
 
@@ -76,11 +84,11 @@ const Container = styled.li`
          display: flex;
          flex-direction: column;
          gap: 1rem;
-         color: ${theme.shadowColor};
+         color: ${({ $theme }) => $theme.shadowColor};
          font-size: ${fontSize.smallSize};
          justify-content: center;
          align-items: center;
-         border-bottom: solid 0.1rem ${theme.secondaryColor};
+         border-bottom: solid 0.1rem ${({ $theme }) => $theme.secondaryColor};
          z-index: 1;
       }
 
@@ -94,14 +102,14 @@ const Container = styled.li`
 
          .postTitle {
             font-size: ${fontSize.mediumSize};
-            color: ${theme.textColor};
+            color: ${({ $theme }) => $theme.textColor};
             font-weight: ${fontWeight.bold};
          }
 
          .postSubtitle {
             font-size: ${fontSize.basicSize};
             margin-bottom: 1rem;
-            color: ${theme.shadowColor};
+            color: ${({ $theme }) => $theme.shadowColor};
             font-weight: ${fontWeight.bold};
             opacity: 0.8;
 
@@ -112,7 +120,7 @@ const Container = styled.li`
 
          .link {
             font-size: ${fontSize.smallSize};
-            color: ${theme.tertiaryColor};
+            color: ${({ $theme }) => $theme.tertiaryColor};
             font-weight: ${fontWeight.bold};
             text-transform: uppercase;
             letter-spacing: 0.1rem;
@@ -122,9 +130,9 @@ const Container = styled.li`
       .authorsName {
          padding: 1rem 0;
          margin: auto 1rem 0;
-         border-top: solid 0.1rem ${theme.tertiaryColor};
+         border-top: solid 0.1rem ${({ $theme }) => $theme.tertiaryColor};
          font-size: ${fontSize.smallSize};
-         color: ${theme.textColor};
+         color: ${({ $theme }) => $theme.textColor};
          text-align: center;
          font-weight: ${fontWeight.bold};
          opacity: 0.8;
@@ -146,7 +154,7 @@ const Container = styled.li`
       }
 
       &:hover::after {
-         background: ${theme.primaryColor};
+         background: ${({ $theme }) => $theme.primaryColor};
          opacity: 0.8;
          z-index: 0;
       }

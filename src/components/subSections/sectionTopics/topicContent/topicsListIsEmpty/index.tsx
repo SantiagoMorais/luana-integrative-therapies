@@ -1,33 +1,36 @@
 import styled from "styled-components";
 import commingSoonImage from "@assets/imgs/pageComingSoon.jpg";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import {
+   fontSize,
+   fontWeight,
+   IDefaultTheme,
+   ISectionsTheme,
+} from "@styles/theme";
 import { useLocation } from "react-router-dom";
-import {topicsListIsEmptyMessages} from "@json/index.json"
-import { locationName } from "@utils/functions";
+import { topicsListIsEmptyMessages } from "@json/index.json";
+import { handlePageTheme, locationName } from "@utils/functions";
 
 export const TopicsListIsEmpty = () => {
    const location = useLocation();
-   const content = topicsListIsEmptyMessages.find(item => item.id === locationName(location))
+   const content = topicsListIsEmptyMessages.find(
+      (item) => item.id === locationName(location)
+   );
 
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          <h2 className="title">Novos conteúdos em breve!</h2>
-         <h3 className="subtitle">
-            {content?.subtitle}
-         </h3>
+         <h3 className="subtitle">{content?.subtitle}</h3>
          <img
             src={commingSoonImage}
             alt="Novidades em breve"
             className="commingSoonImage"
          />
-         <p className="message">
-            {content?.description}
-         </p>
+         <p className="message">{content?.description}</p>
       </Container>
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -37,7 +40,7 @@ const Container = styled.div`
    .title {
       font-size: ${fontSize.extraLargeSize};
       font-weight: ${fontWeight.medium};
-      color: ${theme.textColor};
+      color: ${({ $theme }) => $theme.textColor};
       position: relative;
       width: 100%;
       text-align: center;
@@ -52,8 +55,8 @@ const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent 0%,
-            ${theme.tertiaryColor} 30%,
-            ${theme.tertiaryColor} 70%,
+            ${({ $theme }) => $theme.tertiaryColor} 30%,
+            ${({ $theme }) => $theme.tertiaryColor} 70%,
             transparent 100%
          );
       }
@@ -62,7 +65,7 @@ const Container = styled.div`
    .subtitle {
       font-size: ${fontSize.largeSize};
       font-weight: ${fontWeight.thin};
-      color: ${theme.textColor};
+      color: ${({ $theme }) => $theme.textColor};
       text-align: center;
    }
 
@@ -70,15 +73,15 @@ const Container = styled.div`
       width: 50%;
       min-width: 30rem;
       border-radius: 1rem;
-      border: solid 0.2rem ${theme.shadowColor};
-      box-shadow: 0.5rem 0.5rem 1rem ${theme.secondaryColor};
+      border: solid 0.2rem ${({ $theme }) => $theme.shadowColor};
+      box-shadow: 0.5rem 0.5rem 1rem ${({ $theme }) => $theme.secondaryColor};
       margin-bottom: 2rem;
    }
 
    .message {
       font-size: ${fontSize.mediumSize};
       font-weight: ${fontWeight.thin};
-      color: ${theme.textColor};
+      color: ${({ $theme }) => $theme.textColor};
       text-align: center;
    }
 

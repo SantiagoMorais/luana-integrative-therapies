@@ -3,8 +3,15 @@ import styled from "styled-components";
 import { PostCard } from "./postCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import {
+   fontSize,
+   fontWeight,
+   IDefaultTheme,
+   ISectionsTheme,
+} from "@styles/theme";
 import { ISegredosDaLuaPostEdge } from "@utils/moonsSecretsBlogInterfaces";
+import { handlePageTheme, locationName } from "@utils/functions";
+import { useLocation } from "react-router-dom";
 
 interface IPostsListProps {
    infoEdge: IEquilibriumPostEdge[] | ISegredosDaLuaPostEdge[] | null;
@@ -19,9 +26,13 @@ export const PostsList: React.FC<IPostsListProps> = ({
    loadMore,
    loadingPosts,
 }) => {
-   
+   const location = useLocation();
+
    return (
-      <Container $hasMoreData={hasMoreData}>
+      <Container
+         $hasMoreData={hasMoreData}
+         $theme={handlePageTheme(locationName(location))}
+      >
          <div className="postsContainer">
             {infoEdge?.map((post) => (
                <PostCard infoNode={post.node} key={post.node.id} />
@@ -44,7 +55,10 @@ export const PostsList: React.FC<IPostsListProps> = ({
    );
 };
 
-const Container = styled.ul<{ $hasMoreData: boolean }>`
+const Container = styled.ul<{
+   $hasMoreData: boolean;
+   $theme: ISectionsTheme | IDefaultTheme;
+}>`
    width: 100%;
    max-width: 144rem;
    display: flex;
@@ -68,8 +82,8 @@ const Container = styled.ul<{ $hasMoreData: boolean }>`
       gap: 1rem;
       align-items: center;
       border-radius: 1rem;
-      background-color: ${theme.secondaryColor};
-      color: ${theme.secondaryTextColor};
+      background-color: ${({ $theme }) => $theme.secondaryColor};
+      color: ${({ $theme }) => $theme.secondaryTextColor};
       font-weight: ${fontWeight.medium};
       transition: 0.3s;
       border: none;
@@ -77,11 +91,11 @@ const Container = styled.ul<{ $hasMoreData: boolean }>`
       opacity: ${(props) => (props.$hasMoreData ? "1" : ".6")};
 
       &:hover {
-         ${(props) =>
-            props.$hasMoreData
-               ? ` background-color: ${theme.shadowColor};
+         ${({ $hasMoreData, $theme }) =>
+            $hasMoreData
+               ? `background-color: ${$theme.shadowColor};
         scale: 1.1;
-        box-shadow: 0 0 1rem ${theme.shadowColor};`
+        box-shadow: 0 0 1rem ${$theme.shadowColor};`
                : ""};
       }
 
@@ -92,9 +106,9 @@ const Container = styled.ul<{ $hasMoreData: boolean }>`
    }
 
    .loading {
-      color: ${theme.shadowColor};
-      border: solid 0.2rem ${theme.shadowColor};
-      box-shadow: 0 0 1rem ${theme.shadowColor};
+      color: ${({ $theme }) => $theme.shadowColor};
+      border: solid 0.2rem ${({ $theme }) => $theme.shadowColor};
+      box-shadow: 0 0 1rem ${({ $theme }) => $theme.shadowColor};
       border-radius: 50%;
       width: 6rem;
       height: 6rem;

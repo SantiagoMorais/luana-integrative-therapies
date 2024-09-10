@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import commingSoonImage from "@assets/imgs/pageComingSoon.jpg";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, IDefaultTheme, ISectionsTheme } from "@styles/theme";
+import { handlePageTheme, locationName } from "@utils/functions";
+import { useLocation } from "react-router-dom";
 
 export const NoPosts = () => {
+   const location = useLocation();
+   
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          <h2 className="title">Nenhuma publicação no momento</h2>
          <p className="description">
             Fique tranquilo, em breve traremos uma série de conteúdos valiosos
@@ -21,7 +25,7 @@ export const NoPosts = () => {
    );
 };
 
-const Container = styled.section`
+const Container = styled.section<{ $theme: ISectionsTheme | IDefaultTheme }>`
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -31,7 +35,7 @@ const Container = styled.section`
    .title {
       font-size: ${fontSize.extraLargeSize};
       font-weight: ${fontWeight.medium};
-      color: ${theme.textColor};
+      color: ${({$theme}) => $theme.textColor};
       text-align: center;
       position: relative;
 
@@ -45,8 +49,8 @@ const Container = styled.section`
          background: linear-gradient(
             to right,
             transparent 0%,
-            ${theme.tertiaryColor} 30%,
-            ${theme.tertiaryColor} 70%,
+            ${({$theme}) => $theme.tertiaryColor} 30%,
+            ${({$theme}) => $theme.tertiaryColor} 70%,
             transparent 100%
          );
       }
@@ -55,7 +59,7 @@ const Container = styled.section`
    .description {
       font-size: ${fontSize.mediumSize};
       font-weight: ${fontWeight.thin};
-      color: ${theme.textColor};
+      color: ${({$theme}) => $theme.textColor};
       text-align: center;
       max-width: 120rem;
    }
@@ -64,8 +68,8 @@ const Container = styled.section`
       max-width: 60rem;
       width: 100%;
       border-radius: 10%;
-      border: .5rem solid ${theme.shadowColor};
-      box-shadow: .5rem .5rem 1rem ${theme.secondaryColor};
+      border: .5rem solid ${({$theme}) => $theme.shadowColor};
+      box-shadow: .5rem .5rem 1rem ${({$theme}) => $theme.secondaryColor};
    }
 
    @media(max-width: 768px) {

@@ -1,11 +1,11 @@
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fontSize, IDefaultTheme, ISectionsTheme, theme } from "@styles/theme";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { navigationLinks } from "@json/index.json";
 import { googleMapsLink } from "@utils/variables";
+import { fontSize, IDefaultTheme, ISectionsTheme, theme } from "@styles/theme";
 import { handlePageTheme, locationName } from "@utils/functions";
 
 export const NavBar = () => {

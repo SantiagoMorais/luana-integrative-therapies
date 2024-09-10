@@ -2,20 +2,27 @@ import { IEquilibriumPostNode } from "@utils/equilibriumBlogInterfaces";
 import { ISegredosDaLuaPostNode } from "@utils/moonsSecretsBlogInterfaces";
 import styled from "styled-components";
 import parse from "html-react-parser";
-import { fontSize, fontWeight, theme } from "@styles/theme";
-import { Link } from "react-router-dom";
+import {
+   fontSize,
+   fontWeight,
+   IDefaultTheme,
+   ISectionsTheme,
+} from "@styles/theme";
+import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
    faMagnifyingGlass,
    faRotateLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { AuthorInfo } from "../authorInfo";
+import { handlePageTheme, locationName } from "@utils/functions";
 
 interface IContent {
    data: IEquilibriumPostNode | ISegredosDaLuaPostNode;
 }
 
 export const PostContent: React.FC<IContent> = ({ data }) => {
+   const location = useLocation();
    const dateConvertedToPtStandard = data?.data
       .toString()
       .split("-")
@@ -23,7 +30,7 @@ export const PostContent: React.FC<IContent> = ({ data }) => {
       .join("/");
 
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          <div className="postContent">
             <AuthorInfo autor={data?.autor} />
             <h2 className="title">{data?.titulo}</h2>
@@ -48,11 +55,7 @@ export const PostContent: React.FC<IContent> = ({ data }) => {
                {data && parse(data?.texto.html)}
             </div>
 
-            {data?.video && (
-               <div className="video">
-                  {parse(data?.video)}
-               </div>
-            )}
+            {data?.video && <div className="video">{parse(data?.video)}</div>}
             <div className="date">
                <p className="dateData">
                   Publicado/atualizado em: {dateConvertedToPtStandard}
@@ -67,7 +70,7 @@ export const PostContent: React.FC<IContent> = ({ data }) => {
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
    width: 100%;
    display: flex;
    justify-content: center;
@@ -98,7 +101,7 @@ const Container = styled.div`
             background: linear-gradient(
                to right,
                transparent 0%,
-               ${theme.tertiaryColor} 50%,
+               ${({ $theme }) => $theme.tertiaryColor} 50%,
                transparent 100%
             );
          }
@@ -112,7 +115,7 @@ const Container = styled.div`
             max-height: 50rem;
             object-fit: cover;
             border-radius: 0.5rem;
-            border: 0.2rem solid ${theme.primaryColor};
+            border: 0.2rem solid ${({ $theme }) => $theme.primaryColor};
             width: 50%;
             max-width: 50rem;
             margin: 0rem 0rem 1rem 2rem;
@@ -124,7 +127,7 @@ const Container = styled.div`
             min-height: 30rem;
             max-height: 50rem;
             border-radius: 0.5rem;
-            border: 0.2rem solid ${theme.primaryColor};
+            border: 0.2rem solid ${({ $theme }) => $theme.primaryColor};
             width: 50%;
             max-width: 50rem;
             margin: 0rem 0rem 1rem 2rem;
@@ -132,7 +135,7 @@ const Container = styled.div`
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: ${theme.textColor};
+            color: ${({ $theme }) => $theme.textColor};
 
             .icon {
                font-size: ${fontSize.basicSize};
@@ -150,7 +153,7 @@ const Container = styled.div`
             text-indent: 5rem;
             text-align: justify;
             margin-bottom: 1rem;
-            color: ${theme.textColor};
+            color: ${({ $theme }) => $theme.textColor};
 
             &:last-child {
                margin-bottom: 0;
@@ -162,7 +165,7 @@ const Container = styled.div`
          h4 {
             position: relative;
             margin: 2rem 0;
-            color: ${theme.textColor};
+            color: ${({ $theme }) => $theme.textColor};
             overflow-wrap: normal;
             display: inline-block;
 
@@ -175,7 +178,7 @@ const Container = styled.div`
                height: 0.2rem;
                background: linear-gradient(
                   to right,
-                  ${theme.tertiaryColor} 60%,
+                  ${({ $theme }) => $theme.tertiaryColor} 60%,
                   transparent 100%
                );
             }
@@ -215,7 +218,7 @@ const Container = styled.div`
 
                div {
                   text-indent: 0rem;
-                  color: ${theme.textColor};
+                  color: ${({ $theme }) => $theme.textColor};
 
                   p {
                      text-indent: 0rem;
@@ -262,7 +265,7 @@ const Container = styled.div`
 
          .dateData {
             font-size: ${fontSize.mediumSize};
-            color: ${theme.textColor};
+            color: ${({ $theme }) => $theme.textColor};
             font-weight: ${fontWeight.medium};
             position: relative;
 
@@ -276,7 +279,7 @@ const Container = styled.div`
                background: linear-gradient(
                   to right,
                   transparent,
-                  ${theme.secondaryColor},
+                  ${({ $theme }) => $theme.secondaryColor},
                   transparent
                );
             }
@@ -289,7 +292,7 @@ const Container = styled.div`
          padding: 1rem 0;
          font-size: ${fontSize.basicSize};
          align-items: center;
-         color: ${theme.secondaryColor};
+         color: ${({ $theme }) => $theme.secondaryColor};
          transition: 0.5s;
 
          .icon {
@@ -297,7 +300,7 @@ const Container = styled.div`
          }
 
          &:hover {
-            color: ${theme.shadowColor};
+            color: ${({ $theme }) => $theme.shadowColor};
             scale: 1.1;
 
             .icon {

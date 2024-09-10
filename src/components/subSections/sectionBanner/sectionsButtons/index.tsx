@@ -1,7 +1,14 @@
 import { PostOrTopicContext } from "@contexts/postOrTopicContext";
-import { fontSize, fontWeight, theme } from "@styles/theme";
 import { useContext } from "react";
 import styled from "styled-components";
+import {
+   fontSize,
+   fontWeight,
+   IDefaultTheme,
+   ISectionsTheme,
+} from "@styles/theme";
+import { handlePageTheme, locationName } from "@utils/functions";
+import { useLocation } from "react-router-dom";
 
 interface IButtons {
    title: string;
@@ -10,6 +17,8 @@ interface IButtons {
 }
 
 export const SectionsButtons = () => {
+   const location = useLocation();
+
    const { handleSelectedButton, postOrTopicSelected } =
       useContext(PostOrTopicContext);
 
@@ -19,7 +28,7 @@ export const SectionsButtons = () => {
    ];
 
    return (
-      <Container>
+      <Container $theme={handlePageTheme(locationName(location))}>
          {buttons.map((button) => (
             <button
                key={button.id}
@@ -42,7 +51,7 @@ export const SectionsButtons = () => {
    );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ $theme: ISectionsTheme | IDefaultTheme }>`
    display: flex;
    gap: 2rem;
    position: relative;
@@ -53,7 +62,7 @@ const Container = styled.div`
       background: none;
       border-radius: 1rem;
       border: none;
-      color: ${theme.textColor};
+      color: ${({ $theme }) => $theme.textColor};
       width: 18rem;
       text-align: center;
       font-weight: ${fontWeight.medium};
@@ -70,7 +79,7 @@ const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent,
-            ${theme.tertiaryColor},
+            ${({ $theme }) => $theme.tertiaryColor},
             transparent
          );
          z-index: -1;
@@ -88,7 +97,7 @@ const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent,
-            ${theme.tertiaryColor},
+            ${({ $theme }) => $theme.tertiaryColor},
             transparent
          );
          z-index: -1;
@@ -124,8 +133,8 @@ const Container = styled.div`
       background: linear-gradient(
          to right,
          transparent 0%,
-         ${theme.secondaryColor} 20%,
-         ${theme.secondaryColor} 80%,
+         ${({ $theme }) => $theme.secondaryColor} 20%,
+         ${({ $theme }) => $theme.secondaryColor} 80%,
          transparent 100%
       );
       z-index: 1;
@@ -142,7 +151,7 @@ const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent,
-            ${theme.shadowColor},
+            ${({ $theme }) => $theme.shadowColor},
             transparent
          );
          z-index: -1;
@@ -158,7 +167,7 @@ const Container = styled.div`
          background: linear-gradient(
             to right,
             transparent,
-            ${theme.shadowColor},
+            ${({ $theme }) => $theme.shadowColor},
             transparent
          );
          z-index: -1;
@@ -179,8 +188,8 @@ const Container = styled.div`
       background: linear-gradient(
          to right,
          transparent 0%,
-         ${theme.primaryColor} 30%,
-         ${theme.primaryColor} 70%,
+         ${({ $theme }) => $theme.primaryColor} 30%,
+         ${({ $theme }) => $theme.primaryColor} 70%,
          transparent 100%
       );
    }

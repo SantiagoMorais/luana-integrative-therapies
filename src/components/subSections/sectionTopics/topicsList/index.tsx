@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fontSize, fontWeight, theme } from "@styles/theme";
+import { fontSize, fontWeight, IDefaultTheme, ISectionsTheme } from "@styles/theme";
 import { IEquilibriumTopicEdge } from "@utils/equilibriumBlogInterfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,6 +17,8 @@ import "swiper/css/navigation";
 import { useContext, useEffect, useState } from "react";
 import { ISegredosDaLuaTopicEdge } from "@utils/moonsSecretsBlogInterfaces";
 import { TopicsCarouselContext } from "@contexts/topicsCarouselContext";
+import { handlePageTheme, locationName } from "@utils/functions";
+import { useLocation } from "react-router-dom";
 
 interface ITopicsListProps {
    slidesPerView: number;
@@ -35,6 +37,7 @@ export const TopicsList: React.FC<ITopicsListProps> = ({
    loading,
    imagesHeightInRem,
 }) => {
+   const location = useLocation();
    const { setTopicSelected } = useContext(TopicsCarouselContext);
    const [slides, setSlides] = useState<number>(slidesPerView);
 
@@ -62,7 +65,7 @@ export const TopicsList: React.FC<ITopicsListProps> = ({
    }, [slidesPerView]);
 
    return (
-      <Container $imagesHeightInRem={imagesHeightInRem}>
+      <Container $imagesHeightInRem={imagesHeightInRem} $theme={handlePageTheme(locationName(location))}>
          <Swiper
             slidesPerView={slides}
             spaceBetween={10}
@@ -128,7 +131,7 @@ export const TopicsList: React.FC<ITopicsListProps> = ({
    );
 };
 
-const Container = styled.div<{ $imagesHeightInRem: number }>`
+const Container = styled.div<{ $imagesHeightInRem: number, $theme: ISectionsTheme | IDefaultTheme }>`
    display: flex;
    align-items: center;
    gap: 1rem;
@@ -159,7 +162,7 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             object-fit: cover;
             object-position: center;
             border-radius: 1rem;
-            border: 0.3rem solid ${theme.secondaryColor};
+            border: 0.3rem solid ${({$theme}) => $theme.secondaryColor};
             transition: opacity 0.5s;
          }
 
@@ -170,11 +173,11 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             display: flex;
             flex-direction: column;
             border-radius: 1rem;
-            border: 0.3rem solid ${theme.secondaryColor};
+            border: 0.3rem solid ${({$theme}) => $theme.secondaryColor};
             transition: opacity 0.5s;
             justify-content: center;
             align-items: center;
-            color: ${theme.textColor};
+            color: ${({$theme}) => $theme.textColor};
 
             .icon {
                font-size: ${fontSize.basicSize};
@@ -206,8 +209,8 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
                background: linear-gradient(
                   to right,
                   transparent 0%,
-                  ${theme.tertiaryColor} 20%,
-                  ${theme.tertiaryColor} 80%,
+                  ${({$theme}) => $theme.tertiaryColor} 20%,
+                  ${({$theme}) => $theme.tertiaryColor} 80%,
                   transparent 100%
                );
                transition: opacity 0.5s, transform 0.5s;
@@ -220,11 +223,11 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             font-size: ${fontSize.basicSize};
             font-weight: ${fontWeight.medium};
             opacity: 1;
-            color: ${theme.secondaryTextColor};
+            color: ${({$theme}) => $theme.secondaryTextColor};
             position: absolute;
             left: 1rem;
             top: 1rem;
-            border: solid 0.2rem ${theme.secondaryTextColor};
+            border: solid 0.2rem ${({$theme}) => $theme.secondaryTextColor};
             width: 3.5rem;
             height: 3.5rem;
             display: flex;
@@ -232,8 +235,8 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             align-items: center;
             border-radius: 50%;
             opacity: 0.8;
-            box-shadow: 0 0 1rem ${theme.secondaryColor};
-            background: ${theme.secondaryColor};
+            box-shadow: 0 0 1rem ${({$theme}) => $theme.secondaryColor};
+            background: ${({$theme}) => $theme.secondaryColor};
          }
 
          &:hover {
@@ -242,7 +245,7 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             }
 
             .therapyName {
-               color: ${theme.tertiaryColor};
+               color: ${({$theme}) => $theme.tertiaryColor};
 
                &::after {
                   transform: scaleX(1);
@@ -253,19 +256,19 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
       }
 
       .swiper-pagination-bullet {
-         background: ${theme.secondaryColor};
+         background: ${({$theme}) => $theme.secondaryColor};
          opacity: 1;
 
          &.swiper-pagination-bullet-active-main {
-            background: ${theme.shadowColor};
+            background: ${({$theme}) => $theme.shadowColor};
          }
       }
 
       .swiper-button-prev,
       .swiper-button-next {
          transition: scale 0.3s;
-         color: ${theme.tertiaryColor};
-         filter: drop-shadow(0 0 0.5rem ${theme.tertiaryColor});
+         color: ${({$theme}) => $theme.tertiaryColor};
+         filter: drop-shadow(0 0 0.5rem ${({$theme}) => $theme.tertiaryColor});
          bottom: 1rem;
          top: auto;
 
@@ -281,9 +284,9 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
          align-items: center;
 
          .loading {
-            color: ${theme.shadowColor};
-            border: solid 0.2rem ${theme.shadowColor};
-            box-shadow: 0 0 1rem ${theme.shadowColor};
+            color: ${({$theme}) => $theme.shadowColor};
+            border: solid 0.2rem ${({$theme}) => $theme.shadowColor};
+            box-shadow: 0 0 1rem ${({$theme}) => $theme.shadowColor};
             border-radius: 50%;
             width: 6rem;
             height: 6rem;
@@ -305,8 +308,8 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             align-items: center;
             gap: 0.5rem;
             border: solid 0.2rem transparent;
-            color: ${theme.secondaryTextColor};
-            background-color: ${theme.secondaryColor};
+            color: ${({$theme}) => $theme.secondaryTextColor};
+            background-color: ${({$theme}) => $theme.secondaryColor};
             transition: 0.5s;
 
             .icon {
@@ -314,9 +317,9 @@ const Container = styled.div<{ $imagesHeightInRem: number }>`
             }
 
             &:hover {
-               border: solid 0.2rem ${theme.secondaryTextColor};
+               border: solid 0.2rem ${({$theme}) => $theme.secondaryTextColor};
                scale: 1.05;
-               box-shadow: 0 0 1rem ${theme.shadowColor};
+               box-shadow: 0 0 1rem ${({$theme}) => $theme.shadowColor};
             }
          }
       }
