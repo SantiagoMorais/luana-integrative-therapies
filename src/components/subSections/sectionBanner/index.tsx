@@ -67,11 +67,11 @@ const Container = styled.div<{ $theme: ITheme }>`
       border-radius: 50%;
       height: 20rem;
       width: auto;
-      opacity: 0.8;
+      opacity: 1;
       transition: 0.3s;
+      box-shadow: 0 0 1rem ${({ $theme }) => $theme.shadowColor};
 
       &:hover {
-         opacity: 1;
          scale: 1.1;
          box-shadow: 0 0 2rem ${({ $theme }) => $theme.shadowColor};
       }
