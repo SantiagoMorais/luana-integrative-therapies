@@ -45,7 +45,7 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
    const location = useLocation();
    const theme = useThemeContext();
    const [loadingMore, setLoadingMore] = useState<boolean>(false);
-
+   
    let posts = null;
    let hasMore: boolean = false;
    let endCursor: string | null = "";

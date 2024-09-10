@@ -2,12 +2,8 @@ import { IEquilibriumPostNode } from "@utils/equilibriumBlogInterfaces";
 import { ISegredosDaLuaPostNode } from "@utils/moonsSecretsBlogInterfaces";
 import styled from "styled-components";
 import parse from "html-react-parser";
-import {
-   fontSize,
-   fontWeight,
-   ITheme,
-} from "@styles/theme";
-import { Link } from "react-router-dom";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
+import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
    faMagnifyingGlass,
@@ -15,6 +11,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { AuthorInfo } from "../authorInfo";
 import { useThemeContext } from "hooks/useThemeContext";
+import { useContext, useEffect } from "react";
+import { PostOrTopicContext } from "@contexts/postOrTopicContext";
 
 interface IContent {
    data: IEquilibriumPostNode | ISegredosDaLuaPostNode;
@@ -22,12 +20,19 @@ interface IContent {
 
 export const PostContent: React.FC<IContent> = ({ data }) => {
    const theme = useThemeContext();
+   const location = useLocation();
+   const locationName = location.pathname.slice(1).split("/")[0];
+   const { setPostOrTopicSelected } = useContext(PostOrTopicContext);
 
    const dateConvertedToPtStandard = data?.data
       .toString()
       .split("-")
       .reverse()
       .join("/");
+
+   useEffect(() => {
+      setPostOrTopicSelected("posts");
+   }, [setPostOrTopicSelected]);
 
    return (
       <Container $theme={theme}>
@@ -60,7 +65,7 @@ export const PostContent: React.FC<IContent> = ({ data }) => {
                <p className="dateData">
                   Publicado/atualizado em: {dateConvertedToPtStandard}
                </p>
-               <Link to={"/equilibrium"} className="returnButton">
+               <Link to={`/${locationName}`} className="returnButton">
                   <FontAwesomeIcon icon={faRotateLeft} className="icon" />
                   <p className="message">Retornar para às publicações</p>
                </Link>
