@@ -19,3 +19,5 @@ export const address: string =
 export const googleMapsLink: string = `https://www.google.com/maps/search/?api=1&query=${formatMessageForWeb(
    address
 )}`;
+
+export const websiteCreatorsLink = "https://www.linkedin.com/in/felipe-santiago-morais/"
