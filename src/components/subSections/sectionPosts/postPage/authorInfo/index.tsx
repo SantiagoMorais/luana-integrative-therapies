@@ -57,9 +57,8 @@ const Container = styled.div<{ $theme: ITheme }>`
    padding: 2rem 0;
 
    .profilePhoto {
-      max-width: 15rem;
-      width: 100%;
-      max-height: 15rem;
+      min-width: 15rem;
+      height: 15rem;
       object-fit: cover;
       border-radius: 50%;
       box-shadow: 0 0 1rem ${({ $theme }) => $theme.secondaryColor};
@@ -101,6 +100,8 @@ const Container = styled.div<{ $theme: ITheme }>`
       .profilePhoto {
          max-width: 50dvw;
          max-height: 50dvw;
+         width: 100%;
+         height: 100%;
       }
 
       .about {
@@ -115,6 +116,15 @@ const Container = styled.div<{ $theme: ITheme }>`
          .medicalRegistry {
             justify-content: center;
          }
+      }
+   }
+
+   @media (max-width: 420px) {
+      .profilePhoto {
+         max-width: none;
+         max-height: none;
+         width: 80dvw;
+         height: 80dvw;
       }
    }
 `;
