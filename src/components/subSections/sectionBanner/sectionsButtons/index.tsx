@@ -136,10 +136,10 @@ const Container = styled.div<{ $theme: ITheme }>`
       transition: 0.5s;
       transform: translateX(-2rem);
 
-      &::before {
+      &::before,
+      &::after {
          content: "";
          position: absolute;
-         top: 0;
          left: 0;
          right: 0;
          height: 0.2rem;
@@ -152,20 +152,12 @@ const Container = styled.div<{ $theme: ITheme }>`
          z-index: -1;
       }
 
+      &::before {
+         top: 0;
+      }
+
       &::after {
-         content: "";
-         position: absolute;
          bottom: 0;
-         left: 0;
-         right: 0;
-         height: 0.2rem;
-         background: linear-gradient(
-            to right,
-            transparent,
-            ${({ $theme }) => $theme.shadowColor},
-            transparent
-         );
-         z-index: -1;
       }
 
       &.postsSelected {
@@ -177,8 +169,8 @@ const Container = styled.div<{ $theme: ITheme }>`
       content: "";
       position: absolute;
       bottom: 0;
-      left: -50%;
-      width: 200%;
+      left: -25%;
+      width: 150%;
       height: 100%;
       background: linear-gradient(
          to right,
@@ -201,6 +193,31 @@ const Container = styled.div<{ $theme: ITheme }>`
          &.postsSelected {
             transform: translate(-2rem, calc(100%));
          }
+      }
+   }
+
+   @media (max-width: 420px) {
+      padding: 0 2rem;
+      max-width: 100%;
+
+      .selectSection {
+         width: 100%;
+      }
+
+      .selectedStyle {
+         transform: none;
+         width: 100%;
+
+         &.postsSelected {
+            transform: translate(0, calc(100%));
+         }
+      }
+
+      &::after {
+         width: 100%;
+         background: ${({ $theme }) => $theme.primaryColor};
+         border-radius: 1rem;
+         left: 0;
       }
    }
 `;
