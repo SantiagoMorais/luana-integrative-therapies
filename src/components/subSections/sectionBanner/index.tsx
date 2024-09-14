@@ -7,11 +7,7 @@ import { SectionsAbout } from "./sectionsAbout";
 import equilibriumLogo from "@assets/imgs/equilibrium-logo.jpeg";
 import segredosDaLuaLogo from "@assets/imgs/segredos-da-lua-logo.jpeg";
 import { useLocation } from "react-router-dom";
-import {
-   fontSize,
-   fontWeight,
-   ITheme,
-} from "@styles/theme";
+import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { useThemeContext } from "hooks/useThemeContext";
 import { locationName } from "@utils/functions";
 
@@ -82,6 +78,8 @@ const Container = styled.div<{ $theme: ITheme }>`
       font-weight: ${fontWeight.bold};
       text-transform: uppercase;
       position: relative;
+      text-align: center;
+      max-width: 100%;
 
       &::after {
          content: "";
@@ -123,13 +121,20 @@ const Container = styled.div<{ $theme: ITheme }>`
    }
 
    @media (max-width: 768px) {
-      .content {
-         .title {
-            font-size: ${fontSize.extraLargeSize};
-         }
+      .title {
+         font-size: ${fontSize.extraLargeSize};
+      }
 
-         .subtitle {
-            font-size: ${fontSize.mediumSize};
+      .subtitle {
+         font-size: ${fontSize.mediumSize};
+      }
+   }
+
+   @media (max-width: 420px) {
+      .title {
+         &::after {
+            width: 100%;
+            left: 0;
          }
       }
    }
