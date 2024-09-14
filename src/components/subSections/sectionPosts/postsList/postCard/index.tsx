@@ -4,7 +4,6 @@ import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { IEquilibriumPostNode } from "@utils/equilibriumBlogInterfaces";
 import { locationName } from "@utils/functions";
 import { useThemeContext } from "hooks/useThemeContext";
-
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
@@ -18,7 +17,10 @@ export const PostCard: React.FC<IPostBannerProps> = ({ infoNode }) => {
 
    return (
       <Container $theme={theme}>
-         <Link to={`/${locationName(location)}/${infoNode.id}`} className="banner">
+         <Link
+            to={`/${locationName(location)}/${infoNode.id}`}
+            className="banner"
+         >
             {infoNode.imagem?.url ? (
                <img
                   src={infoNode.imagem.url}
@@ -34,7 +36,7 @@ export const PostCard: React.FC<IPostBannerProps> = ({ infoNode }) => {
             <div className="postInfo">
                <h2 className="postTitle">{infoNode.titulo}</h2>
                {infoNode.subtitulo && (
-                  <h3 className="postSubtitle">{infoNode.subtitulo}</h3>
+                  <h3 className="postSubtitle" title={infoNode.subtitulo}>{infoNode.subtitulo}</h3>
                )}
                <p className="link">Ler publicação</p>
             </div>
@@ -49,11 +51,10 @@ export const PostCard: React.FC<IPostBannerProps> = ({ infoNode }) => {
 };
 
 const Container = styled.li<{ $theme: ITheme }>`
-   display: flex;
-
    .banner {
       flex: 1;
       width: 100%;
+      overflow: hidden;
       height: auto;
       border-radius: 1rem;
       border: solid 0.2rem ${({ $theme }) => $theme.shadowColor};
@@ -94,6 +95,8 @@ const Container = styled.li<{ $theme: ITheme }>`
          width: 100%;
          gap: 1rem;
          z-index: 1;
+         width: 100%;
+         overflow: hidden;
 
          .postTitle {
             font-size: ${fontSize.mediumSize};
@@ -152,6 +155,19 @@ const Container = styled.li<{ $theme: ITheme }>`
          background: ${({ $theme }) => $theme.primaryColor};
          opacity: 0.8;
          z-index: 0;
+      }
+   }
+
+   @media (max-width: 600px) {
+      .banner {
+         .postInfo {
+            .postSubtitle {
+               overflow: hidden;
+               width: 100%;
+               text-overflow: ellipsis;
+               white-space: nowrap;
+            }
+         }
       }
    }
 `;

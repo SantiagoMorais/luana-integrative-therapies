@@ -120,7 +120,8 @@ const Container = styled.ul<{
 
    @media (max-width: 600px) {
       .postsContainer {
-         grid-template-columns: 1fr;
+         grid-template-columns: 100%;
+         padding: 2rem 0;
       }
    }
 `;
