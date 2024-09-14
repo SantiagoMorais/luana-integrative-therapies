@@ -64,42 +64,6 @@ const Container = styled.div<{ $theme: ITheme }>`
       z-index: 2;
       transition: 0.3s;
 
-      &::before {
-         content: "";
-         position: absolute;
-         top: 0;
-         left: 0;
-         right: 0;
-         height: 0.2rem;
-         background: linear-gradient(
-            to right,
-            transparent,
-            ${({ $theme }) => $theme.tertiaryColor},
-            transparent
-         );
-         z-index: -1;
-         opacity: 0;
-         transition: 0.3s;
-      }
-
-      &::after {
-         content: "";
-         position: absolute;
-         bottom: 0;
-         left: 0;
-         right: 0;
-         height: 0.2rem;
-         background: linear-gradient(
-            to right,
-            transparent,
-            ${({ $theme }) => $theme.tertiaryColor},
-            transparent
-         );
-         z-index: -1;
-         opacity: 0;
-         transition: 0.3s;
-      }
-
       &.notSelected {
          cursor: pointer;
 
@@ -107,10 +71,7 @@ const Container = styled.div<{ $theme: ITheme }>`
             scale: 1.05;
             opacity: 0.8;
 
-            &::after {
-               opacity: 1;
-            }
-
+            &::after,
             &::before {
                opacity: 1;
             }
@@ -136,6 +97,13 @@ const Container = styled.div<{ $theme: ITheme }>`
       transition: 0.5s;
       transform: translateX(-2rem);
 
+      &.postsSelected {
+         transform: translateX(18rem);
+      }
+   }
+
+   .selectSection,
+   .selectedStyle {
       &::before,
       &::after {
          content: "";
@@ -143,13 +111,15 @@ const Container = styled.div<{ $theme: ITheme }>`
          left: 0;
          right: 0;
          height: 0.2rem;
+         z-index: -1;
+         transition: 0.3s;
+         opacity: 0;
          background: linear-gradient(
             to right,
             transparent,
-            ${({ $theme }) => $theme.shadowColor},
-            transparent
+            ${({ $theme }) => $theme.tertiaryColor},
+            /* Valor padrão */ transparent
          );
-         z-index: -1;
       }
 
       &::before {
@@ -159,9 +129,18 @@ const Container = styled.div<{ $theme: ITheme }>`
       &::after {
          bottom: 0;
       }
+   }
 
-      &.postsSelected {
-         transform: translateX(18rem);
+   .selectedStyle,
+   .selectedStyle {
+      &::after,
+      &::before {
+         background: linear-gradient(
+            to right,
+            transparent,
+            ${({ $theme }) => $theme.shadowColor},
+            transparent
+         );
       }
    }
 
@@ -200,13 +179,12 @@ const Container = styled.div<{ $theme: ITheme }>`
       padding: 0 2rem;
       max-width: 100%;
 
-      .selectSection {
+      .selectSection, .selectedStyle, &::after {
          width: 100%;
       }
 
       .selectedStyle {
          transform: none;
-         width: 100%;
 
          &.postsSelected {
             transform: translate(0, calc(100%));
@@ -214,7 +192,6 @@ const Container = styled.div<{ $theme: ITheme }>`
       }
 
       &::after {
-         width: 100%;
          background: ${({ $theme }) => $theme.primaryColor};
          border-radius: 1rem;
          left: 0;
