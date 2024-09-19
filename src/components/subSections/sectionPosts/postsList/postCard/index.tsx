@@ -55,7 +55,7 @@ const Container = styled.li<{ $theme: ITheme }>`
       flex: 1;
       width: 100%;
       overflow: hidden;
-      height: auto;
+      height: 100%;
       border-radius: 1rem;
       border: solid 0.2rem ${({ $theme }) => $theme.shadowColor};
       box-shadow: 0.5rem 0.5rem 1rem ${({ $theme }) => $theme.secondaryColor};
