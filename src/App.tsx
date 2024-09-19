@@ -4,6 +4,7 @@ import { SectionSelectedProvider } from "@contexts/sectionSelectedContext";
 import { PostOrTopicProvider } from "@contexts/postOrTopicContext";
 import { TopicsCarouselProvider } from "@contexts/topicsCarouselContext";
 
+
 export const App = () => {
    return (
       <>

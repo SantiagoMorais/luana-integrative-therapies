@@ -41,6 +41,10 @@ export const SubSections = () => {
       }
    }, [setSectionSelected, location]);
 
+   useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [location]); 
+
    return (
       <Container $theme={theme}>
          <Header />

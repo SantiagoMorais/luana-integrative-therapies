@@ -1,13 +1,19 @@
 import { Footer } from "@components/footer";
 import { Header } from "@components/header";
 import { fontSize, fontWeight, ITheme } from "@styles/theme";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import image404 from "@assets/imgs/Error404.jpg";
 import { useThemeContext } from "hooks/useThemeContext";
+import { useEffect } from "react";
 
 export const PageNotFound = () => {
    const theme = useThemeContext();
+   const { pathname } = useLocation();
+
+   useEffect(() => {
+     window.scrollTo(0, 0);
+   }, [pathname]);
 
    return (
       <Container $theme={theme}>

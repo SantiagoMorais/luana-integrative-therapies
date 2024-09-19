@@ -9,8 +9,16 @@ import { FollowMeSection } from "./followMeSection";
 
 import { Footer } from "@components/footer";
 import { Header } from "@components/header";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export const HomeSection = () => {
+   const { pathname } = useLocation();
+
+   useEffect(() => {
+     window.scrollTo(0, 0);
+   }, [pathname]);
+   
    return (
       <Container>
          <div className="frontPage">
