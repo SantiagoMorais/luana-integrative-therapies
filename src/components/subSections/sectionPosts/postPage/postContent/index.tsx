@@ -1,7 +1,6 @@
 import { IEquilibriumPostNode } from "@utils/equilibriumBlogInterfaces";
 import { ISegredosDaLuaPostNode } from "@utils/moonsSecretsBlogInterfaces";
 import styled from "styled-components";
-import parse from "html-react-parser";
 import { fontSize, ITheme } from "@styles/theme";
 import { AuthorInfo } from "../authorInfo";
 import { useThemeContext } from "hooks/useThemeContext";
@@ -9,6 +8,7 @@ import { useContext, useEffect } from "react";
 import { PostOrTopicContext } from "@contexts/postOrTopicContext";
 import { PostDescription } from "./postDescription";
 import { PostDate } from "./postDate";
+import { PostVideo } from "./postVideo";
 
 interface IContent {
    data: IEquilibriumPostNode | ISegredosDaLuaPostNode;
@@ -29,7 +29,7 @@ export const PostContent: React.FC<IContent> = ({ data }) => {
             <h2 className="title">{data?.titulo}</h2>
             <PostDescription data={data} />
 
-            {data?.video && <div className="video">{parse(data?.video)}</div>}
+            {data?.video && <PostVideo video={data.video}/>}
             <PostDate date={data?.data}/>
          </div>
       </Container>
@@ -77,20 +77,6 @@ const Container = styled.div<{ $theme: ITheme }>`
          }
       }
 
-      .video {
-         width: 100%;
-         display: flex;
-         justify-content: center;
-
-         iframe {
-            border-radius: 1rem;
-            width: 60dvw;
-            max-width: 80rem;
-            height: calc(60dvw * 9 / 16);
-            max-height: calc(80rem * 9 / 16);
-         }
-      }
-
       .returnButton {
          display: flex;
          gap: 1rem;
@@ -110,26 +96,6 @@ const Container = styled.div<{ $theme: ITheme }>`
 
             .icon {
                transform: rotate(-360deg);
-            }
-         }
-      }
-   }
-
-   @media (max-width: 768px) {
-      .postContent {
-         .video {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-
-            iframe {
-               position: absolute;
-               top: 0;
-               left: 0;
-               width: 100%;
-               height: 100%;
-               max-width: none;
             }
          }
       }
