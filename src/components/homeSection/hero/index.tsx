@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import heroImage from "@assets/imgs/heroImageLargeScreenDevices.jpg";
+import heroImage from "@assets/imgs/heroImageLargeScreenDevices.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { fontSize, fontWeight, defaultFontFamily, ITheme } from "@styles/theme";
