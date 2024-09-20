@@ -1,11 +1,10 @@
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import parse from "html-react-parser";
 import { useThemeContext } from "hooks/useThemeContext";
 import { fontSize, fontWeight, ITheme } from "@styles/theme";
 import { IEquilibriumPostNode } from "@utils/equilibriumBlogInterfaces";
 import { ISegredosDaLuaPostNode } from "@utils/moonsSecretsBlogInterfaces";
+import { ImageNotFound } from "./imageNotFound";
 
 interface IContent {
    data: IEquilibriumPostNode | ISegredosDaLuaPostNode;
@@ -22,10 +21,7 @@ export const PostDescription: React.FC<IContent> = ({ data }) => {
                alt={`Imagem do tratamento ${data?.titulo}`}
             />
          ) : (
-            <div className="imageNotFound">
-               <FontAwesomeIcon icon={faMagnifyingGlass} className="icon" />
-               <h3 className="imageNotFoundTitle">Imagem não encontrada</h3>
-            </div>
+            <ImageNotFound />
          )}
          {data && parse(data?.texto.html)}
       </Container>
@@ -55,32 +51,6 @@ const Container = styled.div<{ $theme: ITheme }>`
       border: 0.2rem solid ${({ $theme }) => $theme.tertiaryColor};
       height: 40dvh;
       max-height: 40rem;
-   }
-
-   .imageNotFound {
-      float: right;
-      height: 50dvh;
-      min-height: 30rem;
-      max-height: 50rem;
-      border-radius: 0.5rem;
-      border: 0.2rem solid ${({ $theme }) => $theme.primaryColor};
-      width: 50%;
-      max-width: 50rem;
-      margin: 0rem 0rem 1rem 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: ${({ $theme }) => $theme.textColor};
-
-      .icon {
-         font-size: ${fontSize.basicSize};
-      }
-
-      .imageNotFoundTitle {
-         font-size: ${fontSize.basicSize};
-         font-weight: ${fontWeight.medium};
-      }
    }
 
    p {

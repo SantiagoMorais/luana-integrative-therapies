@@ -2,15 +2,13 @@ import { IEquilibriumPostNode } from "@utils/equilibriumBlogInterfaces";
 import { ISegredosDaLuaPostNode } from "@utils/moonsSecretsBlogInterfaces";
 import styled from "styled-components";
 import parse from "html-react-parser";
-import { fontSize, fontWeight, ITheme } from "@styles/theme";
-import { Link, useLocation } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { fontSize, ITheme } from "@styles/theme";
 import { AuthorInfo } from "../authorInfo";
 import { useThemeContext } from "hooks/useThemeContext";
 import { useContext, useEffect } from "react";
 import { PostOrTopicContext } from "@contexts/postOrTopicContext";
 import { PostDescription } from "./postDescription";
+import { PostDate } from "./postDate";
 
 interface IContent {
    data: IEquilibriumPostNode | ISegredosDaLuaPostNode;
@@ -18,15 +16,7 @@ interface IContent {
 
 export const PostContent: React.FC<IContent> = ({ data }) => {
    const theme = useThemeContext();
-   const location = useLocation();
-   const locationName = location.pathname.slice(1).split("/")[0];
    const { setPostOrTopicSelected } = useContext(PostOrTopicContext);
-
-   const dateConvertedToPtStandard = data?.data
-      .toString()
-      .split("-")
-      .reverse()
-      .join("/");
 
    useEffect(() => {
       setPostOrTopicSelected("posts");
@@ -40,15 +30,7 @@ export const PostContent: React.FC<IContent> = ({ data }) => {
             <PostDescription data={data} />
 
             {data?.video && <div className="video">{parse(data?.video)}</div>}
-            <div className="date">
-               <p className="dateData">
-                  Publicado/atualizado em: {dateConvertedToPtStandard}
-               </p>
-               <Link to={`/${locationName}`} className="returnButton">
-                  <FontAwesomeIcon icon={faRotateLeft} className="icon" />
-                  <p className="message">Retornar para às publicações</p>
-               </Link>
-            </div>
+            <PostDate date={data?.data}/>
          </div>
       </Container>
    );
@@ -106,38 +88,6 @@ const Container = styled.div<{ $theme: ITheme }>`
             max-width: 80rem;
             height: calc(60dvw * 9 / 16);
             max-height: calc(80rem * 9 / 16);
-         }
-      }
-
-      .date {
-         padding: 0rem 2rem;
-         display: flex;
-         justify-content: center;
-         flex-direction: column;
-         align-items: center;
-         flex-wrap: wrap;
-         gap: 2rem;
-
-         .dateData {
-            font-size: ${fontSize.mediumSize};
-            color: ${({ $theme }) => $theme.textColor};
-            font-weight: ${fontWeight.medium};
-            position: relative;
-
-            &::after {
-               content: "";
-               position: absolute;
-               bottom: -1rem;
-               left: 0;
-               width: 100%;
-               height: 0.2rem;
-               background: linear-gradient(
-                  to right,
-                  transparent,
-                  ${({ $theme }) => $theme.secondaryColor},
-                  transparent
-               );
-            }
          }
       }
 
