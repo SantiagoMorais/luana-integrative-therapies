@@ -95,13 +95,13 @@
          "id": "equilibrium",
          "title": "Equilibrium",
          "subtitle": "Equilíbrio e Bem-estar com as Terapias Integrativas",
-         "description": "Descubra como nossas terapias promovem o equilíbrio e bem-estar. Conheça nossas técnicas, explore publicações valiosas e veja como essas abordagens naturais podem transformar sua saúde e proporcionar uma vida."
+         "description": "A Equilibrium é um espaço carinhosamente pensado para atender os pacientes de forma aconchegante e integrada. Nosso objetivo é promover o equilíbrio e o bem-estar por meio de terapias que transformam a saúde. Conheça nossos serviços, leia nossas publicações e veja como abordagens naturais podem proporcionar uma vida mais saudável e harmoniosa."
       },
       {
          "id": "segredos-da-lua",
          "title": "Segredos da Lua",
          "subtitle": "Bem-estar Natural com Óleos Essenciais e Aromaterapia",
-         "description": "Explore o poder dos óleos essenciais, da aromaterapia e muito mais para alcançar o bem-estar de forma natural. Mergulhe em nossas técnicas, conheça produtos artesanais e veja como integrar a natureza na sua rotina pode transformar sua saúde e trazer os Segredos da Lua para sua vida."
+         "description": "A Segredos da Lua é nossa marca de produtos naturais feitos com base nos óleos essenciais para o autocuidado diário! Explore o poder dos óleos essenciais, da aromaterapia e muito mais para alcançar o bem-estar de forma natural. Entenda nossas técnicas, conheça produtos artesanais e transforme sua saúde trazendo os Segredos da Lua para sua vida."
       }
    ],
    "topicsListIsEmptyMessages": [
@@ -114,18 +114,6 @@
          "id": "segredos-da-lua",
          "subtitle": "Descubra o poder das plantas e dos óleos essenciais em breve! Vamoscompartilhar conhecimentos e dicas valiosas para seu bem-estar",
          "description": "Os Segredos da Lua estão prestes a serem revelados! Prepare-se parauma jornada onde a sabedoria das plantas e os mistérios dos óleosessenciais vão transformar sua rotina. Em breve, traremos conteúdosexclusivos que vão iluminar seu caminho para o bem-estar natural.Fique ligado e descubra como os Segredos da Lua podem harmonizar suavida!"
-      }
-   ],
-   "aboutTheCompany": [
-      {
-         "id": "equilibrium",
-         "title": "O que é a Equilibrium?",
-         "about": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non sed nostrum illo possimus inventore molestiae omnis excepturi, debitis corporis corrupti vitae quas delectus ut consequatur at ratione nisi! Expedita, eaque?"
-      },
-      {
-         "id": "segredos-da-lua",
-         "title": "O que é a Segredos da Lua?",
-         "about": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non sed nostrum illo possimus inventore molestiae omnis excepturi, debitis corporis corrupti vitae quas delectus ut consequatur at ratione nisi! Expedita, eaque?"
       }
    ]
 }

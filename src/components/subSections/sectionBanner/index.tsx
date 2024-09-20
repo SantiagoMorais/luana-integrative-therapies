@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import data from "@json/index.json";
 import { SectionsButtons } from "./sectionsButtons";
-import { SectionsAbout } from "./sectionsAbout";
 import equilibriumLogo from "@assets/imgs/equilibrium-logo.jpeg";
 import segredosDaLuaLogo from "@assets/imgs/segredos-da-lua-logo.jpeg";
 import { useLocation } from "react-router-dom";
@@ -44,7 +43,6 @@ export const SectionBanner: React.FC<ISectionBannerProps> = ({
             <FontAwesomeIcon icon={faCircle} className="icon" />
          </h3>
          <p className="description">{content?.description}</p>
-         <SectionsAbout />
          <SectionsButtons />
       </Container>
    );
