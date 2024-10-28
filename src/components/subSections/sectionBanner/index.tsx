@@ -43,7 +43,7 @@ export const SectionBanner: React.FC<ISectionBannerProps> = ({
             <FontAwesomeIcon icon={faCircle} className="icon" />
          </h3>
          <p className="description">{content?.description}</p>
-         <SectionsButtons />
+         <SectionsButtons sectionSelected={sectionSelected}/>
       </Container>
    );
 };

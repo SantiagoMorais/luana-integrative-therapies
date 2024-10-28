@@ -45,12 +45,15 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
    const location = useLocation();
    const theme = useThemeContext();
    const [loadingMore, setLoadingMore] = useState<boolean>(false);
-   
+
    let posts = null;
    let hasMore: boolean = false;
    let endCursor: string | null = "";
 
-   if (locationName(location) === "equilibrium" && isEquilibriumPostsData(data)) {
+   if (
+      locationName(location) === "equilibrium" &&
+      isEquilibriumPostsData(data)
+   ) {
       posts = data.equilibriumPostsConnection.edges;
       hasMore = data.equilibriumPostsConnection.pageInfo.hasNextPage;
       endCursor = data.equilibriumPostsConnection.pageInfo.endCursor;
@@ -135,7 +138,10 @@ export const SectionPosts: React.FC<ISectionPosts> = ({ query }) => {
                     data.segredosDaLuaPostsConnection.edges.length > 0)) ? (
                <>
                   <h2 className="postsTitle">
-                     Publicações sobre nossas terapias:
+                     Publicações sobre{" "}
+                     {locationName(location) === "equilibrium"
+                        ? "nossas terapias:"
+                        : "nossos produtos"}
                   </h2>
                   <PostsList
                      infoEdge={posts}

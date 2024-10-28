@@ -11,15 +11,27 @@ interface IButtons {
    id: number;
 }
 
-export const SectionsButtons = () => {
+interface ISectionButtonsProps {
+   sectionSelected: "equilibrium" | "segredos-da-lua" | "";
+}
+
+export const SectionsButtons = ({ sectionSelected }: ISectionButtonsProps) => {
    const theme = useThemeContext();
 
    const { handleSelectedButton, postOrTopicSelected } =
       useContext(PostOrTopicContext);
 
    const buttons: IButtons[] = [
-      { title: "Nossas terapias", buttonType: "topics", id: 0 },
-      { title: "Nossas publicações", buttonType: "posts", id: 1 },
+      {
+         title: `${
+            sectionSelected === "equilibrium"
+               ? "Nossas terapias"
+               : sectionSelected === "segredos-da-lua" && "Nossos produtos"
+         }`,
+         buttonType: "topics",
+         id: 0,
+      },
+      { title: `Nossas publicações`, buttonType: "posts", id: 1 },
    ];
 
    return (
@@ -179,7 +191,9 @@ const Container = styled.div<{ $theme: ITheme }>`
       padding: 0 2rem;
       max-width: 100%;
 
-      .selectSection, .selectedStyle, &::after {
+      .selectSection,
+      .selectedStyle,
+      &::after {
          width: 100%;
       }
 

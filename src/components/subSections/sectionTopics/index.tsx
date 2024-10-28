@@ -11,6 +11,8 @@ import { ErrorPage } from "../errorPage";
 import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useThemeContext } from "hooks/useThemeContext";
+import { locationName } from "@utils/functions";
+import { useLocation } from "react-router-dom";
 
 interface ISectionTopics {
    query: DocumentNode;
@@ -59,6 +61,9 @@ const handleSlidesPerView = (
 export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    const { sectionSelected } = useContext(SectionSelectedContext);
    const theme = useThemeContext();
+   const location = useLocation();
+
+   console.log(location);
 
    const { data, fetchMore, loading, error } = useQuery<
       IEquilibriumTopicsData | ISegredosDaLuaTopicsData
@@ -139,7 +144,6 @@ export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    return (
       <Container $theme={theme}>
          <div className="content">
-            <h2 className="sectionTitle">Veja alguns dos nossos serviços:</h2>
             {loading ? (
                <>
                   <div className="loading">
@@ -154,17 +158,26 @@ export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
             ) : error ? (
                <ErrorPage />
             ) : (
-               <>
-                  <TopicsList
-                     info={topics}
-                     slidesPerView={slidesPerView}
-                     imagesHeightInRem={40}
-                     loadMore={loadMoreTopics}
-                     hasMore={hasMore}
-                     loading={loadingMore}
-                  />
-                  <TopicContent data={topics} />
-               </>
+               data && (
+                  <>
+                     <h2 className="sectionTitle">
+                        Veja alguns dos nossos{" "}
+                        {locationName(location) === "equilibrium"
+                           ? "serviços"
+                           : "produtos"}
+                        :
+                     </h2>
+                     <TopicsList
+                        info={topics}
+                        slidesPerView={slidesPerView}
+                        imagesHeightInRem={40}
+                        loadMore={loadMoreTopics}
+                        hasMore={hasMore}
+                        loading={loadingMore}
+                     />
+                     <TopicContent data={topics} />
+                  </>
+               )
             )}
          </div>
       </Container>
