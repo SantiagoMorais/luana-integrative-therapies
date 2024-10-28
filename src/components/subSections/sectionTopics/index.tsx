@@ -63,8 +63,6 @@ export const SectionTopics: React.FC<ISectionTopics> = ({ query }) => {
    const theme = useThemeContext();
    const location = useLocation();
 
-   console.log(location);
-
    const { data, fetchMore, loading, error } = useQuery<
       IEquilibriumTopicsData | ISegredosDaLuaTopicsData
    >(query, {
